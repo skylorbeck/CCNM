@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BigCOverride
+  m_Controller: {fileID: 9100000, guid: 81e1dbe9ec441774d816b2a5ce1d2965, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 72d071f5e2f3ee64c996b7dab6fb36be, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 404850217ef88304f8ee31194cab862d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e468cf7024ba3124f81eda5ecb07774a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c5203fe3b5ef97d47b46ffa43310d525, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b9b22d602feffa942bbd3b3c382fbc4d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 343a43a4fc71c5344a7a5ff7aca99b76, type: 2}
