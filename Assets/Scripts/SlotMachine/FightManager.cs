@@ -11,9 +11,11 @@ public class FightManager : MonoBehaviour
     [field:SerializeField]public Lane selectedEnemy { get; private set; } = Lane.None;
     [SerializeField] private Image selector;
     [SerializeField] private Image enemySelector;
+    [SerializeField] private Image enemySelectorInner;
     private bool selectorLarge = false;
     [SerializeField] private AbilityWheel[] wheels;
     public bool dirty { get; private set; } = false;
+    public bool BothTargeted { get; private set; } = false;
     public WheelStates state = WheelStates.Idle;
     [SerializeField] private PreviewTextController previewText;
     [SerializeField] private Enemy[] enemies;
@@ -32,7 +34,7 @@ public class FightManager : MonoBehaviour
 
     void Update()
     {
-            enemySelector.transform.Rotate(Vector3.forward, (selectedEnemy!=Lane.None && selectedWheel !=Lane.None)?-0.5f:-0.2f);
+            enemySelector.transform.Rotate(Vector3.forward, BothTargeted?-0.5f:-0.2f);
     }
 
     void FixedUpdate()
@@ -73,7 +75,7 @@ public class FightManager : MonoBehaviour
     {
         selectorLarge = !selectorLarge;
         selector.rectTransform.sizeDelta = selectorLarge ? new Vector2(35, 35) : new Vector2(30, 30);
-        enemySelector.rectTransform.sizeDelta = selectorLarge ? new Vector2(35, 35) : new Vector2(30, 30);
+        // enemySelector.rectTransform.sizeDelta = selectorLarge ? new Vector2(35, 35) : new Vector2(30, 30);
 
     }
     
@@ -92,9 +94,10 @@ public class FightManager : MonoBehaviour
                 break;
         }
     }
+
     public void SelectWheel(Lane wheel)
     {
-        if (state!=WheelStates.Selecting)
+        if (state != WheelStates.Selecting)
         {
             return;
         }
@@ -103,15 +106,17 @@ public class FightManager : MonoBehaviour
         {
             selectedWheel = Lane.None;
             selector.enabled = false;
-            if (selectedEnemy!=Lane.None)
+            if (selectedEnemy != Lane.None)
             {
                 GetSelectedEnemy();
                 SetPreviewText(targetEnemy);
+                
             }
             else
             {
                 ClearPreviewText();
             }
+            CheckForBothSelected();
             return;
         }
 
@@ -120,18 +125,19 @@ public class FightManager : MonoBehaviour
         switch (wheel)
         {
             case Lane.Left:
-                selector.rectTransform.anchoredPosition = new Vector2(-35.5f,28.5f);
+                selector.rectTransform.anchoredPosition = new Vector2(-35.5f, 28.5f);
                 break;
             case Lane.Middle:
                 selector.rectTransform.anchoredPosition = new Vector2(0f, 28.5f);
                 break;
             case Lane.Right:
-                selector.rectTransform.anchoredPosition = new Vector2(35.5f,28.5f);
+                selector.rectTransform.anchoredPosition = new Vector2(35.5f, 28.5f);
                 break;
         }
-        GetSelectedSymbol();
-        previewText.SetText(targetSymbol!.ability.title, targetSymbol!.ability.baseDamage + " damage", targetSymbol!.ability.description);
 
+        GetSelectedSymbol();
+        SetPreviewText(targetSymbol);
+        CheckForBothSelected();
     }
 
     public void SelectEnemy(int enemySlot)
@@ -163,6 +169,7 @@ public class FightManager : MonoBehaviour
                     selectedEnemy = Lane.None;
                     enemySelector.enabled = false;
                     ClearPreviewText();
+                    CheckForBothSelected();
                     break;
                 default:
                     PlayerAttack();
@@ -186,6 +193,7 @@ public class FightManager : MonoBehaviour
         }
         GetSelectedEnemy(); 
         SetPreviewText(targetEnemy);
+        CheckForBothSelected();
     }
 
     public async void SpinWheels()
@@ -240,6 +248,7 @@ public class FightManager : MonoBehaviour
         targetSymbol = null;
         selector.enabled = false;
         enemySelector.enabled = false;
+        enemySelectorInner.enabled = false;
     }
 
     public void SetPreviewText(Symbol symbol)
@@ -296,5 +305,12 @@ public class FightManager : MonoBehaviour
         targetSymbol.Consume();
         targetEnemy.Damage(targetSymbol.ability.baseDamage);//todo do damage calculation
         ClearSelected();
+        CheckForBothSelected();
+    }
+
+    public void CheckForBothSelected()
+    {
+        BothTargeted = selectedEnemy != Lane.None && selectedWheel != Lane.None;
+        enemySelectorInner.enabled = BothTargeted;
     }
 }
