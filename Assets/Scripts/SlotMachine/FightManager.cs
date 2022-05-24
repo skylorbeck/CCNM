@@ -45,12 +45,15 @@ public class FightManager : MonoBehaviour
             case WheelStates.Spinning:
                 break;
             case WheelStates.Selecting:
-                bool turnOver = false;
+                bool turnOver = true;
                 foreach (AbilityWheel wheel in wheels)
                 {
-                    if (wheel.winnerChosen && wheel.winner.consumed)
+                    if (!wheel.winnerChosen)
                     {
-                        turnOver = true;
+                        turnOver = false;
+                    } else if (!wheel.winner.consumed)
+                    {
+                        turnOver = false;
                     }
                 }
 
@@ -60,6 +63,8 @@ public class FightManager : MonoBehaviour
                 }
                 break;
             case WheelStates.EnemyTurn:
+                //todo enemy trigger here.
+                state = WheelStates.Idle;
                 break;
         }
     }

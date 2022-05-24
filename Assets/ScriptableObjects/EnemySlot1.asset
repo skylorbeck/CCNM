@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b027d360112a34ea7fc3fd846dc632, type: 3}
   m_Name: EnemySlot1
   m_EditorClassIdentifier: 
+  <title>k__BackingField: enemy.name
+  <description>k__BackingField: enemy.description
   <health>k__BackingField: 99
   <maxHealth>k__BackingField: 99
   <shield>k__BackingField: 99
