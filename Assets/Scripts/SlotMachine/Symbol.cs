@@ -11,6 +11,8 @@ public class Symbol : MonoBehaviour
     private SpriteRenderer statusSpriteRenderer;
     private int statusSpriteIndex = 0;
     [SerializeField] float darknessRamp = 0.5f;
+    public bool consumed { get; private set; } = false;
+
     void OnEnable()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -22,6 +24,7 @@ public class Symbol : MonoBehaviour
 
     private void OnDisable()
     {
+        consumed = false;
         GameManager.Instance.FixedSecond -= CycleStatusEffect;
     }
 
@@ -29,7 +32,7 @@ public class Symbol : MonoBehaviour
     {
         var localPosition = transform.localPosition;
         spriteRenderer.enabled = localPosition.y < 2.5f;
-        spriteRenderer.color = Color.Lerp(Color.white, Color.black, Math.Abs(localPosition.y * darknessRamp));
+        spriteRenderer.color =consumed?Color.gray: Color.Lerp(Color.white, Color.black, Math.Abs(localPosition.y * darknessRamp));
         if (ability.statusEffects.Length > 0)
         {
             statusSpriteRenderer.color =
