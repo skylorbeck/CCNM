@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Symbol : MonoBehaviour
 {
-    [SerializeField] AbilitySO ability;
+    [field:SerializeField] public AbilitySO ability { get; private set; }
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer statusSpriteRenderer;
     private int statusSpriteIndex = 0;
@@ -64,5 +64,10 @@ public class Symbol : MonoBehaviour
             statusSpriteRenderer.sprite = null;
         }
         
+    }
+
+    public void Consume()
+    {
+        consumed = true;
     }
 }

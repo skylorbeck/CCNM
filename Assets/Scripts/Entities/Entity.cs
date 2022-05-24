@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Entity : ScriptableObject
 {
+    [field: SerializeField] public string title { get; private set; } = "entity.name";
+    [field: SerializeField] public string description { get; private set; } = "entity.description";
     [field: SerializeField] public int health { get; private set; } = 100;
     [field: SerializeField] public int maxHealth { get; private set; } = 100;
     [field: SerializeField] public int shield { get; private set; } = 100;

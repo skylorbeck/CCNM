@@ -15,6 +15,7 @@ public class AbilityWheel : MonoBehaviour
     [SerializeField] private int totalSymbolsPassed = 0;
 
     [field:SerializeField] public bool isSpinning { get; private set; } = false;
+    [field:SerializeField] public bool winnerChosen { get; private set; } = false;
     [SerializeField] private bool dirty = false;
     [SerializeField] private float spinSpeed = 5f;
     [SerializeField] private float spinSpeedMin = 10f;
@@ -22,6 +23,7 @@ public class AbilityWheel : MonoBehaviour
     [SerializeField] private int totalToSpin = 20;
     [SerializeField] private int totalToSpinMin = 15;
     [SerializeField] private int totalToSpinMax = 25;
+    public Symbol winner { get; private set; }
 
     void Start()
     {
@@ -93,6 +95,8 @@ public class AbilityWheel : MonoBehaviour
 
     public async void Spin()
     {
+        winner = null;
+        winnerChosen = false;
         totalSymbolsPassed = 0 - symbolPool.CountActive;
         isSpinning = true;
         spinSpeed = Random.Range(spinSpeedMin, spinSpeedMax);
@@ -121,5 +125,24 @@ public class AbilityWheel : MonoBehaviour
             } while (symbol.transform.localPosition.y>1.6f);
           
         }
+    }
+
+    public Symbol GetWinner()
+    {
+        winnerChosen = true;
+        winner = null;
+        foreach (Symbol symbol in symbols)
+        {
+            if (symbol.isActiveAndEnabled)
+            {
+                Transform symbolTransform = symbol.transform;
+                if(symbolTransform.localPosition.y<=0.1f && symbolTransform.localPosition.y>=-0.1f)
+                {
+                    winner = symbol;
+                    break;
+                }
+            }
+        }
+        return winner;
     }
 }

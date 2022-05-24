@@ -15,7 +15,10 @@ public class FightManager : MonoBehaviour
     [SerializeField] private AbilityWheel[] wheels;
     public bool dirty { get; private set; } = false;
     public WheelStates state = WheelStates.Idle;
-
+    [SerializeField] private PreviewTextController previewText;
+    [SerializeField] private Enemy[] enemies;
+    private Enemy targetEnemy;
+    private Symbol targetSymbol;
     async void Start()
     {
         await Task.Delay(1000);
@@ -29,17 +32,35 @@ public class FightManager : MonoBehaviour
 
     void Update()
     {
-        if (selectedEnemy!=Lane.None && selectedWheel !=Lane.None)
-        {
-            enemySelector.transform.Rotate(Vector3.forward, -0.25f);
-        }
+            enemySelector.transform.Rotate(Vector3.forward, (selectedEnemy!=Lane.None && selectedWheel !=Lane.None)?-0.5f:-0.2f);
     }
 
     void FixedUpdate()
     {
-        if (state == WheelStates.Idle)
+        switch (state)
         {
-            SpinWheels();
+            case WheelStates.Idle:
+                SpinWheels();
+                break;
+            case WheelStates.Spinning:
+                break;
+            case WheelStates.Selecting:
+                bool turnOver = false;
+                foreach (AbilityWheel wheel in wheels)
+                {
+                    if (wheel.winnerChosen && wheel.winner.consumed)
+                    {
+                        turnOver = true;
+                    }
+                }
+
+                if (turnOver)
+                {
+                    state = WheelStates.EnemyTurn;
+                }
+                break;
+            case WheelStates.EnemyTurn:
+                break;
         }
     }
     
@@ -47,7 +68,7 @@ public class FightManager : MonoBehaviour
     {
         selectorLarge = !selectorLarge;
         selector.rectTransform.sizeDelta = selectorLarge ? new Vector2(35, 35) : new Vector2(30, 30);
-        enemySelector.rectTransform.sizeDelta = selectorLarge ? new Vector2(45, 45) : new Vector2(40, 40);
+        enemySelector.rectTransform.sizeDelta = selectorLarge ? new Vector2(35, 35) : new Vector2(30, 30);
 
     }
     
@@ -77,6 +98,15 @@ public class FightManager : MonoBehaviour
         {
             selectedWheel = Lane.None;
             selector.enabled = false;
+            if (selectedEnemy!=Lane.None)
+            {
+                GetSelectedEnemy();
+                SetPreviewText(targetEnemy);
+            }
+            else
+            {
+                ClearPreviewText();
+            }
             return;
         }
 
@@ -94,6 +124,8 @@ public class FightManager : MonoBehaviour
                 selector.rectTransform.anchoredPosition = new Vector2(35.5f,28.5f);
                 break;
         }
+        GetSelectedSymbol();
+        previewText.SetText(targetSymbol!.ability.title, targetSymbol!.ability.baseDamage + " damage", targetSymbol!.ability.description);
 
     }
 
@@ -125,17 +157,19 @@ public class FightManager : MonoBehaviour
                 case Lane.None:
                     selectedEnemy = Lane.None;
                     enemySelector.enabled = false;
-                    return;
+                    ClearPreviewText();
+                    break;
                 default:
-                    //todo attack code here
-                    return;
+                    PlayerAttack();
+                    break;
             }
+            return;
         }
         enemySelector.enabled = true;
         selectedEnemy = enemySlot;
         switch (enemySlot)
         {
-            case Lane.Left://todo replace this selector with it's own selector gameobject
+            case Lane.Left:
                 enemySelector.rectTransform.anchoredPosition = new Vector2(-33.5f,-52);
                 break;
             case Lane.Middle:
@@ -145,6 +179,8 @@ public class FightManager : MonoBehaviour
                 enemySelector.rectTransform.anchoredPosition = new Vector2(33.5f,-52);
                 break;
         }
+        GetSelectedEnemy(); 
+        SetPreviewText(targetEnemy);
     }
 
     public async void SpinWheels()
@@ -174,7 +210,8 @@ public class FightManager : MonoBehaviour
     {
         Idle,
         Spinning,
-        Selecting
+        Selecting,
+        EnemyTurn
     }
     public enum Lane
     {
@@ -186,10 +223,73 @@ public class FightManager : MonoBehaviour
     
     public void SetState(WheelStates newState)
     {
+        ClearSelected();
+        state = newState;
+    }
+
+    private void ClearSelected()
+    {
         selectedWheel = Lane.None;
         selectedEnemy = Lane.None;
+        targetEnemy = null;
+        targetSymbol = null;
         selector.enabled = false;
         enemySelector.enabled = false;
-        state = newState;
+    }
+
+    public void SetPreviewText(Symbol symbol)
+    {
+        previewText.SetText(symbol!.ability.title, symbol!.ability.baseDamage + " damage", symbol!.ability.description);
+    }
+    
+    public void SetPreviewText(Enemy enemy)
+    {
+        previewText.SetText(enemy!.title, enemy!.description, "");
+    }
+
+    public void ClearPreviewText()
+    {
+        previewText.SetText("","","");
+    }
+    
+    public void GetSelectedEnemy()
+    {
+        targetEnemy = null;
+        switch (selectedEnemy)
+        {
+            case Lane.Left:
+                targetEnemy = enemies[0];
+                break;
+            case Lane.Middle:
+                targetEnemy = enemies[1];
+                break;
+            case Lane.Right:
+                targetEnemy = enemies[2];
+                break;
+        }
+    }
+    
+    public void GetSelectedSymbol()
+    {
+        targetSymbol = null;
+        switch (selectedWheel)
+        {
+            case Lane.Left:
+                targetSymbol = wheels[0].GetWinner();
+                break;
+            case Lane.Middle:
+                targetSymbol = wheels[1].GetWinner();
+                break;
+            case Lane.Right:
+                targetSymbol = wheels[2].GetWinner();
+                break;
+        }
+    }
+
+    public void PlayerAttack()
+    {
+        targetSymbol.Consume();
+        targetEnemy.Damage(targetSymbol.ability.baseDamage);//todo do damage calculation
+        ClearSelected();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Ability", menuName = "Combat/Ability")]
 public class AbilitySO : ScriptableObject
 {
-    [field: SerializeField] public int baseCost { get; private set; } = 1;
+    
+    [field: SerializeField] public string title  { get; private set; } = "ability.title";
+    [field: SerializeField] public string description  { get; private set; } = "ability.description";
     [field: SerializeField] public Sprite icon { get; private set; }
+    [field: SerializeField] public int baseCost { get; private set; } = 1;
 
     [field: Header("Damage")]
     [field: SerializeField] public bool damageTarget{ get; private set; } = false;
