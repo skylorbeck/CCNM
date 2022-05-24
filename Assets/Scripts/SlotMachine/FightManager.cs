@@ -10,6 +10,7 @@ public class FightManager : MonoBehaviour
     [field:SerializeField]public Lane selectedWheel { get; private set; } = Lane.None;
     [field:SerializeField]public Lane selectedEnemy { get; private set; } = Lane.None;
     [SerializeField] private Image selector;
+    [SerializeField] private Image enemySelector;
     private bool selectorLarge = false;
     [SerializeField] private AbilityWheel[] wheels;
     public bool dirty { get; private set; } = false;
@@ -21,9 +22,17 @@ public class FightManager : MonoBehaviour
         GameManager.Instance.FixedSecond += SizeSelector;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.FixedSecond -= SizeSelector;
+    }
+
     void Update()
     {
-        
+        if (selectedEnemy!=Lane.None && selectedWheel !=Lane.None)
+        {
+            enemySelector.transform.Rotate(Vector3.forward, -0.25f);
+        }
     }
 
     void FixedUpdate()
@@ -38,6 +47,8 @@ public class FightManager : MonoBehaviour
     {
         selectorLarge = !selectorLarge;
         selector.rectTransform.sizeDelta = selectorLarge ? new Vector2(35, 35) : new Vector2(30, 30);
+        enemySelector.rectTransform.sizeDelta = selectorLarge ? new Vector2(45, 45) : new Vector2(40, 40);
+
     }
     
     public void SelectWheel(int wheel)
@@ -61,19 +72,29 @@ public class FightManager : MonoBehaviour
         {
             return;
         }
+
+        if (wheel == selectedWheel)
+        {
+            selectedWheel = Lane.None;
+            selector.enabled = false;
+            return;
+        }
+
+        selector.enabled = true;
         selectedWheel = wheel;
         switch (wheel)
         {
             case Lane.Left:
-                selector.rectTransform.anchoredPosition = new Vector2(-35,28.5f);
+                selector.rectTransform.anchoredPosition = new Vector2(-35.5f,28.5f);
                 break;
             case Lane.Middle:
-                selector.rectTransform.anchoredPosition = new Vector2(0, 28.5f);
+                selector.rectTransform.anchoredPosition = new Vector2(0f, 28.5f);
                 break;
             case Lane.Right:
-                selector.rectTransform.anchoredPosition = new Vector2(35,28.5f);
+                selector.rectTransform.anchoredPosition = new Vector2(35.5f,28.5f);
                 break;
         }
+
     }
 
     public void SelectEnemy(int enemySlot)
@@ -97,17 +118,31 @@ public class FightManager : MonoBehaviour
         {
             return;
         }
+        if (enemySlot == selectedEnemy)
+        {
+            switch (selectedWheel)
+            {
+                case Lane.None:
+                    selectedEnemy = Lane.None;
+                    enemySelector.enabled = false;
+                    return;
+                default:
+                    //todo attack code here
+                    return;
+            }
+        }
+        enemySelector.enabled = true;
         selectedEnemy = enemySlot;
         switch (enemySlot)
         {
-            case Lane.Left:
-                selector.rectTransform.anchoredPosition = new Vector2(-35,140);
+            case Lane.Left://todo replace this selector with it's own selector gameobject
+                enemySelector.rectTransform.anchoredPosition = new Vector2(-33.5f,-52);
                 break;
             case Lane.Middle:
-                selector.rectTransform.anchoredPosition = new Vector2(0, 140);
+                enemySelector.rectTransform.anchoredPosition = new Vector2(0f, -52);
                 break;
             case Lane.Right:
-                selector.rectTransform.anchoredPosition = new Vector2(35,140);
+                enemySelector.rectTransform.anchoredPosition = new Vector2(33.5f,-52);
                 break;
         }
     }
@@ -152,7 +187,9 @@ public class FightManager : MonoBehaviour
     public void SetState(WheelStates newState)
     {
         selectedWheel = Lane.None;
-        selector.enabled = newState == WheelStates.Selecting;
+        selectedEnemy = Lane.None;
+        selector.enabled = false;
+        enemySelector.enabled = false;
         state = newState;
     }
 }
