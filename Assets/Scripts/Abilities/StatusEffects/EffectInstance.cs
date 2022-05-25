@@ -1,30 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
 public class EffectInstance : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    private Shell target;
-    public StatusEffect statusEffect { get; private set; }
+    [SerializeField] private Shell target;
+    [field:SerializeField] public StatusEffect statusEffect { get; private set; }
     [field:SerializeField] public int duration { get; private set; }
     public bool isActive { get; private set; } = true;
     private TextMeshPro durationText;
 
-    public void Tick()
+    public void Start()
+    {
+        durationText = GetComponentInChildren<TextMeshPro>();
+    }
+
+    public async Task Tick()
     {
         if (!statusEffect.isPersistent)
         {
             duration--;
         }
-        
+        UpdateDurationText();
+
+        await statusEffect.Tick(target);
+
         if (duration <= 0)
         {
             Expire();
         }
-        statusEffect.Tick(target);
-        UpdateDurationText();
 
     }
 
@@ -38,8 +46,8 @@ public class EffectInstance : MonoBehaviour
     {
         target = shell;
         this.statusEffect = statusEffect;
-        AddDuration(statusEffect.duration);
         durationText = GetComponentInChildren<TextMeshPro>();
+        AddDuration(statusEffect.duration);
         UpdateDurationText();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = statusEffect.icon;

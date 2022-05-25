@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StatusEffect", menuName = "Combat/StatusEffect")]
@@ -17,17 +18,24 @@ public class StatusEffect : ScriptableObject
     [field: SerializeField] public Element element { get; private set; } = Element.None;
 
 
-    public void OnApply(Shell target)
+    public virtual void OnApply(Shell target)
     {
         //do something to the shell
     }
 
-    public void OnRemove(Shell target)
+    public virtual void OnRemove(Shell target)
     {
         //do something to the shell
     }
     
-    public void Tick(Shell target)
+    public virtual async Task Tick(Shell target)
+    {
+        Debug.Log(titleTranslationKey + " ticked");
+        await Task.Delay(500);
+        //do something to the shell
+    }
+    
+    public virtual void OnAction(Shell target)
     {
         //do something to the shell
     }
@@ -39,7 +47,5 @@ public class StatusEffect : ScriptableObject
         Water,
         Earth,
         Air,
-        Light,
-        Dark
     }
 }

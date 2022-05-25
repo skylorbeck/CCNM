@@ -66,13 +66,38 @@ public class Symbol : MonoBehaviour
         
     }
 
-    public void Consume(Shell shell)
+    public void Consume(Shell target,Shell user)
     {
-        foreach (StatusEffect statusEffect in ability.statusEffects)
+        if (ability.statusTarget)
         {
-            shell.AddStatusEffect(statusEffect);
+            foreach (StatusEffect statusEffect in ability.statusEffects)
+            {
+                target.AddStatusEffect(statusEffect);
+            }
         }
-        shell.Damage(ability.baseDamage);
+        if (ability.statusSelf)
+        {
+            foreach (StatusEffect statusEffect in ability.statusEffects)
+            {
+                user.AddStatusEffect(statusEffect);
+            }
+        }
+        if (ability.healTarget)
+        {
+            target.Heal(ability.baseHeal);
+        }
+        if (ability.healUser)
+        {
+            user.Heal(ability.baseHeal);
+        }
+        if (ability.damageTarget)
+        {
+            target.Damage(ability.baseDamage);
+        }
+        if (ability.damageUser)
+        {
+            user.Damage(ability.baseDamage);
+        }
         consumed = true;
     }
 }

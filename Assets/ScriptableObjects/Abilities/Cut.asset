@@ -17,14 +17,15 @@ MonoBehaviour:
   <icon>k__BackingField: {fileID: 21300000, guid: a8dacc0702663954ead2b8549c770f22, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
-  <damageUser>k__BackingField: 0
-  <baseDamage>k__BackingField: 4
+  <damageUser>k__BackingField: 1
+  <baseDamage>k__BackingField: 2
   <healTarget>k__BackingField: 0
   <healUser>k__BackingField: 0
   <baseHeal>k__BackingField: 3
   <shieldTarget>k__BackingField: 0
   <shieldUser>k__BackingField: 0
   <baseShield>k__BackingField: 3
-  <statusTarget>k__BackingField: 0
+  <statusTarget>k__BackingField: 1
   <statusSelf>k__BackingField: 0
-  <statusEffects>k__BackingField: []
+  <statusEffects>k__BackingField:
+  - {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}

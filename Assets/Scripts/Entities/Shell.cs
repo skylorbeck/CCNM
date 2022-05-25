@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Shell : MonoBehaviour
@@ -89,9 +90,9 @@ public class Shell : MonoBehaviour
         statusDisplayer.RemoveStatus(statusEffect);
     }
 
-    public void TickStatusEffects()
+    public async Task TickStatusEffects()
     {
-        statusDisplayer.Tick();
+        await statusDisplayer.Tick();
     }
     
     public void InsertBrain(Brain brain)

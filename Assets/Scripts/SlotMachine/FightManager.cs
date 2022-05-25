@@ -18,11 +18,13 @@ public class FightManager : MonoBehaviour
     public bool BothTargeted { get; private set; } = false;
     public WheelStates state = WheelStates.Idle;
     [SerializeField] private PreviewTextController previewText;
-    [SerializeField] private Shell[] enemies;
+    [SerializeField] private EnemyShell[] enemies;
     [SerializeField] private Shell player;
     private Shell targetEnemy;
     private Symbol targetSymbol;
     [SerializeField] private Battlefield battlefield;
+    private bool turnOver = false;
+
     async void Start()
     {
         for (var i = 0; i < battlefield.enemies.Length; i++)
@@ -56,7 +58,7 @@ public class FightManager : MonoBehaviour
             case WheelStates.Spinning:
                 break;
             case WheelStates.Selecting:
-                bool turnOver = true;
+                turnOver = true;
                 foreach (AbilityWheel wheel in wheels)
                 {
                     if (!wheel.winnerChosen)
@@ -70,20 +72,36 @@ public class FightManager : MonoBehaviour
 
                 if (turnOver)
                 {
-                    state = WheelStates.EnemyTurn;
+                    player.TickStatusEffects();//todo make the player status await
+                    state = WheelStates.EnemyPreTurn;
                     ClearSelected();
                     ClearPreviewText();
                 }
                 break;
+            case WheelStates.EnemyPreTurn:
+                PreFireEnemies();
+                SetState(WheelStates.EnemyTurn);
+                break;
             case WheelStates.EnemyTurn:
-                //todo enemy trigger here.
-                foreach (Shell shell in enemies)
+                if (turnOver) 
                 {
-                    shell.TickStatusEffects();
+                    SetState(WheelStates.Idle);
                 }
-                state = WheelStates.Idle;
                 break;
         }
+    }
+
+    
+    public async void PreFireEnemies()
+    {
+        turnOver = false;
+        foreach (EnemyShell enemy in enemies)
+        {
+            await enemy.enemyBrain.EnemyTurn();
+            await enemy.TickStatusEffects();//potentially remove await for effects applying while other enemies attack?
+
+        }
+        turnOver = true;
     }
     
     public void SizeSelector()
@@ -244,7 +262,9 @@ public class FightManager : MonoBehaviour
         Idle,
         Spinning,
         Selecting,
-        EnemyTurn
+        EnemyPreTurn,
+        EnemyTurn,
+        
     }
     public enum Lane
     {
@@ -322,7 +342,7 @@ public class FightManager : MonoBehaviour
 
     public void PlayerAttack()
     {
-        targetSymbol.Consume(targetEnemy);//todo do damage calculation
+        targetSymbol.Consume(targetEnemy,player);
         ClearSelected();
         CheckForBothSelected();
     }

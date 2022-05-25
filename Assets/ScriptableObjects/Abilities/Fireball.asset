@@ -16,16 +16,16 @@ MonoBehaviour:
   <description>k__BackingField: ability.description
   <icon>k__BackingField: {fileID: 21300000, guid: ea8a4388aaeac9c4ca50cad1286078e6, type: 3}
   <baseCost>k__BackingField: 1
-  <damageTarget>k__BackingField: 0
-  <damageUser>k__BackingField: 0
-  <baseDamage>k__BackingField: 10
+  <damageTarget>k__BackingField: 1
+  <damageUser>k__BackingField: 1
+  <baseDamage>k__BackingField: 5
   <healTarget>k__BackingField: 0
   <healUser>k__BackingField: 0
   <baseHeal>k__BackingField: 3
   <shieldTarget>k__BackingField: 0
   <shieldUser>k__BackingField: 0
   <baseShield>k__BackingField: 3
-  <statusTarget>k__BackingField: 0
+  <statusTarget>k__BackingField: 1
   <statusSelf>k__BackingField: 0
   <statusEffects>k__BackingField:
-  - {fileID: 11400000, guid: 0289a85532774944ea49a94cafc663b5, type: 2}
+  - {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}

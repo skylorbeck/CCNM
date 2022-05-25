@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class StatusDisplayer : MonoBehaviour
@@ -7,7 +8,7 @@ public class StatusDisplayer : MonoBehaviour
     [SerializeField] private EffectInstance statusPrefab;
     private List<EffectInstance> statusList = new List<EffectInstance>();
 
-    public void AddStatus(StatusEffect statusEffect, Shell shell)
+    public void AddStatus(StatusEffect statusEffect, Shell target)
     {
         foreach (EffectInstance instance in statusList)
         {
@@ -18,16 +19,16 @@ public class StatusDisplayer : MonoBehaviour
             }
         }
         EffectInstance status = Instantiate(statusPrefab, transform);
-        status.SetStatusEffect(statusEffect, shell);
+        status.SetStatusEffect(statusEffect, target);
         status.transform.localPosition= new Vector3(statusList.Count * 0.5f, 0, 0);
         statusList.Add(status);
     }
     
-    public void Tick()
+    public async Task Tick()
     {
         for (int i = 0; i < statusList.Count; i++)
         {
-            statusList[i].Tick();
+            await statusList[i].Tick();
         }
 
         // Remove expired status
@@ -35,9 +36,9 @@ public class StatusDisplayer : MonoBehaviour
         {
             if (!statusList[i].isActive)
             {
-                Destroy(statusList[i].gameObject);
                 statusList[i].Expire();
                 statusList.RemoveAt(i);
+                Destroy(statusList[i].gameObject);
             }
         }
     }    
