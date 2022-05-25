@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class AbilityWheel : MonoBehaviour
 {
-    [SerializeField] private PlayerObject player;
+    [SerializeField] private PlayerBrain player;
     [SerializeField] private Symbol symbolPrefab;
     private ObjectPool<Symbol> symbolPool;
     [SerializeField] private List<Symbol> symbols = new List<Symbol>();

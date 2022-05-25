@@ -18,13 +18,22 @@ public class FightManager : MonoBehaviour
     public bool BothTargeted { get; private set; } = false;
     public WheelStates state = WheelStates.Idle;
     [SerializeField] private PreviewTextController previewText;
-    [SerializeField] private Enemy[] enemies;
-    private Enemy targetEnemy;
+    [SerializeField] private Shell[] enemies;
+    [SerializeField] private Shell player;
+    private Shell targetEnemy;
     private Symbol targetSymbol;
+    [SerializeField] private Battlefield battlefield;
     async void Start()
     {
+        for (var i = 0; i < battlefield.enemies.Length; i++)
+        {
+            enemies[i].InsertBrain(battlefield.enemies[i]);
+        }
+
+        player.InsertBrain(battlefield.player);
         await Task.Delay(1000);
         GameManager.Instance.FixedSecond += SizeSelector;
+        
     }
 
     private void OnDestroy()
@@ -62,10 +71,16 @@ public class FightManager : MonoBehaviour
                 if (turnOver)
                 {
                     state = WheelStates.EnemyTurn;
+                    ClearSelected();
+                    ClearPreviewText();
                 }
                 break;
             case WheelStates.EnemyTurn:
                 //todo enemy trigger here.
+                foreach (Shell shell in enemies)
+                {
+                    shell.TickStatusEffects();
+                }
                 state = WheelStates.Idle;
                 break;
         }
@@ -81,6 +96,7 @@ public class FightManager : MonoBehaviour
     
     public void SelectWheel(int wheel)
     {
+        
         switch (wheel)
         {
             case 0:
@@ -142,6 +158,10 @@ public class FightManager : MonoBehaviour
 
     public void SelectEnemy(int enemySlot)
     {
+        if (enemies[enemySlot].isDead)
+        {
+            return;
+        }
         switch (enemySlot)
         {
             case 0:
@@ -256,9 +276,9 @@ public class FightManager : MonoBehaviour
         previewText.SetText(symbol!.ability.title, symbol!.ability.baseDamage + " damage", symbol!.ability.description);
     }
     
-    public void SetPreviewText(Enemy enemy)
+    public void SetPreviewText(Shell shell)
     {
-        previewText.SetText(enemy!.title, enemy!.description, "");
+        previewText.SetText(shell!.title, shell!.description, "");
     }
 
     public void ClearPreviewText()
@@ -302,8 +322,7 @@ public class FightManager : MonoBehaviour
 
     public void PlayerAttack()
     {
-        targetSymbol.Consume();
-        targetEnemy.Damage(targetSymbol.ability.baseDamage);//todo do damage calculation
+        targetSymbol.Consume(targetEnemy);//todo do damage calculation
         ClearSelected();
         CheckForBothSelected();
     }

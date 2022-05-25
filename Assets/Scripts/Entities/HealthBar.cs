@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class HealthBar : MonoBehaviour
 {
-    public Entity entity;
+    public Shell shell;
     public LineRenderer healthBar;
     public LineRenderer shieldBar;
+    public LineRenderer backBar;
+    public LineRenderer backplate;
     public TextMeshPro healthText;
     public TextMeshPro shieldText;
     void Start()
@@ -19,10 +20,31 @@ public class HealthBar : MonoBehaviour
 
     void Update()
     {
-        healthBar.SetPosition(1, new Vector3( Math.Clamp((float)entity.health / entity.maxHealth,0,1), 0, 0));
-        shieldBar.SetPosition(1, new Vector3(Math.Clamp((float)entity.shield / entity.maxShield,0,1), 0, 0));
-        healthText.text = entity.health.ToString();
-        shieldText.text = entity.shield>0? "{"+entity.shield+"}":"";
+        if (shell.isDead)
+        {
+            healthBar.enabled = false;
+            backBar.enabled = false;
+            backplate.enabled = false;
+        }
+        else
+        {          
+            healthBar.enabled = true;
+            backBar.enabled = true;
+            backplate.enabled = true;
+            healthBar.SetPosition(1, new Vector3( Math.Clamp((float)shell.health / shell.maxHealth,0,1), 0, 0));
+        }
+        if (!shell.hasShield || shell.maxShield == 0) 
+        {
+            shieldBar.enabled = false;
+        }
+        else
+        {
+            shieldBar.enabled = true;
+            shieldBar.SetPosition(1, new Vector3(Math.Clamp((float)shell.shield / shell.maxShield,0,1), 0, 0));
+        }
+
+        healthText.text = shell.health>0? ""+shell.health:"";
+        shieldText.text = shell.shield>0? "{"+shell.shield+"}":"";
     }
 
     void FixedUpdate()

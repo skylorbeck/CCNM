@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaa34a7959a00c4c800488bc83194e0, type: 3}
+  m_Name: Battlefield
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 11400000, guid: f868d5253aa36bb439ce5e5ac12e6b68, type: 2}
+  - {fileID: 11400000, guid: 00642a671b7aed14da8f6d531375b1d4, type: 2}
+  - {fileID: 11400000, guid: f868d5253aa36bb439ce5e5ac12e6b68, type: 2}
+  player: {fileID: 11400000, guid: 5efdcd83a86bf474eab7301799af83e9, type: 2}

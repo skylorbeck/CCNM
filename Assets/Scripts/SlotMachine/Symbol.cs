@@ -11,7 +11,7 @@ public class Symbol : MonoBehaviour
     private SpriteRenderer statusSpriteRenderer;
     private int statusSpriteIndex = 0;
     [SerializeField] float darknessRamp = 0.5f;
-    public bool consumed { get; private set; } = false;
+    [field:SerializeField] public bool consumed { get; private set; } = false;
 
     void OnEnable()
     {
@@ -66,8 +66,13 @@ public class Symbol : MonoBehaviour
         
     }
 
-    public void Consume()
+    public void Consume(Shell shell)
     {
+        foreach (StatusEffect statusEffect in ability.statusEffects)
+        {
+            shell.AddStatusEffect(statusEffect);
+        }
+        shell.Damage(ability.baseDamage);
         consumed = true;
     }
 }

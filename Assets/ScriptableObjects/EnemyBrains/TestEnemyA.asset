@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b027d360112a34ea7fc3fd846dc632, type: 3}
-  m_Name: EnemySlot2
+  m_Name: TestEnemyA
   m_EditorClassIdentifier: 
-  <health>k__BackingField: 333
-  <maxHealth>k__BackingField: 999
-  <shield>k__BackingField: 666
-  <maxShield>k__BackingField: 999
+  <title>k__BackingField: entity.name_a
+  <description>k__BackingField: entity.description_a
+  <icon>k__BackingField: {fileID: 21300000, guid: 7818c8abdda0c284abf429a8bae3b2b1, type: 3}
+  <maxHealth>k__BackingField: 10
+  <maxShield>k__BackingField: 20
   <abilities>k__BackingField:
   - {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
-  - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
   - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+  - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
   <statusEffects>k__BackingField: []
-  enemySlot: 2

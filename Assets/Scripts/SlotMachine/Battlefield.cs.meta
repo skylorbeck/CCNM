@@ -1,10 +1,11 @@
 fileFormatVersion: 2
-guid: 8d3a9b18362ae404e91158867093ff48
+guid: 7eaa34a7959a00c4c800488bc83194e0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+  - MinionPrefab: {fileID: 774488855295027181, guid: c3fe6612e2615eb4d9469af06ac6728a, type: 3}
+  - playerShell: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
