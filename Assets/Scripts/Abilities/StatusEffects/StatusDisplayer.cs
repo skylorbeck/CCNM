@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using UnityEngine;
 public class StatusDisplayer : MonoBehaviour
 {
     [SerializeField] private EffectInstance statusPrefab;
+    private bool isDisplaying = true;
     public List<EffectInstance> statusList { get; private set; } = new List<EffectInstance>();
 
     public async Task<int> OnAttack(Shell target,Shell attacker,int baseDamage)
@@ -42,6 +44,10 @@ public class StatusDisplayer : MonoBehaviour
         }
         EffectInstance status = Instantiate(statusPrefab, transform);
         status.SetStatusEffect(statusEffect, target);
+        if (!isDisplaying)
+        {
+            status.DisableVisuals();
+        }
         statusList.Add(status);
         SetStatusLocation();
     }
@@ -90,9 +96,7 @@ public class StatusDisplayer : MonoBehaviour
         }
         statusList.Clear();
     }
-    
-    
-    
+
     public bool HasStatus(string statusEffect)
     {
         foreach (EffectInstance instance in statusList)
@@ -107,10 +111,29 @@ public class StatusDisplayer : MonoBehaviour
 
     public void SetStatusLocation()
     {
+        int xOffset = Math.Min(statusList.Count - 1,2);
+
         for (var i = 0; i < statusList.Count; i++)
         {
             int offset = i / 3 % 3;
-            statusList[i].transform.localPosition = new Vector3((i * 0.5f)-(offset*1.5f) ,offset*0.5f , 0);
+            statusList[i].transform.localPosition = new Vector3((i * 0.5f)-(offset*1.5f)-(xOffset*0.25f) ,offset*0.5f , 0);
         }
     }
-}
+
+    public void DisableVisuals()
+    {
+        isDisplaying = false;
+        foreach (EffectInstance instance in statusList)
+        {
+            instance.DisableVisuals();
+        }
+    }
+    
+    public void EnableVisuals()
+    {
+        isDisplaying = true;
+        foreach (EffectInstance instance in statusList)
+        {
+            instance.EnableVisuals();
+        }
+    }}

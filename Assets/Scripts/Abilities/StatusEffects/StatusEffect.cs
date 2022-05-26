@@ -18,30 +18,36 @@ public class StatusEffect : ScriptableObject
     [field: SerializeField] public bool isBuff { get; private set; } = false;
     [field: SerializeField] public Element element { get; private set; } = Element.None;
 
+    public bool isElemental => element != Element.None;
+
+
+    //called before onDamage and returns modified damage done
     public virtual async Task<int> OnAttack(Shell target, Shell attacker, int baseDamage)
     {
         await Task.Delay(100);
         //do something
         return baseDamage;
     }
+    //called after OnAttack and returns modified damage taken
     public virtual async Task<int> OnDamage([CanBeNull] Shell attacker, Shell defender, int baseDamage)
     {
         await Task.Delay(100);
         //do something
         return baseDamage;
     }
+    //called when status effect is applied to a shell
     public virtual async void OnApply(Shell target)
     {
         await Task.Delay(100);
         //do something to the shell
     }
-
+    //called when status effect is removed from a shell
     public virtual async void OnRemove(Shell target)
     {
         await Task.Delay(100);
         //do something to the shell
     }
-    
+    //called at the end of the users turn
     public virtual async Task Tick(Shell target)
     {
         //todo animation call

@@ -130,9 +130,9 @@ public class FightManager : MonoBehaviour
             {
                 await enemy.Attack(player);
                 await Task.Delay(500);
-                await enemy.OnTurnEnd();//potentially remove await for effects applying while other enemies attack?
             }
-            
+            await enemy.OnTurnEnd();//potentially remove await for effects applying while other enemies attack?
+
 
         }
         turnOver = true;
@@ -328,16 +328,19 @@ public class FightManager : MonoBehaviour
 
     public void SetPreviewText(Symbol symbol)
     {
+        player.statusDisplayer.DisableVisuals();
         previewText.SetText(symbol!.ability.title, symbol!.ability.baseDamage + " damage", symbol!.ability.description);
     }
     
     public void SetPreviewText(Shell shell)
     {
+        player.statusDisplayer.DisableVisuals();
         previewText.SetText(shell!.title, shell!.description, "");
     }
 
     public void ClearPreviewText()
     {
+        player.statusDisplayer.EnableVisuals();
         previewText.SetText("","","");
     }
     
@@ -378,8 +381,9 @@ public class FightManager : MonoBehaviour
     public void PlayerAttack()
     {
         player.Attack(targetEnemy,targetSymbol);
-        ClearSelected();
         CheckForBothSelected();
+        ClearSelected();
+        ClearPreviewText();
     }
 
     public void CheckForBothSelected()

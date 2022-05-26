@@ -112,10 +112,11 @@ public class Shell : MonoBehaviour
 
     public async Task OnTurnEnd()
     {
-        await TickStatusEffects();
         if (health<=0)
         {
             Kill();
         }
+        await TickStatusEffects();
+        
     }
 }

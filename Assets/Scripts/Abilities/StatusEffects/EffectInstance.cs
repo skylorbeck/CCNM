@@ -10,8 +10,8 @@ public class EffectInstance : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Shell target;
-    [field:SerializeField] public StatusEffect statusEffect { get; private set; }
-    [field:SerializeField] public int duration { get; private set; }
+    [field: SerializeField] public StatusEffect statusEffect { get; private set; }
+    [field: SerializeField] public int duration { get; private set; }
     public bool isActive { get; private set; } = true;
     private TextMeshPro durationText;
 
@@ -20,12 +20,12 @@ public class EffectInstance : MonoBehaviour
         durationText = GetComponentInChildren<TextMeshPro>();
     }
 
-    public async Task<int> OnAttack(Shell target,Shell attacker,int baseDamage)
+    public async Task<int> OnAttack(Shell target, Shell attacker, int baseDamage)
     {
-        return await statusEffect.OnAttack(target, attacker,baseDamage);
-        
+        return await statusEffect.OnAttack(target, attacker, baseDamage);
     }
-    public async Task<int> OnDamage([CanBeNull] Shell attacker,Shell defender,int baseDamage)
+
+    public async Task<int> OnDamage([CanBeNull] Shell attacker, Shell defender, int baseDamage)
     {
         return await statusEffect.OnDamage(attacker, defender, baseDamage);
     }
@@ -36,6 +36,7 @@ public class EffectInstance : MonoBehaviour
         {
             duration--;
         }
+
         UpdateDurationText();
 
         await statusEffect.Tick(target);
@@ -77,6 +78,17 @@ public class EffectInstance : MonoBehaviour
 
     public void UpdateDurationText()
     {
-        durationText.text = duration>0 ? duration.ToString() : "";
+        durationText.text = duration > 0 ? duration.ToString() : "";
+    }
+
+    public void EnableVisuals()
+    {
+        spriteRenderer.color = Color.white;
+        durationText.renderer.enabled = true;
+    }
+    public void DisableVisuals()
+    {
+        spriteRenderer.color = new Color(1, 1, 1, 0);
+        durationText.renderer.enabled = false;
     }
 }

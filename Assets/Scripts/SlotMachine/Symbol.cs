@@ -71,6 +71,8 @@ public class Symbol : MonoBehaviour
 
     public async Task Consume(Shell target,Shell user)
     {
+        consumed = true;
+
         if (ability.shieldTarget)
         {
             target.Shield(ability.baseShield);
@@ -111,6 +113,5 @@ public class Symbol : MonoBehaviour
             int damage = await user.OnAttack(user,ability.baseDamage);
             await user.Damage(user,damage,ability.element);
         }
-        consumed = true;
     }
 }
