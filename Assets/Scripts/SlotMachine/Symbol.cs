@@ -11,6 +11,9 @@ public class Symbol : MonoBehaviour
     private SpriteRenderer statusSpriteRenderer;
     private int statusSpriteIndex = 0;
     [SerializeField] float darknessRamp = 0.5f;
+
+ 
+
     [field:SerializeField] public bool consumed { get; private set; } = false;
 
     void OnEnable()
@@ -66,8 +69,16 @@ public class Symbol : MonoBehaviour
         
     }
 
-    public void Consume(Shell target,Shell user)
+    public async Task Consume(Shell target,Shell user)
     {
+        if (ability.shieldTarget)
+        {
+            target.Shield(ability.baseShield);
+        }
+        if (ability.shieldUser)
+        {
+            target.Shield(ability.baseShield);
+        }
         if (ability.statusTarget)
         {
             foreach (StatusEffect statusEffect in ability.statusEffects)
@@ -92,11 +103,13 @@ public class Symbol : MonoBehaviour
         }
         if (ability.damageTarget)
         {
-            target.Damage(ability.baseDamage);
+            int damage = await user.OnAttack(target,ability.baseDamage);
+            await target.Damage(user,damage,ability.element);
         }
         if (ability.damageUser)
         {
-            user.Damage(ability.baseDamage);
+            int damage = await user.OnAttack(user,ability.baseDamage);
+            await user.Damage(user,damage,ability.element);
         }
         consumed = true;
     }

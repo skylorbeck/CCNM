@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "StatusEffect", menuName = "Combat/StatusEffect")]
+[CreateAssetMenu(fileName = "StatusEffect", menuName = "Combat/StatusEffect/Blank")]
 public class StatusEffect : ScriptableObject
 {
     [field: SerializeField] public string titleTranslationKey { get; private set; } = "unset";
@@ -17,29 +18,37 @@ public class StatusEffect : ScriptableObject
     [field: SerializeField] public bool isBuff { get; private set; } = false;
     [field: SerializeField] public Element element { get; private set; } = Element.None;
 
-
-    public virtual void OnApply(Shell target)
+    public virtual async Task<int> OnAttack(Shell target, Shell attacker, int baseDamage)
     {
+        await Task.Delay(100);
+        //do something
+        return baseDamage;
+    }
+    public virtual async Task<int> OnDamage([CanBeNull] Shell attacker, Shell defender, int baseDamage)
+    {
+        await Task.Delay(100);
+        //do something
+        return baseDamage;
+    }
+    public virtual async void OnApply(Shell target)
+    {
+        await Task.Delay(100);
         //do something to the shell
     }
 
-    public virtual void OnRemove(Shell target)
+    public virtual async void OnRemove(Shell target)
     {
+        await Task.Delay(100);
         //do something to the shell
     }
     
     public virtual async Task Tick(Shell target)
     {
-        Debug.Log(titleTranslationKey + " ticked");
-        await Task.Delay(500);
+        //todo animation call
+        await Task.Delay(100);
         //do something to the shell
     }
     
-    public virtual void OnAction(Shell target)
-    {
-        //do something to the shell
-    }
-
     public enum Element
     {
         None,
@@ -48,4 +57,6 @@ public class StatusEffect : ScriptableObject
         Earth,
         Air,
     }
+
+    
 }

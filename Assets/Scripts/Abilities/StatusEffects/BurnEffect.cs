@@ -20,7 +20,7 @@ public class BurnEffect : StatusEffect
     
     public override async Task Tick(Shell target)
     {
-        target.Damage(damage);
+        await target.Damage(null,damage,element);
         await base.Tick(target);
     }
 }

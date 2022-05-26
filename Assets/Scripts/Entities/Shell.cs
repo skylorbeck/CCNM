@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Shell : MonoBehaviour
@@ -18,24 +19,21 @@ public class Shell : MonoBehaviour
     public bool hasShield => shield > 0;
 
     private SpriteRenderer spriteRenderer;
-    
-    void Start()
+
+    public async Task Attack(Shell target,Symbol attack)
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        await attack.Consume(target,this);
     }
 
-    void Update()
+    public async Task<int> OnAttack(Shell target,int baseDamage)
     {
-        
-    }
-
-    void FixedUpdate()
-    {
-        
+        return await statusDisplayer.OnAttack(target,this,baseDamage);
     }
     
-    public void Damage(int damage)
+    public async Task Damage([CanBeNull] Shell source,int baseDamage, StatusEffect.Element element)
     {
+        int damage = await statusDisplayer.OnDamage(source,this,baseDamage);
+        
         if (shield > 0)
         {
             shield -= damage;
@@ -53,13 +51,13 @@ public class Shell : MonoBehaviour
         if (health <=0)
         {
             health = 0;
-            Kill();
         }
     }
 
     public void Kill()
     {
         spriteRenderer.sprite = null;
+        statusDisplayer.Clear();
     }
     
     public void Heal(int heal)
@@ -98,10 +96,11 @@ public class Shell : MonoBehaviour
     public void InsertBrain(Brain brain)
     {
         this.brain = brain;
-        if (spriteRenderer != null)
+        if (spriteRenderer == null)
         {
-            spriteRenderer.sprite = brain.icon;;
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
+        spriteRenderer.sprite = brain.icon;
         title = brain.title;
         description = brain.description;
         health = brain.maxHealth;
@@ -109,5 +108,14 @@ public class Shell : MonoBehaviour
         shield = 0;
         maxShield = 0;
         abilities = brain.abilities;
+    }
+
+    public async Task OnTurnEnd()
+    {
+        await TickStatusEffects();
+        if (health<=0)
+        {
+            Kill();
+        }
     }
 }

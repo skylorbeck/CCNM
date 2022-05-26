@@ -6,9 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyObject", menuName = "Combat/EnemySO")]
 public class EnemyBrain : Brain
 {
-    public async Task EnemyTurn()
+    public async Task Think()
     {
-        Debug.Log(title+ " Turn");
+        
+        //todo enemy turn logic
         await Task.Delay(1000);
     }
 }
