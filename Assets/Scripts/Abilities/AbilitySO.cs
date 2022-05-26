@@ -28,6 +28,7 @@ public class AbilitySO : ScriptableObject
     [field: SerializeField] public bool statusTarget{ get; private set; } = false;
     [field: SerializeField] public bool statusSelf{ get; private set; } = false;
     [field: SerializeField] public StatusEffect[] statusEffects{ get; private set; } = new StatusEffect[0];
-
+    [field: Header("Other")]
+    [field: SerializeField] public StatusEffect.Element element{ get; private set; } = StatusEffect.Element.None;
     
 }

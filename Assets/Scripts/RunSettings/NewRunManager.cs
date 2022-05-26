@@ -22,6 +22,6 @@ public class NewRunManager : MonoBehaviour
     
     public void StartRun()
     {
-        GameManager.Instance.LoadSceneAdditive("Fight", true,"RunSettings");
+        GameManager.Instance.LoadSceneAdditive("Fight", false,"RunSettings");
     }
 }

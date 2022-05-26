@@ -7,4 +7,5 @@ public class Battlefield : ScriptableObject
 {
     public EnemyBrain[] enemies;
     public PlayerBrain player;
+    public bool fightOver = false;
 }

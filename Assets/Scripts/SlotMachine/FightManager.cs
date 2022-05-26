@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FightManager : MonoBehaviour
@@ -72,10 +74,16 @@ public class FightManager : MonoBehaviour
 
                 if (turnOver)
                 {
-                    player.TickStatusEffects();//todo make the player status await
-                    state = WheelStates.EnemyPreTurn;
+                    SetState(WheelStates.PlayerPostTurn);
+                    PlayerStatuses();
                     ClearSelected();
                     ClearPreviewText();
+                }
+                break;
+            case WheelStates.PlayerPostTurn:
+                if (turnOver)
+                {
+                    SetState(WheelStates.EnemyPreTurn);
                 }
                 break;
             case WheelStates.EnemyPreTurn:
@@ -89,16 +97,42 @@ public class FightManager : MonoBehaviour
                 }
                 break;
         }
+
+        if (state!=WheelStates.FightOver)
+        {
+            CheckForAllDead();
+        }
+
     }
 
-    
+    private void CheckForAllDead()
+    {
+        if (player.isDead || enemies.All(x => x.isDead))
+        {
+            SetState(WheelStates.FightOver);
+            GameManager.Instance.LoadScene("MainMenu",LoadSceneMode.Additive,false,"Fight");
+        }
+    }
+
+    public async void PlayerStatuses()
+    {
+        turnOver = false;
+        await player.TickStatusEffects();
+        turnOver = true;
+    }
+
     public async void PreFireEnemies()
     {
         turnOver = false;
         foreach (EnemyShell enemy in enemies)
         {
-            await enemy.enemyBrain.EnemyTurn();
-            await enemy.TickStatusEffects();//potentially remove await for effects applying while other enemies attack?
+            if (!enemy.isDead)
+            {
+                await enemy.Attack(player);
+                await Task.Delay(500);
+                await enemy.OnTurnEnd();//potentially remove await for effects applying while other enemies attack?
+            }
+            
 
         }
         turnOver = true;
@@ -262,9 +296,10 @@ public class FightManager : MonoBehaviour
         Idle,
         Spinning,
         Selecting,
+        PlayerPostTurn,
         EnemyPreTurn,
         EnemyTurn,
-        
+        FightOver
     }
     public enum Lane
     {
@@ -342,7 +377,7 @@ public class FightManager : MonoBehaviour
 
     public void PlayerAttack()
     {
-        targetSymbol.Consume(targetEnemy,player);
+        player.Attack(targetEnemy,targetSymbol);
         ClearSelected();
         CheckForBothSelected();
     }

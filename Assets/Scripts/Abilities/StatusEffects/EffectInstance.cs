@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
@@ -17,6 +18,16 @@ public class EffectInstance : MonoBehaviour
     public void Start()
     {
         durationText = GetComponentInChildren<TextMeshPro>();
+    }
+
+    public async Task<int> OnAttack(Shell target,Shell attacker,int baseDamage)
+    {
+        return await statusEffect.OnAttack(target, attacker,baseDamage);
+        
+    }
+    public async Task<int> OnDamage([CanBeNull] Shell attacker,Shell defender,int baseDamage)
+    {
+        return await statusEffect.OnDamage(attacker, defender, baseDamage);
     }
 
     public async Task Tick()
@@ -52,21 +63,18 @@ public class EffectInstance : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = statusEffect.icon;
     }
-    
+
     public void AddDuration(int duration)
     {
-        if (statusEffect.isStackable)
-        {
-            if (statusEffect.maxStacks == 0)
-                this.duration += duration;
-            else
-                this.duration = Mathf.Min(this.duration + duration, statusEffect.maxStacks);
-        }
+        if (statusEffect.maxStacks == 0)
+            this.duration += duration;
+        else
+            this.duration = Mathf.Min(this.duration + duration, statusEffect.maxStacks);
 
         statusEffect.OnApply(target);
         UpdateDurationText();
     }
-    
+
     public void UpdateDurationText()
     {
         durationText.text = duration>0 ? duration.ToString() : "";
