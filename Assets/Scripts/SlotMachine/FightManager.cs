@@ -54,7 +54,12 @@ public class FightManager : MonoBehaviour
         }
 
         player.InsertBrain(battlefield.player);
+        
         await Task.Delay(1000);
+        foreach (EnemyAbilityWheel w in enemyWheels)
+        {
+            w.Spin();
+        }
         GameManager.Instance.FixedSecond += SizeSelector;
         
     }
@@ -116,7 +121,7 @@ public class FightManager : MonoBehaviour
             case WheelStates.EnemyTurn:
                 if (turnOver) 
                 {
-                    MoveEnemySlots(enemyWheelUpY,true);
+                    EnemyTurnEnd();
                     SetState(WheelStates.EnemyPostTurn);
                 }
                 break;
@@ -151,22 +156,35 @@ public class FightManager : MonoBehaviour
         turnOver = true;
     }
 
-    public async void MoveEnemySlots(float targetY,bool ignoreDead)
+    public async Task MoveEnemySlots(float targetY, bool ignoreDead)
     {
-        turnOver = false;
+        // turnOver = false;
+
         List<Task> tasks = new List<Task>();
         for (var i = 0; i < enemyWheels.Length; i++)
         {
             if (!enemies[i].isDead || ignoreDead)
             {
+                {
+                    enemies[i].statusDisplayer.DisableVisuals();
+                }
                 tasks.Add(enemyWheels[i].Move(new Vector3(enemyWheels[i].transform.localPosition.x, targetY, 0f)));
             }
         }
+
         await Task.WhenAll(tasks.ToArray());
+        for (var i = 0; i < enemyWheels.Length; i++)
+        {
+            if (ignoreDead)
+            {
+                enemies[i].statusDisplayer.EnableVisuals();
+            }
+        }
+
         await Task.Delay(500);
-        turnOver = true;
+        // turnOver = true;
     }
-    
+
     public async void PreFireEnemies()
     {
         turnOver = false;
@@ -181,14 +199,28 @@ public class FightManager : MonoBehaviour
         }
         await Task.WhenAll(tasks.ToArray());
         await Task.Delay(1000);//todo replace with jackpot check
+
+        await MoveEnemySlots(enemyWheelUpY,true);
+
         for (var i = 0; i < enemies.Length; i++)
         {
             EnemyShell enemy = enemies[i];
             if (!enemy.isDead)
             {
                 await enemyWheels[i].GetWinner().Consume(player, enemy);
+                await Task.Delay(500);
             }
-            await enemy.OnTurnEnd();//potentially remove await for effects applying while other enemies attack?
+        }
+        turnOver = true;
+    }
+
+    public async void EnemyTurnEnd()
+    {
+        turnOver = false;
+        foreach (EnemyShell enemy in enemies)
+        {
+            await enemy.OnTurnEnd();
+            // await Task.Delay(500);//potentially remove await for effects applying while other enemies attack?
         }
         turnOver = true;
     }

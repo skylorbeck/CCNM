@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 757839a096d011d419bc2523581e191b, type: 3}
   m_Name: Empowered
   m_EditorClassIdentifier: 
-  <titleTranslationKey>k__BackingField: unset
-  <descriptionTranslationKey>k__BackingField: unset.description
+  <titleTranslationKey>k__BackingField: empowered
+  <descriptionTranslationKey>k__BackingField: empowered.description
   <icon>k__BackingField: {fileID: 21300000, guid: 54c5823927fa9d147b2b4ebccd54b034, type: 3}
   <duration>k__BackingField: 1
   <maxStacks>k__BackingField: 0

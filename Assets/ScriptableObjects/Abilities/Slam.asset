@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
   m_Name: Slam
   m_EditorClassIdentifier: 
-  <title>k__BackingField: ability.title
-  <description>k__BackingField: ability.description
+  <title>k__BackingField: slam
+  <description>k__BackingField: slam.description
   <icon>k__BackingField: {fileID: 21300000, guid: aab74597853d3d948a419efe6f74ca0b, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1

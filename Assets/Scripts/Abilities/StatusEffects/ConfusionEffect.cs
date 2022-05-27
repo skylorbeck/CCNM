@@ -11,8 +11,8 @@ public class ConfusionEffect : StatusEffect
         if (Random.value < 0.25f)
         {
             await attacker.Damage(attacker, baseDamage ,Element.None);
-            
-            //todo notify confused hit self
+            await Task.Delay(100);
+            TextPopController.Instance.PopNegative("Confused", attacker.transform.position);
         }
         
         return await base.OnAttack(target, attacker, baseDamage);

@@ -86,6 +86,7 @@ public class Symbol : MonoBehaviour
             foreach (StatusEffect statusEffect in ability.statusEffects)
             {
                 target.AddStatusEffect(statusEffect);
+                await Task.Delay(100);
             }
         }
         if (ability.statusSelf)
@@ -93,15 +94,16 @@ public class Symbol : MonoBehaviour
             foreach (StatusEffect statusEffect in ability.statusEffects)
             {
                 user.AddStatusEffect(statusEffect);
+                await Task.Delay(100);
             }
         }
         if (ability.healTarget)
         {
-            target.Heal(ability.baseHeal);
+            target.Heal(user, ability.baseHeal,ability.element);
         }
         if (ability.healUser)
         {
-            user.Heal(ability.baseHeal);
+            user.Heal(user, ability.baseHeal,ability.element);
         }
         if (ability.damageTarget)
         {

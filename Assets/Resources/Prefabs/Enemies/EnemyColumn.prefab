@@ -166,8 +166,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4284308991
+  m_fontColor: {r: 1, g: 0.364, b: 0.364, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 0
   m_fontColorGradient:
@@ -469,8 +469,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294937464
+  m_fontColor: {r: 0.47, g: 0.545, b: 1, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 0
   m_fontColorGradient:
@@ -478,7 +478,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 4fdabf3b691774845924decda6d1be15, type: 2}
+  m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -673,8 +673,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0, a: 1}
-      key1: {r: 1, g: 0.27120164, b: 0, a: 1}
+      key0: {r: 0.9, g: 0.862, b: 0.368, a: 1}
+      key1: {r: 1, g: 0.364, b: 0.364, a: 1}
       key2: {r: 0.5, g: 0.5, b: 0.5, a: 0}
       key3: {r: 0.25, g: 0.25, b: 0.25, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -952,7 +952,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1075,8 +1075,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.7780657, b: 1, a: 0.78431374}
-      key1: {r: 0, g: 0.77647066, b: 1, a: 0.39215687}
+      key0: {r: 0.47, g: 0.545, b: 1, a: 0.78431374}
+      key1: {r: 0.47, g: 0.545, b: 1, a: 0.39215687}
       key2: {r: 1, g: 0.89455295, b: 0, a: 0}
       key3: {r: 0.25, g: 0.25, b: 0.25, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

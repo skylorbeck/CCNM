@@ -31,6 +31,16 @@ public class StatusDisplayer : MonoBehaviour
 
         return damage;
     }
+     public async Task<int> OnHeal([CanBeNull] Shell healer,Shell target,int baseHeal)
+    {
+        int heal = baseHeal;
+        foreach (EffectInstance instance in statusList)
+        {
+            heal = await instance.OnHeal(healer,target,heal);
+        }
+
+        return heal;
+    }
     
     public void AddStatus(StatusEffect statusEffect, Shell target)
     {
@@ -59,6 +69,8 @@ public class StatusDisplayer : MonoBehaviour
         for (int i = 0; i < statusList.Count; i++)
         {
             await statusList[i].Tick();
+            await Task.Delay(500);
+
             if (!statusList[i].isActive)
             {
                 toRemove.Add(statusList[i]);
@@ -91,7 +103,6 @@ public class StatusDisplayer : MonoBehaviour
     {
         foreach (EffectInstance instance in statusList)
         {
-            instance.Expire();
             Destroy(instance.gameObject);
         }
         statusList.Clear();
