@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class AbilityWheel : MonoBehaviour
 {
-    [SerializeField] private PlayerBrain player;
+    [SerializeField] private Shell owner;
     [SerializeField] private Symbol symbolPrefab;
     private ObjectPool<Symbol> symbolPool;
     [SerializeField] private List<Symbol> symbols = new List<Symbol>();
@@ -37,7 +37,7 @@ public class AbilityWheel : MonoBehaviour
             symbol =>
             {
                 symbol.transform.localPosition = new Vector3(0, 3f, 0);
-                symbol.SetAbility(player.GetRandomAbility());
+                symbol.SetAbility(owner.brain.GetRandomAbility());
                 symbol.gameObject.SetActive(true);
             },
             symbol =>
@@ -93,7 +93,7 @@ public class AbilityWheel : MonoBehaviour
         
     }
 
-    public async void Spin()
+    public async Task Spin()
     {
         winner = null;
         winnerChosen = false;

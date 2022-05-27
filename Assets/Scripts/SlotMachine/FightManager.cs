@@ -16,6 +16,9 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Image enemySelectorInner;
     private bool selectorLarge = false;
     [SerializeField] private AbilityWheel[] wheels;
+    [SerializeField] private EnemyAbilityWheel[] enemyWheels;
+    [SerializeField] private float enemyWheelUpY =10;
+    [SerializeField] private float enemyWheelDownY = 0;
     public bool dirty { get; private set; } = false;
     public bool BothTargeted { get; private set; } = false;
     public WheelStates state = WheelStates.Idle;
@@ -26,6 +29,22 @@ public class FightManager : MonoBehaviour
     private Symbol targetSymbol;
     [SerializeField] private Battlefield battlefield;
     private bool turnOver = false;
+
+    private int enemiesAlive
+    {
+        get
+        {
+            int count = 0;
+            foreach (var enemy in enemies)
+            {
+                if (!enemy.isDead)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+    }
 
     async void Start()
     {
@@ -83,15 +102,26 @@ public class FightManager : MonoBehaviour
             case WheelStates.PlayerPostTurn:
                 if (turnOver)
                 {
+                    MoveEnemySlots(enemyWheelDownY, false);
                     SetState(WheelStates.EnemyPreTurn);
                 }
                 break;
             case WheelStates.EnemyPreTurn:
-                PreFireEnemies();
-                SetState(WheelStates.EnemyTurn);
+                if (turnOver)
+                {
+                    PreFireEnemies();
+                    SetState(WheelStates.EnemyTurn);
+                }
                 break;
             case WheelStates.EnemyTurn:
                 if (turnOver) 
+                {
+                    MoveEnemySlots(enemyWheelUpY,true);
+                    SetState(WheelStates.EnemyPostTurn);
+                }
+                break;
+            case WheelStates.EnemyPostTurn:
+                if (turnOver)
                 {
                     SetState(WheelStates.Idle);
                 }
@@ -121,19 +151,44 @@ public class FightManager : MonoBehaviour
         turnOver = true;
     }
 
+    public async void MoveEnemySlots(float targetY,bool ignoreDead)
+    {
+        turnOver = false;
+        List<Task> tasks = new List<Task>();
+        for (var i = 0; i < enemyWheels.Length; i++)
+        {
+            if (!enemies[i].isDead || ignoreDead)
+            {
+                tasks.Add(enemyWheels[i].Move(new Vector3(enemyWheels[i].transform.localPosition.x, targetY, 0f)));
+            }
+        }
+        await Task.WhenAll(tasks.ToArray());
+        await Task.Delay(500);
+        turnOver = true;
+    }
+    
     public async void PreFireEnemies()
     {
         turnOver = false;
-        foreach (EnemyShell enemy in enemies)
+        List<Task> tasks = new List<Task>();
+        for (var i = 0; i < enemies.Length; i++)
         {
+            EnemyShell enemy = enemies[i];
             if (!enemy.isDead)
             {
-                await enemy.Attack(player);
-                await Task.Delay(500);
+               tasks.Add(enemyWheels[i].Spin());
+            }
+        }
+        await Task.WhenAll(tasks.ToArray());
+        await Task.Delay(1000);//todo replace with jackpot check
+        for (var i = 0; i < enemies.Length; i++)
+        {
+            EnemyShell enemy = enemies[i];
+            if (!enemy.isDead)
+            {
+                await enemyWheels[i].GetWinner().Consume(player, enemy);
             }
             await enemy.OnTurnEnd();//potentially remove await for effects applying while other enemies attack?
-
-
         }
         turnOver = true;
     }
@@ -299,6 +354,7 @@ public class FightManager : MonoBehaviour
         PlayerPostTurn,
         EnemyPreTurn,
         EnemyTurn,
+        EnemyPostTurn,
         FightOver
     }
     public enum Lane

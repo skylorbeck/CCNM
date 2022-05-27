@@ -107,11 +107,13 @@ public class Symbol : MonoBehaviour
         {
             int damage = await user.OnAttack(target,ability.baseDamage);
             await target.Damage(user,damage,ability.element);
+            target.TestDeath();
         }
         if (ability.damageUser)
         {
             int damage = await user.OnAttack(user,ability.baseDamage);
             await user.Damage(user,damage,ability.element);
+            user.TestDeath();
         }
     }
 }

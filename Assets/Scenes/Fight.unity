@@ -721,6 +721,7 @@ Transform:
   - {fileID: 2093723626}
   - {fileID: 396082425}
   - {fileID: 1541389396}
+  - {fileID: 690251544}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -962,7 +963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb6f284eefad4b4cb3e5bb10914f938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 5efdcd83a86bf474eab7301799af83e9, type: 2}
+  owner: {fileID: 1700743113}
   symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
   symbols: []
   totalSymbolsPassed: 0
@@ -1076,6 +1077,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a08e2de12a4928a380ba30dad06ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &556067137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 556067138}
+  - component: {fileID: 556067139}
+  m_Layer: 0
+  m_Name: EnemyAbilityWheel (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &556067138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556067137}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.85, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 690251544}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &556067139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556067137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5f7230df0c4f828ac07b18c10eb8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 1541389397}
+  symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
+  symbols: []
+  totalSymbolsPassed: 0
+  <isSpinning>k__BackingField: 0
+  <winnerChosen>k__BackingField: 0
+  dirty: 0
+  spinSpeed: 10
+  spinSpeedMin: 10
+  spinSpeedMax: 20
+  totalToSpin: 20
+  totalToSpinMin: 15
+  totalToSpinMax: 25
+  moveSpeed: 10
 --- !u!1 &655570600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,6 +1352,98 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680794439}
   m_CullTransparentMesh: 1
+--- !u!1 &690251543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 690251544}
+  m_Layer: 0
+  m_Name: WheelHouse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &690251544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690251543}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1938422300}
+  - {fileID: 713069520}
+  - {fileID: 556067138}
+  m_Father: {fileID: 153680760}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &713069519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 713069520}
+  - component: {fileID: 713069521}
+  m_Layer: 0
+  m_Name: EnemyAbilityWheel (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &713069520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713069519}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 690251544}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &713069521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713069519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5f7230df0c4f828ac07b18c10eb8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 396082426}
+  symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
+  symbols: []
+  totalSymbolsPassed: 0
+  <isSpinning>k__BackingField: 0
+  <winnerChosen>k__BackingField: 0
+  dirty: 0
+  spinSpeed: 10
+  spinSpeedMin: 10
+  spinSpeedMax: 20
+  totalToSpin: 20
+  totalToSpinMin: 15
+  totalToSpinMax: 25
+  moveSpeed: 10
 --- !u!1 &792142340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,7 +1564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb6f284eefad4b4cb3e5bb10914f938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 5efdcd83a86bf474eab7301799af83e9, type: 2}
+  owner: {fileID: 1700743113}
   symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
   symbols: []
   totalSymbolsPassed: 0
@@ -1767,6 +1918,12 @@ MonoBehaviour:
   - {fileID: 2024552789}
   - {fileID: 884949086}
   - {fileID: 376374875}
+  enemyWheels:
+  - {fileID: 1938422301}
+  - {fileID: 713069521}
+  - {fileID: 556067139}
+  enemyWheelUpY: 10
+  enemyWheelDownY: 0
   state: 0
   previewText: {fileID: 236570395}
   enemies:
@@ -3345,6 +3502,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909235782}
   m_CullTransparentMesh: 1
+--- !u!1 &1938422299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1938422300}
+  - component: {fileID: 1938422301}
+  m_Layer: 0
+  m_Name: EnemyAbilityWheel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1938422300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938422299}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.85, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 690251544}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1938422301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938422299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5f7230df0c4f828ac07b18c10eb8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 1789078671}
+  symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
+  symbols: []
+  totalSymbolsPassed: 0
+  <isSpinning>k__BackingField: 0
+  <winnerChosen>k__BackingField: 0
+  dirty: 0
+  spinSpeed: 10
+  spinSpeedMin: 10
+  spinSpeedMax: 20
+  totalToSpin: 20
+  totalToSpinMin: 15
+  totalToSpinMax: 25
+  moveSpeed: 10
 --- !u!1 &1963419388
 GameObject:
   m_ObjectHideFlags: 0
@@ -3561,7 +3776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb6f284eefad4b4cb3e5bb10914f938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 5efdcd83a86bf474eab7301799af83e9, type: 2}
+  owner: {fileID: 1700743113}
   symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
   symbols: []
   totalSymbolsPassed: 0

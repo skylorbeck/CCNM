@@ -23,6 +23,7 @@ public class Shell : MonoBehaviour
     public async Task Attack(Shell target,Symbol attack)
     {
         await attack.Consume(target,this);
+        target.TestDeath();
     }
 
     public async Task<int> OnAttack(Shell target,int baseDamage)
@@ -112,11 +113,15 @@ public class Shell : MonoBehaviour
 
     public async Task OnTurnEnd()
     {
-        if (health<=0)
+        TestDeath();
+        await TickStatusEffects();
+    }
+
+    public void TestDeath()
+    {
+        if (health <= 0)
         {
             Kill();
         }
-        await TickStatusEffects();
-        
     }
 }
