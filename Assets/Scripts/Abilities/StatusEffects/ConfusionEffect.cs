@@ -12,7 +12,7 @@ public class ConfusionEffect : StatusEffect
         {
             await attacker.Damage(attacker, baseDamage ,Element.None);
             await Task.Delay(100);
-            TextPopController.Instance.PopNegative("Confused", attacker.transform.position);
+            TextPopController.Instance.PopNegative("Confused", attacker.transform.position,attacker.isPlayer);
         }
         
         return await base.OnAttack(target, attacker, baseDamage);

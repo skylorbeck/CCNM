@@ -44,10 +44,10 @@ public class StatusEffect : ScriptableObject
     {
         if (isDebuff)
         {
-            TextPopController.Instance.PopNegative("+"+titleTranslationKey, target.transform.position);
+            TextPopController.Instance.PopNegative("+"+titleTranslationKey, target.transform.position,target.isPlayer);
         } else
         {
-            TextPopController.Instance.PopPositive("+"+titleTranslationKey, target.transform.position);
+            TextPopController.Instance.PopPositive("+"+titleTranslationKey, target.transform.position,target.isPlayer);
         }
         //do something to the shell
     }
@@ -57,10 +57,10 @@ public class StatusEffect : ScriptableObject
     {
         if (!isDebuff)
         {
-            TextPopController.Instance.PopNegative("-"+titleTranslationKey, target.transform.position);
+            TextPopController.Instance.PopNegative("-"+titleTranslationKey, target.transform.position,target.isPlayer);
         } else
         {
-            TextPopController.Instance.PopPositive("-"+titleTranslationKey, target.transform.position);
+            TextPopController.Instance.PopPositive("-"+titleTranslationKey, target.transform.position,target.isPlayer);
         }
         //do something to the shell
     }

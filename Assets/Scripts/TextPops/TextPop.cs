@@ -4,19 +4,22 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TextPop : MonoBehaviour
 {
     private Animator animator;
     private TextMeshProUGUI text;
     public bool finished {get; private set;} = false;
+
+    [SerializeField] private float randomRange = 10f;
     void Start()
     {
         animator = GetComponent<Animator>();
         text = GetComponentInChildren<TextMeshProUGUI>();
     }
     
-    public void Pop(string displayText,PopTypes popType,Vector3 worldPos)
+    public void Pop(string displayText,PopTypes popType,Vector3 worldPos, bool large)
     {
         finished = false;
         if (animator==null)
@@ -26,8 +29,14 @@ public class TextPop : MonoBehaviour
         }
 
         // transform.localPosition = Camera.main.WorldToViewportPoint(worldPos);
-        transform.position = Camera.main.WorldToScreenPoint(worldPos);
+        transform.position = Camera.main.WorldToScreenPoint(worldPos)+new Vector3(Random.Range(-randomRange,randomRange),Random.Range(-randomRange,randomRange),0);
+        
         text.text = displayText;
+        if (large)
+            text.fontSize = 15;
+        else
+            text.fontSize = 10;
+
         switch (popType)
         {
             case PopTypes.Positive:

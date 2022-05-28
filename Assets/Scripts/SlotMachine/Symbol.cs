@@ -79,7 +79,7 @@ public class Symbol : MonoBehaviour
         }
         if (ability.shieldUser)
         {
-            target.Shield(ability.baseShield);
+            user.Shield(ability.baseShield);
         }
         if (ability.statusTarget)
         {
@@ -108,12 +108,14 @@ public class Symbol : MonoBehaviour
         if (ability.damageTarget)
         {
             int damage = await user.OnAttack(target,ability.baseDamage);
+            DamageAnimator.Instance.TriggerAttack(target, ability.attackAnimation);
             await target.Damage(user,damage,ability.element);
             target.TestDeath();
         }
         if (ability.damageUser)
         {
             int damage = await user.OnAttack(user,ability.baseDamage);
+            DamageAnimator.Instance.TriggerAttack(user, ability.attackAnimation);
             await user.Damage(user,damage,ability.element);
             user.TestDeath();
         }

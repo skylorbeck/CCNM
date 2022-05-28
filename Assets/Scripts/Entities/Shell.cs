@@ -17,6 +17,7 @@ public class Shell : MonoBehaviour
     [SerializeField] public StatusDisplayer statusDisplayer;
     public bool isDead => health <= 0;
     public bool hasShield => shield > 0;
+    public bool isPlayer => !(brain is EnemyBrain);
 
     private SpriteRenderer spriteRenderer;
 
@@ -121,7 +122,7 @@ public class Shell : MonoBehaviour
 
     public async Task OnTurnEnd()
     {
-        await TickStatusEffects();
+        // await TickStatusEffects();
         TestDeath();
 
     }

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 757839a096d011d419bc2523581e191b, type: 3}
-  m_Name: Empowered
+  m_Script: {fileID: 11500000, guid: 880a1eb5bf69fa041b2b23b4aa515aee, type: 3}
+  m_Name: EmpoweredEffect
   m_EditorClassIdentifier: 
   <titleTranslationKey>k__BackingField: empowered
   <descriptionTranslationKey>k__BackingField: empowered.description
@@ -18,7 +18,6 @@ MonoBehaviour:
   <duration>k__BackingField: 1
   <maxStacks>k__BackingField: 0
   <isPersistent>k__BackingField: 0
-  <isStackable>k__BackingField: 0
+  <isStackable>k__BackingField: 1
   <isDebuff>k__BackingField: 0
-  <isBuff>k__BackingField: 1
   <element>k__BackingField: 0

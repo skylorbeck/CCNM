@@ -208,6 +208,8 @@ public class FightManager : MonoBehaviour
             if (!enemy.isDead)
             {
                 await enemyWheels[i].GetWinner().Consume(player, enemy);
+                await Task.Delay(250);
+                await enemy.TickStatusEffects();
                 await Task.Delay(500);
             }
         }
@@ -219,6 +221,7 @@ public class FightManager : MonoBehaviour
         turnOver = false;
         foreach (EnemyShell enemy in enemies)
         {
+            
             await enemy.OnTurnEnd();
             // await Task.Delay(500);//potentially remove await for effects applying while other enemies attack?
         }

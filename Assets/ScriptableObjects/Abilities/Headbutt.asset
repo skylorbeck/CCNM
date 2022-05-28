@@ -10,23 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
-  m_Name: Cut
+  m_Name: Headbutt
   m_EditorClassIdentifier: 
-  <title>k__BackingField: cut
-  <description>k__BackingField: cut.description
-  <icon>k__BackingField: {fileID: 21300000, guid: a8dacc0702663954ead2b8549c770f22, type: 3}
+  <title>k__BackingField: Headbutt
+  <description>k__BackingField: Headbutt.description
+  <icon>k__BackingField: {fileID: 21300000, guid: aab74597853d3d948a419efe6f74ca0b, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
-  <damageUser>k__BackingField: 0
-  <baseDamage>k__BackingField: 2
+  <damageUser>k__BackingField: 1
+  <baseDamage>k__BackingField: 3
   <healTarget>k__BackingField: 0
   <healUser>k__BackingField: 0
   <baseHeal>k__BackingField: 3
   <shieldTarget>k__BackingField: 0
-  <shieldUser>k__BackingField: 1
+  <shieldUser>k__BackingField: 0
   <baseShield>k__BackingField: 3
   <statusTarget>k__BackingField: 0
   <statusSelf>k__BackingField: 1
   <statusEffects>k__BackingField:
-  - {fileID: 11400000, guid: 5b64b5bd69eae44418b85ee4fae9ead4, type: 2}
+  - {fileID: 11400000, guid: 671cfe5ee462ee44f90f6732fec677ee, type: 2}
   <element>k__BackingField: 0
+  <attackAnimation>k__BackingField: 0

@@ -12,7 +12,7 @@ public class BurnEffect : StatusEffect
     public override async Task Tick(Shell target)
     {
         await target.Damage(null,damage,element);
-        TextPopController.Instance.PopNegative("Burned", target.transform.position);
+        TextPopController.Instance.PopNegative("Burned", target.transform.position,target.isPlayer);
         await base.Tick(target);
     }
 }

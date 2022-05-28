@@ -44,3 +44,6 @@ TagManager:
   - name: SlotMachine
     uniqueID: 2420636947
     locked: 0
+  - name: DamageUI
+    uniqueID: 1700051009
+    locked: 0

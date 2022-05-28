@@ -15,7 +15,7 @@ MonoBehaviour:
   <titleTranslationKey>k__BackingField: confusion
   <descriptionTranslationKey>k__BackingField: confusion.description
   <icon>k__BackingField: {fileID: 21300000, guid: 58cb9a54bd68c704893b028dae53eb1f, type: 3}
-  <duration>k__BackingField: 1
+  <duration>k__BackingField: 2
   <maxStacks>k__BackingField: 0
   <isPersistent>k__BackingField: 0
   <isStackable>k__BackingField: 1

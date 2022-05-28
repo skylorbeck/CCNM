@@ -30,5 +30,7 @@ public class AbilitySO : ScriptableObject
     [field: SerializeField] public StatusEffect[] statusEffects{ get; private set; } = new StatusEffect[0];
     [field: Header("Other")]
     [field: SerializeField] public StatusEffect.Element element{ get; private set; } = StatusEffect.Element.None;
-    
+
+    [field: SerializeField] public AttackAnimator.AttackType attackAnimation { get; private set; } = AttackAnimator.AttackType.None;
+
 }
