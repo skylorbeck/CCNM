@@ -10,12 +10,14 @@ public class EnemyShell : Shell
         get { return (EnemyBrain)brain;}
         private set => InsertBrain(value);
     }
-    public async Task Attack(Shell target)
+    public override async Task Attack(Shell target,Symbol symbol)
     {
-        await enemyBrain.Think();
-        Symbol symbol = Instantiate(Resources.Load<Symbol>("Prefabs/Slotmachine/SymbolPrefab"), transform);
-        symbol.SetAbility(brain.GetRandomAbility());
-        await symbol.Consume(target,this);
-        Destroy(symbol);
+        spriteRenderer.color = Color.white;
+        await base.Attack(target,symbol);
+    }
+
+    public void Dim()
+    {
+        spriteRenderer.color = Color.gray;
     }
 }

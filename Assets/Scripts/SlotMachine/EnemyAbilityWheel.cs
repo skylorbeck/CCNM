@@ -19,7 +19,7 @@ public class EnemyAbilityWheel : AbilityWheel
         {
             localPosition = Vector3.MoveTowards(localPosition, targetPos, Time.deltaTime * moveSpeed);
             transform.localPosition = localPosition;
-            await Task.Delay(TimeSpan.FromSeconds(Time.deltaTime));
+            await Task.Delay(10);
         } while (Vector3.Distance(transform.localPosition,targetPos)> 0f);
     }
 }

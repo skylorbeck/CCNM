@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        Application.targetFrameRate = 60;
         bool mainMenuLoaded = !loadMainMenu;
         bool uiLoaded = false;
         for (int i = 0; i < SceneManager.sceneCount; i++)
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
 
         if (!mainMenuLoaded)
         {
-            LoadSceneAdditive("MainMenu");
+            LoadSceneAdditive("MainMenu", false);
         }
         if (!uiLoaded)
         {

@@ -8,10 +8,13 @@ public class Symbol : MonoBehaviour
 {
     [field:SerializeField] public AbilitySO ability { get; private set; }
     private SpriteRenderer spriteRenderer;
-    private SpriteRenderer statusSpriteRenderer;
+    [SerializeField] private SpriteRenderer statusSpriteRenderer;
+    [SerializeField] private SpriteRenderer statusSpriteShadowRenderer;
     private int statusSpriteIndex = 0;
     [SerializeField] float darknessRamp = 0.5f;
-
+    private static Color negative = new Color(1, 0.364f, 0.364f);
+    private static Color positive = new Color(0, 1, 0.67f);
+        
  
 
     [field:SerializeField] public bool consumed { get; private set; } = false;
@@ -19,9 +22,8 @@ public class Symbol : MonoBehaviour
     void OnEnable()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = transform.localPosition.y < 2.5f;
+        // spriteRenderer.enabled = transform.localPosition.y < 2.5f;
         spriteRenderer.sprite = ability.icon;
-        statusSpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
         GameManager.Instance.FixedSecond += CycleStatusEffect;
     }
 
@@ -35,16 +37,21 @@ public class Symbol : MonoBehaviour
     {
         var localPosition = transform.localPosition;
         spriteRenderer.enabled = localPosition.y < 2.5f;
-        spriteRenderer.color =consumed?Color.gray: Color.Lerp(Color.white, Color.black, Math.Abs(localPosition.y * darknessRamp));
+        spriteRenderer.color = consumed
+            ? Color.gray
+            : Color.Lerp(Color.white, Color.black, Math.Abs(localPosition.y * darknessRamp));
         if (ability.statusEffects.Length > 0)
         {
             statusSpriteRenderer.color =
-                Color.Lerp(Color.white, Color.black, Math.Abs(localPosition.y / 2));
+                Color.Lerp(
+                    consumed ? Color.gray : ability.statusEffects[statusSpriteIndex].isDebuff ? negative : positive,
+                    Color.black, Math.Abs(localPosition.y / 2));
         }
     }
 
     void CycleStatusEffect()
     {
+
         if (ability.statusEffects.Length > 0)
         {
             statusSpriteIndex++;
@@ -53,6 +60,7 @@ public class Symbol : MonoBehaviour
                 statusSpriteIndex = 0;
             }
             statusSpriteRenderer.sprite = ability.statusEffects[statusSpriteIndex].icon;
+            statusSpriteShadowRenderer.sprite = ability.statusEffects[statusSpriteIndex].icon;
         }
     }
 

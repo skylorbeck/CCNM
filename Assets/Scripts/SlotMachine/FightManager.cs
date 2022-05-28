@@ -71,7 +71,7 @@ public class FightManager : MonoBehaviour
 
     void Update()
     {
-            enemySelector.transform.Rotate(Vector3.forward, BothTargeted?-0.5f:-0.2f);
+            enemySelector.transform.Rotate(Vector3.forward, (BothTargeted?-200f:-100f) * Time.deltaTime);
     }
 
     void FixedUpdate()
@@ -167,6 +167,7 @@ public class FightManager : MonoBehaviour
             {
                 {
                     enemies[i].statusDisplayer.DisableVisuals();
+                    enemies[i].Dim();
                 }
                 tasks.Add(enemyWheels[i].Move(new Vector3(enemyWheels[i].transform.localPosition.x, targetY, 0f)));
             }
@@ -207,7 +208,7 @@ public class FightManager : MonoBehaviour
             EnemyShell enemy = enemies[i];
             if (!enemy.isDead)
             {
-                await enemyWheels[i].GetWinner().Consume(player, enemy);
+                await enemy.Attack(player, enemyWheels[i].GetWinner());
                 await Task.Delay(250);
                 await enemy.TickStatusEffects();
                 await Task.Delay(500);

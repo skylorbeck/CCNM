@@ -63,7 +63,9 @@ public class AbilityWheel : MonoBehaviour
                 if (symbol.isActiveAndEnabled)
                 {
                     Transform symbolTransform = symbol.transform;
-                    symbolTransform.localPosition = new Vector3(0, symbolTransform.localPosition.y-(spinSpeed*Time.deltaTime), 0);
+                    var localPosition = symbolTransform.localPosition;
+                    localPosition = Vector3.Lerp(localPosition, localPosition+Vector3.down, spinSpeed * Time.deltaTime);
+                    symbolTransform.localPosition = localPosition;
                     if (symbolTransform.localPosition.y <= -3f)
                     {
                         symbolPool.Release(symbol);

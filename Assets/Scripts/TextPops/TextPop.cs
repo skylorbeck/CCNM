@@ -28,6 +28,7 @@ public class TextPop : MonoBehaviour
             text = GetComponentInChildren<TextMeshProUGUI>();
         }
 
+        text.geometrySortingOrder++;//hope this doesn't break everything
         // transform.localPosition = Camera.main.WorldToViewportPoint(worldPos);
         transform.position = Camera.main.WorldToScreenPoint(worldPos)+new Vector3(Random.Range(-randomRange,randomRange),Random.Range(-randomRange,randomRange),0);
         

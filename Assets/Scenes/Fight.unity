@@ -219,8 +219,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.9, g: 0.862, b: 0.368, a: 1}
-      key1: {r: 1, g: 0.364, b: 0.364, a: 1}
+      key0: {r: 0, g: 1, b: 0.67, a: 1}
+      key1: {r: 0, g: 1, b: 0.67, a: 1}
       key2: {r: 0.5, g: 0.5, b: 0.5, a: 0}
       key3: {r: 0.25, g: 0.25, b: 0.25, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -899,7 +899,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 108, y: 192}
-  m_ScreenMatchMode: 1
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -1222,9 +1222,9 @@ MonoBehaviour:
   <isSpinning>k__BackingField: 0
   <winnerChosen>k__BackingField: 0
   dirty: 0
-  spinSpeed: 5
-  spinSpeedMin: 10
-  spinSpeedMax: 20
+  spinSpeed: 10
+  spinSpeedMin: 7.5
+  spinSpeedMax: 15
   totalToSpin: 20
   totalToSpinMin: 15
   totalToSpinMax: 25
@@ -1355,14 +1355,14 @@ MonoBehaviour:
   <winnerChosen>k__BackingField: 0
   dirty: 0
   spinSpeed: 10
-  spinSpeedMin: 10
-  spinSpeedMax: 20
+  spinSpeedMin: 7.5
+  spinSpeedMax: 15
   totalToSpin: 20
   totalToSpinMin: 15
   totalToSpinMax: 25
-  moveSpeed: 20
-  moveSpeedMin: 10
-  moveSpeedMax: 20
+  moveSpeed: 25
+  moveSpeedMin: 20
+  moveSpeedMax: 30
 --- !u!1 &655570600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,14 +1668,14 @@ MonoBehaviour:
   <winnerChosen>k__BackingField: 0
   dirty: 0
   spinSpeed: 10
-  spinSpeedMin: 10
-  spinSpeedMax: 20
+  spinSpeedMin: 7.5
+  spinSpeedMax: 15
   totalToSpin: 20
   totalToSpinMin: 15
   totalToSpinMax: 25
-  moveSpeed: 20
-  moveSpeedMin: 10
-  moveSpeedMax: 20
+  moveSpeed: 25
+  moveSpeedMin: 20
+  moveSpeedMax: 30
 --- !u!1 &761832589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,9 +1887,9 @@ MonoBehaviour:
   <isSpinning>k__BackingField: 0
   <winnerChosen>k__BackingField: 0
   dirty: 0
-  spinSpeed: 5
-  spinSpeedMin: 10
-  spinSpeedMax: 20
+  spinSpeed: 10
+  spinSpeedMin: 7.5
+  spinSpeedMax: 15
   totalToSpin: 20
   totalToSpinMin: 15
   totalToSpinMax: 25
@@ -4221,14 +4221,14 @@ MonoBehaviour:
   <winnerChosen>k__BackingField: 0
   dirty: 0
   spinSpeed: 10
-  spinSpeedMin: 10
-  spinSpeedMax: 20
+  spinSpeedMin: 7.5
+  spinSpeedMax: 15
   totalToSpin: 20
   totalToSpinMin: 15
   totalToSpinMax: 25
-  moveSpeed: 20
-  moveSpeedMin: 10
-  moveSpeedMax: 20
+  moveSpeed: 25
+  moveSpeedMin: 20
+  moveSpeedMax: 30
 --- !u!1 &1954048888
 GameObject:
   m_ObjectHideFlags: 0
@@ -4536,9 +4536,9 @@ MonoBehaviour:
   <isSpinning>k__BackingField: 0
   <winnerChosen>k__BackingField: 0
   dirty: 0
-  spinSpeed: 5
-  spinSpeedMin: 10
-  spinSpeedMax: 20
+  spinSpeed: 10
+  spinSpeedMin: 7.5
+  spinSpeedMax: 15
   totalToSpin: 20
   totalToSpinMin: 15
   totalToSpinMax: 25

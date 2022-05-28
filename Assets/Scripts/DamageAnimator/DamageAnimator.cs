@@ -50,7 +50,7 @@ public class DamageAnimator : MonoBehaviour
             redFlash.SetTrigger("hurt");
             if (attackType != AttackAnimator.AttackType.None)
             {
-                TriggerAttack(Vector3.zero, attackType, 1);
+                TriggerAttack(target.transform.position, attackType, 0.5f);
             }
         }
         else

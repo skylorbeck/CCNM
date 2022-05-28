@@ -19,9 +19,9 @@ public class Shell : MonoBehaviour
     public bool hasShield => shield > 0;
     public bool isPlayer => !(brain is EnemyBrain);
 
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
-    public async Task Attack(Shell target,Symbol attack)
+    public virtual async Task Attack(Shell target,Symbol attack)
     {
         await attack.Consume(target,this);
         await Task.Delay(500);

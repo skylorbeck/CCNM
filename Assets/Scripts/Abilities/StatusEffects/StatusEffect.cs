@@ -55,13 +55,13 @@ public class StatusEffect : ScriptableObject
     //called when status effect is removed from a shell
     public virtual async void OnRemove(Shell target)
     {
-        if (!isDebuff)
+        /*if (!isDebuff)
         {
             TextPopController.Instance.PopNegative("-"+titleTranslationKey, target.transform.position,target.isPlayer);
         } else
         {
             TextPopController.Instance.PopPositive("-"+titleTranslationKey, target.transform.position,target.isPlayer);
-        }
+        }*/
         //do something to the shell
     }
     
