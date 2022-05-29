@@ -40,7 +40,7 @@ public class AbilityObject : ScriptableObject
     
     [field: Header("Other")]
     [field: SerializeField] public StatusEffect.Element element{ get; private set; } = StatusEffect.Element.None;
-
     [field: SerializeField] public AttackAnimator.AttackType attackAnimation { get; private set; } = AttackAnimator.AttackType.None;
+    [field: SerializeField] public AudioClip soundEffect { get; private set; }
 
 }

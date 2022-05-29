@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 public class EnemyShell : Shell
-{ 
-    
+{
+    [SerializeField]private Animator animator;
     public EnemyBrain enemyBrain
     {
         get { return (EnemyBrain)brain;}
@@ -19,10 +19,10 @@ public class EnemyShell : Shell
 
     public void Dim()
     {
-        spriteRenderer.color = Color.gray;
+        animator.SetTrigger("dim");
     }
     
     public void Light()
     {
-        spriteRenderer.color = Color.white;
+        animator.SetTrigger("light");
     }}

@@ -29,3 +29,4 @@ MonoBehaviour:
   <statusSelf>k__BackingField: 1
   <element>k__BackingField: 0
   <attackAnimation>k__BackingField: 1
+  <soundEffect>k__BackingField: {fileID: 8300000, guid: 848d16b25fa7b0541a14aab995097181, type: 3}

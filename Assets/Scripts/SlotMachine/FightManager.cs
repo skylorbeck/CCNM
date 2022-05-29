@@ -158,13 +158,17 @@ public class FightManager : MonoBehaviour
 
     public async Task MoveEnemySlots(float targetY, bool ignoreDead)
     {
-        // turnOver = false;
+        if (!ignoreDead)
+        {
+            turnOver = false;
+        }
 
         List<Task> tasks = new List<Task>();
         for (var i = 0; i < enemyWheels.Length; i++)
         {
             if (!enemies[i].isDead || ignoreDead)
             {
+                if(!ignoreDead)
                 {
                     enemies[i].statusDisplayer.DisableVisuals();
                     enemies[i].Dim();
@@ -183,22 +187,43 @@ public class FightManager : MonoBehaviour
         }
 
         await Task.Delay(500);
-        // turnOver = true;
+        if (!ignoreDead)
+        {
+            turnOver = true;
+        }
     }
 
     public async void PreFireEnemies()
     {
         turnOver = false;
-        List<Task> tasks = new List<Task>();
+        
+        // List<Task> tasks = new List<Task>();
         for (var i = 0; i < enemies.Length; i++)
         {
             EnemyShell enemy = enemies[i];
             if (!enemy.isDead)
             {
-               tasks.Add(enemyWheels[i].Spin());
+               // tasks.Add(enemyWheels[i].Spin());
+               enemyWheels[i].Spin();
             }
         }
-        await Task.WhenAll(tasks.ToArray());
+        bool anySpinning;
+        do
+        {
+            anySpinning = false;
+            foreach (EnemyAbilityWheel enemyWheel in enemyWheels)
+            {
+                if (enemyWheel.isSpinning)
+                {
+                    anySpinning = true;
+                    break;
+                }
+            }
+            SoundManager.instance.PlayEffect("click");
+            await Task.Delay(100);
+        } while (anySpinning);
+        // await Task.WhenAll(tasks.ToArray());
+        
         await Task.Delay(1000);//todo replace with jackpot check
 
         await MoveEnemySlots(enemyWheelUpY,true);
@@ -214,6 +239,8 @@ public class FightManager : MonoBehaviour
                 await enemy.TickStatusEffects();
                 await Task.Delay(500);
                 enemy.Dim();
+                await Task.Delay(250);
+
             }
         }
         foreach (EnemyShell enemy in enemies)
@@ -386,7 +413,9 @@ public class FightManager : MonoBehaviour
                     dirty = true;
                 }
             }
+            SoundManager.instance.PlayEffect("click");
             await Task.Delay(100);
+
         } while (dirty);
 
         SetState(WheelStates.Selecting);

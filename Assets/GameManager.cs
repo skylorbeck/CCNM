@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public InputReader inputReader;
     public UIStateObject uiStateObject;
+    public SoundManager soundManager;
     bool playerAccepted = false;
     private float target = 0;
     

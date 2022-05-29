@@ -125,7 +125,6 @@ public class AbilityWheel : MonoBehaviour
             {
                 await Task.Delay(10);
             } while (symbol.transform.localPosition.y>1.6f);
-          
         }
     }
 

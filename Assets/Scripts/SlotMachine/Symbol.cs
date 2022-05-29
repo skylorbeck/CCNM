@@ -114,5 +114,6 @@ public class Symbol : MonoBehaviour
             await user.Damage(user,damage,ability.element);
             user.TestDeath();
         }
+        SoundManager.instance.PlaySound(ability.soundEffect);
     }
 }
