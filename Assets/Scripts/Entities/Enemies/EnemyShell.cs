@@ -12,7 +12,8 @@ public class EnemyShell : Shell
     }
     public override async Task Attack(Shell target,Symbol symbol)
     {
-        spriteRenderer.color = Color.white;
+        Light();
+        await Task.Delay(250);
         await base.Attack(target,symbol);
     }
 
@@ -20,4 +21,8 @@ public class EnemyShell : Shell
     {
         spriteRenderer.color = Color.gray;
     }
-}
+    
+    public void Light()
+    {
+        spriteRenderer.color = Color.white;
+    }}

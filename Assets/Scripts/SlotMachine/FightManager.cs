@@ -208,12 +208,22 @@ public class FightManager : MonoBehaviour
             EnemyShell enemy = enemies[i];
             if (!enemy.isDead)
             {
+                
                 await enemy.Attack(player, enemyWheels[i].GetWinner());
                 await Task.Delay(250);
                 await enemy.TickStatusEffects();
                 await Task.Delay(500);
+                enemy.Dim();
             }
         }
+        foreach (EnemyShell enemy in enemies)
+        {
+            if (!enemy.isDead)
+            {
+                enemy.Light();
+            }
+        }
+        
         turnOver = true;
     }
 
@@ -421,7 +431,7 @@ public class FightManager : MonoBehaviour
     public void SetPreviewText(Symbol symbol)
     {
         player.statusDisplayer.DisableVisuals();
-        previewText.SetText(symbol!.ability.title, symbol!.ability.baseDamage + " damage", symbol!.ability.description);
+        previewText.SetText(symbol!.ability.title, symbol!.ability.descriptionA, symbol!.ability.descriptionB);
     }
     
     public void SetPreviewText(Shell shell)

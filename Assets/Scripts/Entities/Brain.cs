@@ -10,9 +10,9 @@ public class Brain : ScriptableObject
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public int maxHealth { get; private set; } = 100;
     [field: SerializeField] public int startingShield { get; private set; } = 100;
-    [field: SerializeField] public AbilitySO[] abilities { get; private set; } = new AbilitySO[0];
+    [field: SerializeField] public AbilityObject[] abilities { get; private set; } = new AbilityObject[0];
     
-    public AbilitySO GetRandomAbility()
+    public AbilityObject GetRandomAbility()
     {
         int randomIndex = Random.Range(0,abilities.Length);
         return abilities[randomIndex];

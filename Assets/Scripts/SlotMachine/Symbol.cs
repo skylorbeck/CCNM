@@ -6,73 +6,68 @@ using UnityEngine;
 
 public class Symbol : MonoBehaviour
 {
-    [field:SerializeField] public AbilitySO ability { get; private set; }
-    private SpriteRenderer spriteRenderer;
-    [SerializeField] private SpriteRenderer statusSpriteRenderer;
-    [SerializeField] private SpriteRenderer statusSpriteShadowRenderer;
-    private int statusSpriteIndex = 0;
+    [field:SerializeField] public AbilityObject ability { get; private set; }
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer userStatusSprite;
+    [SerializeField] private SpriteRenderer userStatusShadow;
+    [SerializeField] private SpriteRenderer targetStatusSprite;
+    [SerializeField] private SpriteRenderer targetStatusShadow;
     [SerializeField] float darknessRamp = 0.5f;
     private static Color negative = new Color(1, 0.364f, 0.364f);
     private static Color positive = new Color(0, 1, 0.67f);
-        
- 
-
+    
     [field:SerializeField] public bool consumed { get; private set; } = false;
 
-    void OnEnable()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        // spriteRenderer.enabled = transform.localPosition.y < 2.5f;
-        spriteRenderer.sprite = ability.icon;
-        GameManager.Instance.FixedSecond += CycleStatusEffect;
-    }
 
     private void OnDisable()
     {
         consumed = false;
-        GameManager.Instance.FixedSecond -= CycleStatusEffect;
     }
 
     void Update()
     {
         var localPosition = transform.localPosition;
-        spriteRenderer.enabled = localPosition.y < 2.5f;
+        // spriteRenderer.enabled = localPosition.y < 2.5f;
         spriteRenderer.color = consumed
             ? Color.gray
             : Color.Lerp(Color.white, Color.black, Math.Abs(localPosition.y * darknessRamp));
-        if (ability.statusEffects.Length > 0)
+
+        if (ability.userStatus)
         {
-            statusSpriteRenderer.color =
+            userStatusSprite.color =
                 Color.Lerp(
-                    consumed ? Color.gray : ability.statusEffects[statusSpriteIndex].isDebuff ? negative : positive,
+                    consumed ? Color.gray : ability.userStatus.isDebuff ? negative : positive,
                     Color.black, Math.Abs(localPosition.y / 2));
         }
-    }
-
-    void CycleStatusEffect()
-    {
-
-        if (ability.statusEffects.Length > 0)
+        if (ability.targetStatus)
         {
-            statusSpriteIndex++;
-            if (statusSpriteIndex >= ability.statusEffects.Length)
-            {
-                statusSpriteIndex = 0;
-            }
-            statusSpriteRenderer.sprite = ability.statusEffects[statusSpriteIndex].icon;
-            statusSpriteShadowRenderer.sprite = ability.statusEffects[statusSpriteIndex].icon;
+            targetStatusSprite.color =
+                Color.Lerp(
+                    consumed ? Color.gray : ability.targetStatus.isDebuff ? negative : positive,
+                    Color.black, Math.Abs(localPosition.y / 2));
         }
+        
     }
 
-    public void SetAbility(AbilitySO newAbility)
+    public void SetAbility(AbilityObject newAbility)
     {
         ability = newAbility;
         spriteRenderer.sprite = ability.icon;
-        if (ability.statusEffects.Length > 0)
+        if (ability.statusSelf)
         {
-            statusSpriteRenderer.sprite = ability.statusEffects[0].icon;
+            userStatusSprite.sprite = ability.userStatus.icon;
+            userStatusShadow.sprite = ability.userStatus.icon;
         } else {
-            statusSpriteRenderer.sprite = null;
+            userStatusSprite.sprite = null;
+            userStatusShadow.sprite = null;
+        }
+        if (ability.statusTarget)
+        {
+            targetStatusSprite.sprite = ability.targetStatus.icon;
+            targetStatusShadow.sprite = ability.targetStatus.icon;
+        } else {
+            targetStatusSprite.sprite = null;
+            targetStatusShadow.sprite = null;
         }
         
     }
@@ -83,46 +78,38 @@ public class Symbol : MonoBehaviour
 
         if (ability.shieldTarget)
         {
-            target.Shield(ability.baseShield);
+            target.Shield(ability.targetShield);
         }
         if (ability.shieldUser)
         {
-            user.Shield(ability.baseShield);
+            user.Shield(ability.userShield);
         }
         if (ability.statusTarget)
         {
-            foreach (StatusEffect statusEffect in ability.statusEffects)
-            {
-                target.AddStatusEffect(statusEffect);
-                await Task.Delay(100);
-            }
+            target.AddStatusEffect(ability.targetStatus);
         }
         if (ability.statusSelf)
         {
-            foreach (StatusEffect statusEffect in ability.statusEffects)
-            {
-                user.AddStatusEffect(statusEffect);
-                await Task.Delay(100);
-            }
+            user.AddStatusEffect(ability.userStatus);
         }
         if (ability.healTarget)
         {
-            target.Heal(user, ability.baseHeal,ability.element);
+            target.Heal(user, ability.targetHeal,ability.element);
         }
         if (ability.healUser)
         {
-            user.Heal(user, ability.baseHeal,ability.element);
+            user.Heal(user, ability.userHeal,ability.element);
         }
         if (ability.damageTarget)
         {
-            int damage = await user.OnAttack(target,ability.baseDamage);
+            int damage = await user.OnAttack(target,ability.targetDamage);
             DamageAnimator.Instance.TriggerAttack(target, ability.attackAnimation);
             await target.Damage(user,damage,ability.element);
             target.TestDeath();
         }
         if (ability.damageUser)
         {
-            int damage = await user.OnAttack(user,ability.baseDamage);
+            int damage = await user.OnAttack(user,ability.userDamage);
             DamageAnimator.Instance.TriggerAttack(user, ability.attackAnimation);
             await user.Damage(user,damage,ability.element);
             user.TestDeath();

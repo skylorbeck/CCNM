@@ -95,7 +95,7 @@ public class AbilityWheel : MonoBehaviour
         
     }
 
-    public async Task Spin()
+    public virtual async Task Spin()
     {
         winner = null;
         winnerChosen = false;

@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: Taunt
   m_EditorClassIdentifier: 
   <title>k__BackingField: Taunt
-  <description>k__BackingField: Taunt.description
+  <descriptionA>k__BackingField: ability.description.a
+  <descriptionB>k__BackingField: ability.description.b
   <icon>k__BackingField: {fileID: 21300000, guid: a8dacc0702663954ead2b8549c770f22, type: 3}
   <baseCost>k__BackingField: 1
-  <damageTarget>k__BackingField: 0
-  <damageUser>k__BackingField: 0
-  <baseDamage>k__BackingField: 2
-  <healTarget>k__BackingField: 0
-  <healUser>k__BackingField: 0
-  <baseHeal>k__BackingField: 3
-  <shieldTarget>k__BackingField: 0
-  <shieldUser>k__BackingField: 1
-  <baseShield>k__BackingField: 5
-  <statusTarget>k__BackingField: 0
-  <statusSelf>k__BackingField: 1
-  <statusEffects>k__BackingField:
-  - {fileID: 11400000, guid: c48dca9d4614ddc4d9d66bb0d3c44a09, type: 2}
+  <targetDamage>k__BackingField: 0
+  <userDamage>k__BackingField: 0
+  <targetHeal>k__BackingField: 0
+  <userHeal>k__BackingField: 0
+  <targetShield>k__BackingField: 0
+  <userShield>k__BackingField: 5
+  <targetStatus>k__BackingField: {fileID: 11400000, guid: c48dca9d4614ddc4d9d66bb0d3c44a09, type: 2}
+  <statusTarget>k__BackingField: 1
+  <userStatus>k__BackingField: {fileID: 11400000, guid: c48dca9d4614ddc4d9d66bb0d3c44a09, type: 2}
+  <statusSelf>k__BackingField: 0
   <element>k__BackingField: 0
+  <attackAnimation>k__BackingField: 1

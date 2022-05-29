@@ -13,7 +13,7 @@ public class Shell : MonoBehaviour
     [field: SerializeField] public int maxHealth { get; private set; } = 10;
     [field: SerializeField] public int shield { get; private set; } = 0;
     [field: SerializeField] public int maxShield { get; private set; } = 0;
-    [field: SerializeField] public AbilitySO[] abilities { get; private set; } = new AbilitySO[0];
+    [field: SerializeField] public AbilityObject[] abilities { get; private set; } = new AbilityObject[0];
     [SerializeField] public StatusDisplayer statusDisplayer;
     public bool isDead => health <= 0;
     public bool hasShield => shield > 0;

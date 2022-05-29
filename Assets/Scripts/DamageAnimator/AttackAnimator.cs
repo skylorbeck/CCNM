@@ -28,7 +28,8 @@ public class AttackAnimator : MonoBehaviour
             case AttackType.Slash:
                 animator.SetTrigger("slash");
                 break;
-            case AttackType.None:
+            case AttackType.Headbutt:
+                animator.SetTrigger("headbutt");
                 break;
         }
     }
@@ -36,6 +37,7 @@ public class AttackAnimator : MonoBehaviour
     public enum AttackType
     {
         Slash,
+        Headbutt,
         None
     }
 }

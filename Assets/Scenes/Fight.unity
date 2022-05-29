@@ -1361,7 +1361,7 @@ MonoBehaviour:
   totalToSpinMin: 15
   totalToSpinMax: 25
   moveSpeed: 25
-  moveSpeedMin: 20
+  moveSpeedMin: 10
   moveSpeedMax: 30
 --- !u!1 &655570600
 GameObject:
@@ -1674,7 +1674,7 @@ MonoBehaviour:
   totalToSpinMin: 15
   totalToSpinMax: 25
   moveSpeed: 25
-  moveSpeedMin: 20
+  moveSpeedMin: 10
   moveSpeedMax: 30
 --- !u!1 &761832589
 GameObject:
@@ -4227,7 +4227,7 @@ MonoBehaviour:
   totalToSpinMin: 15
   totalToSpinMax: 25
   moveSpeed: 25
-  moveSpeedMin: 20
+  moveSpeedMin: 10
   moveSpeedMax: 30
 --- !u!1 &1954048888
 GameObject:
