@@ -59,7 +59,7 @@ public class Shell : MonoBehaviour
     }
 
     
-    public void Kill()
+    public virtual void Kill()
     {
         spriteRenderer.sprite = null;
         statusDisplayer.Clear();

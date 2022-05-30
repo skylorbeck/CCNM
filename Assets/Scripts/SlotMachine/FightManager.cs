@@ -11,6 +11,7 @@ public class FightManager : MonoBehaviour
 {
     [field:SerializeField]public Lane selectedWheel { get; private set; } = Lane.None;
     [field:SerializeField]public Lane selectedEnemy { get; private set; } = Lane.None;
+    [SerializeField] private Image cursor;
     [SerializeField] private Image selector;
     [SerializeField] private Image enemySelector;
     [SerializeField] private Image enemySelectorInner;
@@ -29,6 +30,7 @@ public class FightManager : MonoBehaviour
     private Symbol targetSymbol;
     [SerializeField] private Battlefield battlefield;
     private bool turnOver = false;
+    [SerializeField] private GameObject startingSelection;
 
     private int enemiesAlive
     {
@@ -61,17 +63,48 @@ public class FightManager : MonoBehaviour
             w.Spin();
         }
         GameManager.Instance.FixedSecond += SizeSelector;
-        
+        GameManager.Instance.eventSystem.SetSelectedGameObject(startingSelection);
+        GameManager.Instance.inputReader.PadAny += NavUpdate;
+        GameManager.Instance.inputReader.ClickEvent += NavUpdateMouse;
     }
 
+    
+    private void NavUpdateMouse()
+    {
+        DisablePointer();
+    }
+    private void NavUpdate()
+    {
+        EnablePointer();
+
+        if (GameManager.Instance.eventSystem.currentSelectedGameObject == null)
+        {
+            GameManager.Instance.eventSystem.SetSelectedGameObject(startingSelection);
+        }
+        cursor.transform.position = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.position;
+
+    }
+
+    private void DisablePointer()
+    {
+        cursor.enabled = false;
+    }
+    
+    private void EnablePointer()
+    {
+        cursor.enabled = true;
+    }
     private void OnDestroy()
     {
         GameManager.Instance.FixedSecond -= SizeSelector;
+        GameManager.Instance.inputReader.PadAny -= NavUpdate;
+        GameManager.Instance.inputReader.ClickEvent -= NavUpdateMouse;
     }
 
     void Update()
     {
             enemySelector.transform.Rotate(Vector3.forward, (BothTargeted?-200f:-100f) * Time.deltaTime);
+            
     }
 
     void FixedUpdate()
@@ -290,10 +323,11 @@ public class FightManager : MonoBehaviour
                 break;
         }
     }
-
+    
+    
     public void SelectWheel(Lane wheel)
     {
-        if (state != WheelStates.Selecting)
+        if (state != WheelStates.Selecting ||wheels[(int)wheel - 1].GetWinner().consumed)
         {
             return;
         }
@@ -315,7 +349,7 @@ public class FightManager : MonoBehaviour
             CheckForBothSelected();
             return;
         }
-
+    
         selector.enabled = true;
         selectedWheel = wheel;
         switch (wheel)
@@ -443,6 +477,14 @@ public class FightManager : MonoBehaviour
     public void SetState(WheelStates newState)
     {
         ClearSelected();
+        if (newState == WheelStates.Selecting)
+        {
+            GameManager.Instance.inputReader.EnableUI();
+        } else
+        {
+            GameManager.Instance.inputReader.DisableUI();
+            DisablePointer();
+        }
         state = newState;
     }
 

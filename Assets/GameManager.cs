@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Random = Unity.Mathematics.Random;
 
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public InputReader inputReader;
     public UIStateObject uiStateObject;
-    public SoundManager soundManager;
+    public EventSystem eventSystem;
     bool playerAccepted = false;
     private float target = 0;
     
@@ -62,7 +63,6 @@ public class GameManager : MonoBehaviour
         {
             LoadSceneAdditive("UIOverlay",false);
         }
-        inputReader.EnablePlayer();
         inputReader.EnableUI();
     }
 
@@ -122,7 +122,6 @@ public class GameManager : MonoBehaviour
     {
         playerAccepted = true;
         inputReader.PushAnyButton -= PlayerAccept;
-        inputReader.DisablePlayer();
         TapToContinue.SetActive(false);
 
     }
