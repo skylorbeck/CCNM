@@ -73,14 +73,15 @@ public class FightManager : MonoBehaviour
     {
         DisablePointer();
     }
-    private void NavUpdate()
+    private async void NavUpdate()
     {
-        EnablePointer();
-
-        if (GameManager.Instance.eventSystem.currentSelectedGameObject == null)
+        if (!cursor.enabled)
         {
+            EnablePointer();
             GameManager.Instance.eventSystem.SetSelectedGameObject(startingSelection);
         }
+
+        await Task.Delay(50);
         cursor.transform.position = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.position;
 
     }
@@ -89,11 +90,12 @@ public class FightManager : MonoBehaviour
     {
         cursor.enabled = false;
     }
-    
+
     private void EnablePointer()
     {
         cursor.enabled = true;
     }
+
     private void OnDestroy()
     {
         GameManager.Instance.FixedSecond -= SizeSelector;
