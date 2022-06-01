@@ -13,4 +13,48 @@ public class DeckObject : ScriptableObject
     [field: Header("Rewards")]
     [field:SerializeField] public ItemCard[] ItemCards { get;private set; }
     [field:SerializeField] public ConsumableCard[] ConsumableCards { get;private set; }
+
+    public MapCard DrawRandomCard()
+    {
+        List<MapCard> cards = new List<MapCard>();
+        cards.AddRange(MinionCards);
+        cards.AddRange(EventCards);
+        cards.AddRange(ShopCards);
+        return cards[Random.Range(0, cards.Count)];
+    }
+    
+    public MapCard DrawBossCard()
+    {
+        return BossCard;
+    }
+    
+    public MapCard DrawMiniBossCard()
+    {
+        return MiniBossCard[Random.Range(0, MiniBossCard.Length)];
+    }
+    
+    public MapCard DrawMinionCard()
+    {
+        return MinionCards[Random.Range(0, MinionCards.Length)];
+    }
+    
+    public MapCard DrawEventCard()
+    {
+        return EventCards[Random.Range(0, EventCards.Length)];
+    }
+    
+    public MapCard DrawShopCard()
+    {
+        return ShopCards[Random.Range(0, ShopCards.Length)];
+    }
+    
+    public ItemCard DrawItemCard()
+    {
+        return ItemCards[Random.Range(0, ItemCards.Length)];
+    }
+    
+    public ConsumableCard DrawConsumableCard()
+    {
+        return ConsumableCards[Random.Range(0, ConsumableCards.Length)];
+    }
 }

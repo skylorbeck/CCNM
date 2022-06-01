@@ -1,29 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class CardDealer : MonoBehaviour
 {
-    private DeckObject deck;
+    private MapCard selectedCard;
+    
+    [SerializeField] Battlefield battlefield;
+
+    public async void DealCards()
+    {
+        await Task.Delay(1000);
+        selectedCard = battlefield.deck.DrawMinionCard();
+        await Task.Delay(1000);
+        SetupAndLoad();
+    }
+
     public virtual void SetupAndLoad()
     {
-        /*switch (mapCardType)
+        switch (selectedCard.mapCardType)
         {
             case MapCard.MapCardType.Shop:
-                GameManager.Instance.LoadSceneAdditive("Shop","MapScene");
+                GameManager.Instance.LoadSceneAdditive("Shop","MapScreen");
                 break;
             case MapCard.MapCardType.Boss:
-                GameManager.Instance.LoadSceneAdditive("Fight","MapScene");
+                BossCard bossCard = selectedCard as BossCard;
+                battlefield.InsertEnemies(bossCard!.enemies);
+                GameManager.Instance.LoadSceneAdditive("Fight","MapScreen");
                 break;
             case MapCard.MapCardType.MiniBoss:
-                GameManager.Instance.LoadSceneAdditive("Fight","MapScene");
+                MiniBossCard miniBossCard = selectedCard as MiniBossCard;
+                battlefield.InsertEnemies(miniBossCard!.enemies);
+                GameManager.Instance.LoadSceneAdditive("Fight","MapScreen");
                 break;
             case MapCard.MapCardType.Minion:
-                GameManager.Instance.LoadSceneAdditive("Fight","MapScene");
+                MinionCard minionCard = selectedCard as MinionCard;
+                battlefield.InsertEnemies(minionCard!.enemies);
+                GameManager.Instance.LoadSceneAdditive("Fight","MapScreen");
                 break;
             case MapCard.MapCardType.Event:
-                GameManager.Instance.LoadSceneAdditive("Event","MapScene");
+                GameManager.Instance.LoadSceneAdditive("Event","MapScreen");
                 break;
-        }*/
+        }
     }
 }
