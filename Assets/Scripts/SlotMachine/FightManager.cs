@@ -177,10 +177,15 @@ public class FightManager : MonoBehaviour
 
     private void CheckForAllDead()
     {
-        if (player.isDead || enemies.All(x => x.isDead))
+        if (player.isDead)
         {
             SetState(WheelStates.FightOver);
             GameManager.Instance.LoadScene("MainMenu",LoadSceneMode.Additive,false,"Fight");
+
+        } else if (enemies.All(x => x.isDead))
+        {
+            SetState(WheelStates.FightOver);
+            GameManager.Instance.LoadScene("MapScreen",LoadSceneMode.Additive,false,"Fight");
         }
     }
 

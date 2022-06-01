@@ -127,7 +127,7 @@ public class NewRunManager : MonoBehaviour
     
     public void StartRun()
     {
-        GameManager.Instance.LoadSceneAdditive("Fight", false,"RunSettings");
+        GameManager.Instance.LoadSceneAdditive("MapScreen", false,"RunSettings");
     }
     
     public enum Difficulty
