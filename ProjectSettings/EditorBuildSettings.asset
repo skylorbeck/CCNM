@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fight.unity
     guid: ffb4a1af0aed3904c9418dbafe2c7d5d
+  - enabled: 1
+    path: Assets/Scenes/MapScreen.unity
+    guid: fa6163d8893e8ea4a9e454a5b9db41b1
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 3185ca3d38fce8645b8237c7d3fe5ec8, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: cb053fcbe17097d47bd292f7b0d20321, type: 2}
