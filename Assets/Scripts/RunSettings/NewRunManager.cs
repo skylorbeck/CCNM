@@ -23,7 +23,13 @@ public class NewRunManager : MonoBehaviour
     public float xp{get; private set;}
     public float credits{get; private set;}
     public float multiplier{get; private set;}
-    public float finalMultiplier{get; private set;}
+    public float finalMultiplier{get; private set;}    
+    
+    public double healthMod{get; private set;}
+    public double defenseMod{get; private set;}
+    public double attackMod{get; private set;}
+    public double xpMod{get; private set;}
+    public double creditsMod{get; private set;}
 
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private Slider healthSlider;
@@ -42,7 +48,6 @@ public class NewRunManager : MonoBehaviour
     [SerializeField] private AnimationCurve creditsCurve;
     [SerializeField] private TextMeshProUGUI multiplierText;
     [SerializeField] private Slider multiplierSlider;
-    [SerializeField] private AnimationCurve multiplierCurve;
 
     [SerializeField] private TextMeshProUGUI finalMultiplierText;
 
@@ -60,7 +65,8 @@ public class NewRunManager : MonoBehaviour
     public void UpdateHealth()
     {
         health = healthSlider.value;
-        healthText.text = "x"+healthCurve.Evaluate(health).ToString("0.00");
+        healthMod = (Math.Round(healthCurve.Evaluate(health) * 4) * 0.25f);
+        healthText.text = "x"+healthMod.ToString("0.00");
         healthSwitcher.SwapSprite((int)health-1);
         UpdateFinalMultiplier();
     }
@@ -68,7 +74,8 @@ public class NewRunManager : MonoBehaviour
     public void UpdateDefense()
     {
         defense = defenseSlider.value;
-        defenseText.text = "x"+defenseCurve.Evaluate(defense).ToString("0.00");
+        defenseMod = (Math.Round(defenseCurve.Evaluate(defense) * 4) * 0.25f);
+        defenseText.text = "x"+defenseMod.ToString("0.00");
         shieldSwitcher.SwapSprite((int)defense-1);
         UpdateFinalMultiplier();
     }
@@ -76,7 +83,8 @@ public class NewRunManager : MonoBehaviour
     public void UpdateAttack()
     {
         attack = attackSlider.value;
-        attackText.text = "x"+attackCurve.Evaluate(attack).ToString("0.00");
+        attackMod = (Math.Round(attackCurve.Evaluate(attack) * 4) * 0.25f);
+        attackText.text = "x"+attackMod.ToString("0.00");
         attackSwitcher.SwapSprite((int)attack-1);
         UpdateFinalMultiplier();
     }
@@ -84,7 +92,8 @@ public class NewRunManager : MonoBehaviour
     public void UpdateXp()
     {
         xp = xpSlider.value;
-        xpText.text = "x"+xpCurve.Evaluate(xp).ToString("0.00");
+        xpMod = (Math.Round(xpCurve.Evaluate(xp) * 4) * 0.25f);
+        xpText.text = "x"+xpMod.ToString("0.00");
         experienceSwitcher.SwapSprite((int)xp-1);
         UpdateFinalMultiplier();
     }
@@ -92,7 +101,8 @@ public class NewRunManager : MonoBehaviour
     public void UpdateCredits()
     {
         credits = creditsSlider.value;
-        creditsText.text = "x"+creditsCurve.Evaluate(credits).ToString("0.00");
+        creditsMod = (Math.Round(creditsCurve.Evaluate(credits) * 4) * 0.25f);
+        creditsText.text = "x"+creditsMod.ToString("0.00");
         creditSwitcher.SwapSprite((int)credits-1);
         UpdateFinalMultiplier();
     }
@@ -100,19 +110,34 @@ public class NewRunManager : MonoBehaviour
     public void UpdateMultiplier()
     {
         multiplier = multiplierSlider.value;
-        multiplierText.text = "x"+(multiplier).ToString("0.00");
-        overallSwitcher.SwapSprite((int)multiplier-1);
+        // multiplierText.text = "x"+multiplier.ToString("0.00");
+        multiplierText.text = ((Difficulty)multiplier).ToString();
+        overallSwitcher.SwapSprite((int)multiplier);
+        healthSlider.value = 1;
+        defenseSlider.value = 1;
+        attackSlider.value = 1;
         UpdateFinalMultiplier();
     }
     
     public void UpdateFinalMultiplier()
     {
-        finalMultiplier = Math.Max(0,(health + defense + attack - (xp + credits)) * multiplier);
-        finalMultiplierText.text = "Ego x"+Math.Round(finalMultiplier*0.5f,2).ToString("0.00");
+        finalMultiplier = (float)(Math.Max(0,(multiplier+1)*(health + defense + attack-3)/3) + Math.Pow(multiplier+1,3));
+        finalMultiplierText.text = "Ego x"+(Math.Round(finalMultiplier*4)*0.25f).ToString("0.00");
     }
     
     public void StartRun()
     {
         GameManager.Instance.LoadSceneAdditive("Fight", false,"RunSettings");
+    }
+    
+    public enum Difficulty
+    {
+        Casual,
+        Easy,
+        Medium,
+        Hard,
+        Insane,
+        Impossible,
+        Impossible2
     }
 }

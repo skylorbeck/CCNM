@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardDealer : MonoBehaviour
 {
-    
+    private DeckObject deck;
     public virtual void SetupAndLoad()
     {
         /*switch (mapCardType)

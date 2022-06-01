@@ -221,7 +221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 9e83bd1efa7f84446b064c28fdba61be, type: 3}
   - {fileID: 21300000, guid: bb717af215d2ffc4ca2203a80506e4c4, type: 3}
   - {fileID: 21300000, guid: b4b71f62ca752b542989095bf449970a, type: 3}
   - {fileID: 21300000, guid: ce2af9b5d74a5de40a6eab91df487dda, type: 3}
@@ -428,75 +427,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 1
-      value: 0.5
-      inSlope: 0.5
-      outSlope: 0.5
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.34138533
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 2
       value: 1
-      inSlope: 0.5
-      outSlope: 0.5
-      tangentMode: 69
+      inSlope: 0.7988065
+      outSlope: 0.7988065
+      tangentMode: 0
       weightedMode: 3
-      inWeight: 0.33333334
-      outWeight: 0.34514922
+      inWeight: 0.3377328
+      outWeight: 0.33000964
     - serializedVersion: 3
-      time: 3
-      value: 1.5
-      inSlope: 0.5
-      outSlope: 1.5
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.32138574
-      outWeight: 0.34735882
-    - serializedVersion: 3
-      time: 4
-      value: 3
-      inSlope: 1.5
-      outSlope: 3
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.31914443
-      outWeight: 0.3516435
-    - serializedVersion: 3
-      time: 5
-      value: 6
-      inSlope: 3
-      outSlope: 6
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.3147896
-      outWeight: 0.38521445
-    - serializedVersion: 3
-      time: 6
-      value: 12
-      inSlope: 6
-      outSlope: 12
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.28558335
-      outWeight: 0.40729126
-    - serializedVersion: 3
-      time: 7
-      value: 24
-      inSlope: 12
-      outSlope: 24
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.27036008
-      outWeight: 0.418366
-    - serializedVersion: 3
-      time: 8
-      value: 48
-      inSlope: 24
-      outSlope: 11.5547905
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.29146272
+      time: 100
+      value: 1000
+      inSlope: 31.315498
+      outSlope: 31.315498
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.17375329
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -508,75 +453,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 1
-      value: 0.5
-      inSlope: 0.5
-      outSlope: 0.5
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.34138533
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 2
       value: 1
-      inSlope: 0.5
-      outSlope: 0.5
-      tangentMode: 69
+      inSlope: 0.7988065
+      outSlope: 0.7988065
+      tangentMode: 0
       weightedMode: 3
-      inWeight: 0.33333334
-      outWeight: 0.34514922
+      inWeight: 0.3377328
+      outWeight: 0.33000964
     - serializedVersion: 3
-      time: 3
-      value: 1.5
-      inSlope: 0.5
-      outSlope: 1.5
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.32138574
-      outWeight: 0.34735882
-    - serializedVersion: 3
-      time: 4
-      value: 3
-      inSlope: 1.5
-      outSlope: 3
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.31914443
-      outWeight: 0.3516435
-    - serializedVersion: 3
-      time: 5
-      value: 6
-      inSlope: 3
-      outSlope: 6
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.3147896
-      outWeight: 0.38521445
-    - serializedVersion: 3
-      time: 6
-      value: 12
-      inSlope: 6
-      outSlope: 12
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.28558335
-      outWeight: 0.40729126
-    - serializedVersion: 3
-      time: 7
-      value: 24
-      inSlope: 12
-      outSlope: 24
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.27036008
-      outWeight: 0.418366
-    - serializedVersion: 3
-      time: 8
-      value: 48
-      inSlope: 24
-      outSlope: 11.5547905
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.29146272
+      time: 100
+      value: 1000
+      inSlope: 31.315498
+      outSlope: 31.315498
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.17375329
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -588,75 +479,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 1
-      value: 0.5
-      inSlope: 0.5
-      outSlope: 0.5
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.34138533
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 2
       value: 1
-      inSlope: 0.5
-      outSlope: 0.5
-      tangentMode: 69
+      inSlope: 0.7988065
+      outSlope: 0.7988065
+      tangentMode: 0
       weightedMode: 3
-      inWeight: 0.33333334
-      outWeight: 0.34514922
+      inWeight: 0.3377328
+      outWeight: 0.33000964
     - serializedVersion: 3
-      time: 3
-      value: 1.5
-      inSlope: 0.5
-      outSlope: 1.5
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.32138574
-      outWeight: 0.34735882
-    - serializedVersion: 3
-      time: 4
-      value: 3
-      inSlope: 1.5
-      outSlope: 3
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.31914443
-      outWeight: 0.3516435
-    - serializedVersion: 3
-      time: 5
-      value: 6
-      inSlope: 3
-      outSlope: 6
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.3147896
-      outWeight: 0.38521445
-    - serializedVersion: 3
-      time: 6
-      value: 12
-      inSlope: 6
-      outSlope: 12
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.28558335
-      outWeight: 0.40729126
-    - serializedVersion: 3
-      time: 7
-      value: 24
-      inSlope: 12
-      outSlope: 24
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.27036008
-      outWeight: 0.418366
-    - serializedVersion: 3
-      time: 8
-      value: 48
-      inSlope: 24
-      outSlope: 11.5547905
-      tangentMode: 69
-      weightedMode: 3
-      inWeight: 0.29146272
+      time: 100
+      value: 1000
+      inSlope: 31.315498
+      outSlope: 31.315498
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.17375329
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -733,66 +570,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   multiplierText: {fileID: 1150378756}
   multiplierSlider: {fileID: 2012268925}
-  multiplierCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 1
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 2
-      value: 2
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 3
-      value: 3
-      inSlope: 1
-      outSlope: 2
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 4
-      value: 5
-      inSlope: 2
-      outSlope: 5
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 5
-      value: 10
-      inSlope: 5
-      outSlope: 28.666666
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 8
-      value: 96
-      inSlope: 28.666666
-      outSlope: 2
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   finalMultiplierText: {fileID: 1738756239}
 --- !u!114 &77910410
 MonoBehaviour:
@@ -911,7 +688,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1760444423}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1339,7 +1116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 30}
+  m_AnchoredPosition: {x: 0, y: 15}
   m_SizeDelta: {x: 50, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228426113
@@ -1642,7 +1419,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 9e83bd1efa7f84446b064c28fdba61be, type: 3}
   - {fileID: 21300000, guid: bb717af215d2ffc4ca2203a80506e4c4, type: 3}
   - {fileID: 21300000, guid: b4b71f62ca752b542989095bf449970a, type: 3}
   - {fileID: 21300000, guid: ce2af9b5d74a5de40a6eab91df487dda, type: 3}
@@ -1749,7 +1525,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 9e83bd1efa7f84446b064c28fdba61be, type: 3}
   - {fileID: 21300000, guid: bb717af215d2ffc4ca2203a80506e4c4, type: 3}
   - {fileID: 21300000, guid: b4b71f62ca752b542989095bf449970a, type: 3}
   - {fileID: 21300000, guid: ce2af9b5d74a5de40a6eab91df487dda, type: 3}
@@ -1908,7 +1683,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 9e83bd1efa7f84446b064c28fdba61be, type: 3}
   - {fileID: 21300000, guid: bb717af215d2ffc4ca2203a80506e4c4, type: 3}
   - {fileID: 21300000, guid: b4b71f62ca752b542989095bf449970a, type: 3}
   - {fileID: 21300000, guid: ce2af9b5d74a5de40a6eab91df487dda, type: 3}
@@ -2026,11 +1800,11 @@ RectTransform:
   - {fileID: 1601960030}
   - {fileID: 1271129980}
   m_Father: {fileID: 1532015197}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -30}
+  m_AnchoredPosition: {x: -10, y: -30}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &531040237
@@ -2381,7 +2155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 15}
+  m_AnchoredPosition: {x: -10, y: 15}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &849849650
@@ -2429,9 +2203,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1300416868}
   m_Direction: 0
   m_MinValue: 1
-  m_MaxValue: 8
+  m_MaxValue: 7
   m_WholeNumbers: 1
-  m_Value: 2
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2478,7 +2252,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1444712524}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2505,7 +2279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credit Multiplier
+  m_text: Unimplemented
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e79df2db43eccdf4ab8097d52d22f3eb, type: 2}
   m_sharedMaterial: {fileID: 1453109464263487061, guid: e79df2db43eccdf4ab8097d52d22f3eb, type: 2}
@@ -2808,7 +2582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 45}
+  m_AnchoredPosition: {x: -10, y: 45}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1067529310
@@ -2856,9 +2630,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 218069649}
   m_Direction: 0
   m_MinValue: 1
-  m_MaxValue: 8
+  m_MaxValue: 7
   m_WholeNumbers: 1
-  m_Value: 2
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2942,11 +2716,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1760444423}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -33, y: -42}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1150378756
@@ -2969,7 +2743,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x0.00
+  m_text: Casual
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e79df2db43eccdf4ab8097d52d22f3eb, type: 2}
   m_sharedMaterial: {fileID: 1453109464263487061, guid: e79df2db43eccdf4ab8097d52d22f3eb, type: 2}
@@ -3249,7 +3023,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1444712524}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3276,7 +3050,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Experience Multiplier
+  m_text: Unimplemented
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e79df2db43eccdf4ab8097d52d22f3eb, type: 2}
   m_sharedMaterial: {fileID: 1453109464263487061, guid: e79df2db43eccdf4ab8097d52d22f3eb, type: 2}
@@ -3745,9 +3519,9 @@ RectTransform:
   - {fileID: 615161082}
   - {fileID: 1812787343}
   - {fileID: 1372577047}
-  - {fileID: 1793262844}
   - {fileID: 1179764730}
   - {fileID: 892406249}
+  - {fileID: 1793262844}
   m_Father: {fileID: 77910413}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3906,7 +3680,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 30}
+  m_AnchoredPosition: {x: -10, y: 30}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1522587502
@@ -3954,9 +3728,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 908779207}
   m_Direction: 0
   m_MinValue: 1
-  m_MaxValue: 8
+  m_MaxValue: 7
   m_WholeNumbers: 1
-  m_Value: 2
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4003,15 +3777,15 @@ RectTransform:
   - {fileID: 1067529309}
   - {fileID: 1522587501}
   - {fileID: 849849649}
-  - {fileID: 2012268924}
   - {fileID: 1670138622}
   - {fileID: 531040236}
+  - {fileID: 2012268924}
   m_Father: {fileID: 77910413}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.000001, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1579256518
@@ -4417,11 +4191,11 @@ RectTransform:
   - {fileID: 569281847}
   - {fileID: 1086056623}
   m_Father: {fileID: 1532015197}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -15}
+  m_AnchoredPosition: {x: -10, y: -15}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1670138623
@@ -4657,7 +4431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: 0, y: -65}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1738756239
@@ -4788,9 +4562,9 @@ RectTransform:
   - {fileID: 1717611821}
   - {fileID: 185009521}
   - {fileID: 1153558426}
-  - {fileID: 1150378755}
   - {fileID: 2001706341}
   - {fileID: 141329554}
+  - {fileID: 1150378755}
   m_Father: {fileID: 77910413}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4830,11 +4604,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1444712524}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 66.73, y: 0}
+  m_AnchoredPosition: {x: 0, y: -63}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1793262845
@@ -4857,7 +4631,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enemy Multiplier
+  m_text: Difficulty
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e79df2db43eccdf4ab8097d52d22f3eb, type: 2}
   m_sharedMaterial: {fileID: 1453109464263487061, guid: e79df2db43eccdf4ab8097d52d22f3eb, type: 2}
@@ -4891,7 +4665,7 @@ MonoBehaviour:
   m_fontSizeMin: 2
   m_fontSizeMax: 8
   m_fontStyle: 32
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -4961,8 +4735,8 @@ RectTransform:
   m_GameObject: {fileID: 1793735846}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1516517634}
   m_RootOrder: 0
@@ -5439,7 +5213,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1760444423}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5576,12 +5350,12 @@ RectTransform:
   - {fileID: 932401288}
   - {fileID: 1516517634}
   m_Father: {fileID: 1532015197}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 20}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 150, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2012268925
 MonoBehaviour:
@@ -5627,10 +5401,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1806995755}
   m_HandleRect: {fileID: 1793735847}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 8
+  m_MinValue: 0
+  m_MaxValue: 5
   m_WholeNumbers: 1
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
