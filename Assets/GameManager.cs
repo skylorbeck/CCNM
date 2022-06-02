@@ -14,8 +14,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public InputReader inputReader;
+    public Battlefield battlefield;
     public UIStateObject uiStateObject;
     public EventSystem eventSystem;
+    public SaveData CurrentRunData;
     bool playerAccepted = false;
     private float target = 0;
     
@@ -38,7 +40,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         Application.targetFrameRate = 60;
         bool mainMenuLoaded = !loadMainMenu;
         bool uiLoaded = false;

@@ -8,17 +8,14 @@ public class Battlefield : ScriptableObject
     [field:SerializeField] public DeckObject deck{ get;private set; }
     [field:SerializeField] public EnemyBrain[] enemies{ get;private set; }
     [field:SerializeField] public PlayerBrain player{ get;private set; }
-    public bool fightOver = false;
     public bool deckChosen = false;
     [field: SerializeField] public int totalHands { get; private set; } = 0;
     
+    public bool runOver => totalHands >= deck.BossAt;
+
     public void TotalHandsPlus()
     {
         totalHands++;
-    }
-    public void TotalHandsMinus()
-    {
-        totalHands--;
     }
     
     public void InsertEnemies(EnemyBrain[] enemies)
@@ -33,5 +30,10 @@ public class Battlefield : ScriptableObject
     {
         this.deck = deck;
         deckChosen = true;
+    }
+
+    public void Reset()
+    {
+        totalHands = 0;
     }
 }

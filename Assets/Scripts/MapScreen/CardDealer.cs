@@ -58,17 +58,17 @@ public class CardDealer : MonoBehaviour
         switch (mapCard!.mapCardType)
         {
             case MapCard.MapCardType.Shop:
-                GameManager.Instance.LoadSceneAdditive("Shop","MapScreen");
+                GameManager.Instance.LoadSceneAdditive("ShopScreen",false,"MapScreen");
                 break;
             case MapCard.MapCardType.Boss:
             case MapCard.MapCardType.MiniBoss:
             case MapCard.MapCardType.Minion:
                 FightCard fightCard = mapCard as FightCard;
                 battlefield.InsertEnemies(fightCard!.enemies);
-                GameManager.Instance.LoadSceneAdditive("Fight","MapScreen");
+                GameManager.Instance.LoadSceneAdditive("Fight",false,"MapScreen");
                 break;
             case MapCard.MapCardType.Event:
-                GameManager.Instance.LoadSceneAdditive("Event","MapScreen");
+                GameManager.Instance.LoadSceneAdditive("EventScreen",false,"MapScreen");
                 break;
         }
     }

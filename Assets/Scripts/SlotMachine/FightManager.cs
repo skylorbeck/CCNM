@@ -185,7 +185,21 @@ public class FightManager : MonoBehaviour
         } else if (enemies.All(x => x.isDead))
         {
             SetState(WheelStates.FightOver);
-            GameManager.Instance.LoadSceneAdditive("MapScreen",false,"Fight");
+            if (battlefield.runOver)
+            {
+                //todo add win screen
+                GameManager.Instance.LoadSceneAdditive("MainMenu",false,"Fight");
+            }
+            else
+            {
+                int credits = 0;
+                foreach (var enemy in enemies)
+                {
+                    credits += enemy.enemyBrain.credits;
+                }
+                GameManager.Instance.CurrentRunData.AddCredits(credits);
+                GameManager.Instance.LoadSceneAdditive("MapScreen", false, "Fight");
+            }
         }
     }
 

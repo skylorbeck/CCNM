@@ -6,6 +6,5 @@ using UnityEngine;
 public class EventCard : MapCard
 {
     // EventObject event//todo
-    public new MapCardType mapCardType { get; protected set; } = MapCardType.Event;
     
 }

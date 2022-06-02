@@ -414,6 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiState: {fileID: 11400000, guid: 907362c9071d96d4fa7e0bd0ef753179, type: 2}
+  runSettings: {fileID: 11400000, guid: cd5d792f92c596f4c8f8885f76da34a2, type: 2}
   healthSwitcher: {fileID: 8912177}
   shieldSwitcher: {fileID: 346712533}
   attackSwitcher: {fileID: 451589723}
