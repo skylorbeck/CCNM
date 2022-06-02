@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class EnemyShell : Shell
     {
         if (brain is EnemyBrain enemyBrain)
         {
+            
             if (enemyBrain.isBoss)
             {
                 transform.localPosition = new Vector3(0, 2.5f, 0);
@@ -26,6 +28,14 @@ public class EnemyShell : Shell
             }
         }
         base.InsertBrain(brain);
+        health = maxHealth = (int)(health * GameManager.Instance.runSettings.GetHealthMod());
+        
+    }
+
+    public override void Shield(int amount)
+    {
+        amount = (int)(amount * GameManager.Instance.runSettings.GetDefenseMod());
+        base.Shield(amount);
     }
 
     public override async Task Attack(Shell target, Symbol symbol)

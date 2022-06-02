@@ -197,7 +197,7 @@ public class FightManager : MonoBehaviour
                 {
                     credits += enemy.enemyBrain.credits;
                 }
-                GameManager.Instance.CurrentRunData.AddCredits(credits);
+                GameManager.Instance.currentRunData.AddCredits(credits);
                 GameManager.Instance.LoadSceneAdditive("MapScreen", false, "Fight");
             }
         }

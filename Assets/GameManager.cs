@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
     public Battlefield battlefield;
     public UIStateObject uiStateObject;
     public EventSystem eventSystem;
-    public SaveData CurrentRunData;
+    public SaveData currentRunData;
+    public RunSettings runSettings;
     bool playerAccepted = false;
     private float target = 0;
     

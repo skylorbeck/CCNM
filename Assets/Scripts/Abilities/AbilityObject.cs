@@ -6,41 +6,47 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Ability", menuName = "Combat/Ability")]
 public class AbilityObject : ScriptableObject
 {
-    
-    [field: SerializeField] public string title  { get; private set; } = "ability.title";
-    [field: SerializeField] public string descriptionA  { get; private set; } = "ability.description.a";
-    [field: SerializeField] public string descriptionB  { get; private set; } = "ability.description.b";
+
+    [field: SerializeField] public string title { get; private set; } = "ability.title";
+    [field: SerializeField] public string descriptionA { get; private set; } = "ability.description.a";
+    [field: SerializeField] public string descriptionB { get; private set; } = "ability.description.b";
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public int baseCost { get; private set; } = 1;
 
     [field: Header("Damage")]
-    [field: SerializeField] public int targetDamage { get; private set; } = 0;
-    public bool damageTarget => targetDamage > 0;
-    [field: SerializeField] public int userDamage { get; private set; } = 0;
-    public bool damageUser => userDamage > 0;
-    
+    [field: SerializeField] public bool damageTarget { get; private set; } = false;
+    [field: SerializeField] public float targetDamageMultiplier { get; private set; } = 1;
+    [field: SerializeField] public bool damageUser { get; private set; } = false;
+    [field: SerializeField] public float userDamageMultiplier { get; private set; } = 1;
+
+
     [field: Header("Healing")]
-    [field: SerializeField] public int targetHeal { get; private set; } = 0;
-    public bool healTarget => targetHeal > 0;
-    [field: SerializeField] public int userHeal { get; private set; } = 0;
-    public bool healUser => userHeal > 0;
+    [field: SerializeField] public bool healTarget { get; private set; } = false;
+    [field: SerializeField] public float targetHealMultiplier { get; private set; } = 1;
+
+    [field: SerializeField] public bool healUser { get; private set; } = false;
+    [field: SerializeField] public float userHealMultiplier { get; private set; } = 1;
+
 
     [field: Header("Shielding")]
-    [field: SerializeField] public int targetShield { get; private set; } = 0;
-    public bool shieldTarget => targetShield > 0;
-    [field: SerializeField] public int userShield { get; private set; } = 0;
-    public bool shieldUser => userShield > 0;
-    
+    [field: SerializeField] public bool shieldTarget { get; private set; } = false;
+    [field: SerializeField] public float targetShieldMultiplier { get; private set; } = 1;
+    [field: SerializeField] public bool shieldUser { get; private set; } = false;
+    [field: SerializeField] public float userShieldMultiplier { get; private set; } = 1;
+
+
+
     [field: Header("Status Effects")]
     [field: SerializeField] public StatusEffect targetStatus { get; private set; }
 
     [field: SerializeField] public bool statusTarget { get; private set; } = false;
     [field: SerializeField] public StatusEffect userStatus { get; private set; }
     [field: SerializeField] public bool statusSelf { get; private set; } = false;
-    
-    [field: Header("Other")]
-    [field: SerializeField] public StatusEffect.Element element{ get; private set; } = StatusEffect.Element.None;
-    [field: SerializeField] public AttackAnimator.AttackType attackAnimation { get; private set; } = AttackAnimator.AttackType.None;
-    [field: SerializeField] public AudioClip soundEffect { get; private set; }
 
+    [field: Header("Other")]
+    [field: SerializeField] public StatusEffect.Element element { get; private set; } = StatusEffect.Element.None;
+
+    [field: SerializeField] public AttackAnimator.AttackType attackAnimation { get; private set; } = AttackAnimator.AttackType.None;
+
+    [field: SerializeField] public AudioClip soundEffect { get; private set; }
 }

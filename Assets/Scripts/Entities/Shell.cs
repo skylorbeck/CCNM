@@ -9,10 +9,10 @@ public class Shell : MonoBehaviour
     
     [field: SerializeField] public string title { get; private set; } = "entity.name";
     [field: SerializeField] public string description { get; private set; } = "entity.description";
-    [field: SerializeField] public int health { get; private set; } = 10;
-    [field: SerializeField] public int maxHealth { get; private set; } = 10;
-    [field: SerializeField] public int shield { get; private set; } = 0;
-    [field: SerializeField] public int maxShield { get; private set; } = 0;
+    [field: SerializeField] public int health { get; protected set; } = 10;
+    [field: SerializeField] public int maxHealth { get; protected set; } = 10;
+    [field: SerializeField] public int shield { get; protected set; } = 0;
+    [field: SerializeField] public int maxShield { get; protected set; } = 0;
     [field: SerializeField] public AbilityObject[] abilities { get; private set; } = new AbilityObject[0];
     [SerializeField] public StatusDisplayer statusDisplayer;
     public bool isDead => health <= 0;
@@ -77,7 +77,7 @@ public class Shell : MonoBehaviour
         }
     }
     
-    public void Shield(int amount)
+    public virtual void Shield(int amount)
     {
         shield += amount;
         TextPopController.Instance.PopShield(amount,transform.position);

@@ -19,3 +19,5 @@ MonoBehaviour:
   <startingShield>k__BackingField: 10
   <abilities>k__BackingField:
   - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+  <credits>k__BackingField: 1
+  isBoss: 0

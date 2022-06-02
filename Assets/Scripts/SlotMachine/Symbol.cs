@@ -78,11 +78,11 @@ public class Symbol : MonoBehaviour
 
         if (ability.shieldTarget)
         {
-            target.Shield(ability.targetShield);
+            target.Shield((int)(user.brain.baseShield*ability.targetShieldMultiplier));
         }
         if (ability.shieldUser)
         {
-            user.Shield(ability.userShield);
+            user.Shield((int)(user.brain.baseShield*ability.userShieldMultiplier));
         }
         if (ability.statusTarget)
         {
@@ -94,22 +94,24 @@ public class Symbol : MonoBehaviour
         }
         if (ability.healTarget)
         {
-            target.Heal(user, ability.targetHeal,ability.element);
+            target.Heal(user, (int)(user.brain.baseHeal* ability.targetHealMultiplier),ability.element);
         }
         if (ability.healUser)
         {
-            user.Heal(user, ability.userHeal,ability.element);
+            user.Heal(user,(int)(user.brain.baseHeal* ability.userHealMultiplier),ability.element);
         }
         if (ability.damageTarget)
         {
-            int damage = await user.OnAttack(target,ability.targetDamage);
+            int damage = await user.OnAttack(target,user.brain.baseDamage);
+            damage = (int)(damage * ability.targetDamageMultiplier);
             DamageAnimator.Instance.TriggerAttack(target, ability.attackAnimation);
             await target.Damage(user,damage,ability.element);
             target.TestDeath();
         }
         if (ability.damageUser)
         {
-            int damage = await user.OnAttack(user,ability.userDamage);
+            int damage = await user.OnAttack(user,user.brain.baseDamage);
+            damage = (int)(damage * ability.userDamageMultiplier);
             DamageAnimator.Instance.TriggerAttack(user, ability.attackAnimation);
             await user.Damage(user,damage,ability.element);
             user.TestDeath();
