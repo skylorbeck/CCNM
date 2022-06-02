@@ -756,7 +756,7 @@ MonoBehaviour:
   eventSystem: {fileID: 1408661005}
   currentRunData: {fileID: 11400000, guid: e34963f4938d888478be5509c783efe4, type: 2}
   runSettings: {fileID: 11400000, guid: cd5d792f92c596f4c8f8885f76da34a2, type: 2}
-  loadMainMenu: 1
+  loadMainMenu: 0
   TapToContinue: {fileID: 804887784}
 --- !u!4 &1825388445
 Transform:

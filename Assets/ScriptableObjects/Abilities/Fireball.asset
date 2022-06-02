@@ -17,12 +17,18 @@ MonoBehaviour:
   <descriptionB>k__BackingField: ability.description.b
   <icon>k__BackingField: {fileID: 21300000, guid: ea8a4388aaeac9c4ca50cad1286078e6, type: 3}
   <baseCost>k__BackingField: 1
-  <targetDamage>k__BackingField: 3
-  <userDamage>k__BackingField: 0
-  <targetHeal>k__BackingField: 0
-  <userHeal>k__BackingField: 0
-  <targetShield>k__BackingField: 0
-  <userShield>k__BackingField: 0
+  <damageTarget>k__BackingField: 1
+  <targetDamageMultiplier>k__BackingField: 1
+  <damageUser>k__BackingField: 0
+  <userDamageMultiplier>k__BackingField: 1
+  <healTarget>k__BackingField: 0
+  <targetHealMultiplier>k__BackingField: 1
+  <healUser>k__BackingField: 0
+  <userHealMultiplier>k__BackingField: 1
+  <shieldTarget>k__BackingField: 0
+  <targetShieldMultiplier>k__BackingField: 1
+  <shieldUser>k__BackingField: 0
+  <userShieldMultiplier>k__BackingField: 1
   <targetStatus>k__BackingField: {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}
   <statusTarget>k__BackingField: 1
   <userStatus>k__BackingField: {fileID: 0}

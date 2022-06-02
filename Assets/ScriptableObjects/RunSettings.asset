@@ -15,12 +15,12 @@ MonoBehaviour:
   health: 1
   defense: 1
   attack: 1
-  xp: 1
-  credits: 1
+  xp: 2
+  credits: 2
   multiplier: 0
   healthMod: 1
   defenseMod: 1
-  attackMod: 10
-  xpMod: 0.5
-  creditsMod: 0.5
-  finalMultiplier: 3
+  attackMod: 1
+  xpMod: 1
+  creditsMod: 1
+  finalMultiplier: 1

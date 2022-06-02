@@ -46,14 +46,13 @@ public class NewRunManager : MonoBehaviour
         attackSlider.value = runSettings.attack;
         xpSlider.value = runSettings.xp;
         creditsSlider.value = runSettings.credits;
-        multiplierSlider.value = runSettings.multiplier;
-        UpdateHealth();
-        UpdateDefense();
-        UpdateAttack();
-        UpdateXp();
-        UpdateCredits();
+        multiplierSlider.SetValueWithoutNotify(runSettings.multiplier);
         UpdateMultiplier();
-        
+        // UpdateHealth();
+        // UpdateDefense();
+        // UpdateAttack();
+        // UpdateXp();
+        // UpdateCredits();
     }
 
     public void UpdateHealth()
@@ -107,15 +106,19 @@ public class NewRunManager : MonoBehaviour
         // multiplierText.text = "x"+multiplier.ToString("0.00");
         multiplierText.text = ((Difficulty)runSettings.multiplier).ToString();
         overallSwitcher.SwapSprite((int)runSettings.multiplier);
+        UpdateFinalMultiplier();
+    }
+
+    public void ResetEnemySliders()
+    {
         healthSlider.value = 1;
         defenseSlider.value = 1;
         attackSlider.value = 1;
-        UpdateFinalMultiplier();
     }
-    
+
     public void UpdateFinalMultiplier()
     {
-        runSettings.finalMultiplier =(Math.Round((Math.Max(0,(runSettings.multiplier+1)*(runSettings.health + runSettings.defense + runSettings.attack-3)/3) + Math.Pow(runSettings.multiplier+1,3))*4)*0.25f);
+        runSettings.finalMultiplier =(Math.Round((Math.Max(0,Math.Pow(10,runSettings.multiplier)*(runSettings.health + runSettings.defense + runSettings.attack-3)/3) + Math.Pow(10,runSettings.multiplier))*4)*0.25f);
         finalMultiplierText.text = "Ego x"+runSettings.finalMultiplier.ToString("0.00");
     }
     

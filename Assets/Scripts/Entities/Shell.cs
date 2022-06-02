@@ -28,7 +28,7 @@ public class Shell : MonoBehaviour
         target.TestDeath();
     }
 
-    public async Task<int> OnAttack(Shell target,int baseDamage)
+    public virtual async Task<int> OnAttack(Shell target,int baseDamage)
     {
         return await statusDisplayer.OnAttack(target,this,baseDamage);
     }

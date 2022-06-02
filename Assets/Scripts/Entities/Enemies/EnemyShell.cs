@@ -32,6 +32,12 @@ public class EnemyShell : Shell
         
     }
 
+    public override Task<int> OnAttack(Shell target, int baseDamage)
+    {
+        baseDamage = (int)(baseDamage * GameManager.Instance.runSettings.GetAttackMod());
+        return base.OnAttack(target, baseDamage);
+    }
+
     public override void Shield(int amount)
     {
         amount = (int)(amount * GameManager.Instance.runSettings.GetDefenseMod());

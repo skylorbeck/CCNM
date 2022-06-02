@@ -102,10 +102,12 @@ public class Symbol : MonoBehaviour
         }
         if (ability.damageTarget)
         {
-            int damage = await user.OnAttack(target,user.brain.baseDamage);
-            damage = (int)(damage * ability.targetDamageMultiplier);
-            DamageAnimator.Instance.TriggerAttack(target, ability.attackAnimation);
-            await target.Damage(user,damage,ability.element);
+            
+            //todo redo this entirely. 
+            int damage = await user.OnAttack(target,user.brain.baseDamage);//process status influences
+            damage = (int)(damage * ability.targetDamageMultiplier);//process ability multiplier
+            DamageAnimator.Instance.TriggerAttack(target, ability.attackAnimation);//play the animation
+            await target.Damage(user, damage, ability.element);//damage the target
             target.TestDeath();
         }
         if (ability.damageUser)

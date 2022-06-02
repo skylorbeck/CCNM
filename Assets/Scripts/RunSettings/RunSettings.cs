@@ -20,14 +20,17 @@ public class RunSettings : ScriptableObject
 
     public float GetHealthMod()
     {
-        return (float)(healthMod + Math.Pow(multiplier,3));
+        Debug.Log(healthMod);
+        Debug.Log(Math.Pow(10,multiplier));
+        Debug.Log((float)(healthMod * Math.Pow(10,multiplier)));
+        return (float)(healthMod * Math.Pow(10,multiplier));
     }
     public float GetDefenseMod()
     {
-        return (float)(defenseMod + Math.Pow(multiplier,3));
+        return (float)(defenseMod * Math.Pow(10,multiplier));
     }
     public float GetAttackMod()
     {
-        return (float)(attackMod + Math.Pow(multiplier,3));
+        return (float)(attackMod * Math.Pow(10,multiplier));
     }
 }
