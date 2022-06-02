@@ -103,7 +103,7 @@ public class Shell : MonoBehaviour
         await statusDisplayer.Tick();
     }
     
-    public void InsertBrain(Brain brain)
+    public virtual void InsertBrain(Brain brain)
     {
         this.brain = brain;
         if (spriteRenderer == null)

@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d19377d97672a6244804d8165e686385, type: 3}
-  m_Name: TestC
+  m_Script: {fileID: 11500000, guid: 2abf7ef1933b8224d8a3f7e9cebb0122, type: 3}
+  m_Name: MiniBossA
   m_EditorClassIdentifier: 
-  <icon>k__BackingField: {fileID: 21300000, guid: 2f96a90482709c04a82e30328c07564b, type: 3}
-  <cardTitle>k__BackingField: slime
-  <cardDescription>k__BackingField: slime.description
+  <icon>k__BackingField: {fileID: 21300000, guid: 48f1bf28ad0b8af4b98c583f010c9c87, type: 3}
+  <cardTitle>k__BackingField: minibossA
+  <cardDescription>k__BackingField: minibossA.description
   <cardCost>k__BackingField: 0
-  <mapCardType>k__BackingField: 3
+  <mapCardType>k__BackingField: 2
   <enemies>k__BackingField:
   - {fileID: 11400000, guid: 08627fe8f244ef940acc4f13b1312e26, type: 2}
-  - {fileID: 11400000, guid: 08627fe8f244ef940acc4f13b1312e26, type: 2}
+  - {fileID: 11400000, guid: b0f0379f60d79724c96c9340a39d6d21, type: 2}
   - {fileID: 11400000, guid: 08627fe8f244ef940acc4f13b1312e26, type: 2}

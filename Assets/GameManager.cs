@@ -84,26 +84,29 @@ public class GameManager : MonoBehaviour
     {
         LoadScene(sceneName, LoadSceneMode.Additive, waitForInput, sceneToUnload);
     }
-    
-    public async void LoadScene(string sceneToLoad, LoadSceneMode mode, bool waitForInput,params string[] sceneToUnload)
+
+    private async void LoadScene(string sceneToLoad, LoadSceneMode mode, bool waitForInput,
+        params string[] sceneToUnload)
     {
-            uiStateObject.FadeOut();
+        uiStateObject.FadeOut();
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad, mode);
         operation.allowSceneActivation = false;
-        await Task.Delay(1000);//todo remove this
+        await Task.Delay(1000); //this is to wait for the black screen to fade in before unloading the scene
         foreach (string scene in sceneToUnload)
         {
             SceneManager.UnloadSceneAsync(scene);
         }
+
         do
         {
             target = Mathf.Clamp01(operation.progress);
             await Task.Delay(100); //without this, the loading is synced and the game, and editor, will hang
         } while
-            (target < 0.89 ); //wait for the loadingbar to be at least 90% done to give the illusion that it's loading
+            (target < 0.89); //wait for the loadingbar to be at least 90% done to give the illusion that it's loading
 
         if (waitForInput)
         {
+            inputReader.EnableUI();
             inputReader.PushAnyButton += PlayerAccept;
             TapToContinue.SetActive(true);
             do
@@ -113,9 +116,10 @@ public class GameManager : MonoBehaviour
 
             playerAccepted = false;
         }
+
         uiStateObject.FadeIn();
         operation.allowSceneActivation = true;
-        
+
     }
 
     public void PlayerAccept()

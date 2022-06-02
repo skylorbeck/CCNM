@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: World1
   m_EditorClassIdentifier: 
   <icon>k__BackingField: {fileID: 21300000, guid: 48f1bf28ad0b8af4b98c583f010c9c87, type: 3}
+  <BossAt>k__BackingField: 5
+  <MiniBossAt>k__BackingField: 3
   <BossCard>k__BackingField: {fileID: 11400000, guid: a6c2b7848cac98a4982daed8695a935d, type: 2}
-  <MiniBossCard>k__BackingField: []
+  <MiniBossCard>k__BackingField:
+  - {fileID: 11400000, guid: f13c005cfebab3c47b89404d5eaacf4c, type: 2}
+  - {fileID: 11400000, guid: 3e033b7bbd8987841a2d3181a5c8fbde, type: 2}
   <MinionCards>k__BackingField:
   - {fileID: 11400000, guid: 13563d5ffcb8a984d8cb7edd2a225b7d, type: 2}
   - {fileID: 11400000, guid: 9fa23546537b5ea4bbafbd3352ed7170, type: 2}
   - {fileID: 11400000, guid: 2438b04b1ee0f95468981a91d8dad2f0, type: 2}
-  <EventCards>k__BackingField: []
-  <ShopCards>k__BackingField: []
+  <EventCards>k__BackingField:
+  - {fileID: 11400000, guid: e697c6948548bf14c80e5d0c8eab84fd, type: 2}
+  <ShopCards>k__BackingField:
+  - {fileID: 11400000, guid: a7667085ea0ee8a4fba84e59cc7cdb96, type: 2}
   <ItemCards>k__BackingField: []
   <ConsumableCards>k__BackingField: []

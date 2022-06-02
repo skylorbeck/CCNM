@@ -42,7 +42,7 @@ public class LogoAnimationTriggerer : MonoBehaviour
         foreach (Animator animator in _animators)
         {
             await Task.Delay(100);
-            animator.SetTrigger("Enter");
+            if (animator != null)  animator.SetTrigger("Enter");
         }
     }
 
@@ -51,12 +51,12 @@ public class LogoAnimationTriggerer : MonoBehaviour
         foreach (Animator animator in _animators)
         {
             await Task.Delay(100);
-            animator.SetTrigger("Bounce");
+            if (animator != null) animator.SetTrigger("Bounce");
         }
     }
 
     public void FadeInButtons()
     {
-        buttons.SetTrigger("FadeIn");
+        buttons!.SetTrigger("FadeIn");
     }
 }

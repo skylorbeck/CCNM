@@ -355,8 +355,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05f7ec86a316aa4dab4e91102eeea15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossSprite: {fileID: 21300000, guid: 77ec9175b40e5ae4f9123dfc7683950e, type: 3}
+  miniBossSprite: {fileID: 21300000, guid: d182d0fbc915d6345936348f0f170c06, type: 3}
+  eventSprite: {fileID: 21300000, guid: c2740d364013765499d443986386c214, type: 3}
+  shopSprite: {fileID: 21300000, guid: 851a59e7d10aec449b3400b0c7e577e7, type: 3}
   <card>k__BackingField: {fileID: 0}
   text: {fileID: 8925235231972538965}
-  sprite: {fileID: 8925235230715183414}
+  <cardSprite>k__BackingField: {fileID: 8925235232134069807}
+  <enemySprite>k__BackingField: {fileID: 8925235230715183414}
   <isFaceUp>k__BackingField: 0
   <textAbove>k__BackingField: 1
+  <hasBrain>k__BackingField: 0
+  speed: 25

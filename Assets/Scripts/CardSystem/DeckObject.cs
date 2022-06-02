@@ -5,6 +5,8 @@ using UnityEngine;
 public class DeckObject : ScriptableObject
 {
     [field:SerializeField] public Sprite icon { get;private set; }
+    [field: SerializeField] public int BossAt { get; private set; } = 5;
+    [field: SerializeField] public int MiniBossAt { get; private set; } = 3;
     [field:SerializeField] public BossCard BossCard { get;private set; }
     [field:SerializeField] public MiniBossCard[] MiniBossCard { get;private set; }
     [field:SerializeField] public MinionCard[] MinionCards { get;private set; }
@@ -13,6 +15,7 @@ public class DeckObject : ScriptableObject
     [field: Header("Rewards")]
     [field:SerializeField] public ItemCard[] ItemCards { get;private set; }
     [field:SerializeField] public ConsumableCard[] ConsumableCards { get;private set; }
+
 
     public MapCard DrawRandomCard()
     {

@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyObject", menuName = "Combat/EnemySO")]
 public class EnemyBrain : Brain
 {
+    public bool isBoss;
     public async Task Think()
     {
         

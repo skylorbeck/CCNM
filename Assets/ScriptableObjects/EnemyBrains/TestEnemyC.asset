@@ -15,7 +15,7 @@ MonoBehaviour:
   <title>k__BackingField: entity.name_c
   <description>k__BackingField: entity.description_c
   <icon>k__BackingField: {fileID: 21300000, guid: 2f96a90482709c04a82e30328c07564b, type: 3}
-  <maxHealth>k__BackingField: 999
-  <startingShield>k__BackingField: 100
+  <maxHealth>k__BackingField: 1
+  <startingShield>k__BackingField: 10
   <abilities>k__BackingField:
   - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}

@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "MinionCard", menuName = "Cards/MapCard/MinionCard")]
-public class MinionCard : MapCard
+public class MinionCard : FightCard
 {
-    [field:SerializeField] public EnemyBrain[] enemies{ get;private set; }
-    
 }

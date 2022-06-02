@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad1ca038f0c3474d8e7d675058e9cab, type: 3}
-  m_Name: BossCard
+  m_Script: {fileID: 11500000, guid: d19377d97672a6244804d8165e686385, type: 3}
+  m_Name: FightTestB
   m_EditorClassIdentifier: 
-  <icon>k__BackingField: {fileID: 21300000, guid: 48f1bf28ad0b8af4b98c583f010c9c87, type: 3}
-  <cardTitle>k__BackingField: slimeBoss
-  <cardDescription>k__BackingField: slimeBoss.description
+  <icon>k__BackingField: {fileID: 21300000, guid: 7dbfbaceb94a44248b1a846881586d31, type: 3}
+  <cardTitle>k__BackingField: slime
+  <cardDescription>k__BackingField: slime.description
   <cardCost>k__BackingField: 0
-  <mapCardType>k__BackingField: 1
+  <mapCardType>k__BackingField: 3
   <enemies>k__BackingField:
   - {fileID: 11400000, guid: 00642a671b7aed14da8f6d531375b1d4, type: 2}
-  - {fileID: 11400000, guid: b0f0379f60d79724c96c9340a39d6d21, type: 2}
+  - {fileID: 11400000, guid: 00642a671b7aed14da8f6d531375b1d4, type: 2}
   - {fileID: 11400000, guid: 00642a671b7aed14da8f6d531375b1d4, type: 2}
