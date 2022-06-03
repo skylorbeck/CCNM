@@ -7,24 +7,35 @@ using UnityEngine.Events;
 public class UIStateObject : ScriptableObject
 {
     [field: SerializeField] public bool isPaused { get; private set; }
-    public UnityAction onPause = delegate {  };
-    public UnityAction onResume = delegate {  };
+    public UnityAction OnPause = delegate {  };
+    public UnityAction OnResume = delegate {  };
     [field: SerializeField] public bool showTopBar { get; private set; }
     public UnityAction<bool> TopBarToggle = delegate {  };
     [field: SerializeField] public bool showFadeOut { get; private set; }
-    public UnityAction onFadeOut = delegate {  };
-    public UnityAction onFadeIn = delegate {  };
+    public UnityAction OnFadeOut = delegate {  };
+    public UnityAction OnFadeIn = delegate {  };
 
     public void Pause()
     {
         isPaused = true;
-        onPause.Invoke();
+        OnPause.Invoke();
     }
-    
+
+    public void TogglePause()
+    {
+        if (isPaused)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
+        }
+    }
     public void Resume()
     {
         isPaused = false;
-        onResume.Invoke();
+        OnResume.Invoke();
     }
 
     public void ToggleTopBar()
@@ -47,13 +58,13 @@ public class UIStateObject : ScriptableObject
     public void FadeOut()
     {
         showFadeOut = true;
-        onFadeOut.Invoke();
+        OnFadeOut.Invoke();
     }
     
     public void FadeIn()
     {
         showFadeOut = false;
-        onFadeIn.Invoke();
+        OnFadeIn.Invoke();
     }
 
     public void ToggleFade()

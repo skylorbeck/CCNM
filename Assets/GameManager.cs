@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     bool playerAccepted = false;
     private float target = 0;
     
-    [SerializeField] private bool loadMainMenu = false;
     [SerializeField] private GameObject TapToContinue;
     
     private int fixedSecondClock = 0;
@@ -42,20 +41,26 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         Application.targetFrameRate = 60;
-        bool mainMenuLoaded = !loadMainMenu;
+        bool mainMenuLoaded = false;
         bool uiLoaded = false;
-        for (int i = 0; i < SceneManager.sceneCount; i++)
+
+        
+        
+        if (SceneManager.sceneCount!=1)
         {
-            Scene scene = SceneManager.GetSceneAt(i);
-            if (loadMainMenu && scene.name.Equals("MainMenu"))
+            mainMenuLoaded = true;
+
+            for (int i = 0; i < SceneManager.sceneCount; i++)
             {
-                mainMenuLoaded = true;
-            }
-            if (scene.name.Equals("UIOverlay"))
-            {
-                uiLoaded = true;
+                Scene scene = SceneManager.GetSceneAt(i);
+                if (scene.name.Equals("UIOverlay"))
+                {
+                    uiLoaded = true;
+                }
             }
         }
+        
+        
 
         if (!mainMenuLoaded)
         {
@@ -90,6 +95,7 @@ public class GameManager : MonoBehaviour
     private async void LoadScene(string sceneToLoad, LoadSceneMode mode, bool waitForInput,
         params string[] sceneToUnload)
     {
+        inputReader.DisableUI();
         uiStateObject.FadeOut();
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad, mode);
         operation.allowSceneActivation = false;
@@ -106,6 +112,7 @@ public class GameManager : MonoBehaviour
         } while
             (target < 0.89); //wait for the loadingbar to be at least 90% done to give the illusion that it's loading
 
+        // await Task.Delay(5000);//artificial loading delay to test the loading screen.
         if (waitForInput)
         {
             inputReader.EnableUI();
@@ -118,7 +125,7 @@ public class GameManager : MonoBehaviour
 
             playerAccepted = false;
         }
-
+        inputReader.EnableUI();
         uiStateObject.FadeIn();
         operation.allowSceneActivation = true;
 

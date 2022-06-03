@@ -19,6 +19,7 @@ public class InputReader : ScriptableObject, CCNM.IUIActions
     public event UnityAction PadLeft = delegate { };
     public event UnityAction PadRight = delegate { };
     public event UnityAction PadAny = delegate { };
+    public event UnityAction Back = delegate { };
 
     private CCNM _ccnm;
 
@@ -143,6 +144,14 @@ public class InputReader : ScriptableObject, CCNM.IUIActions
     public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
     {
 
+    }
+
+    public void OnBack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Back();
+        }
     }
 
     public bool LeftMouseDown() => Mouse.current.leftButton.isPressed;

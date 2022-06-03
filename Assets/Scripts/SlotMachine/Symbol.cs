@@ -103,7 +103,7 @@ public class Symbol : MonoBehaviour
         if (ability.damageTarget)
         {
             
-            //todo redo this entirely. 
+            //todo redo this entirely? It works now but it's hella dirty.
             int damage = await user.OnAttack(target,user.brain.baseDamage);//process status influences
             damage = (int)(damage * ability.targetDamageMultiplier);//process ability multiplier
             DamageAnimator.Instance.TriggerAttack(target, ability.attackAnimation);//play the animation

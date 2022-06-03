@@ -66,6 +66,13 @@ public class FightManager : MonoBehaviour
         GameManager.Instance.eventSystem.SetSelectedGameObject(startingSelection);
         GameManager.Instance.inputReader.PadAny += NavUpdate;
         GameManager.Instance.inputReader.ClickEvent += NavUpdateMouse;
+        GameManager.Instance.inputReader.Back+=Back;
+
+    }
+
+    public void Back()
+    {
+        GameManager.Instance.uiStateObject.TogglePause();
     }
 
     
@@ -101,12 +108,13 @@ public class FightManager : MonoBehaviour
         GameManager.Instance.FixedSecond -= SizeSelector;
         GameManager.Instance.inputReader.PadAny -= NavUpdate;
         GameManager.Instance.inputReader.ClickEvent -= NavUpdateMouse;
+        GameManager.Instance.inputReader.Back -= Back;
+
     }
 
     void Update()
     {
             enemySelector.transform.Rotate(Vector3.forward, (BothTargeted?-200f:-100f) * Time.deltaTime);
-            
     }
 
     void FixedUpdate()

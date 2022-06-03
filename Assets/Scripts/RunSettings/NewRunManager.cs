@@ -48,13 +48,24 @@ public class NewRunManager : MonoBehaviour
         creditsSlider.value = runSettings.credits;
         multiplierSlider.SetValueWithoutNotify(runSettings.multiplier);
         UpdateMultiplier();
-        // UpdateHealth();
-        // UpdateDefense();
-        // UpdateAttack();
-        // UpdateXp();
-        // UpdateCredits();
+        UpdateHealth();
+        UpdateDefense();
+        UpdateAttack();
+        UpdateXp();
+        UpdateCredits();
+        GameManager.Instance.inputReader.Back+=Back;
+
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.inputReader.Back -= Back;
+    }
+
+    public void Back()
+    {
+        GameManager.Instance.LoadSceneAdditive("MainMenu",false,"RunSettings");
+    }
     public void UpdateHealth()
     {
         runSettings.health = healthSlider.value;

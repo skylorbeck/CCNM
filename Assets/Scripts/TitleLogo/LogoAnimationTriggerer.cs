@@ -11,11 +11,13 @@ public class LogoAnimationTriggerer : MonoBehaviour
     Animator[] _animators;
     [SerializeField] private Animator buttons;
 
-    void Start()
+    async void Start()
     {
         List<Animator> animators = new List<Animator>(GetComponentsInChildren<Animator>());
         animators.Remove(GetComponent<Animator>());
         _animators = animators.ToArray();
+        await Task.Delay(200);
+        GetComponent<Animator>().SetTrigger("Enter");
     }
 
     void Update()
