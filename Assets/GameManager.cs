@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private float target = 0;
     
     [SerializeField] private GameObject TapToContinue;
+    [SerializeField] private GameObject TEMP;
     
     private int fixedSecondClock = 0;
     public event UnityAction FixedSecond = delegate {  };
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     public event UnityAction FixedHalfSecond = delegate {  };
     private int fixedMinuteClock = 0;
     public event UnityAction FixedMinute = delegate {  };
-    void Start()
+    async void Start()
     {
         if (Instance == null)
         {
@@ -59,8 +60,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        
-        
+
 
         if (!mainMenuLoaded)
         {
@@ -71,6 +71,21 @@ public class GameManager : MonoBehaviour
             LoadSceneAdditive("UIOverlay",false);
         }
         inputReader.EnableUI();
+        SceneManager.sceneLoaded += DestroyTEMP;
+    }
+
+    private void DestroyTEMP(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name.Equals("UIOverlay"))
+        {
+            Destroy(TEMP);
+            SceneManager.sceneLoaded -= DestroyTEMP;
+        }
+    }
+
+    public void DestroyTEMP()
+    {
+        
     }
 
     void Update()

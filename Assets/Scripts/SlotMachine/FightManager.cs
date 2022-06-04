@@ -31,7 +31,8 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Battlefield battlefield;
     private bool turnOver = false;
     [SerializeField] private GameObject startingSelection;
-
+    [SerializeField] private GameObject pauseStartingSelection;
+    [SerializeField] private Button[] allButtons;
     private int enemiesAlive
     {
         get
@@ -73,6 +74,23 @@ public class FightManager : MonoBehaviour
     public void Back()
     {
         GameManager.Instance.uiStateObject.TogglePause();
+        if (GameManager.Instance.uiStateObject.isPaused)
+        {
+            GameManager.Instance.FixedSecond -= SizeSelector;
+            GameManager.Instance.eventSystem.SetSelectedGameObject(pauseStartingSelection);
+            GameManager.Instance.inputReader.PadAny -= NavUpdate;
+            GameManager.Instance.inputReader.ClickEvent -= NavUpdateMouse;
+        }
+        else
+        { 
+            GameManager.Instance.FixedSecond += SizeSelector;
+            GameManager.Instance.inputReader.PadAny += NavUpdate;
+            GameManager.Instance.inputReader.ClickEvent += NavUpdateMouse;
+        }
+        foreach (Button button in allButtons)
+        {
+            button.interactable = !button.interactable;
+        }
     }
 
     
@@ -114,8 +132,12 @@ public class FightManager : MonoBehaviour
 
     void Update()
     {
-            enemySelector.transform.Rotate(Vector3.forward, (BothTargeted?-200f:-100f) * Time.deltaTime);
+        if (!GameManager.Instance.uiStateObject.isPaused)
+        {
+            enemySelector.transform.Rotate(Vector3.forward, (BothTargeted ? -200f : -100f) * Time.deltaTime);
+        }
     }
+
 
     void FixedUpdate()
     {

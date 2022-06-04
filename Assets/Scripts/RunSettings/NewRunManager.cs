@@ -54,6 +54,7 @@ public class NewRunManager : MonoBehaviour
         UpdateXp();
         UpdateCredits();
         GameManager.Instance.inputReader.Back+=Back;
+        GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
 
     }
 

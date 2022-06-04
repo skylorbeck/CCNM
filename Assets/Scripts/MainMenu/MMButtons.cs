@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MMButtons : MonoBehaviour
 {
-
     public void NewGame()
     {
         GameManager.Instance.LoadSceneAdditive("RunSettings",false,"MainMenu");
@@ -24,6 +24,7 @@ public class MMButtons : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.inputReader.Back+=Back;
+        GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
     }
 
     private void OnDestroy()

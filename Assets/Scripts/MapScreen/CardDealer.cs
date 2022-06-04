@@ -35,6 +35,8 @@ public class CardDealer : MonoBehaviour
         }
         await Task.Delay(1000);//this is to wait for the screen to load in before dealing the cards
         DealCards();
+        GameManager.Instance.eventSystem.SetSelectedGameObject(buttons[0].gameObject);
+
     }
 
     public async void DealCards()
