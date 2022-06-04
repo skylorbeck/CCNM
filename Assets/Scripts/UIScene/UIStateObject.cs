@@ -78,4 +78,11 @@ public class UIStateObject : ScriptableObject
             FadeOut();
         }
     }
+
+    public void Clear()
+    {
+        showTopBar = false;
+        showFadeOut = false;
+        isPaused = false;
+    }
 }

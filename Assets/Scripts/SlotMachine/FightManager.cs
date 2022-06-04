@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -33,6 +35,9 @@ public class FightManager : MonoBehaviour
     [SerializeField] private GameObject startingSelection;
     [SerializeField] private GameObject pauseStartingSelection;
     [SerializeField] private Button[] allButtons;
+    [SerializeField] private TextMeshProUGUI[] pauseText;
+    [SerializeField] private GraphicRaycaster pauseRaycaster;
+    
     private int enemiesAlive
     {
         get
@@ -57,7 +62,10 @@ public class FightManager : MonoBehaviour
         }
 
         player.InsertBrain(battlefield.player);
-        
+        foreach (TextMeshProUGUI text in pauseText)
+        {
+            text.CrossFadeAlpha(0, 0,true);
+        }
         await Task.Delay(1000);
         foreach (EnemyAbilityWheel w in enemyWheels)
         {
@@ -91,6 +99,21 @@ public class FightManager : MonoBehaviour
         {
             button.interactable = !button.interactable;
         }
+        foreach (TextMeshProUGUI text in pauseText)
+        {
+            text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ?1 :0, 0.25f,true);
+        }
+        pauseRaycaster.enabled = GameManager.Instance.uiStateObject.isPaused;
+    }
+
+    public void Quit()
+    {
+        GameManager.Instance.uiStateObject.Clear();
+        foreach (TextMeshProUGUI text in pauseText)
+        {
+            text.CrossFadeAlpha(0,0.25f,true);
+        }
+        GameManager.Instance.LoadSceneAdditive("MainMenu",false,"Fight");
     }
 
     

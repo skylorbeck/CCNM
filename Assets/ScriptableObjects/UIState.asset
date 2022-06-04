@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: UIState
   m_EditorClassIdentifier: 
   <isPaused>k__BackingField: 0
-  <showTopBar>k__BackingField: 1
+  <showTopBar>k__BackingField: 0
   <showFadeOut>k__BackingField: 0

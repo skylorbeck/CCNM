@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         bool mainMenuLoaded = false;
         bool uiLoaded = false;
-
+        uiStateObject.Clear();
         
         
         if (SceneManager.sceneCount!=1)

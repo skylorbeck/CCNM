@@ -10,7 +10,7 @@ public class HotelManager : MonoBehaviour
     {
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
-
+        GameManager.Instance.uiStateObject.ShowTopBar();
     }
 
     private void OnDestroy()

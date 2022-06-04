@@ -25,6 +25,7 @@ public class MMButtons : MonoBehaviour
     {
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
+        GameManager.Instance.uiStateObject.HideTopBar();
     }
 
     private void OnDestroy()
@@ -35,5 +36,13 @@ public class MMButtons : MonoBehaviour
     public void Back()
     {
         Application.Quit();
+    }
+
+    public void EnableButtons()
+    {
+        foreach (Button button in GetComponentsInChildren<Button>())
+        {
+            button.interactable = true;
+        }
     }
 }

@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour
 
     public void PauseOut()
     {
-        blackout.CrossFadeAlpha(0.5f, 0.5f, true);
+        blackout.CrossFadeAlpha(0.75f, 0.5f, true);
     }
 
     public void PauseIn()
