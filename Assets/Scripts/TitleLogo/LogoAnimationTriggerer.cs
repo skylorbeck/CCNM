@@ -28,7 +28,6 @@ public class LogoAnimationTriggerer : MonoBehaviour
         logo.SetTrigger("Skip");
         TriggerLogoEnter();
         FadeInButtons();
-        GameManager.Instance.inputReader.PushAnyButton -= Skip;
     }
 
     void Update()
@@ -70,6 +69,7 @@ public class LogoAnimationTriggerer : MonoBehaviour
 
     public void FadeInButtons()
     {
+        GameManager.Instance.inputReader.PushAnyButton -= Skip;
         buttons!.SetTrigger("FadeIn");
     }
 }

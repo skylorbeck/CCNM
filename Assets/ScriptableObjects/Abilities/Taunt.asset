@@ -15,7 +15,7 @@ MonoBehaviour:
   <title>k__BackingField: Taunt
   <descriptionA>k__BackingField: ability.description.a
   <descriptionB>k__BackingField: ability.description.b
-  <icon>k__BackingField: {fileID: 21300000, guid: a8dacc0702663954ead2b8549c770f22, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: 02432de4142bd5348be37d4ddbc82768, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 0
   <targetDamageMultiplier>k__BackingField: 1
