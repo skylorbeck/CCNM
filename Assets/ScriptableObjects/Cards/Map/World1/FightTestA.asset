@@ -16,6 +16,7 @@ MonoBehaviour:
   <cardTitle>k__BackingField: slime
   <cardDescription>k__BackingField: slime.description
   <cardCost>k__BackingField: 0
+  <cardType>k__BackingField: 2
   <mapCardType>k__BackingField: 3
   <enemies>k__BackingField:
   - {fileID: 11400000, guid: f868d5253aa36bb439ce5e5ac12e6b68, type: 2}

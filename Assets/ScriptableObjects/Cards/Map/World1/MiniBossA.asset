@@ -16,6 +16,7 @@ MonoBehaviour:
   <cardTitle>k__BackingField: minibossA
   <cardDescription>k__BackingField: minibossA.description
   <cardCost>k__BackingField: 0
+  <cardType>k__BackingField: 2
   <mapCardType>k__BackingField: 2
   <enemies>k__BackingField:
   - {fileID: 11400000, guid: 08627fe8f244ef940acc4f13b1312e26, type: 2}

@@ -9,7 +9,7 @@ public class CardObject : ScriptableObject
     [field:SerializeField] public string cardDescription{ get;private set; }
     [field:SerializeField] public int cardCost{ get;private set; }//price to buy
 
-    public CardType cardType { get; protected set; }
+    [field:SerializeField] public CardType cardType { get; protected set; }
 
     public enum CardType
     {
