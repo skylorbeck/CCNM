@@ -1217,7 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb6f284eefad4b4cb3e5bb10914f938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
+  owner: {fileID: 935586332}
   symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
   symbols: []
   totalSymbolsPassed: 0
@@ -2152,7 +2152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb6f284eefad4b4cb3e5bb10914f938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
+  owner: {fileID: 935586332}
   symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
   symbols: []
   totalSymbolsPassed: 0
@@ -2611,7 +2611,7 @@ MonoBehaviour:
   <shield>k__BackingField: 0
   <maxShield>k__BackingField: 0
   <abilities>k__BackingField: []
-  statusDisplayer: {fileID: 0}
+  statusDisplayer: {fileID: 1751743443}
 --- !u!1 &949850991
 GameObject:
   m_ObjectHideFlags: 0
@@ -5274,7 +5274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb6f284eefad4b4cb3e5bb10914f938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
+  owner: {fileID: 935586332}
   symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
   symbols: []
   totalSymbolsPassed: 0

@@ -130,8 +130,8 @@ public class NewRunManager : MonoBehaviour
 
     public void UpdateFinalMultiplier()
     {
-        runSettings.finalMultiplier =(Math.Round((Math.Max(0,Math.Pow(10,runSettings.multiplier)*(runSettings.health + runSettings.defense + runSettings.attack-3)/3) + Math.Pow(10,runSettings.multiplier))*4)*0.25f);
-        finalMultiplierText.text = "Ego x"+runSettings.finalMultiplier.ToString("0.00");
+        runSettings.finalMultiplier =(Math.Round((Math.Max(0,Math.Pow(10,runSettings.multiplier)*(runSettings.health + runSettings.defense + runSettings.attack-3)/3) + Math.Pow(10,runSettings.multiplier))));
+        finalMultiplierText.text = "Enemy Lv. "+runSettings.finalMultiplier;
     }
     
     public void StartRun()

@@ -10,7 +10,7 @@ public class PlayerShell : Shell
     public override void InsertBrain(Brain brain)
     {
         base.InsertBrain(brain);
-        health = maxHealth = playerBrain.healthBonus;
+        health = maxHealth += playerBrain.healthBonus;
     }
     public override Task<int> OnAttack(Shell target, int baseDamage)
     {
