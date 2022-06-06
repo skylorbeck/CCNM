@@ -29,7 +29,6 @@ public class EnemyShell : Shell
         }
         base.InsertBrain(brain);
         health = maxHealth = (int)(health * GameManager.Instance.runSettings.GetHealthMod());
-        
     }
 
     public override Task<int> OnAttack(Shell target, int baseDamage)

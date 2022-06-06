@@ -27,7 +27,7 @@ public class FightManager : MonoBehaviour
     public WheelStates state = WheelStates.Idle;
     [SerializeField] private PreviewTextController previewText;
     [SerializeField] private EnemyShell[] enemies;
-    [SerializeField] private Shell player;
+    [SerializeField] private PlayerShell player;
     private Shell targetEnemy;
     private Symbol targetSymbol;
     [SerializeField] private Battlefield battlefield;

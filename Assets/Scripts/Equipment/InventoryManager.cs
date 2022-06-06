@@ -191,7 +191,7 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < cardsToAdd; i++)
         {
             EquipmentCardShell cardShell = cardPool.Get();
-            cardShell.transform.localPosition = new Vector3(i * 0.5f, -3, i);
+            cardShell.transform.localPosition = new Vector3(i * 0.5f, -9, i);
             EquipmentDataContainer dataContainer = playerObject.equipmentDataContainers[index].container[i];
             cardShell.InsertItem(dataContainer);
             cards.Add(cardShell);

@@ -1217,7 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb6f284eefad4b4cb3e5bb10914f938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 935586330}
+  owner: {fileID: 0}
   symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
   symbols: []
   totalSymbolsPassed: 0
@@ -2152,7 +2152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb6f284eefad4b4cb3e5bb10914f938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 935586330}
+  owner: {fileID: 0}
   symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
   symbols: []
   totalSymbolsPassed: 0
@@ -2515,7 +2515,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 935586329}
-  - component: {fileID: 935586330}
+  - component: {fileID: 935586332}
   - component: {fileID: 935586331}
   m_Layer: 0
   m_Name: PlayerShell
@@ -2539,27 +2539,6 @@ Transform:
   m_Father: {fileID: 1700743112}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &935586330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935586328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b527b3b6dd10a4793d5bb34039acdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <brain>k__BackingField: {fileID: 0}
-  <title>k__BackingField: entity.name
-  <description>k__BackingField: entity.description
-  <health>k__BackingField: 100
-  <maxHealth>k__BackingField: 100
-  <shield>k__BackingField: 100
-  <maxShield>k__BackingField: 100
-  <abilities>k__BackingField: []
-  statusDisplayer: {fileID: 1751743443}
 --- !u!212 &935586331
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2612,6 +2591,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &935586332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935586328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f283b470864bd999856c53e6391608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <brain>k__BackingField: {fileID: 0}
+  <title>k__BackingField: entity.name
+  <description>k__BackingField: entity.description
+  <health>k__BackingField: 10
+  <maxHealth>k__BackingField: 10
+  <shield>k__BackingField: 0
+  <maxShield>k__BackingField: 0
+  <abilities>k__BackingField: []
+  statusDisplayer: {fileID: 0}
 --- !u!1 &949850991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2663,7 +2663,7 @@ MonoBehaviour:
   - {fileID: 1789078671}
   - {fileID: 396082426}
   - {fileID: 1541389397}
-  player: {fileID: 935586330}
+  player: {fileID: 935586332}
   battlefield: {fileID: 11400000, guid: 26afe88ed600df84491cfd52077ac762, type: 2}
   startingSelection: {fileID: 111743705}
   pauseStartingSelection: {fileID: 1462047950}
@@ -3741,7 +3741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092812c7b2f52db41a9ed1ceb698f7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shell: {fileID: 935586330}
+  shell: {fileID: 935586332}
   healthBar: {fileID: 64431503}
   shieldBar: {fileID: 1902661471}
   backBar: {fileID: 921634894}
@@ -5274,7 +5274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb6f284eefad4b4cb3e5bb10914f938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 935586330}
+  owner: {fileID: 0}
   symbolPrefab: {fileID: 5910415953390734384, guid: 9699c53c624628243b8b9e790ec450cb, type: 3}
   symbols: []
   totalSymbolsPassed: 0

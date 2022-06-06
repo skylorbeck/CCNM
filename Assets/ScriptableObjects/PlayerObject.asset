@@ -36,3 +36,8 @@ MonoBehaviour:
   - container: []
   - container: []
   - container: []
+  <damageBonus>k__BackingField: 1100
+  <shieldBonus>k__BackingField: 1000
+  <healthBonus>k__BackingField: 700
+  <critDamageBonus>k__BackingField: 1000
+  <critChanceBonus>k__BackingField: 700
