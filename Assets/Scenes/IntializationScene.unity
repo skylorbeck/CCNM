@@ -1060,7 +1060,16 @@ MonoBehaviour:
   eventSystem: {fileID: 1408661005}
   currentRunData: {fileID: 11400000, guid: e34963f4938d888478be5509c783efe4, type: 2}
   runSettings: {fileID: 11400000, guid: cd5d792f92c596f4c8f8885f76da34a2, type: 2}
-  equipmentRegistry: {fileID: 11400000, guid: 57ac6c4153ead734fafc8613340cb01b, type: 2}
+  equipmentRegistries:
+  - {fileID: 11400000, guid: b53ed38409bd2b9428fbc8fd279b133e, type: 2}
+  - {fileID: 11400000, guid: 57ac6c4153ead734fafc8613340cb01b, type: 2}
+  - {fileID: 11400000, guid: d9027344e14f8ba409322caed058d851, type: 2}
+  - {fileID: 11400000, guid: efe5fbc88fc6bd34da0b29f171331cfe, type: 2}
+  - {fileID: 11400000, guid: 0c5d8b79b9ee1b448b7390bb3bbe1ae8, type: 2}
+  - {fileID: 11400000, guid: 76de4b71b4d78bb4eb97830d7f870a71, type: 2}
+  - {fileID: 11400000, guid: d9981b645cd82fd42b17650fea83e199, type: 2}
+  - {fileID: 11400000, guid: 0c42a0c53d3fe8845ab3798d8d77e8c3, type: 2}
+  - {fileID: 11400000, guid: 8c945deda30009341bfc9c6a7749622c, type: 2}
   abilityRegistry: {fileID: 11400000, guid: 01c3f387e1f65ad49ba5df351713b295, type: 2}
   TapToContinue: {fileID: 804887784}
   TEMP: {fileID: 869622194}

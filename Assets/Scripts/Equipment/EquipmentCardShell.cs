@@ -79,6 +79,7 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
         
         if (item.ability != null)
         {
+            arrowSprite.enabled = true;
             abilitySprite.sprite = item.ability.icon;
             abilityTitle.text = item.ability.title;
             abilityDesc.text = item.ability.descriptionA;

@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public EventSystem eventSystem;
     public SaveData currentRunData;
     public RunSettings runSettings;
-    public EquipmentRegistry equipmentRegistry;
+    public EquipmentRegistry[] equipmentRegistries;
     public AbilityRegistry abilityRegistry;
     bool playerAccepted = false;
     private float target = 0;

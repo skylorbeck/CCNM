@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Ability", menuName = "Combat/Ability")]
+[Serializable]
 public class AbilityObject : ScriptableObject
 {
 

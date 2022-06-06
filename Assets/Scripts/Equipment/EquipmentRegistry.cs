@@ -18,7 +18,7 @@ public class EquipmentRegistry : ScriptableObject,  ISerializationCallbackReceiv
         for (var index = 0; index < itemCards.Length; index++)
         {
             values.Add(index);
-            keys.Add(itemCards[index].cardTitle);
+            keys.Add(itemCards[index].name);
         }
     }
 

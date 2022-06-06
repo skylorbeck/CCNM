@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[Serializable]
 public class CardObject : ScriptableObject
 {
     [field:SerializeField] public Sprite icon { get;private set; }

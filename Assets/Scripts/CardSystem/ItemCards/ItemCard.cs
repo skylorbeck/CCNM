@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 [CreateAssetMenu(fileName = "ItemCard", menuName = "Cards/ItemCard")]
+[Serializable]
 public class ItemCard : CardObject
 {
     [field: Header("ItemCard")]
@@ -10,15 +11,14 @@ public class ItemCard : CardObject
    
     public enum ItemType
     {
-        Weapon, //offensive abilities?
         Shield, //offensive/defensive abilities?
-        Helmet, //just for stats?
-        Chest,  //defensive abilities?
-        Gloves, //just for stats?
-        Pants,  //just for stats?
-        Boots,  //just for stats?
+        Weapon, //offensive abilities?
         Ring,   //magic abilities?
+        Pants,  //just for stats?
+        Chest,  //defensive abilities?
+        Helmet, //just for stats?
+        Boots,  //just for stats?
+        Gloves, //just for stats?
         Amulet, //magic abilities?
     }
-
 }

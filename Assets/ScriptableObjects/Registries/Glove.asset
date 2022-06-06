@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de72db19a5beb44e9675b512649b3fa, type: 3}
+  m_Name: Glove
+  m_EditorClassIdentifier: 
+  itemCards:
+  - {fileID: 11400000, guid: 530338bf25bb3cc4eaa6ba979e707b41, type: 2}
+  - {fileID: 11400000, guid: 4d6162b882e1dff489f9625713ecc115, type: 2}
+  - {fileID: 11400000, guid: 867ff697f0c7a644ea19369220aa176b, type: 2}
+  - {fileID: 11400000, guid: b24b576a8807ab348967b9568878aaf1, type: 2}
+  - {fileID: 11400000, guid: f477a127f63f3b4438c83f01e76d9443, type: 2}
+  keys:
+  - Test 1
+  - Test 2
+  - Test 3
+  - Test 4
+  - Test 5
+  values: 0000000001000000020000000300000004000000
