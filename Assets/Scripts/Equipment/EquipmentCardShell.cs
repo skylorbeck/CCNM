@@ -13,11 +13,7 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
     [field: SerializeField] public EquipmentDataContainer EquipmentData { get; private set; }
     [field: SerializeField] public SpriteRenderer itemSprite { get; private set; }
     [field: SerializeField] public TextMeshPro title { get; private set; }
-    [field: SerializeField] public TextMeshPro stat1text { get; private set; }
-    [field: SerializeField] public TextMeshPro stat2text { get; private set; }
-    [field: SerializeField] public TextMeshPro stat3text { get; private set; }
-    [field: SerializeField] public TextMeshPro stat4text { get; private set; }
-    [field: SerializeField] public TextMeshPro stat5text { get; private set; }
+    [field: SerializeField] public TextMeshPro[] statText { get; private set; }
 
     [field: Header("Back")]
     [field: SerializeField]
@@ -74,21 +70,13 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
         title.text = item.itemCore.cardTitle;
         qualityText.text = item.quality.ToString();
         qualityText.color = GameManager.Instance.colors[(int)item.quality];
-        stat1text.text = item.stat1 != EquipmentDataContainer.Stats.None
-            ? "+" + item.stat1Value+" " + item.stat1.ToString()
-            : "";
-        stat2text.text = item.stat2 != EquipmentDataContainer.Stats.None
-            ? "+" + item.stat2Value+" " + item.stat2.ToString()
-            : "";
-        stat3text.text = item.stat3 != EquipmentDataContainer.Stats.None
-            ? "+" + item.stat3Value+" " + item.stat3.ToString()
-            : "";
-        stat4text.text = item.stat4 != EquipmentDataContainer.Stats.None
-            ? "+" + item.stat4Value+" " + item.stat4.ToString()
-            : "";
-        stat5text.text = item.stat5 != EquipmentDataContainer.Stats.None
-            ? "+" + item.stat5Value+" " + item.stat5.ToString()
-            : "";
+        for (var i = 0; i < statText.Length; i++)
+        {
+            statText[i].text = item.stats[i] != EquipmentDataContainer.Stats.None
+                ? "+" + item.statValue[i]+" " + item.stats[i].ToString()
+                : "";
+        }
+        
         if (item.ability != null)
         {
             abilitySprite.sprite = item.ability.icon;

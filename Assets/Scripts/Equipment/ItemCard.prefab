@@ -1918,11 +1918,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <itemSprite>k__BackingField: {fileID: 3241255835108187605}
   <title>k__BackingField: {fileID: 3241255835652862101}
-  <stat1text>k__BackingField: {fileID: 3241255834583454182}
-  <stat2text>k__BackingField: {fileID: 3241255833986046848}
-  <stat3text>k__BackingField: {fileID: 3241255834224126345}
-  <stat4text>k__BackingField: {fileID: 3241255834685609999}
-  <stat5text>k__BackingField: {fileID: 3241255834996366709}
+  <statText>k__BackingField:
+  - {fileID: 3241255834583454182}
+  - {fileID: 3241255833986046848}
+  - {fileID: 3241255834224126345}
+  - {fileID: 3241255834685609999}
+  - {fileID: 3241255834996366709}
   <abilitySprite>k__BackingField: {fileID: 3241255834889942610}
   <abilityTitle>k__BackingField: {fileID: 3241255834454066082}
   <abilityDesc>k__BackingField: {fileID: 3241255835278555975}
