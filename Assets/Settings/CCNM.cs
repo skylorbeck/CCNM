@@ -588,6 +588,17 @@ public partial class @CCNM : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7c63b395-8fbd-4d3e-98a0-4d37bf32697d"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ButtonLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""74850d60-8cdc-458b-b4dc-520c57b71f11"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",

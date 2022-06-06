@@ -8,7 +8,7 @@ public class EquipmentManager : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.inputReader.Back+=Back;
-        // GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
+        GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Slider>().gameObject);
 
     }
 

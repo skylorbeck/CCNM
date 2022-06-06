@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private GameObject TapToContinue;
     [SerializeField] private GameObject TEMP;
+    [field:SerializeField] public Color[] colors { get; private set; }
     
     private int fixedSecondClock = 0;
     public event UnityAction FixedSecond = delegate {  };
@@ -178,4 +179,5 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    
 }

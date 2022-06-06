@@ -1064,6 +1064,14 @@ MonoBehaviour:
   abilityRegistry: {fileID: 11400000, guid: 01c3f387e1f65ad49ba5df351713b295, type: 2}
   TapToContinue: {fileID: 804887784}
   TEMP: {fileID: 869622194}
+  <colors>k__BackingField:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.67, a: 1}
+  - {r: 0.47, g: 0.545, b: 1, a: 1}
+  - {r: 0.7058824, g: 0.33333334, b: 1, a: 1}
+  - {r: 1, g: 0.5803922, b: 0.24313726, a: 1}
+  - {r: 0.9, g: 0.862, b: 0.368, a: 1}
+  - {r: 1, g: 0.364, b: 0.364, a: 1}
 --- !u!4 &1825388445
 Transform:
   m_ObjectHideFlags: 0

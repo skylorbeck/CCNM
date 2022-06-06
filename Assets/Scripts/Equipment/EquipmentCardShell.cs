@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
 {
@@ -26,8 +27,7 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
     [field: SerializeField] public TextMeshPro abilityDesc { get; private set; }
     [field: SerializeField] public TextMeshPro abilityDesc2 { get; private set; }
     [field: Header("Misc")]
-    [field: SerializeField]
-    public SpriteRenderer shadowSprite { get; private set; }
+
     [field: SerializeField] public SpriteRenderer arrowSprite { get; private set; } 
     [field: SerializeField] public SpriteRenderer cardSprite { get; private set; }
     [field: SerializeField] public SpriteRenderer cardBackSprite { get; private set; }
@@ -38,6 +38,16 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
     [field: SerializeField] public bool Selected { get; set; } = false;
 
 
+    public void Start()
+    {
+        GameManager.Instance.inputReader.ButtonLeft += FlipCard;
+    }
+
+    public void OnDestroy()
+    {
+        GameManager.Instance.inputReader.ButtonLeft -= FlipCard;
+
+    }
 
     public void Update()
     {
@@ -46,16 +56,14 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
             innerTransform.localRotation = Quaternion.Lerp(innerTransform.localRotation,
                 Quaternion.Euler(0, 180, 0),
                 Time.deltaTime * rotateSpeed);
-            shadowSprite.transform.localPosition = Vector3.Lerp(shadowSprite.transform.localPosition,
-                new Vector3(-0.2f, -0.15f, 0.05f), Time.deltaTime * rotateSpeed);
+            
         }
         else
         {
             MouseOver = false;
             innerTransform.localRotation = Quaternion.Lerp(innerTransform.localRotation, Quaternion.Euler(0, 0, 0),
                 Time.deltaTime * rotateSpeed);
-            shadowSprite.transform.localPosition = Vector3.Lerp(shadowSprite.transform.localPosition,
-                new Vector3(0.2f, -0.15f, 0.05f), Time.deltaTime * rotateSpeed);
+            
         }
     }
 
@@ -65,6 +73,7 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
         itemSprite.sprite = item.itemCore.icon;
         title.text = item.itemCore.cardTitle;
         qualityText.text = item.quality.ToString();
+        qualityText.color = GameManager.Instance.colors[(int)item.quality];
         stat1text.text = item.stat1 != EquipmentDataContainer.Stats.None
             ? "+" + item.stat1Value+" " + item.stat1.ToString()
             : "";
@@ -96,41 +105,21 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
             abilityDesc2.text = "";
         }
 
-        switch (item.quality)
-        {
-            case EquipmentDataContainer.Quality.Noteworthy:
-                cardSprite.color = Color.green;
-                cardBackSprite.color = Color.green;
-                break;
-            case EquipmentDataContainer.Quality.Remarkable:
-                cardSprite.color = Color.blue;
-                cardBackSprite.color = Color.blue;
-                break;
-            case EquipmentDataContainer.Quality.Choice:
-                cardSprite.color = Color.Lerp(Color.blue, Color.red, 0.4f);
-                cardBackSprite.color = Color.Lerp(Color.blue, Color.red, 0.4f);
-                break;
-            case EquipmentDataContainer.Quality.Signature:
-                cardSprite.color = Color.Lerp(Color.yellow, Color.red, 0.4f);
-                cardBackSprite.color = Color.Lerp(Color.yellow, Color.red, 0.4f);
-                break;
-            case EquipmentDataContainer.Quality.Fabled:
-                cardSprite.color = Color.yellow;
-                cardBackSprite.color = Color.yellow;
-                break;
-            case EquipmentDataContainer.Quality.Curator:
-                cardSprite.color = Color.red;
-                cardBackSprite.color = Color.red;
-                break;
-          
-        }
+        cardSprite.color= GameManager.Instance.colors[(int)item.quality];
+        cardBackSprite.color = GameManager.Instance.colors[(int)item.quality];
     }
 
     public void OnPointerClick(PointerEventData eventData)
+    {
+        FlipCard();
+    }
+
+    public void FlipCard()
     {
         if (Selected)
         {
             MouseOver = !MouseOver;;
         }
     }
+   
 }
