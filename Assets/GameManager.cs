@@ -12,7 +12,6 @@ using Random = Unity.Mathematics.Random;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
     public InputReader inputReader;
     public Battlefield battlefield;
     public UIStateObject uiStateObject;
@@ -21,6 +20,7 @@ public class GameManager : MonoBehaviour
     public RunSettings runSettings;
     public EquipmentRegistry[] equipmentRegistries;
     public AbilityRegistry abilityRegistry;
+    public SaveManager saveManager;
     bool playerAccepted = false;
     private float target = 0;
     
@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         Application.targetFrameRate = 60;
+        saveManager = new SaveManager();
         bool mainMenuLoaded = false;
         bool uiLoaded = false;
         uiStateObject.Clear();
@@ -75,6 +76,8 @@ public class GameManager : MonoBehaviour
         }
         inputReader.EnableUI();
         SceneManager.sceneLoaded += DestroyTEMP;
+        
+        // saveManager.Save();
     }
 
     private void DestroyTEMP(Scene scene, LoadSceneMode mode)

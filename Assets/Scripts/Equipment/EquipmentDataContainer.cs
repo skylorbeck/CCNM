@@ -5,11 +5,11 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class EquipmentDataContainer
 {
-    public ItemCard itemCore { get; private set; }
-    public AbilityObject ability{ get; protected set; }
-    public Quality quality { get; private set; }
-    public Stats[] stats { get; private set; }
-    public int[] statValue { get; private set; }
+    [field:SerializeField] public ItemCard itemCore { get; private set; }
+    [field:SerializeField] public AbilityObject ability{ get; protected set; }
+    [field:SerializeField] public Quality quality { get; private set; }
+    [field:SerializeField] public Stats[] stats { get; private set; }
+    [field:SerializeField] public int[] statValue { get; private set; }
 
     public void InsertItem(ItemCard item)
     {
@@ -151,3 +151,4 @@ public class EquipmentDataContainer
         Health,
     }
 }
+

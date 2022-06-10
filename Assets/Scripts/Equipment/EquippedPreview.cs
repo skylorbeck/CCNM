@@ -14,7 +14,7 @@ public class EquippedPreview : MonoBehaviour
     
     public void Clear()
     {
-        background.color = Color.white;
+        background.color = Color.gray;
         icon.sprite = null;
     }
 }
