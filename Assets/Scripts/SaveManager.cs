@@ -9,13 +9,11 @@ using UnityEngine;
 public class SaveManager
 {
     //playerdata
-    public EquipmentDataContainer[] equippedCards;
-    public bool[] equippedSlots;
+    public int[] equippedSlots;
     public EquipmentList[] equipmentDataContainers;
     
     public void Save()
     {
-        equippedCards = GameManager.Instance.battlefield.player.equippedCards;
         equippedSlots = GameManager.Instance.battlefield.player.equippedSlots;
         equipmentDataContainers = GameManager.Instance.battlefield.player.equipmentDataContainers;
         

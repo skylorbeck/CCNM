@@ -54,20 +54,27 @@ public class InventoryManager : MonoBehaviour
         GameManager.Instance.inputReader.ClickEvent += NavUpdateMouse;
         await Task.Delay(10);
         
-        for (var i = 0; i < playerObject.equippedCards.Length; i++)
+        for (var i = 0; i < playerObject.equippedSlots.Length; i++)
         {
-     
-            if (playerObject.equippedSlots[i])
+            if (playerObject.equippedSlots[i]>=0
+                && playerObject.EquippedCardExists(i))
             {
-                previewObjects[i].SetEquipped(playerObject.equippedCards[i]);
+                previewObjects[i].SetEquipped(playerObject.GetEquippedCard(i));
             }
             else
             {
-                previewObjects[i].Clear();
+                playerObject.equippedSlots[i] = -1;
+                if (i<3)
+                {
+                    previewObjects[i].SetEquipped(playerObject.defaultEquipment[i]);
+                }
+                else
+                {
+                    previewObjects[i].Clear();
+                }
             }
-
         }
-        //todo delete this
+        /*//todo delete this
         for (var index = 0; index < playerObject.equipmentDataContainers.Length; index++)
         {
             EquipmentList equipmentList = playerObject.equipmentDataContainers[index];
@@ -84,7 +91,7 @@ public class InventoryManager : MonoBehaviour
                     equipmentList.container.Add(dataContainer);
                 }
             }
-        }
+        }*/
 
         SelectHand(0);
     }
@@ -167,9 +174,21 @@ public class InventoryManager : MonoBehaviour
     
     public void SelectCard()
     {
-        EquipmentDataContainer equipmentData = cards[(int) cardSlider.value].EquipmentData;
-        playerObject.Equip(equipmentData);
-        previewObjects[currentHandIndex].SetEquipped(equipmentData);
+        playerObject.Equip(currentHandIndex,(int) cardSlider.value);
+        previewObjects[currentHandIndex].SetEquipped(playerObject.GetEquippedCard(currentHandIndex));
+    }
+    
+    public void UnequipCard()
+    {
+        playerObject.Unequip(currentHandIndex);
+        if (currentHandIndex<3)
+        {
+            previewObjects[currentHandIndex].SetEquipped(playerObject.defaultEquipment[currentHandIndex]);
+        }
+        else
+        {
+            previewObjects[currentHandIndex].Clear();
+        }
     }
     
     public async void SelectHand(int index)
@@ -222,6 +241,7 @@ public class InventoryManager : MonoBehaviour
             cardContainer.localPosition = Vector3.Lerp(cardContainer.localPosition, new Vector3(0, 1, 0), Time.deltaTime * 10);
             await Task.Delay(10);
         }
+        cardContainer.localPosition = Vector3.zero;
     }
     
     private void NavUpdateMouse()

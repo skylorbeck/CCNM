@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
-  <title>k__BackingField: fireball
-  <descriptionA>k__BackingField: ability.description.a
-  <descriptionB>k__BackingField: ability.description.b
-  <icon>k__BackingField: {fileID: 21300000, guid: d065b2e46c34cd947916bcd7245d9f52, type: 3}
+  <title>k__BackingField: Fireball
+  <descriptionA>k__BackingField: 1x Damage To Target
+  <descriptionB>k__BackingField: Burns Target
+  <icon>k__BackingField: {fileID: 21300000, guid: 6a06581026e1f2649a5c5f430f166a06, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
   <targetDamageMultiplier>k__BackingField: 1

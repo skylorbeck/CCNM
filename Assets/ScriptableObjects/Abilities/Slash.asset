@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
-  m_Name: Taunt
+  m_Name: Slash
   m_EditorClassIdentifier: 
-  <title>k__BackingField: Taunt
-  <descriptionA>k__BackingField: 1x Shield On Self
-  <descriptionB>k__BackingField: Empowers Target
-  <icon>k__BackingField: {fileID: 21300000, guid: 35eaff2bf77e18e4d8fd988f768610aa, type: 3}
+  <title>k__BackingField: Slash
+  <descriptionA>k__BackingField: 2x Damage To Target
+  <descriptionB>k__BackingField: 
+  <icon>k__BackingField: {fileID: 21300000, guid: 928fb708d261215488b4f3b771414b5c, type: 3}
   <baseCost>k__BackingField: 1
-  <damageTarget>k__BackingField: 0
-  <targetDamageMultiplier>k__BackingField: 1
+  <damageTarget>k__BackingField: 1
+  <targetDamageMultiplier>k__BackingField: 2
   <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
   <healTarget>k__BackingField: 0
@@ -27,12 +27,12 @@ MonoBehaviour:
   <userHealMultiplier>k__BackingField: 1
   <shieldTarget>k__BackingField: 0
   <targetShieldMultiplier>k__BackingField: 1
-  <shieldUser>k__BackingField: 1
+  <shieldUser>k__BackingField: 0
   <userShieldMultiplier>k__BackingField: 1
-  <targetStatus>k__BackingField: {fileID: 11400000, guid: c48dca9d4614ddc4d9d66bb0d3c44a09, type: 2}
-  <statusTarget>k__BackingField: 1
-  <userStatus>k__BackingField: {fileID: 11400000, guid: c48dca9d4614ddc4d9d66bb0d3c44a09, type: 2}
+  <targetStatus>k__BackingField: {fileID: 0}
+  <statusTarget>k__BackingField: 0
+  <userStatus>k__BackingField: {fileID: 0}
   <statusSelf>k__BackingField: 0
   <element>k__BackingField: 0
-  <attackAnimation>k__BackingField: 1
-  <soundEffect>k__BackingField: {fileID: 8300000, guid: 29e43ce14342e6541a8e8e49b5737db1, type: 3}
+  <attackAnimation>k__BackingField: 0
+  <soundEffect>k__BackingField: {fileID: 8300000, guid: 1aea1f8691c4cfb4ca937a0931cb371b, type: 3}
