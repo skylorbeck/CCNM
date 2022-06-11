@@ -10,7 +10,13 @@ public class EquipmentDataContainer
     [field:SerializeField] public Quality quality { get; private set; }
     [field:SerializeField] public Stats[] stats { get; private set; }
     [field:SerializeField] public int[] statValue { get; private set; }
+    [field:SerializeField] public bool indestructible { get; private set; }
 
+    public void SetIndestructible(bool value)
+    {
+        indestructible = value;
+    }
+    
     public void InsertItem(ItemCard item)
     {
         itemCore = item;

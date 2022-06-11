@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
@@ -13,7 +14,6 @@ public class FightManager : MonoBehaviour
 {
     [field:SerializeField]public Lane selectedWheel { get; private set; } = Lane.None;
     [field:SerializeField]public Lane selectedEnemy { get; private set; } = Lane.None;
-    [SerializeField] private Image cursor;
     [SerializeField] private Image selector;
     [SerializeField] private Image enemySelector;
     [SerializeField] private Image enemySelectorInner;
@@ -38,6 +38,7 @@ public class FightManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] pauseText;
     [SerializeField] private GraphicRaycaster pauseRaycaster;
     
+    private CancellationTokenSource cancellationTokenSource;
     private int enemiesAlive
     {
         get
@@ -56,6 +57,7 @@ public class FightManager : MonoBehaviour
 
     async void Start()
     {
+        cancellationTokenSource = new CancellationTokenSource();
         for (var i = 0; i < battlefield.enemies.Length; i++)
         {
             enemies[i].InsertBrain(battlefield.enemies[i]);
@@ -73,8 +75,7 @@ public class FightManager : MonoBehaviour
         }
         GameManager.Instance.FixedSecond += SizeSelector;
         GameManager.Instance.eventSystem.SetSelectedGameObject(startingSelection);
-        GameManager.Instance.inputReader.PadAny += NavUpdate;
-        GameManager.Instance.inputReader.ClickEvent += NavUpdateMouse;
+
         GameManager.Instance.inputReader.Back+=Back;
 
     }
@@ -86,14 +87,10 @@ public class FightManager : MonoBehaviour
         {
             GameManager.Instance.FixedSecond -= SizeSelector;
             GameManager.Instance.eventSystem.SetSelectedGameObject(pauseStartingSelection);
-            GameManager.Instance.inputReader.PadAny -= NavUpdate;
-            GameManager.Instance.inputReader.ClickEvent -= NavUpdateMouse;
         }
         else
         { 
             GameManager.Instance.FixedSecond += SizeSelector;
-            GameManager.Instance.inputReader.PadAny += NavUpdate;
-            GameManager.Instance.inputReader.ClickEvent += NavUpdateMouse;
         }
         foreach (Button button in allButtons)
         {
@@ -118,40 +115,17 @@ public class FightManager : MonoBehaviour
     }
 
     
-    private void NavUpdateMouse()
-    {
-        DisablePointer();
-    }
-    private async void NavUpdate()
-    {
-        if (!cursor.enabled)
-        {
-            EnablePointer();
-            GameManager.Instance.eventSystem.SetSelectedGameObject(startingSelection);
-        }
+   
+   
 
-        await Task.Delay(50);
-        cursor.transform.position = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.position;
 
-    }
-
-    private void DisablePointer()
-    {
-        cursor.enabled = false;
-    }
-
-    private void EnablePointer()
-    {
-        cursor.enabled = true;
-    }
 
     private void OnDestroy()
     {
         GameManager.Instance.FixedSecond -= SizeSelector;
-        GameManager.Instance.inputReader.PadAny -= NavUpdate;
-        GameManager.Instance.inputReader.ClickEvent -= NavUpdateMouse;
-        GameManager.Instance.inputReader.Back -= Back;
 
+        GameManager.Instance.inputReader.Back -= Back;
+        cancellationTokenSource.Cancel();
     }
 
     void Update()
@@ -329,7 +303,7 @@ public class FightManager : MonoBehaviour
             }
             SoundManager.instance.PlayEffect("click");
             await Task.Delay(100);
-        } while (anySpinning);
+        } while (anySpinning && !cancellationTokenSource.Token.IsCancellationRequested);
         // await Task.WhenAll(tasks.ToArray());
         
         await Task.Delay(1000);//todo replace with jackpot check
@@ -341,7 +315,6 @@ public class FightManager : MonoBehaviour
             EnemyShell enemy = enemies[i];
             if (!enemy.isDead)
             {
-                
                 await enemy.Attack(player, enemyWheels[i].GetWinner());
                 await Task.Delay(250);
                 await enemy.TickStatusEffects();
@@ -525,7 +498,7 @@ public class FightManager : MonoBehaviour
             SoundManager.instance.PlayEffect("click");
             await Task.Delay(100);
 
-        } while (dirty);
+        } while (dirty && !cancellationTokenSource.Token.IsCancellationRequested);
 
         SetState(WheelStates.Selecting);
     }
@@ -558,7 +531,7 @@ public class FightManager : MonoBehaviour
         } else
         {
             GameManager.Instance.inputReader.DisableUI();
-            DisablePointer();
+            // GameManager.Instance.DisablePointer();
         }
         state = newState;
     }

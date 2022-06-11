@@ -133,8 +133,10 @@ public class PlayerBrain : Brain
         {
             if (GameManager.Instance.metaPlayer.EquippedCardExists(index))
             {
-                equippedSlots[index] =0;
-                AddCardToInventory(GameManager.Instance.metaPlayer.GetEquippedCard(index));
+                equippedSlots[index] = 0;
+                EquipmentDataContainer newcard = GameManager.Instance.metaPlayer.GetEquippedCard(index);
+                newcard.SetIndestructible(true);
+                AddCardToInventory(newcard);
             }
         }
         defaultEquipment = sourcePlayer.defaultEquipment;

@@ -15,7 +15,6 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private EquipmentCardShell cardPrefab;
     [SerializeField] private Transform cardContainer;
     [SerializeField] private Transform selector;
-    [SerializeField] private Image cursor;
     [SerializeField] private bool selectorBig;
     [SerializeField] private PlayerBrain playerObject;
     [SerializeField] private EquippedPreview[] previewObjects;
@@ -50,8 +49,6 @@ public class InventoryManager : MonoBehaviour
         );
         GameManager.Instance.FixedHalfSecond += SizeSelector;
         GameManager.Instance.FixedSecond += SizeSelector;
-        GameManager.Instance.inputReader.PadAny += NavUpdate;
-        GameManager.Instance.inputReader.ClickEvent += NavUpdateMouse;
         await Task.Delay(10);
         if (GameManager.Instance.battlefield.deckChosen)
         {
@@ -108,8 +105,6 @@ public class InventoryManager : MonoBehaviour
     {
         GameManager.Instance.FixedHalfSecond -= SizeSelector;
         GameManager.Instance.FixedSecond -= SizeSelector;
-        GameManager.Instance.inputReader.PadAny -= NavUpdate;
-        GameManager.Instance.inputReader.ClickEvent -= NavUpdateMouse;
     }
 
     private void SizeSelector()
@@ -282,30 +277,5 @@ public class InventoryManager : MonoBehaviour
         cardContainer.localPosition = Vector3.zero;
     }
     
-    private void NavUpdateMouse()
-    {
-        DisablePointer();
-    }
-    private async void NavUpdate()
-    {
-        if (!cursor.enabled)
-        {
-            EnablePointer();
-        }
-
-        await Task.Delay(50);
-        cursor.transform.position = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.position;
-
-    }
-
-    private void DisablePointer()
-    {
-        cursor.enabled = false;
-    }
-
-    private void EnablePointer()
-    {
-        cursor.enabled = true;
-    }
 
 }

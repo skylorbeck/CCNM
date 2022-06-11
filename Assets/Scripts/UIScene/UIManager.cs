@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private Image cursor;
     [SerializeField] private Image topBar;
     [SerializeField] private TextMeshProUGUI notificationText;
     [SerializeField] private Image blackout;
@@ -23,7 +24,10 @@ public class UIManager : MonoBehaviour
         uiStateObject.OnFadeOut += FadeOut;
         uiStateObject.OnPause += PauseOut;
         uiStateObject.OnResume += PauseIn;
+        
         await Task.Delay(1);
+        GameManager.Instance.inputReader.PadAny += NavUpdate;
+        GameManager.Instance.inputReader.ClickEvent += NavUpdateMouse;
         GameManager.Instance.FixedHalfSecond += NextSprite;
         await Task.Delay(249);
         foreach (Image image in blackout.GetComponentsInChildren<Image>())
@@ -40,6 +44,8 @@ public class UIManager : MonoBehaviour
         uiStateObject.OnFadeOut -= FadeOut;
         uiStateObject.OnPause -= PauseOut;
         uiStateObject.OnResume -= PauseIn;
+        GameManager.Instance.inputReader.PadAny -= NavUpdate;
+        GameManager.Instance.inputReader.ClickEvent -= NavUpdateMouse;
         GameManager.Instance.FixedHalfSecond -= NextSprite;
 
     }
@@ -99,5 +105,30 @@ public class UIManager : MonoBehaviour
     public void PauseIn()
     {
         blackout.CrossFadeAlpha(0, 0.5f, true);
+    }
+    
+    private async void NavUpdate()
+    {
+        if (!cursor.enabled)
+        {
+            EnablePointer();
+            // GameManager.Instance.eventSystem.SetSelectedGameObject(startingSelection);
+        }
+        await Task.Delay(50);
+        cursor.transform.position = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.position;
+
+    }
+    public void DisablePointer()
+    {
+        cursor.enabled = false;
+    }
+
+    private void EnablePointer()
+    {
+        cursor.enabled = true;
+    }
+    private void NavUpdateMouse()
+    {
+        DisablePointer();
     }
 }
