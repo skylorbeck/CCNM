@@ -10,7 +10,18 @@ public class MMButtons : MonoBehaviour
     {
         GameManager.Instance.LoadSceneAdditive("RunSettings",false,"MainMenu");
     }
-    
+
+    public void ResumeGame()
+    {
+        List<string> scenes = new List<string>(GameManager.Instance.lastScenesUnloaded);
+        if (scenes.Contains("MapScreen"))
+        {
+            GameManager.Instance.LoadSceneAdditive("MapScreen",false,"MainMenu");
+        } else if (scenes.Contains("Fight"))
+        {
+            GameManager.Instance.LoadSceneAdditive("Fight",false,"MainMenu");
+        }
+    }
     public void Hotel()
     {
         GameManager.Instance.LoadSceneAdditive("Hotel",false,"MainMenu");

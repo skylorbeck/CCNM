@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class FightManager : MonoBehaviour
 {
@@ -57,6 +58,7 @@ public class FightManager : MonoBehaviour
 
     async void Start()
     {
+        if (battlefield.randomState != null) Random.state = battlefield.randomState.Value;
         cancellationTokenSource = new CancellationTokenSource();
         for (var i = 0; i < battlefield.enemies.Length; i++)
         {
@@ -107,7 +109,7 @@ public class FightManager : MonoBehaviour
     public void Quit()
     {
         GameManager.Instance.uiStateObject.Clear();
-        GameManager.Instance.battlefield.deckChosen = false;//todo replace with save system
+        // GameManager.Instance.battlefield.deckChosen = false;//todo replace with save system
         foreach (TextMeshProUGUI text in pauseText)
         {
             text.CrossFadeAlpha(0,0.25f,true);
@@ -209,15 +211,17 @@ public class FightManager : MonoBehaviour
         if (player.isDead)
         {
             SetState(WheelStates.FightOver);
-            GameManager.Instance.LoadSceneAdditive("MainMenu",false,"Fight");
+            battlefield.randomState = null;//todo replace with gameOver
+            GameManager.Instance.LoadSceneAdditive("RunOver",false,"Fight");
 
         } else if (enemies.All(x => x.isDead))
         {
             SetState(WheelStates.FightOver);
             if (battlefield.runOver)
             {
-                //todo add win screen
-                GameManager.Instance.LoadSceneAdditive("MainMenu",false,"Fight");
+                //todo add run over win screen
+                battlefield.randomState = null;
+                GameManager.Instance.LoadSceneAdditive("RunOver",false,"Fight");
             }
             else
             {
@@ -227,7 +231,8 @@ public class FightManager : MonoBehaviour
                     credits += enemy.enemyBrain.credits;
                 }
                 GameManager.Instance.currentRunData.AddCredits(credits);
-                GameManager.Instance.LoadSceneAdditive("MapScreen", false, "Fight");
+                battlefield.randomState = null;
+                GameManager.Instance.LoadSceneAdditive("FightWon", false, "Fight");
             }
         }
     }

@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Event
+  m_text: 'Reward
 
     unimplemented
 
@@ -272,7 +272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1716098735}
-  - component: {fileID: 1716098736}
+  - component: {fileID: 1716098737}
   - component: {fileID: 1716098734}
   - component: {fileID: 1716098733}
   - component: {fileID: 1716098732}
@@ -365,7 +365,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1716098736
+--- !u!114 &1716098737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -374,6 +374,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1716098731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7014a2c9672a45e47999f3654f1b38b8, type: 3}
+  m_Script: {fileID: 11500000, guid: a4d05bc4e06a3954ea918c897734c207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

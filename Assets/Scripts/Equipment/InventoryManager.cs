@@ -78,7 +78,8 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-        
+        GameManager.Instance.inputReader.Back+=Back;
+        GameManager.Instance.eventSystem.SetSelectedGameObject(cardSlider.gameObject);
         /*//todo delete this
         for (var index = 0; index < playerObject.playerInventory.Length; index++)
         {
@@ -105,6 +106,7 @@ public class InventoryManager : MonoBehaviour
     {
         GameManager.Instance.FixedHalfSecond -= SizeSelector;
         GameManager.Instance.FixedSecond -= SizeSelector;
+        GameManager.Instance.inputReader.Back -= Back;
     }
 
     private void SizeSelector()
@@ -276,6 +278,16 @@ public class InventoryManager : MonoBehaviour
         }
         cardContainer.localPosition = Vector3.zero;
     }
-    
 
+    public void Back()
+    {
+        if (GameManager.Instance.battlefield.deckChosen)
+        {
+            GameManager.Instance.LoadSceneAdditive("MapScreen",false,"Equipment");
+        }
+        else
+        {
+            GameManager.Instance.LoadSceneAdditive("Hotel",false,"Equipment");
+        }
+    }
 }

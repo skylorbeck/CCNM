@@ -7,7 +7,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using Random = Unity.Mathematics.Random;
+using Random = UnityEngine.Random;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
     public SaveManager saveManager;
     bool playerAccepted = false;
     private float target = 0;
+    
+    public string[] lastScenesUnloaded;
     
     [SerializeField] private GameObject TapToContinue;
     [SerializeField] private GameObject TEMP;
@@ -122,6 +125,7 @@ public class GameManager : MonoBehaviour
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad, mode);
         operation.allowSceneActivation = false;
         await Task.Delay(1000); //this is to wait for the black screen to fade in before unloading the scene
+        lastScenesUnloaded = sceneToUnload;
         foreach (string scene in sceneToUnload)
         {
             SceneManager.UnloadSceneAsync(scene);

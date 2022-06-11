@@ -2,17 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class CardDealer : MonoBehaviour
 {
     [SerializeField] Battlefield battlefield;
+    [SerializeField] TextMeshProUGUI totalCardsText;
     [SerializeField] private CardShell[] shells;
     [SerializeField] private Button[] buttons;
-
     async void Start()
     {
+        if (battlefield.randomState==null)
+        {
+            battlefield.randomState = Random.state;
+        }
+        else
+        {
+            Random.state = battlefield.randomState.Value;
+        }
+        totalCardsText.text = battlefield.totalHands + "/" + battlefield.deck.BossAt;
         if (battlefield.totalHands == battlefield.deck.BossAt)
         {
             shells[0].InsertCard(battlefield.deck.DrawBossCard(), false);
@@ -73,5 +84,12 @@ public class CardDealer : MonoBehaviour
                 GameManager.Instance.LoadSceneAdditive("EventScreen",false,"MapScreen");
                 break;
         }
+
+        battlefield.randomState = Random.state;
+    }
+
+    public virtual void Equipment()
+    {
+        GameManager.Instance.LoadSceneAdditive("Equipment",false,"MapScreen");
     }
 }

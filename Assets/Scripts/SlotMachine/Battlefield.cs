@@ -11,6 +11,8 @@ public class Battlefield : ScriptableObject
     [field:SerializeField] public PlayerBrain player{ get;private set; }
     public bool deckChosen = false;
     [field: SerializeField] public int totalHands { get; private set; } = 0;
+    public Random.State? randomState = null;
+
     
     public bool runOver => totalHands >= deck.BossAt;
 
@@ -35,7 +37,7 @@ public class Battlefield : ScriptableObject
 
     public void Reset()
     {
-        totalHands = 0;
+        totalHands = 1;
         player.Clone(GameManager.Instance.metaPlayer);
         
     }
