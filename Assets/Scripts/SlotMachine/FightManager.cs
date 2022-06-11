@@ -531,7 +531,7 @@ public class FightManager : MonoBehaviour
         } else
         {
             GameManager.Instance.inputReader.DisableUI();
-            // GameManager.Instance.DisablePointer();
+            GameManager.Instance.uiStateObject.DisableCursor();
         }
         state = newState;
     }

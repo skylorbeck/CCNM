@@ -14,6 +14,8 @@ public class UIStateObject : ScriptableObject
     [field: SerializeField] public bool showFadeOut { get; private set; }
     public UnityAction OnFadeOut = delegate {  };
     public UnityAction OnFadeIn = delegate {  };
+    
+    public UnityAction OnDisableCursor = delegate {  };
 
     public void Pause()
     {
@@ -84,5 +86,10 @@ public class UIStateObject : ScriptableObject
         showTopBar = false;
         showFadeOut = false;
         isPaused = false;
+    }
+    
+    public void DisableCursor()
+    {
+        OnDisableCursor.Invoke();
     }
 }

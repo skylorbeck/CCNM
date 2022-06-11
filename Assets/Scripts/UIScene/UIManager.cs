@@ -24,9 +24,11 @@ public class UIManager : MonoBehaviour
         uiStateObject.OnFadeOut += FadeOut;
         uiStateObject.OnPause += PauseOut;
         uiStateObject.OnResume += PauseIn;
+        uiStateObject.OnDisableCursor += DisablePointer;
         
         await Task.Delay(1);
         GameManager.Instance.inputReader.PadAny += NavUpdate;
+        GameManager.Instance.inputReader.ButtonDown += NavUpdate;
         GameManager.Instance.inputReader.ClickEvent += NavUpdateMouse;
         GameManager.Instance.FixedHalfSecond += NextSprite;
         await Task.Delay(249);
@@ -44,7 +46,10 @@ public class UIManager : MonoBehaviour
         uiStateObject.OnFadeOut -= FadeOut;
         uiStateObject.OnPause -= PauseOut;
         uiStateObject.OnResume -= PauseIn;
+        uiStateObject.OnDisableCursor -= DisablePointer;
+
         GameManager.Instance.inputReader.PadAny -= NavUpdate;
+        GameManager.Instance.inputReader.ButtonDown -= NavUpdate;
         GameManager.Instance.inputReader.ClickEvent -= NavUpdateMouse;
         GameManager.Instance.FixedHalfSecond -= NextSprite;
 
@@ -95,6 +100,7 @@ public class UIManager : MonoBehaviour
         {
             image.CrossFadeAlpha(0, 0.5f, true);
         }
+        DisablePointer();
     }
 
     public void PauseOut()
@@ -114,8 +120,11 @@ public class UIManager : MonoBehaviour
             EnablePointer();
             // GameManager.Instance.eventSystem.SetSelectedGameObject(startingSelection);
         }
-        await Task.Delay(50);
-        cursor.transform.position = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.position;
+        await Task.Delay(1);
+        if (!GameManager.Instance.uiStateObject.showFadeOut)
+        {
+            cursor.transform.position = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.position;
+        }
 
     }
     public void DisablePointer()
