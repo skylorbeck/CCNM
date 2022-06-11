@@ -36,6 +36,7 @@ public class PlayerBrain : Brain
         healthBonus = 0;
         critDamageBonus = 0;
         critChanceBonus = 0;
+        ClearAbilities();
         for (var i = 0; i < equippedSlots.Length; i++)
         {
             EquipmentDataContainer equippedCard;
@@ -73,6 +74,12 @@ public class PlayerBrain : Brain
                         critChanceBonus += equippedCard.statValue[j];
                         break;
                 }
+
+                
+            }
+            if (equippedCard.ability != null)
+            {
+                AddAbility(equippedCard.ability);
             }
         }
     }

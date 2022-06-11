@@ -7,8 +7,8 @@ using UnityEngine;
 public class BurnEffect : StatusEffect
 {
     [field: SerializeField] public int damage { get; private set; } = 1;
+    
 
-  
     public override async Task Tick(Shell target)
     {
         await target.Damage(null,damage,element);

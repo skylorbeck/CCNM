@@ -7,8 +7,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StatusEffect", menuName = "Combat/StatusEffect/Blank")]
 public class StatusEffect : ScriptableObject
 {
-    [field: SerializeField] public string titleTranslationKey { get; private set; } = "unset";
-    [field: SerializeField] public string descriptionTranslationKey { get; private set; } = "unset.description";
+    [field: SerializeField] public string title { get; private set; } = "unset";
+    [field: SerializeField] public string description { get; private set; } = "unset.description";
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public int duration { get; private set; } = 1;
     [field: SerializeField] public int maxStacks { get; private set; } = 0;
@@ -44,10 +44,10 @@ public class StatusEffect : ScriptableObject
     {
         if (isDebuff)
         {
-            TextPopController.Instance.PopNegative("+"+titleTranslationKey, target.transform.position,target.isPlayer);
+            TextPopController.Instance.PopNegative("+"+title, target.transform.position,target.isPlayer);
         } else
         {
-            TextPopController.Instance.PopPositive("+"+titleTranslationKey, target.transform.position,target.isPlayer);
+            TextPopController.Instance.PopPositive("+"+title, target.transform.position,target.isPlayer);
         }
         //do something to the shell
     }

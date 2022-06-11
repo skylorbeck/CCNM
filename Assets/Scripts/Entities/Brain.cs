@@ -21,4 +21,21 @@ public class Brain : ScriptableObject
         int randomIndex = Random.Range(0,abilities.Length);
         return abilities[randomIndex];
     }
+    
+    public AbilityObject GetAbility(int index)
+    {
+        return abilities[index];
+    }
+    
+    public void AddAbility(AbilityObject ability)
+    {
+        List<AbilityObject> newAbilities = new List<AbilityObject>(abilities);
+        newAbilities.Add(ability);
+        abilities = newAbilities.ToArray();
+    }
+    
+    public void ClearAbilities()
+    {
+        abilities = new AbilityObject[0];
+    }
 }

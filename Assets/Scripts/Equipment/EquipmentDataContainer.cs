@@ -42,7 +42,7 @@ public class EquipmentDataContainer
                     statValue[index] = 100;
                 }
 
-                ability = GameManager.Instance.abilityRegistry.GetRandomAbility();
+                ability = itemCore.GetRandomAbility();
                 break;
             case Quality.Fabled:
                 for (var index = 0; index < stats.Length; index++)
@@ -51,7 +51,7 @@ public class EquipmentDataContainer
                     statValue[index] = Random.Range(0, 100);
                 }
 
-                ability = GameManager.Instance.abilityRegistry.GetRandomAbility();
+                ability = itemCore.GetRandomAbility();
                 break;
             case Quality.Signature:
                 for (var index = 0; index < stats.Length - 1; index++)
@@ -62,7 +62,7 @@ public class EquipmentDataContainer
 
                 if (Random.Range(0f, 1f) > 0.5f)
                 {
-                    ability = GameManager.Instance.abilityRegistry.GetRandomAbility();
+                    ability = itemCore.GetRandomAbility();
                 }
                 else
                 {
@@ -79,7 +79,7 @@ public class EquipmentDataContainer
 
                 if (Random.Range(0f, 1f) > 0.5f)
                 {
-                    ability = GameManager.Instance.abilityRegistry.GetRandomAbility();
+                    ability = itemCore.GetRandomAbility();
                 }
                 else
                 {
@@ -96,7 +96,7 @@ public class EquipmentDataContainer
 
                 if (Random.Range(0f, 1f) > 0.5f)
                 {
-                    ability = GameManager.Instance.abilityRegistry.GetRandomAbility();
+                    ability = itemCore.GetRandomAbility();
                 }
                 else
                 {
@@ -114,7 +114,7 @@ public class EquipmentDataContainer
 
                 if (Random.Range(0f, 1f) > 0.5f)
                 {
-                    ability = GameManager.Instance.abilityRegistry.GetRandomAbility();
+                    ability = itemCore.GetRandomAbility();
                 }
                 else
                 {

@@ -74,13 +74,14 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-        /*//todo delete this
+        
+        //todo delete this
         for (var index = 0; index < playerObject.equipmentDataContainers.Length; index++)
         {
             EquipmentList equipmentList = playerObject.equipmentDataContainers[index];
             if (equipmentList.container.Count <= amountToTest)
             {
-                int amount = amountToTest -equipmentList.container.Count;
+                int amount = index -equipmentList.container.Count;
                 for (int j = 0; j < amount; j++)
                 {
                     EquipmentDataContainer dataContainer = new EquipmentDataContainer();
@@ -91,7 +92,7 @@ public class InventoryManager : MonoBehaviour
                     equipmentList.container.Add(dataContainer);
                 }
             }
-        }*/
+        }
 
         SelectHand(0);
     }
@@ -174,8 +175,28 @@ public class InventoryManager : MonoBehaviour
     
     public void SelectCard()
     {
-        playerObject.Equip(currentHandIndex,(int) cardSlider.value);
-        previewObjects[currentHandIndex].SetEquipped(playerObject.GetEquippedCard(currentHandIndex));
+        if (cards.Count==0)
+        {
+            return;
+        }
+
+        if (currentHandIndex<3)
+        {
+            if (cardSlider.value==0)
+            {
+                UnequipCard();
+            }
+            else
+            {
+                playerObject.Equip(currentHandIndex,(int)cardSlider.value-1);
+                previewObjects[currentHandIndex].SetEquipped(playerObject.GetEquippedCard(currentHandIndex));
+            }
+        }
+        else
+        {
+            playerObject.Equip(currentHandIndex,(int)cardSlider.value);
+            previewObjects[currentHandIndex].SetEquipped(playerObject.GetEquippedCard(currentHandIndex));
+        }
     }
     
     public void UnequipCard()
@@ -207,6 +228,15 @@ public class InventoryManager : MonoBehaviour
         }
         cards.Clear();
         int cardsToAdd = playerObject.equipmentDataContainers[index].container.Count;
+        if (index<3)
+        {
+            EquipmentCardShell cardShell = cardPool.Get();
+            cardShell.transform.localPosition = new Vector3(0, -9, 0);
+            EquipmentDataContainer dataContainer = playerObject.defaultEquipment[index];
+            cardShell.InsertItem(dataContainer);
+            cards.Add(cardShell);
+        }
+       //todo preview default equipment?
         for (int i = 0; i < cardsToAdd; i++)
         {
             EquipmentCardShell cardShell = cardPool.Get();
