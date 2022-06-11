@@ -54,7 +54,7 @@ public class StatusDisplayer : MonoBehaviour
         }
         EffectInstance status = Instantiate(statusPrefab, transform);
         status.SetStatusEffect(statusEffect, target);
-        if (!isDisplaying)
+        if (!isDisplaying || statusEffect.isHidden)
         {
             status.DisableVisuals();
         }
@@ -122,12 +122,13 @@ public class StatusDisplayer : MonoBehaviour
 
     public void SetStatusLocation()
     {
-        int xOffset = Math.Min(statusList.Count - 1,2);
+        List<EffectInstance> tempstack = statusList.FindAll(instance => !instance.statusEffect.isHidden);
+        int xOffset = Math.Min(tempstack.Count - 1,2);
 
-        for (var i = 0; i < statusList.Count; i++)
+        for (var i = 0; i < tempstack.Count; i++)
         {
             int offset = i / 3 % 3;
-            statusList[i].transform.localPosition = new Vector3((i * 0.5f)-(offset*1.5f)-(xOffset*0.25f) ,offset*0.5f , 0);
+            tempstack[i].transform.localPosition = new Vector3((i * 0.5f)-(offset*1.5f)-(xOffset*0.25f) ,offset*0.5f , 0);
         }
     }
 

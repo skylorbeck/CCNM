@@ -31,7 +31,7 @@ MonoBehaviour:
   <userShieldMultiplier>k__BackingField: 1
   <targetStatus>k__BackingField: {fileID: 0}
   <statusTarget>k__BackingField: 0
-  <userStatus>k__BackingField: {fileID: 11400000, guid: 671cfe5ee462ee44f90f6732fec677ee, type: 2}
+  <userStatus>k__BackingField: {fileID: 11400000, guid: c4bbedab102d1724b8328f6cd496029a, type: 2}
   <statusSelf>k__BackingField: 1
   <element>k__BackingField: 0
   <attackAnimation>k__BackingField: 1

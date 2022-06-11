@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
   m_Name: Block
   m_EditorClassIdentifier: 
-  <title>k__BackingField: ability.title
-  <descriptionA>k__BackingField: ability.description.a
-  <descriptionB>k__BackingField: ability.description.b
-  <icon>k__BackingField: {fileID: 0}
+  <title>k__BackingField: Block
+  <descriptionA>k__BackingField: 2x Shield Self
+  <descriptionB>k__BackingField: 
+  <icon>k__BackingField: {fileID: 21300000, guid: 99f01e10c7d3a264e9c62c437e746425, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 0
   <targetDamageMultiplier>k__BackingField: 1
@@ -27,12 +27,12 @@ MonoBehaviour:
   <userHealMultiplier>k__BackingField: 1
   <shieldTarget>k__BackingField: 0
   <targetShieldMultiplier>k__BackingField: 1
-  <shieldUser>k__BackingField: 0
-  <userShieldMultiplier>k__BackingField: 1
+  <shieldUser>k__BackingField: 1
+  <userShieldMultiplier>k__BackingField: 2
   <targetStatus>k__BackingField: {fileID: 0}
   <statusTarget>k__BackingField: 0
   <userStatus>k__BackingField: {fileID: 0}
   <statusSelf>k__BackingField: 0
   <element>k__BackingField: 0
   <attackAnimation>k__BackingField: 2
-  <soundEffect>k__BackingField: {fileID: 0}
+  <soundEffect>k__BackingField: {fileID: 8300000, guid: 2cd8b818a1ffc924c98f892e37ba989a, type: 3}

@@ -15,7 +15,7 @@ public class SaveManager
     public void Save()
     {
         equippedSlots = GameManager.Instance.battlefield.player.equippedSlots;
-        equipmentDataContainers = GameManager.Instance.battlefield.player.equipmentDataContainers;
+        equipmentDataContainers = GameManager.Instance.battlefield.player.playerInventory;
         
         FileStream dataStream = new FileStream(Application.persistentDataPath + "/save.dat", FileMode.Create);
         BinaryFormatter bf = new BinaryFormatter();

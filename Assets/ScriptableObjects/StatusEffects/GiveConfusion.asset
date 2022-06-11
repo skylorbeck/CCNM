@@ -15,10 +15,12 @@ MonoBehaviour:
   <title>k__BackingField: unset
   <description>k__BackingField: unset.description
   <icon>k__BackingField: {fileID: 0}
-  <duration>k__BackingField: 1
+  <duration>k__BackingField: 0
   <maxStacks>k__BackingField: 0
   <isPersistent>k__BackingField: 0
-  <isStackable>k__BackingField: 0
-  <isDebuff>k__BackingField: 1
+  <isStackable>k__BackingField: 1
+  <isDebuff>k__BackingField: 0
+  <isHidden>k__BackingField: 1
+  <alwaysExpires>k__BackingField: 1
   <element>k__BackingField: 0
   statusEffect: {fileID: 11400000, guid: 671cfe5ee462ee44f90f6732fec677ee, type: 2}

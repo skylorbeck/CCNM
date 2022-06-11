@@ -20,5 +20,6 @@ MonoBehaviour:
   <isPersistent>k__BackingField: 0
   <isStackable>k__BackingField: 1
   <isDebuff>k__BackingField: 1
+  <isHidden>k__BackingField: 0
   <element>k__BackingField: 1
   <damage>k__BackingField: 1

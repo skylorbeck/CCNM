@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Battlefield", menuName = "Combat/Battlefield")]
@@ -35,5 +36,7 @@ public class Battlefield : ScriptableObject
     public void Reset()
     {
         totalHands = 0;
+        player.Clone(GameManager.Instance.metaPlayer);
+        
     }
 }

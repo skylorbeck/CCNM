@@ -109,6 +109,7 @@ public class FightManager : MonoBehaviour
     public void Quit()
     {
         GameManager.Instance.uiStateObject.Clear();
+        GameManager.Instance.battlefield.deckChosen = false;//todo replace with save system
         foreach (TextMeshProUGUI text in pauseText)
         {
             text.CrossFadeAlpha(0,0.25f,true);

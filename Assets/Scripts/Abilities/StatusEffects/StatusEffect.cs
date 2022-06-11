@@ -15,6 +15,8 @@ public class StatusEffect : ScriptableObject
     [field: SerializeField] public bool isPersistent { get; private set; } = false;
     [field: SerializeField] public bool isStackable { get; private set; } = false;
     [field: SerializeField] public bool isDebuff { get; private set; } = false;
+    [field: SerializeField] public bool isHidden { get; private set; } = false;
+    [field: SerializeField] public bool alwaysExpires { get; private set; } = false;
     [field: SerializeField] public Element element { get; private set; } = Element.None;
 
     public bool isElemental => element != Element.None;
@@ -42,6 +44,10 @@ public class StatusEffect : ScriptableObject
     //called when status effect is applied to a shell
     public virtual async void OnApply(Shell target)
     {
+        if (isHidden)
+        {
+            return;
+        }
         if (isDebuff)
         {
             TextPopController.Instance.PopNegative("+"+title, target.transform.position,target.isPlayer);

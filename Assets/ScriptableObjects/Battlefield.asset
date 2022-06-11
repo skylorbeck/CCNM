@@ -15,8 +15,8 @@ MonoBehaviour:
   <deck>k__BackingField: {fileID: 11400000, guid: a721d7203651bfd48bcad82cdf586d59, type: 2}
   <enemies>k__BackingField:
   - {fileID: 11400000, guid: 00642a671b7aed14da8f6d531375b1d4, type: 2}
-  - {fileID: 11400000, guid: b0f0379f60d79724c96c9340a39d6d21, type: 2}
   - {fileID: 11400000, guid: 00642a671b7aed14da8f6d531375b1d4, type: 2}
-  <player>k__BackingField: {fileID: 11400000, guid: 5efdcd83a86bf474eab7301799af83e9, type: 2}
+  - {fileID: 11400000, guid: 00642a671b7aed14da8f6d531375b1d4, type: 2}
+  <player>k__BackingField: {fileID: 11400000, guid: a4add858d424d2743ae7049f6b0669cc, type: 2}
   deckChosen: 1
-  <totalHands>k__BackingField: 0
+  <totalHands>k__BackingField: 1

@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880a1eb5bf69fa041b2b23b4aa515aee, type: 3}
   m_Name: EmpoweredEffect
   m_EditorClassIdentifier: 
-  <titleTranslationKey>k__BackingField: empowered
-  <descriptionTranslationKey>k__BackingField: empowered.description
+  <title>k__BackingField: Empowered
+  <description>k__BackingField: unset.description
   <icon>k__BackingField: {fileID: 21300000, guid: 54c5823927fa9d147b2b4ebccd54b034, type: 3}
   <duration>k__BackingField: 1
   <maxStacks>k__BackingField: 0
   <isPersistent>k__BackingField: 0
   <isStackable>k__BackingField: 1
   <isDebuff>k__BackingField: 0
+  <isHidden>k__BackingField: 0
+  <alwaysExpires>k__BackingField: 0
   <element>k__BackingField: 0

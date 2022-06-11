@@ -18,3 +18,6 @@ MonoBehaviour:
   <cardCost>k__BackingField: 10
   <cardType>k__BackingField: 0
   <itemType>k__BackingField: 4
+  <possibleAbilities>k__BackingField:
+  - {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
+  - {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}

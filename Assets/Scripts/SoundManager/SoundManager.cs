@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -9,7 +12,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
     [SerializeField] private AudioSource prefab;
     private ObjectPool<AudioSource> audioPool;
-
+    CancellationTokenSource cts;
     void Start()
     {
         if (instance == null)
@@ -20,6 +23,8 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        cts = new CancellationTokenSource();
         audioPool = new ObjectPool<AudioSource>(
             () =>
             {
@@ -59,7 +64,12 @@ public class SoundManager : MonoBehaviour
         do
         {
             await Task.Delay(100);
-        } while (audioSource.isPlaying);
+        } while (!cts.Token.IsCancellationRequested && audioSource.isPlaying);
         audioPool.Release(audioSource);
+    }
+
+    public void OnDestroy()
+    {
+        cts.Cancel();
     }
 }

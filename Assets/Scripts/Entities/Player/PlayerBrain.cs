@@ -10,9 +10,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerObject", menuName = "Combat/PlayerSO")]
 public class PlayerBrain : Brain
 {
-    // [field: SerializeField] public EquipmentDataContainer[] equippedCards { get; private set; }
     [field: SerializeField] public int[] equippedSlots { get; private set; }
-    [field: SerializeField] public EquipmentList[] equipmentDataContainers { get; private set; }
+    [field: SerializeField] public EquipmentList[] playerInventory { get; private set; }
     [field: SerializeField] public EquipmentDataContainer[] defaultEquipment { get; private set; }
 
     [field: SerializeField] public int damageBonus { get; private set; }
@@ -51,7 +50,7 @@ public class PlayerBrain : Brain
             }
             else
             {
-                equippedCard = equipmentDataContainers[i].container[equippedSlots[i]];
+                equippedCard = playerInventory[i].container[equippedSlots[i]];
             }
             for (var j = 0; j <equippedCard.stats.Length; j++)
             {
@@ -92,31 +91,54 @@ public class PlayerBrain : Brain
     
     public void AddCardToInventory(EquipmentDataContainer equipmentDataContainer)
     {
-        equipmentDataContainers[(int)equipmentDataContainer.itemCore.itemType].container.Add(equipmentDataContainer);
+        playerInventory[(int)equipmentDataContainer.itemCore.itemType].container.Add(equipmentDataContainer);
     }
     
     public void RemoveCardFromInventory(EquipmentDataContainer equipmentDataContainer)
     {
-        equipmentDataContainers[(int)equipmentDataContainer.itemCore.itemType].container.Remove(equipmentDataContainer);
+        playerInventory[(int)equipmentDataContainer.itemCore.itemType].container.Remove(equipmentDataContainer);
     }
     
     public EquipmentDataContainer GetCard(int equipmentSlot,int cardIndex)
     {
-        return equipmentDataContainers[equipmentSlot].container[cardIndex];
+        return playerInventory[equipmentSlot].container[cardIndex];
     }
     
     public bool EquippedCardExists(int equipmentList)
     {
-        if (equippedSlots[equipmentList]>=equipmentDataContainers[equipmentList].container.Count)
+        if (equippedSlots[equipmentList]==-1 || equippedSlots[equipmentList]>=playerInventory[equipmentList].container.Count)
         {
             return false;
         }
-        return equipmentDataContainers[equipmentList].container[equippedSlots[equipmentList]]!=null;
+        return playerInventory[equipmentList].container[equippedSlots[equipmentList]]!=null;
     }
     
     public EquipmentDataContainer GetEquippedCard(int equipmentList)
     {
-        return equipmentDataContainers[equipmentList].container[equippedSlots[equipmentList]];
+        return playerInventory[equipmentList].container[equippedSlots[equipmentList]];
+    }
+    
+    public void ClearInventory()
+    {
+        for (var i = 0; i < playerInventory.Length; i++)
+        {
+            playerInventory[i].container = new List<EquipmentDataContainer>();
+        }
+    }
+
+    public void Clone(PlayerBrain sourcePlayer)
+    {
+        ClearInventory();
+        for (var index = 0; index < sourcePlayer.equippedSlots.Length; index++)
+        {
+            if (GameManager.Instance.metaPlayer.EquippedCardExists(index))
+            {
+                equippedSlots[index] =0;
+                AddCardToInventory(GameManager.Instance.metaPlayer.GetEquippedCard(index));
+            }
+        }
+        defaultEquipment = sourcePlayer.defaultEquipment;
+        CalculateStats();
     }
 }
 

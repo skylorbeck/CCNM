@@ -45,17 +45,21 @@ public class EffectInstance : MonoBehaviour
 
         await statusEffect.Tick(target);
 
-        if (duration <= 0)
+        if (duration <= 0 || statusEffect.alwaysExpires)
         {
             Expire();
         }
 
     }
 
+    public void OnDestroy()
+    {
+        statusEffect.OnRemove(target);
+    }
+
     public void Expire()
     {
         isActive = false;
-        statusEffect.OnRemove(target);
     }
 
     public void SetStatusEffect(StatusEffect statusEffect, Shell shell)

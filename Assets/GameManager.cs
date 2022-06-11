@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public EventSystem eventSystem;
     public SaveData currentRunData;
     public RunSettings runSettings;
+    public PlayerBrain metaPlayer;
     public EquipmentRegistry[] equipmentRegistries;
     public AbilityRegistry abilityRegistry;
     public SaveManager saveManager;

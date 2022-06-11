@@ -137,6 +137,7 @@ public class NewRunManager : MonoBehaviour
     public void StartRun()
     {
         GameManager.Instance.battlefield.Reset();
+        GameManager.Instance.battlefield.deckChosen = true;//todo replace with save loading
         GameManager.Instance.LoadSceneAdditive("MapScreen", false,"RunSettings");
     }
     

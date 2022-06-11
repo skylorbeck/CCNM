@@ -53,6 +53,13 @@ public class InventoryManager : MonoBehaviour
         GameManager.Instance.inputReader.PadAny += NavUpdate;
         GameManager.Instance.inputReader.ClickEvent += NavUpdateMouse;
         await Task.Delay(10);
+        if (GameManager.Instance.battlefield.deckChosen)
+        {
+            playerObject = GameManager.Instance.battlefield.player;
+        } else
+        {
+            playerObject = GameManager.Instance.metaPlayer;
+        }
         
         for (var i = 0; i < playerObject.equippedSlots.Length; i++)
         {
@@ -75,10 +82,10 @@ public class InventoryManager : MonoBehaviour
             }
         }
         
-        //todo delete this
-        for (var index = 0; index < playerObject.equipmentDataContainers.Length; index++)
+        /*//todo delete this
+        for (var index = 0; index < playerObject.playerInventory.Length; index++)
         {
-            EquipmentList equipmentList = playerObject.equipmentDataContainers[index];
+            EquipmentList equipmentList = playerObject.playerInventory[index];
             if (equipmentList.container.Count <= amountToTest)
             {
                 int amount = index -equipmentList.container.Count;
@@ -92,7 +99,7 @@ public class InventoryManager : MonoBehaviour
                     equipmentList.container.Add(dataContainer);
                 }
             }
-        }
+        }*/
 
         SelectHand(0);
     }
@@ -214,6 +221,7 @@ public class InventoryManager : MonoBehaviour
     
     public async void SelectHand(int index)
     {
+        GameObject selected = GameManager.Instance.eventSystem.currentSelectedGameObject;
         currentHandIndex = index;
         selector.localPosition = previewObjects[currentHandIndex].transform.localPosition;
 
@@ -227,7 +235,7 @@ public class InventoryManager : MonoBehaviour
             cardPool.Release(card);
         }
         cards.Clear();
-        int cardsToAdd = playerObject.equipmentDataContainers[index].container.Count;
+        int cardsToAdd = playerObject.playerInventory[index].container.Count;
         if (index<3)
         {
             EquipmentCardShell cardShell = cardPool.Get();
@@ -236,12 +244,11 @@ public class InventoryManager : MonoBehaviour
             cardShell.InsertItem(dataContainer);
             cards.Add(cardShell);
         }
-       //todo preview default equipment?
         for (int i = 0; i < cardsToAdd; i++)
         {
             EquipmentCardShell cardShell = cardPool.Get();
             cardShell.transform.localPosition = new Vector3(i * 0.5f, -9, i);
-            EquipmentDataContainer dataContainer = playerObject.equipmentDataContainers[index].container[i];
+            EquipmentDataContainer dataContainer = playerObject.playerInventory[index].container[i];
             cardShell.InsertItem(dataContainer);
             cards.Add(cardShell);
         }
@@ -253,6 +260,7 @@ public class InventoryManager : MonoBehaviour
         {
             button.interactable = true;
         }
+        GameManager.Instance.eventSystem.SetSelectedGameObject(selected);
     }
 
     public async Task MoveCardsDown()
