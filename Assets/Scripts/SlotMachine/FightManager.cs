@@ -91,6 +91,7 @@ public class FightManager : MonoBehaviour
         else
         { 
             GameManager.Instance.FixedSecond += SizeSelector;
+            GameManager.Instance.eventSystem.SetSelectedGameObject(startingSelection);
         }
         foreach (Button button in allButtons)
         {

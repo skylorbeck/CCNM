@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
         uiStateObject.OnPause += PauseOut;
         uiStateObject.OnResume += PauseIn;
         uiStateObject.OnDisableCursor += DisablePointer;
+        uiStateObject.TopBarPing += SetTopBarText;
         
         await Task.Delay(1);
         GameManager.Instance.inputReader.PadAny += NavUpdate;
@@ -47,6 +48,7 @@ public class UIManager : MonoBehaviour
         uiStateObject.OnPause -= PauseOut;
         uiStateObject.OnResume -= PauseIn;
         uiStateObject.OnDisableCursor -= DisablePointer;
+        uiStateObject.TopBarPing -= SetTopBarText;
 
         GameManager.Instance.inputReader.PadAny -= NavUpdate;
         GameManager.Instance.inputReader.ButtonDown -= NavUpdate;
@@ -55,6 +57,11 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void SetTopBarText(string text)
+    {
+        notificationText.text = text;
+    }
+    
     public void NextSprite()
     {
         loading.NextSprite();
@@ -92,6 +99,7 @@ public class UIManager : MonoBehaviour
         {
             image.CrossFadeAlpha(1, 0.5f, true);
         }
+        DisablePointer();
     }
 
     public void FadeIn()
@@ -100,7 +108,6 @@ public class UIManager : MonoBehaviour
         {
             image.CrossFadeAlpha(0, 0.5f, true);
         }
-        DisablePointer();
     }
 
     public void PauseOut()

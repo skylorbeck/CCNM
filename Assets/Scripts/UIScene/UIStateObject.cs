@@ -16,6 +16,7 @@ public class UIStateObject : ScriptableObject
     public UnityAction OnFadeIn = delegate {  };
     
     public UnityAction OnDisableCursor = delegate {  };
+    public UnityAction<string> TopBarPing = delegate {  };
 
     public void Pause()
     {
@@ -91,5 +92,10 @@ public class UIStateObject : ScriptableObject
     public void DisableCursor()
     {
         OnDisableCursor.Invoke();
+    }
+    
+    public void Ping(string text)
+    {
+        TopBarPing.Invoke(text);
     }
 }

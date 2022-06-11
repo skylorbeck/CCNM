@@ -65,7 +65,7 @@ public class Shell : MonoBehaviour
         statusDisplayer.Clear();
     }
     
-    public async void Heal([CanBeNull] Shell source,int baseHeal, StatusEffect.Element element)
+    public async virtual void Heal([CanBeNull] Shell source,int baseHeal, StatusEffect.Element element)
     {
         int heal = await statusDisplayer.OnHeal(source,this,baseHeal);
         TextPopController.Instance.PopHeal(heal,transform.position);
