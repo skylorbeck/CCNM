@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -13,6 +14,9 @@ public class CardDealer : MonoBehaviour
     [SerializeField] TextMeshProUGUI totalCardsText;
     [SerializeField] private CardShell[] shells;
     [SerializeField] private Button[] buttons;
+    [SerializeField] private TextMeshProUGUI[] pauseText;
+    [SerializeField] private GraphicRaycaster pauseRaycaster;
+
     async void Start()
     {
         if (battlefield.randomState==null)
@@ -22,6 +26,10 @@ public class CardDealer : MonoBehaviour
         else
         {
             Random.state = battlefield.randomState.Value;
+        }
+        foreach (TextMeshProUGUI text in pauseText)
+        {
+            text.CrossFadeAlpha(0, 0,true);
         }
         totalCardsText.text = battlefield.totalHands + "/" + battlefield.deck.BossAt;
         if (battlefield.totalHands == battlefield.deck.BossAt)
@@ -62,6 +70,8 @@ public class CardDealer : MonoBehaviour
                 buttons[i].interactable = true;
             }
         }
+        GameManager.Instance.inputReader.Back+=Back;
+
     }
 
     public virtual void SetupAndLoad(int selectedCard)
@@ -91,5 +101,39 @@ public class CardDealer : MonoBehaviour
     public virtual void Equipment()
     {
         GameManager.Instance.LoadSceneAdditive("Equipment",false,"MapScreen");
+    }
+    
+    public void Back()
+    {
+        GameManager.Instance.uiStateObject.TogglePause();
+        
+        foreach (Button button in buttons)
+        {
+            button.interactable = !button.interactable;
+        }
+        foreach (TextMeshProUGUI text in pauseText)
+        {
+            text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ?1 :0, 0.25f,true);
+        }
+        pauseRaycaster.enabled = GameManager.Instance.uiStateObject.isPaused;
+        if (GameManager.Instance.uiStateObject.isPaused)
+        {
+            GameManager.Instance.eventSystem.SetSelectedGameObject(buttons[0].gameObject);
+        }
+        else
+        { 
+            GameManager.Instance.eventSystem.SetSelectedGameObject(buttons[4].gameObject);
+        }
+    }
+
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.inputReader.Back-=Back;
+    }
+    
+    public void Quit()
+    {
+        GameManager.Instance.LoadSceneAdditive("MainMenu",false,"MapScreen");
     }
 }

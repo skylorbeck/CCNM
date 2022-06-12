@@ -11,6 +11,7 @@ public class HotelManager : MonoBehaviour
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
         GameManager.Instance.uiStateObject.ShowTopBar();
+        GameManager.Instance.uiStateObject.Ping("The Hotel");
     }
 
     private void OnDestroy()
@@ -25,5 +26,9 @@ public class HotelManager : MonoBehaviour
     public void Equipment()
     {
         GameManager.Instance.LoadSceneAdditive("Equipment",false,"Hotel");
+    }
+    public void CardShredding()
+    {
+        GameManager.Instance.LoadSceneAdditive("CardShredding",false,"Hotel");
     }
 }

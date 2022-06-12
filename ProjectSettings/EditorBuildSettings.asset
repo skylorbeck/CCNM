@@ -44,6 +44,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RunOver.unity
     guid: a69d5f357901dcf48a004fc1aaaf70e6
+  - enabled: 1
+    path: Assets/Scenes/CardShredding.unity
+    guid: a0f67e050dd9cea4484c92e1fa0d9717
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 3185ca3d38fce8645b8237c7d3fe5ec8, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: cb053fcbe17097d47bd292f7b0d20321, type: 2}
