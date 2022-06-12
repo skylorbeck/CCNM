@@ -65,7 +65,7 @@ public class NewRunManager : MonoBehaviour
 
     public void Back()
     {
-        GameManager.Instance.LoadSceneAdditive("MainMenu",false,"RunSettings");
+        GameManager.Instance.LoadSceneAdditive("MainMenu","RunSettings");
     }
     public void UpdateHealth()
     {
@@ -138,7 +138,7 @@ public class NewRunManager : MonoBehaviour
     {
         GameManager.Instance.battlefield.Reset();
         GameManager.Instance.battlefield.deckChosen = true;//todo replace with save loading
-        GameManager.Instance.LoadSceneAdditive("MapScreen", false,"RunSettings");
+        GameManager.Instance.LoadSceneAdditive("MapScreen", "RunSettings");
     }
     
     public enum Difficulty

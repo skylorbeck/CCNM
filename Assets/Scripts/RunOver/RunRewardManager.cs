@@ -9,7 +9,7 @@ public class RunRewardManager : MonoBehaviour
     {
         await Task.Delay(1000);
         //todo add rewards
-        GameManager.Instance.LoadSceneAdditive("MainMenu",false,"RunOver");
+        GameManager.Instance.LoadSceneAdditive("MainMenu","RunOver");
     }
 
     void Update()

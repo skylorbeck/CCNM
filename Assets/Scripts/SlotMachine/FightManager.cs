@@ -109,12 +109,12 @@ public class FightManager : MonoBehaviour
     public void Quit()
     {
         GameManager.Instance.uiStateObject.Clear();
-        // GameManager.Instance.battlefield.deckChosen = false;//todo replace with save system
+        GameManager.Instance.battlefield.deckChosen = false;//todo replace with save system
         foreach (TextMeshProUGUI text in pauseText)
         {
             text.CrossFadeAlpha(0,0.25f,true);
         }
-        GameManager.Instance.LoadSceneAdditive("MainMenu",false,"Fight");
+        GameManager.Instance.LoadSceneAdditive("MainMenu","Fight");
     }
 
     
@@ -212,7 +212,7 @@ public class FightManager : MonoBehaviour
         {
             SetState(WheelStates.FightOver);
             battlefield.randomState = null;//todo replace with gameOver
-            GameManager.Instance.LoadSceneAdditive("RunOver",false,"Fight");
+            GameManager.Instance.LoadSceneAdditive("RunOver","Fight");
 
         } else if (enemies.All(x => x.isDead))
         {
@@ -221,7 +221,7 @@ public class FightManager : MonoBehaviour
             {
                 //todo add run over win screen
                 battlefield.randomState = null;
-                GameManager.Instance.LoadSceneAdditive("RunOver",false,"Fight");
+                GameManager.Instance.LoadSceneAdditive("RunOver","Fight");
             }
             else
             {
@@ -232,7 +232,7 @@ public class FightManager : MonoBehaviour
                 }
                 GameManager.Instance.currentRunData.AddCredits(credits);
                 battlefield.randomState = null;
-                GameManager.Instance.LoadSceneAdditive("FightWon", false, "Fight");
+                GameManager.Instance.LoadSceneAdditive("FightWon",  "Fight");
             }
         }
     }

@@ -19,6 +19,6 @@ public class SettingsManager : MonoBehaviour
 
     public void Back()
     {
-        GameManager.Instance.LoadSceneAdditive("MainMenu",false,"Settings");
+        GameManager.Instance.LoadSceneAdditive("MainMenu","Settings");
     }
 }

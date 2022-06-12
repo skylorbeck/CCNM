@@ -9,7 +9,7 @@ public class FightRewardDealer : MonoBehaviour
     {
         await Task.Delay(1000);
         //todo add rewards
-        GameManager.Instance.LoadSceneAdditive("MapScreen",false,"FightWon");
+        GameManager.Instance.LoadSceneAdditive("MapScreen","FightWon");
     }
 
     void Update()

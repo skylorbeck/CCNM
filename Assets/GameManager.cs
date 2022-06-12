@@ -72,11 +72,11 @@ public class GameManager : MonoBehaviour
 
         if (!mainMenuLoaded)
         {
-            LoadSceneAdditive("MainMenu", false);
+            LoadSceneAdditive("MainMenu");
         }
         if (!uiLoaded)
         {
-            LoadSceneAdditive("UIOverlay",false);
+            LoadSceneAdditive("UIOverlay");
         }
         inputReader.EnableUI();
         SceneManager.sceneLoaded += DestroyTEMP;
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadSceneAdditive(string sceneName,params string[] sceneToUnload)
     {
-        LoadScene(sceneName, LoadSceneMode.Additive, true, sceneToUnload);
+        LoadScene(sceneName, LoadSceneMode.Additive, false, sceneToUnload);
     }
     public void LoadSceneAdditive(string sceneName, bool waitForInput,params string[] sceneToUnload)
     {

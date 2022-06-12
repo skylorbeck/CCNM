@@ -283,11 +283,11 @@ public class InventoryManager : MonoBehaviour
     {
         if (GameManager.Instance.battlefield.deckChosen)
         {
-            GameManager.Instance.LoadSceneAdditive("MapScreen",false,"Equipment");
+            GameManager.Instance.LoadSceneAdditive("MapScreen","Equipment");
         }
         else
         {
-            GameManager.Instance.LoadSceneAdditive("Hotel",false,"Equipment");
+            GameManager.Instance.LoadSceneAdditive("Hotel","Equipment");
         }
     }
 }

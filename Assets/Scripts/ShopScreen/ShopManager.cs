@@ -11,7 +11,7 @@ public class ShopManager : MonoBehaviour
     {
         await Task.Delay(1000);
         //todo add events
-        GameManager.Instance.LoadSceneAdditive("MapScreen",false,"ShopScreen");
+        GameManager.Instance.LoadSceneAdditive("MapScreen","ShopScreen");
         // GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
 
     }

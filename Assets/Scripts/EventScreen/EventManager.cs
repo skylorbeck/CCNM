@@ -10,7 +10,7 @@ public class EventManager : MonoBehaviour
     {
         await Task.Delay(1000);
         //todo add events
-        GameManager.Instance.LoadSceneAdditive("MapScreen",false,"EventScreen");
+        GameManager.Instance.LoadSceneAdditive("MapScreen","EventScreen");
     }
 
     void Update()

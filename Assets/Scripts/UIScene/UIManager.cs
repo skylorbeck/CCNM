@@ -128,7 +128,7 @@ public class UIManager : MonoBehaviour
             // GameManager.Instance.eventSystem.SetSelectedGameObject(startingSelection);
         }
         await Task.Delay(1);
-        if (!GameManager.Instance.uiStateObject.showFadeOut)
+        if (!GameManager.Instance.uiStateObject.showFadeOut && GameManager.Instance.eventSystem.currentSelectedGameObject!=null)
         {
             cursor.transform.position = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.position;
         }

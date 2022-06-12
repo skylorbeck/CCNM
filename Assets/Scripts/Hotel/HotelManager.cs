@@ -21,14 +21,14 @@ public class HotelManager : MonoBehaviour
 
     public void Back()
     {
-        GameManager.Instance.LoadSceneAdditive("MainMenu",false,"Hotel");
+        GameManager.Instance.LoadSceneAdditive("MainMenu","Hotel");
     }
     public void Equipment()
     {
-        GameManager.Instance.LoadSceneAdditive("Equipment",false,"Hotel");
+        GameManager.Instance.LoadSceneAdditive("Equipment","Hotel");
     }
     public void CardShredding()
     {
-        GameManager.Instance.LoadSceneAdditive("CardShredding",false,"Hotel");
+        GameManager.Instance.LoadSceneAdditive("CardShredding","Hotel");
     }
 }

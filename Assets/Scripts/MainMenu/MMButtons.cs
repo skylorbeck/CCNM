@@ -8,7 +8,7 @@ public class MMButtons : MonoBehaviour
 {
     public void NewGame()
     {
-        GameManager.Instance.LoadSceneAdditive("RunSettings",false,"MainMenu");
+        GameManager.Instance.LoadSceneAdditive("RunSettings","MainMenu");
     }
 
     public void ResumeGame()
@@ -16,20 +16,22 @@ public class MMButtons : MonoBehaviour
         List<string> scenes = new List<string>(GameManager.Instance.lastScenesUnloaded);
         if (scenes.Contains("MapScreen"))
         {
-            GameManager.Instance.LoadSceneAdditive("MapScreen",false,"MainMenu");
+            GameManager.Instance.battlefield.deckChosen = true;
+            GameManager.Instance.LoadSceneAdditive("MapScreen","MainMenu");
         } else if (scenes.Contains("Fight"))
         {
-            GameManager.Instance.LoadSceneAdditive("Fight",false,"MainMenu");
+            GameManager.Instance.battlefield.deckChosen = true;
+            GameManager.Instance.LoadSceneAdditive("Fight","MainMenu");
         }
     }
     public void Hotel()
     {
-        GameManager.Instance.LoadSceneAdditive("Hotel",false,"MainMenu");
+        GameManager.Instance.LoadSceneAdditive("Hotel","MainMenu");
     }
     
     public void Settings()
     {
-        GameManager.Instance.LoadSceneAdditive("Settings",false,"MainMenu");
+        GameManager.Instance.LoadSceneAdditive("Settings","MainMenu");
     }
     
     private void Start()
