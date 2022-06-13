@@ -10,6 +10,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerObject", menuName = "Combat/PlayerSO")]
 public class PlayerBrain : Brain
 {
+    
     [field: SerializeField] public int[] equippedSlots { get; private set; }
     [field: SerializeField] public EquipmentList[] playerInventory { get; private set; }
     [field: SerializeField] public EquipmentDataContainer[] defaultEquipment { get; private set; }

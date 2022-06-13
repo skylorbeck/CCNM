@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,6 +10,7 @@ public class EquipmentDataContainer
     [field:SerializeField] public ItemCard itemCore { get; private set; }
     [field:SerializeField] public AbilityObject ability{ get; protected set; }
     [field:SerializeField] public Quality quality { get; private set; }
+    [field:SerializeField] public int level { get; private set; }
     [field:SerializeField] public Stats[] stats { get; private set; }
     [field:SerializeField] public int[] statValue { get; private set; }
     [field:SerializeField] public bool indestructible { get; private set; }
@@ -34,118 +37,104 @@ public class EquipmentDataContainer
         return index;
     }
 
-    public void GenerateData() //todo replace this entire thing, it's disgusting
+    public void GenerateDataOfLevel(int ofLevel)
     {
-        quality = (Quality)Random.Range(0, Enum.GetNames(typeof(Quality)).Length);
+        quality = GameManager.Instance.lootManager.GetRandomQuality();
+
+        level = ofLevel;
         stats = new Stats[5];
         statValue = new int[5];
-        switch (quality)
+
+        List<Stats> allStats = new List<Stats>();
+        List<Stats> pickedStats = new List<Stats>();
+        allStats.AddRange(Enum.GetValues(typeof(Stats)).Cast<Stats>());
+        allStats.Remove(Stats.None);
+        for (int i = 0; i < 5; i++)
         {
-            case Quality.Curator:
-                for (var index = 0; index < stats.Length; index++)
-                {
-                    stats[index] = (Stats)Random.Range(1, Enum.GetNames(typeof(Stats)).Length);
-                    statValue[index] = 100;
-                }
+            if ((int)quality >= i - 1)
+            {
+                pickedStats.Add(allStats[Random.Range(0, allStats.Count)]);
+                allStats.Remove(pickedStats[i]);
+            }
+            else
+            {
+                pickedStats.Add(Stats.None);
+            }
+        }
+        pickedStats.Sort((x, y) => y.CompareTo(x));
+        stats = pickedStats.ToArray();
+        for (var i = 0; i < stats.Length; i++)
+        {
+            switch (stats[i])
+            {
+                case Stats.None:
+                    statValue[i] = 0;
+                    break;
+                case Stats.Damage:
+                    statValue[i] = Random.Range(1, level + 1);
+                    break;
+                case Stats.Shield:
+                    statValue[i] = Random.Range(1, 10) * level;
+                    break;
+                case Stats.CriticalChance:
+                    statValue[i] = Random.Range(level, 101);
+                    break;
+                case Stats.CriticalDamage:
+                    statValue[i] = Random.Range(level*10, 101*level);
+                    break;
+                case Stats.Health:
+                    statValue[i] = 100 + Random.Range(1 * level, 101 * level);
+                    break;
+            }
+        }
+        int[] statIndexes = new int[5]{0,1,2,3,4};
+        statIndexes = statIndexes.OrderBy(x => Random.value).ToArray();
+        for (int i = 0; i < quality - Quality.Choice; i++)
+        {
+            // statValue[statIndexes[i]] = -420;
+            switch (stats[statIndexes[i]])
+            {
+                case Stats.Damage:
+                    statValue[0] =level + 1;
+                    break;
+                case Stats.Shield:
+                    statValue[i] = 10* level;
+                    break;
+                case Stats.CriticalChance:
+                    statValue[i] = 100;
+                    break;
+                case Stats.CriticalDamage:
+                    statValue[i] = 101;
+                    break;
+                case Stats.Health:
+                    statValue[i] = 100+101* level;
+                    break;
+            }
+        }
 
-                ability = itemCore.GetRandomAbility();
-                break;
-            case Quality.Fabled:
-                for (var index = 0; index < stats.Length; index++)
-                {
-                    stats[index] = (Stats)Random.Range(1, Enum.GetNames(typeof(Stats)).Length);
-                    statValue[index] = Random.Range(0, 100);
-                }
+        float abilityChance = 0.5f;
+        if (quality == Quality.Noteworthy)
+            abilityChance = 0.75f;
+        if (quality == Quality.Typical)
+        {
+            abilityChance = 1f;
+        }
 
-                ability = itemCore.GetRandomAbility();
-                break;
-            case Quality.Signature:
-                for (var index = 0; index < stats.Length - 1; index++)
-                {
-                    stats[index] = (Stats)Random.Range(1, Enum.GetNames(typeof(Stats)).Length);
-                    statValue[index] = Random.Range(0, 100);
-                }
-
-                if (Random.Range(0f, 1f) > 0.5f)
-                {
-                    ability = itemCore.GetRandomAbility();
-                }
-                else
-                {
-                    stats[stats.Length - 1] = (Stats)Random.Range(1, Enum.GetNames(typeof(Stats)).Length);
-                    statValue[stats.Length - 1] = Random.Range(0, 100);
-                }
-                break;
-            case Quality.Choice:
-                for (var index = 0; index < stats.Length - 2; index++)
-                {
-                    stats[index] = (Stats)Random.Range(1, Enum.GetNames(typeof(Stats)).Length);
-                    statValue[index] = Random.Range(0, 100);
-                }
-
-                if (Random.Range(0f, 1f) > 0.5f)
-                {
-                    ability = itemCore.GetRandomAbility();
-                }
-                else
-                {
-                    stats[stats.Length - 2] = (Stats)Random.Range(1, Enum.GetNames(typeof(Stats)).Length);
-                    statValue[stats.Length - 2] = Random.Range(0, 100);
-                }
-                break;
-            case Quality.Remarkable:
-                for (var index = 0; index < stats.Length - 3; index++)
-                {
-                    stats[index] = (Stats)Random.Range(1, Enum.GetNames(typeof(Stats)).Length);
-                    statValue[index] = Random.Range(0, 100);
-                }
-
-                if (Random.Range(0f, 1f) > 0.5f)
-                {
-                    ability = itemCore.GetRandomAbility();
-                }
-                else
-                {
-                    stats[stats.Length - 3] = (Stats)Random.Range(1, Enum.GetNames(typeof(Stats)).Length);
-                    statValue[stats.Length - 3] = Random.Range(0, 100);
-                }
-
-                break;
-            case Quality.Noteworthy:
-                for (var index = 0; index < stats.Length - 4; index++)
-                {
-                    stats[index] = (Stats)Random.Range(1, Enum.GetNames(typeof(Stats)).Length);
-                    statValue[index] = Random.Range(0, 100);
-                }
-
-                if (Random.Range(0f, 1f) > 0.5f)
-                {
-                    ability = itemCore.GetRandomAbility();
-                }
-                else
-                {
-                    stats[stats.Length - 4] = (Stats)Random.Range(1, Enum.GetNames(typeof(Stats)).Length);
-                    statValue[stats.Length - 4] = Random.Range(0, 100);
-                }
-
-
-                break;
-            case Quality.Typical:
-                stats[0] = (Stats)Random.Range(1, Enum.GetNames(typeof(Stats)).Length);
-                statValue[0] = Random.Range(0, 100);
-                break;
+        if (Random.value < abilityChance)
+        {
+            ability = GameManager.Instance.abilityRegistry.GetRandomAbility();
         }
     }
 
     public enum Quality
     {
-        Typical, //white 1 stat or ability
-        Noteworthy, //green 1 stat, 1 stat or ability
-        Remarkable, //blue 2 stats, 1 stat or ability
-        Choice, //purple 3 stats, 1 stat or ability
-        Signature, //yellow 4 stats, 1 stat or ability
-        Fabled, //orange 5 stats, 1 ability
-        Curator, //red 5 stats, 1 ability, max stats
+        Typical, //white 2 stats, 100% ability
+        Noteworthy, //green 3 stats, 75% ability
+        Remarkable, //blue 4 stats, 50% ability
+        Choice, //purple 5 stats, 50% ability
+        Signature, //yellow 5 stats, 1 max stats, 50% ability
+        Fabled, //orange 5 stats, 2 max stats, 50% ability
+        Curator, //red 5 stats, 3 max stats, 50% ability
     }
     public enum Stats
     {

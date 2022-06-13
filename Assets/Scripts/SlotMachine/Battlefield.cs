@@ -11,6 +11,7 @@ public class Battlefield : ScriptableObject
     [field:SerializeField] public PlayerBrain player{ get;private set; }
     public bool deckChosen = false;
     [field: SerializeField] public int totalHands { get; private set; } = 0;
+    [field: SerializeField] public int enemyLevel { get; private set; } = 0;
     public Random.State? randomState = null;
 
     
@@ -39,6 +40,10 @@ public class Battlefield : ScriptableObject
     {
         totalHands = 1;
         player.Clone(GameManager.Instance.metaPlayer);
-        
+    }
+    
+    public void SetLevel(int level)
+    {
+        enemyLevel = level;
     }
 }

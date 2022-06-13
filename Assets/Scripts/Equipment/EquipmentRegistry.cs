@@ -42,4 +42,8 @@ public class EquipmentRegistry : ScriptableObject,  ISerializationCallbackReceiv
             return null;
         }
     }
+    public ItemCard GetRandomCard()
+    {
+        return itemCards[UnityEngine.Random.Range(0, itemCards.Length)];
+    }
 }

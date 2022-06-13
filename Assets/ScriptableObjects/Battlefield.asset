@@ -18,5 +18,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f868d5253aa36bb439ce5e5ac12e6b68, type: 2}
   - {fileID: 11400000, guid: f868d5253aa36bb439ce5e5ac12e6b68, type: 2}
   <player>k__BackingField: {fileID: 11400000, guid: a4add858d424d2743ae7049f6b0669cc, type: 2}
-  deckChosen: 1
-  <totalHands>k__BackingField: 3
+  deckChosen: 0
+  <totalHands>k__BackingField: 2
+  <enemyLevel>k__BackingField: 100

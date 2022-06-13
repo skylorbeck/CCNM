@@ -1035,6 +1035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1825388445}
   - component: {fileID: 1825388444}
+  - component: {fileID: 1825388446}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -1072,9 +1073,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0c42a0c53d3fe8845ab3798d8d77e8c3, type: 2}
   - {fileID: 11400000, guid: 8c945deda30009341bfc9c6a7749622c, type: 2}
   abilityRegistry: {fileID: 11400000, guid: 01c3f387e1f65ad49ba5df351713b295, type: 2}
+  eventRegistry: {fileID: 11400000, guid: d3e400176d04d824198d754de79c8ce9, type: 2}
   saveManager:
     equippedSlots: 
     equipmentDataContainers: []
+  lootManager: {fileID: 1825388446}
+  lastScenesUnloaded: []
   TapToContinue: {fileID: 804887784}
   TEMP: {fileID: 869622194}
   <colors>k__BackingField:
@@ -1100,6 +1104,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1825388446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825388443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e076cf24d094a2a81b6c06fbf720ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <qualityWeights>k__BackingField: 1900000014000000140000000f0000000a0000000500000001000000
 --- !u!1 &1926914448
 GameObject:
   m_ObjectHideFlags: 0

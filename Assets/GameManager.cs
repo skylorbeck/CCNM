@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
     public PlayerBrain metaPlayer;
     public EquipmentRegistry[] equipmentRegistries;
     public AbilityRegistry abilityRegistry;
+    public EventRegistry eventRegistry;
     public SaveManager saveManager;
+    public LootManager lootManager;
     bool playerAccepted = false;
     private float target = 0;
     

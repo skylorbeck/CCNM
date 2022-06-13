@@ -15,10 +15,10 @@ MonoBehaviour:
   <title>k__BackingField: entity.name
   <description>k__BackingField: entity.description
   <icon>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  <maxHealth>k__BackingField: 100
+  <maxHealth>k__BackingField: 10
   <startingShield>k__BackingField: 0
   <abilities>k__BackingField:
-  - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+  - {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
   - {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
   - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
   <baseDamage>k__BackingField: 0
@@ -39,18 +39,24 @@ MonoBehaviour:
   - <itemCore>k__BackingField: {fileID: 11400000, guid: 489bb756569c324439c359804164e342, type: 2}
     <ability>k__BackingField: {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
     <quality>k__BackingField: 0
+    <level>k__BackingField: 0
     <stats>k__BackingField: 0200000000000000000000000000000000000000
     <statValue>k__BackingField: 05000000
+    <indestructible>k__BackingField: 0
   - <itemCore>k__BackingField: {fileID: 11400000, guid: b78146602871eca4ea77a926e011b5db, type: 2}
     <ability>k__BackingField: {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
     <quality>k__BackingField: 0
+    <level>k__BackingField: 0
     <stats>k__BackingField: 0100000000000000000000000000000000000000
     <statValue>k__BackingField: 05000000
+    <indestructible>k__BackingField: 0
   - <itemCore>k__BackingField: {fileID: 11400000, guid: 961b4037aef4fb744b85fba8ddaff701, type: 2}
     <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
     <quality>k__BackingField: 0
+    <level>k__BackingField: 0
     <stats>k__BackingField: 0500000000000000000000000000000000000000
     <statValue>k__BackingField: 64000000
+    <indestructible>k__BackingField: 0
   <damageBonus>k__BackingField: 5
   <shieldBonus>k__BackingField: 5
   <healthBonus>k__BackingField: 100

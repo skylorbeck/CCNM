@@ -80,24 +80,18 @@ public class InventoryManager : MonoBehaviour
         }
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.eventSystem.SetSelectedGameObject(cardSlider.gameObject);
-        /*//todo delete this
         for (var index = 0; index < playerObject.playerInventory.Length; index++)
         {
             EquipmentList equipmentList = playerObject.playerInventory[index];
             if (equipmentList.container.Count <= amountToTest)
             {
-                int amount = index -equipmentList.container.Count;
+                int amount = 10+index -equipmentList.container.Count;
                 for (int j = 0; j < amount; j++)
                 {
-                    EquipmentDataContainer dataContainer = new EquipmentDataContainer();
-                    dataContainer.InsertItem(
-                        GameManager.Instance.equipmentRegistries[index].itemCards[
-                            Random.Range(0, GameManager.Instance.equipmentRegistries[index].itemCards.Length)]);
-                    dataContainer.GenerateData();
-                    equipmentList.container.Add(dataContainer);
+                    equipmentList.container.Add(GameManager.Instance.lootManager.GetItemCard(index));
                 }
             }
-        }*/
+        }
 
         SelectHand(0);
     }
