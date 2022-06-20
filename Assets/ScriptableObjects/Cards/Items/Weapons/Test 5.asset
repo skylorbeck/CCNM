@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Test 5
   m_EditorClassIdentifier: 
   <icon>k__BackingField: {fileID: 21300000, guid: 7fb180cfc6f99ab44a8ce9e953aa9054, type: 3}
-  <cardTitle>k__BackingField: Test Axe
+  <cardTitle>k__BackingField: Health
   <cardDescription>k__BackingField: testWeaponDescription
   <cardCost>k__BackingField: 10
   <cardType>k__BackingField: 0
   <itemType>k__BackingField: 1
   <possibleAbilities>k__BackingField:
   - {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
+  <guaranteeStats>k__BackingField: 05000000

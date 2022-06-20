@@ -44,12 +44,18 @@ public class EquipmentDataContainer
         level = ofLevel;
         stats = new Stats[5];
         statValue = new int[5];
-
         List<Stats> allStats = new List<Stats>();
         List<Stats> pickedStats = new List<Stats>();
         allStats.AddRange(Enum.GetValues(typeof(Stats)).Cast<Stats>());
         allStats.Remove(Stats.None);
-        for (int i = 0; i < 5; i++)
+        
+        for (int i = 0; i < itemCore.guaranteeStats.Length; i++)
+        {
+            pickedStats.Add(itemCore.guaranteeStats[i]);
+            allStats.Remove(pickedStats[i]);
+        }
+        
+       for (int i = pickedStats.Count; i < 5; i++)
         {
             if ((int)quality >= i - 1)
             {
@@ -61,7 +67,7 @@ public class EquipmentDataContainer
                 pickedStats.Add(Stats.None);
             }
         }
-        pickedStats.Sort((x, y) => y.CompareTo(x));
+        // pickedStats.Sort((x, y) => y.CompareTo(x));
         stats = pickedStats.ToArray();
         for (var i = 0; i < stats.Length; i++)
         {

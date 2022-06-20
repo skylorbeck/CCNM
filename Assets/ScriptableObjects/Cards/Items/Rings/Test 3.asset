@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test 3
   m_EditorClassIdentifier: 
   <icon>k__BackingField: {fileID: 21300000, guid: 7be693ae4b24e184c8a36db332eb75bb, type: 3}
-  <cardTitle>k__BackingField: Test Ring
+  <cardTitle>k__BackingField: Crit Chance
   <cardDescription>k__BackingField: testWeaponDescription
   <cardCost>k__BackingField: 10
   <cardType>k__BackingField: 0
@@ -21,3 +21,4 @@ MonoBehaviour:
   <possibleAbilities>k__BackingField:
   - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
   - {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
+  <guaranteeStats>k__BackingField: 03000000

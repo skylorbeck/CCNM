@@ -9,6 +9,8 @@ public class ItemCard : CardObject
     [field: Header("ItemCard")]
     [field:SerializeField] public ItemType itemType { get; protected set; }
     [field:SerializeField] public AbilityObject[] possibleAbilities { get; protected set; }
+    [field:SerializeField] public EquipmentDataContainer.Stats[] guaranteeStats { get; protected set; }
+    
     
     public AbilityObject GetRandomAbility()
     {
