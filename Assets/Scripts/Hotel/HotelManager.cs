@@ -31,4 +31,14 @@ public class HotelManager : MonoBehaviour
     {
         GameManager.Instance.LoadSceneAdditive("CardShredding","Hotel");
     }
+    
+    public void CardPacks()
+    {
+        GameManager.Instance.LoadSceneAdditive("CardPacks","Hotel");
+    }
+    
+    public void Capsules()
+    {
+        GameManager.Instance.LoadSceneAdditive("Capsules","Hotel");
+    }
 }
