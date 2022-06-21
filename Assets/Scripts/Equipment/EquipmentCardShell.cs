@@ -96,6 +96,11 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
                     statText[i].text = "+" + item.statValue[i] + " Health";
                     break;
             }
+
+            if (i<item.itemCore.guaranteeStats.Length)
+            {
+                statText[i].fontStyle = FontStyles.Underline;
+            }
         }
         
         if (item.ability != null)

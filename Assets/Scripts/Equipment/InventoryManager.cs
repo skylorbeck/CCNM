@@ -80,18 +80,19 @@ public class InventoryManager : MonoBehaviour
         }
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.eventSystem.SetSelectedGameObject(cardSlider.gameObject);
-        for (var index = 0; index < playerObject.playerInventory.Length; index++)
-        {
-            EquipmentList equipmentList = playerObject.playerInventory[index];
-            if (equipmentList.container.Count <= amountToTest)
-            {
-                int amount = 10+index -equipmentList.container.Count;
-                for (int j = 0; j < amount; j++)
-                {
-                    equipmentList.container.Add(GameManager.Instance.lootManager.GetItemCard(index));
-                }
-            }
-        }
+        
+        // for (var index = 0; index < playerObject.playerInventory.Length; index++)
+        // {
+        //     EquipmentList equipmentList = playerObject.playerInventory[index];
+        //     if (equipmentList.container.Count <= amountToTest)
+        //     {
+        //         int amount = 10+index -equipmentList.container.Count;
+        //         for (int j = 0; j < amount; j++)
+        //         {
+        //             equipmentList.container.Add(GameManager.Instance.lootManager.GetItemCard(index));
+        //         }
+        //     }
+        // }
 
         SelectHand(0);
     }
@@ -147,10 +148,6 @@ public class InventoryManager : MonoBehaviour
         if (cardSlider.value==0)
         {
             ButtonLeft.interactable = false;
-            if (GameManager.Instance.eventSystem.currentSelectedGameObject!=cardSlider.gameObject)
-            {
-                GameManager.Instance.eventSystem.SetSelectedGameObject(ButtonRight.gameObject);
-            }
         }
         else
         {
@@ -160,10 +157,6 @@ public class InventoryManager : MonoBehaviour
         if (Math.Abs(cardSlider.value - cards.Count) < 1.1f)
         {
             ButtonRight.interactable = false;
-            if (GameManager.Instance.eventSystem.currentSelectedGameObject!=cardSlider.gameObject)
-            {
-                GameManager.Instance.eventSystem.SetSelectedGameObject(ButtonLeft.gameObject);
-            }
         }
         else
         {

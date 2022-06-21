@@ -4,6 +4,10 @@ public class LootManager: MonoBehaviour
 {
     [field: SerializeField] public int[] qualityWeights { get;private set; }
 
+    public EquipmentDataContainer GetItemCard()
+    {
+        return GetItemCard(Random.Range(0, qualityWeights.Length));
+    }
     public EquipmentDataContainer GetItemCard(ItemCard.ItemType itemType)
     {
        return GetItemCard((int)itemType);
