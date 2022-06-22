@@ -38,17 +38,18 @@ public class EnemyShell : Shell
         return base.OnAttack(target, baseDamage);
     }
 
-    public override void Shield(int amount)
+    public override void Shield(int amount, StatusEffect.Element element)
     {
         amount = (int)(amount * GameManager.Instance.runSettings.GetDefenseMod());
         GameManager.Instance.uiStateObject.Ping( title+" gained " + amount + " shield!");
-        base.Shield(amount);
+        base.Shield(amount,element);
     }
 
-    public override void Heal(Shell source, int baseHeal, StatusEffect.Element element)
+    public override void Heal(int baseHeal, StatusEffect.Element element)
     {
+        baseHeal = (int)(baseHeal * GameManager.Instance.runSettings.GetHealthMod());
         GameManager.Instance.uiStateObject.Ping(title+" healed for " + baseHeal + "!");
-        base.Heal(source, baseHeal, element);
+        base.Heal( baseHeal, element);
     }
     
     public override async Task Attack(Shell target, Symbol symbol)

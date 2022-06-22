@@ -41,6 +41,16 @@ public class StatusDisplayer : MonoBehaviour
 
         return heal;
     }
+     public async Task<int> OnShield([CanBeNull] Shell shielder,Shell target,int baseShield)
+    {
+        int shield = baseShield;
+        foreach (EffectInstance instance in statusList)
+        {
+            shield = await instance.OnShield(shielder,target,shield);
+        }
+
+        return shield;
+    }
     
     public void AddStatus(StatusEffect statusEffect, Shell target)
     {

@@ -17,7 +17,7 @@ public class LootManager: MonoBehaviour
         EquipmentDataContainer dataContainer = new EquipmentDataContainer();
         dataContainer.InsertItem(
             GameManager.Instance.equipmentRegistries[itemType].GetRandomCard());
-        dataContainer.GenerateDataOfLevel(GameManager.Instance.battlefield.enemyLevel);
+        dataContainer.GenerateDataOfLevel(GameManager.Instance.battlefield.enemyLevel);//todo replace with player level
         return dataContainer;
     }
 

@@ -71,51 +71,44 @@ public class EquipmentDataContainer
         stats = pickedStats.ToArray();
         for (var i = 0; i < stats.Length; i++)
         {
+            int statMulti = 1;
             switch (stats[i])
             {
-                case Stats.None:
-                    statValue[i] = 0;
+                case Stats.Strength:
+                    statMulti = 5;
                     break;
-                case Stats.Damage:
-                    statValue[i] = Random.Range(1, level + 1);
+                case Stats.Dexterity:
+                    statMulti = 5;
                     break;
-                case Stats.Shield:
-                    statValue[i] = Random.Range(1, 10) * level;
+                case Stats.Speed:
+                    statMulti = 5;
                     break;
-                case Stats.CriticalChance:
-                    statValue[i] = Random.Range(level, 101);
+                case Stats.Skill:
+                    statMulti = 5;
                     break;
-                case Stats.CriticalDamage:
-                    statValue[i] = Random.Range(level*10, 101*level);
-                    break;
-                case Stats.Health:
-                    statValue[i] = 100 + Random.Range(1 * level, 101 * level);
+                case Stats.Vitality:
+                    statMulti = 10;
                     break;
             }
-        }
-        int[] statIndexes = new int[5]{0,1,2,3,4};
-        statIndexes = statIndexes.OrderBy(x => Random.value).ToArray();
-        for (int i = 0; i < quality - Quality.Choice; i++)
-        {
-            // statValue[statIndexes[i]] = -420;
-            switch (stats[statIndexes[i]])
+
+            float qualityMulti = 0;
+            switch (quality)
             {
-                case Stats.Damage:
-                    statValue[0] =level + 1;
+                case Quality.Signature:
+                    qualityMulti = 0.1f;
                     break;
-                case Stats.Shield:
-                    statValue[i] = 10* level;
+                case Quality.Fabled:
+                    qualityMulti = 0.2f;
                     break;
-                case Stats.CriticalChance:
-                    statValue[i] = 100;
-                    break;
-                case Stats.CriticalDamage:
-                    statValue[i] = 101;
-                    break;
-                case Stats.Health:
-                    statValue[i] = 100+101* level;
+                case Quality.Curator:
+                    qualityMulti = 0.3f;
                     break;
             }
+
+            statValue[i] = itemCore.guaranteeStats.Contains(stats[i])
+                ? level * statMulti 
+                : Random.Range(level, level * statMulti);
+            statValue[i] += (int)Math.Ceiling(qualityMulti * statValue[i]);
         }
 
         float abilityChance = 0.5f;
@@ -145,11 +138,10 @@ public class EquipmentDataContainer
     public enum Stats
     {
         None,
-        Damage,
-        Shield,
-        CriticalChance,
-        CriticalDamage,
-        Health,
+        Strength,
+        Dexterity,
+        Speed,
+        Skill,
+        Vitality,
     }
 }
-

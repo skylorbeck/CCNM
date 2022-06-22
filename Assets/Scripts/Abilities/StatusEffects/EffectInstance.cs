@@ -33,6 +33,10 @@ public class EffectInstance : MonoBehaviour
     {
         return await statusEffect.OnHeal(healer, target, baseHeal);
     }
+    public async Task<int> OnShield([CanBeNull] Shell shielder, Shell target, int baseShield)
+    {
+        return await statusEffect.OnShield(shielder, target, baseShield);
+    }
 
     public async Task Tick()
     {

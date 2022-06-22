@@ -33,6 +33,15 @@ public class Shell : MonoBehaviour
         return await statusDisplayer.OnAttack(target,this,baseDamage);
     }
     
+    public virtual async Task<int> OnShield(Shell target,int baseShield)
+    {
+        return await statusDisplayer.OnShield(target,this,baseShield);
+    }
+    public virtual async Task<int> OnHeal(Shell target,int baseHeal)
+    {
+        return await statusDisplayer.OnHeal(target,this,baseHeal);
+    }
+    
     public async Task Damage([CanBeNull] Shell source,int baseDamage, StatusEffect.Element element)
     {
         int damage = await statusDisplayer.OnDamage(source,this,baseDamage);
@@ -65,19 +74,18 @@ public class Shell : MonoBehaviour
         statusDisplayer.Clear();
     }
     
-    public async virtual void Heal([CanBeNull] Shell source,int baseHeal, StatusEffect.Element element)
+    public virtual void Heal(int baseHeal, StatusEffect.Element element)
     {
-        int heal = await statusDisplayer.OnHeal(source,this,baseHeal);
-        TextPopController.Instance.PopHeal(heal,transform.position);
+        TextPopController.Instance.PopHeal(baseHeal,transform.position);
 
-        health += heal;
+        health += baseHeal;
         if (health > maxHealth)
         {
             health = maxHealth;
         }
     }
     
-    public virtual void Shield(int amount)
+    public virtual void Shield(int amount, StatusEffect.Element element)
     {
         shield += amount;
         TextPopController.Instance.PopShield(amount,transform.position);

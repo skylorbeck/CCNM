@@ -78,11 +78,15 @@ public class Symbol : MonoBehaviour
 
         if (ability.shieldTarget)
         {
-            target.Shield((int)(user.brain.baseShield*ability.targetShieldMultiplier));
+            int shield = await target.OnShield(target,user.brain.baseShield);
+            shield = (int)Math.Ceiling(shield * ability.targetShieldMultiplier);
+            target.Shield(shield, ability.element);
         }
         if (ability.shieldUser)
         {
-            user.Shield((int)(user.brain.baseShield*ability.userShieldMultiplier));
+            int shield = await user.OnShield(user,user.brain.baseShield);
+            shield = (int)Math.Ceiling(shield * ability.userShieldMultiplier);
+            user.Shield(shield, ability.element);
         }
         if (ability.statusTarget)
         {
@@ -94,16 +98,18 @@ public class Symbol : MonoBehaviour
         }
         if (ability.healTarget)
         {
-            target.Heal(user, (int)(user.brain.baseHeal* ability.targetHealMultiplier),ability.element);
+            int heal = await target.OnHeal(target,user.brain.baseHeal);
+            heal = (int)Math.Ceiling(heal * ability.targetHealMultiplier);
+            target.Heal(heal, ability.element);
         }
         if (ability.healUser)
         {
-            user.Heal(user,(int)(user.brain.baseHeal* ability.userHealMultiplier),ability.element);
+            int heal = await user.OnHeal(user,user.brain.baseHeal);
+            heal = (int)Math.Ceiling(heal * ability.userHealMultiplier);
+            user.Heal(heal, ability.element);
         }
         if (ability.damageTarget)
         {
-            
-            //todo redo this entirely? It works now but it's hella dirty.
             int damage = await user.OnAttack(target,user.brain.baseDamage);//process status influences
             damage = (int)(damage * ability.targetDamageMultiplier);//process ability multiplier
             DamageAnimator.Instance.TriggerAttack(target, ability.attackAnimation);//play the animation

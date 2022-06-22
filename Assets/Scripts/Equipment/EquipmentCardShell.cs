@@ -80,20 +80,20 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
                 case EquipmentDataContainer.Stats.None:
                     statText[i].text = "";
                     break;
-                case EquipmentDataContainer.Stats.Damage:
-                    statText[i].text = "+" + item.statValue[i] + " Damage";
+                case EquipmentDataContainer.Stats.Strength:
+                    statText[i].text = "+" + item.statValue[i] + " Strength";
                     break;
-                case EquipmentDataContainer.Stats.Shield:
-                    statText[i].text = "+" + item.statValue[i] + " Shield";
+                case EquipmentDataContainer.Stats.Dexterity:
+                    statText[i].text = "+" + item.statValue[i] + " Dexterity";
                     break;
-                case EquipmentDataContainer.Stats.CriticalChance:
-                    statText[i].text = "+" + item.statValue[i] + " Crit %";
+                case EquipmentDataContainer.Stats.Speed:
+                    statText[i].text = "+" + item.statValue[i] + " Speed";
                     break;
-                case EquipmentDataContainer.Stats.CriticalDamage:
-                    statText[i].text = "+" + item.statValue[i] + " Crit Dmg";
+                case EquipmentDataContainer.Stats.Skill:
+                    statText[i].text = "+" + item.statValue[i] + " Skill";
                     break;
-                case EquipmentDataContainer.Stats.Health:
-                    statText[i].text = "+" + item.statValue[i] + " Health";
+                case EquipmentDataContainer.Stats.Vitality:
+                    statText[i].text = "+" + item.statValue[i] + " Vitality";
                     break;
             }
 

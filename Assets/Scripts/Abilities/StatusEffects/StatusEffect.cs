@@ -40,6 +40,11 @@ public class StatusEffect : ScriptableObject
         //do something
         return baseHeal;
     }
+    public virtual async Task<int> OnShield([CanBeNull] Shell shielder, Shell target, int baseShield)
+    {
+        //do something
+        return baseShield;
+    }
     
     //called when status effect is applied to a shell
     public virtual async void OnApply(Shell target)
