@@ -1,0 +1,184 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5baa7ac7ccdc745b0aec21c8428522, type: 3}
+  m_Name: MetaPlayer
+  m_EditorClassIdentifier: 
+  <title>k__BackingField: entity.name
+  <description>k__BackingField: entity.description
+  <icon>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  <maxHealth>k__BackingField: 0
+  <startingShield>k__BackingField: 0
+  <abilities>k__BackingField:
+  - {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
+  - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+  - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+  - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+  <baseDamage>k__BackingField: 0
+  <baseShield>k__BackingField: 0
+  <baseHeal>k__BackingField: 1
+  <equippedSlots>k__BackingField: 03000000ffffffff02000000ffffffff0200000001000000ffffffffffffffffffffffff
+  <playerInventory>k__BackingField:
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 7b0541bbcc360464e89dc2e89fe01966, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0200000005000000000000000000000000000000
+      <statValue>k__BackingField: 04000000bb000000000000000000000000000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 47ac547be6b637a438087ef724dc0656, type: 2}
+      <ability>k__BackingField: {fileID: 0}
+      <quality>k__BackingField: 3
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0200000005000000010000000300000004000000
+      <statValue>k__BackingField: 03000000a200000001000000400000003c000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 7b0541bbcc360464e89dc2e89fe01966, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0200000005000000000000000000000000000000
+      <statValue>k__BackingField: 04000000bb000000000000000000000000000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 47ac547be6b637a438087ef724dc0656, type: 2}
+      <ability>k__BackingField: {fileID: 0}
+      <quality>k__BackingField: 3
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0200000005000000010000000300000004000000
+      <statValue>k__BackingField: 03000000a200000001000000400000003c000000
+      <indestructible>k__BackingField: 1
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: e8196e61b068e0e4f9229f5c43e9b8cb, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 3
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0100000002000000030000000400000005000000
+      <statValue>k__BackingField: 0100000006000000300000000f00000073000000
+      <indestructible>k__BackingField: 0
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 96a0a865e893e6e41acb73546fb52e5d, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0500000001000000000000000000000000000000
+      <statValue>k__BackingField: bf00000001000000000000000000000000000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 3aaa66caa25f88345882ab3756310bad, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0500000002000000000000000000000000000000
+      <statValue>k__BackingField: ac00000002000000000000000000000000000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 96a0a865e893e6e41acb73546fb52e5d, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0500000001000000000000000000000000000000
+      <statValue>k__BackingField: bf00000001000000000000000000000000000000
+      <indestructible>k__BackingField: 1
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 3aaa66caa25f88345882ab3756310bad, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0500000002000000000000000000000000000000
+      <statValue>k__BackingField: ac00000002000000000000000000000000000000
+      <indestructible>k__BackingField: 0
+  - container: []
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 2c24b794ec52a0d45b0324b7b049a121, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0500000001000000040000000000000000000000
+      <statValue>k__BackingField: 79000000010000003f0000000000000000000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 8c900a97a81de7c48b952438d775271e, type: 2}
+      <ability>k__BackingField: {fileID: 0}
+      <quality>k__BackingField: 4
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0100000002000000030000000400000005000000
+      <statValue>k__BackingField: 0a00000003000000260000001e0000007c000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 2c24b794ec52a0d45b0324b7b049a121, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0500000001000000040000000000000000000000
+      <statValue>k__BackingField: 79000000010000003f0000000000000000000000
+      <indestructible>k__BackingField: 1
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 8c900a97a81de7c48b952438d775271e, type: 2}
+      <ability>k__BackingField: {fileID: 0}
+      <quality>k__BackingField: 4
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0100000002000000030000000400000005000000
+      <statValue>k__BackingField: 0a00000003000000260000001e0000007c000000
+      <indestructible>k__BackingField: 0
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: f2ce1e294254d48439fb1e96fe254224, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 2
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0200000004000000030000000500000000000000
+      <statValue>k__BackingField: 0900000014000000410000006c00000000000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: f2ce1e294254d48439fb1e96fe254224, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 2
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0200000004000000030000000500000000000000
+      <statValue>k__BackingField: 0900000014000000410000006c00000000000000
+      <indestructible>k__BackingField: 1
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 0d7a710763bcb8f4780c58bf6e4ad17c, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0200000004000000050000000000000000000000
+      <statValue>k__BackingField: 0900000044000000c70000000000000000000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 0d7a710763bcb8f4780c58bf6e4ad17c, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0200000004000000050000000000000000000000
+      <statValue>k__BackingField: 0900000044000000c70000000000000000000000
+      <indestructible>k__BackingField: 0
+  - container: []
+  - container: []
+  <defaultEquipment>k__BackingField:
+  - <itemCore>k__BackingField: {fileID: 11400000, guid: 489bb756569c324439c359804164e342, type: 2}
+    <ability>k__BackingField: {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
+    <quality>k__BackingField: 0
+    <level>k__BackingField: 0
+    <stats>k__BackingField: 0200000000000000000000000000000000000000
+    <statValue>k__BackingField: 05000000
+    <indestructible>k__BackingField: 0
+  - <itemCore>k__BackingField: {fileID: 11400000, guid: b78146602871eca4ea77a926e011b5db, type: 2}
+    <ability>k__BackingField: {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
+    <quality>k__BackingField: 0
+    <level>k__BackingField: 0
+    <stats>k__BackingField: 0100000000000000000000000000000000000000
+    <statValue>k__BackingField: 05000000
+    <indestructible>k__BackingField: 0
+  - <itemCore>k__BackingField: {fileID: 11400000, guid: 961b4037aef4fb744b85fba8ddaff701, type: 2}
+    <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+    <quality>k__BackingField: 0
+    <level>k__BackingField: 0
+    <stats>k__BackingField: 0500000000000000000000000000000000000000
+    <statValue>k__BackingField: 0a000000
+    <indestructible>k__BackingField: 0
+  <damageBonus>k__BackingField: 8
+  <shieldBonus>k__BackingField: 12
+  <healthBonus>k__BackingField: 582
+  <critDamageBonus>k__BackingField: 143
+  <critChanceBonus>k__BackingField: 129

@@ -16,6 +16,7 @@ public class CardDealer : MonoBehaviour
     [SerializeField] private Button[] buttons;
     [SerializeField] private TextMeshProUGUI[] pauseText;
     [SerializeField] private GraphicRaycaster pauseRaycaster;
+    [SerializeField] private StatDisplay playerStatDisplay;
 
     async void Start()
     {
@@ -115,6 +116,7 @@ public class CardDealer : MonoBehaviour
         {
             text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ?1 :0, 0.25f,true);
         }
+        playerStatDisplay.FadeInOut();
         pauseRaycaster.enabled = GameManager.Instance.uiStateObject.isPaused;
         if (GameManager.Instance.uiStateObject.isPaused)
         {
@@ -134,6 +136,7 @@ public class CardDealer : MonoBehaviour
     
     public void Quit()
     {
+        Back();
         GameManager.Instance.LoadSceneAdditive("MainMenu","MapScreen");
     }
 }

@@ -20,6 +20,7 @@ public class RunRewardManager : MonoBehaviour
             }
         }
         //todo add rewards
+        GameManager.Instance.battlefield.deckChosen = false;
         GameManager.Instance.LoadSceneAdditive("MainMenu","RunOver");
     }
 

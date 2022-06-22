@@ -38,7 +38,7 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Button[] allButtons;
     [SerializeField] private TextMeshProUGUI[] pauseText;
     [SerializeField] private GraphicRaycaster pauseRaycaster;
-    
+    [SerializeField] private StatDisplay playerStatDisplay;
     private CancellationTokenSource cancellationTokenSource;
     private int enemiesAlive
     {
@@ -103,6 +103,7 @@ public class FightManager : MonoBehaviour
         {
             text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ?1 :0, 0.25f,true);
         }
+        playerStatDisplay.FadeInOut();
         pauseRaycaster.enabled = GameManager.Instance.uiStateObject.isPaused;
     }
 

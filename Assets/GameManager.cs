@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour
         }
         inputReader.EnableUI();
         SceneManager.sceneLoaded += DestroyTEMP;
-        
         // saveManager.Save();
     }
 

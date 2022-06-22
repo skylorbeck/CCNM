@@ -132,10 +132,10 @@ public class PlayerBrain : Brain
         ClearInventory();
         for (var index = 0; index < sourcePlayer.equippedSlots.Length; index++)
         {
-            if (GameManager.Instance.metaPlayer.EquippedCardExists(index))
+            if (sourcePlayer.EquippedCardExists(index))
             {
                 equippedSlots[index] = 0;
-                EquipmentDataContainer newcard = GameManager.Instance.metaPlayer.GetEquippedCard(index);
+                EquipmentDataContainer newcard = sourcePlayer.GetEquippedCard(index);
                 newcard.SetIndestructible(true);
                 AddCardToInventory(newcard);
             }

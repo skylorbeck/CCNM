@@ -21,4 +21,4 @@ MonoBehaviour:
   <possibleAbilities>k__BackingField:
   - {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
   - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
-  <guaranteeStats>k__BackingField: 04000000
+  <guaranteeStats>k__BackingField: 02000000
