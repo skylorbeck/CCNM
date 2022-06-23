@@ -5,12 +5,13 @@ using System.Linq;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [Serializable]
 [CreateAssetMenu(fileName = "PlayerObject", menuName = "Combat/PlayerSO")]
 public class PlayerBrain : Brain
 {
-    
+
     [field: SerializeField] public int[] equippedSlots { get; private set; }
     [field: SerializeField] public EquipmentList[] playerInventory { get; private set; }
     [field: SerializeField] public EquipmentDataContainer[] defaultEquipment { get; private set; }
@@ -21,8 +22,14 @@ public class PlayerBrain : Brain
     [field: SerializeField] public int healBonus { get; private set; }
     [field: SerializeField] public int skillBonus { get; private set; }
     [field: SerializeField] public int speedBonus { get; private set; }
+    [field: SerializeField] public int egoBonus { get; private set; }
+    [field: SerializeField] public int creditBonus { get; private set; }
     
-
+    [field: SerializeField] public int credits { get; private set; } = 0;
+    [field: SerializeField] public int ego { get; private set; } = 0;
+    [field: SerializeField] public int level { get; private set; } = 0;
+    [field: SerializeField] public int[] cardSouls { get; private set; } = new int[7];
+    
 
     public void Equip(int dataContainerIndex,int cardIndex)
     {
@@ -128,6 +135,28 @@ public class PlayerBrain : Brain
         }
     }
 
+    public int ShredCard(EquipmentDataContainer card)
+    {
+        if (playerInventory[(int)card.itemCore.itemType].container.Contains(card))
+        {
+            RemoveCardFromInventory(card);
+        }
+        int soulsGained = Random.Range(1, 10);
+        cardSouls[(int)card.quality]+=soulsGained;
+        return soulsGained;
+    }
+
+    public void CopyCards(PlayerBrain source)
+    {
+        for (var i = 0; i < source.playerInventory.Length; i++)
+        {
+            for (var j = 0; j < source.playerInventory[i].container.Count; j++)
+            {
+                AddCardToInventory(source.playerInventory[i].container[j]);
+            }
+        }
+    }
+    
     public void Clone(PlayerBrain sourcePlayer)
     {
         ClearInventory();
@@ -143,6 +172,40 @@ public class PlayerBrain : Brain
         }
         defaultEquipment = sourcePlayer.defaultEquipment;
         CalculateStats();
+    }
+    public void AddCredits(int amt)
+    {
+        amt = (int)(amt * GameManager.Instance.metaPlayer.creditBonus);
+        credits += amt;
+    }
+
+    public void AddEgo(int amt)
+    {
+        amt = (int)(amt * GameManager.Instance.metaPlayer.egoBonus); 
+        ego += amt;
+    }
+    
+    public void AddCardSoul(int index, int amt)
+    {
+        cardSouls[index] += amt;
+    }
+    
+    public void CopyCardSouls(PlayerBrain source)
+    {
+        for (var i = 0; i < source.cardSouls.Length; i++)
+        {
+            cardSouls[i] += source.cardSouls[i];
+        }
+    }
+    
+    public void CopyEgo(PlayerBrain source)
+    {
+        ego += source.ego;
+    }
+    
+    public void CopyCredits(PlayerBrain source)
+    {
+        credits += source.credits;
     }
 }
 

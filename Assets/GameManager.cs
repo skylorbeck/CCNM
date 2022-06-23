@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     public Battlefield battlefield;
     public UIStateObject uiStateObject;
     public EventSystem eventSystem;
-    public SaveData currentRunData;
     public RunSettings runSettings;
     public PlayerBrain metaPlayer;
     public EquipmentRegistry[] equipmentRegistries;

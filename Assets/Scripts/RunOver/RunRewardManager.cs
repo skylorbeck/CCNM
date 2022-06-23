@@ -9,17 +9,11 @@ public class RunRewardManager : MonoBehaviour
     {
         
         await Task.Delay(1000);
-        foreach (EquipmentList equipmentList in GameManager.Instance.battlefield.player.playerInventory)
-        {
-            foreach (EquipmentDataContainer equipmentDataContainer in equipmentList.container)
-            {
-                if (!equipmentDataContainer.indestructible)//ensures original equipment is not cloned
-                {
-                    GameManager.Instance.metaPlayer.AddCardToInventory(equipmentDataContainer);
-                }
-            }
-        }
-        //todo add rewards
+        GameManager.Instance.metaPlayer.CopyEgo(GameManager.Instance.battlefield.player);
+        GameManager.Instance.metaPlayer.CopyCards(GameManager.Instance.battlefield.player);
+        GameManager.Instance.metaPlayer.CopyCredits(GameManager.Instance.battlefield.player);
+        GameManager.Instance.metaPlayer.CopyCardSouls(GameManager.Instance.battlefield.player);
+        //todo convert credits to ego? create menu to convert credits to ego?
         GameManager.Instance.battlefield.deckChosen = false;
         GameManager.Instance.LoadSceneAdditive("MainMenu","RunOver");
     }

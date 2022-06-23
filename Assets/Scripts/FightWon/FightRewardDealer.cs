@@ -113,7 +113,7 @@ public class FightRewardDealer : MonoBehaviour
             }
             else
             {
-                //todo shred card
+                GameManager.Instance.battlefield.player.ShredCard(lootCards[i].EquipmentData);
             }
         }
     }

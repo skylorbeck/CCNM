@@ -231,7 +231,7 @@ public class FightManager : MonoBehaviour
                 {
                     credits += enemy.enemyBrain.credits;
                 }
-                GameManager.Instance.currentRunData.AddCredits(credits);
+                GameManager.Instance.battlefield.player.AddCredits(credits);
                 battlefield.randomState = null;
                 GameManager.Instance.LoadSceneAdditive("FightWon",  "Fight");
             }
