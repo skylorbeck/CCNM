@@ -24,6 +24,12 @@ public class MainMenuNav : MonoBehaviour
         UpdateButton();
     }
 
+    public void OnDestroy()
+    {
+        GameManager.Instance.inputReader.PadLeft -= DecreaseState;
+        GameManager.Instance.inputReader.PadRight -= IncreaseState;
+    }
+
     public void UpdateButton()
     {
         button.onClick.RemoveAllListeners();
