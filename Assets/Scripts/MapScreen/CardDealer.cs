@@ -92,6 +92,7 @@ public class CardDealer : MonoBehaviour
                 GameManager.Instance.LoadSceneAdditive("Fight","MapScreen");
                 break;
             case MapCard.MapCardType.Event:
+                GameManager.Instance.battlefield.SetEvent(((EventCard)mapCard).eventObject);
                 GameManager.Instance.LoadSceneAdditive("EventScreen","MapScreen");
                 break;
         }

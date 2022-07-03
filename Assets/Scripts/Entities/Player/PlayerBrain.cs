@@ -28,6 +28,9 @@ public class PlayerBrain : Brain
     [field: SerializeField] public int credits { get; private set; } = 0;
     [field: SerializeField] public int ego { get; private set; } = 0;
     [field: SerializeField] public int level { get; private set; } = 0;
+    [field: SerializeField] public int cardPacks { get; private set; } = 0;
+    [field: SerializeField] public int capsules { get; private set; } = 0;
+    [field: SerializeField] public int superCapsules { get; private set; } = 0;
     [field: SerializeField] public int[] cardSouls { get; private set; } = new int[7];
     
 
@@ -190,6 +193,21 @@ public class PlayerBrain : Brain
         cardSouls[index] += amt;
     }
     
+    public void AddCapsule(int amt)
+    {
+        capsules += amt;
+    }
+    
+    public void AddSuperCapsule(int amt)
+    {
+        superCapsules += amt;
+    }
+    
+    public void AddCardPack(int amt)
+    {
+        cardPacks += amt;
+    }
+    
     public void CopyCardSouls(PlayerBrain source)
     {
         for (var i = 0; i < source.cardSouls.Length; i++)
@@ -206,6 +224,21 @@ public class PlayerBrain : Brain
     public void CopyCredits(PlayerBrain source)
     {
         credits += source.credits;
+    }
+    
+    public void CopyCapsules(PlayerBrain source)
+    {
+        capsules += source.capsules;
+    }
+    
+    public void CopySuperCapsules(PlayerBrain source)
+    {
+        superCapsules += source.superCapsules;
+    }
+    
+    public void CopyCardPacks(PlayerBrain source)
+    {
+        cardPacks += source.cardPacks;
     }
 }
 

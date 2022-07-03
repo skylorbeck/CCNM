@@ -10,8 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27620d32e5e63b24b8cc907efd1cce3e, type: 3}
-  m_Name: EventObject
+  m_Name: CapsuleEvent
   m_EditorClassIdentifier: 
-  eventName: event
-  eventDescription: event description
+  eventName: capsule
+  eventDescription: capsule event description
+  dialogue:
+  - You found a capsule
   eventImage: {fileID: 21300000, guid: a3114be8cd83237469e650a57b911201, type: 3}
+  rewardsEquipment: 0
+  healsPlayer: 0
+  rewardsCredits: 0

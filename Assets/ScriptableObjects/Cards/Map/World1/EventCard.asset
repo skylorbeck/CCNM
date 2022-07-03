@@ -18,3 +18,4 @@ MonoBehaviour:
   <cardCost>k__BackingField: 0
   <cardType>k__BackingField: 2
   <mapCardType>k__BackingField: 4
+  eventObject: {fileID: 11400000, guid: 5adf14fa4d6b44e41b0e08e94dfdbd6b, type: 2}

@@ -39,6 +39,10 @@ public class EquipmentDataContainer
 
     public void GenerateDataOfLevel(int ofLevel)
     {
+        if (ofLevel < 1)
+        {
+            ofLevel = 1;
+        }
         quality = GameManager.Instance.lootManager.GetRandomQuality();
 
         level = ofLevel;
@@ -67,7 +71,6 @@ public class EquipmentDataContainer
                 pickedStats.Add(Stats.None);
             }
         }
-        // pickedStats.Sort((x, y) => y.CompareTo(x));
         stats = pickedStats.ToArray();
         for (var i = 0; i < stats.Length; i++)
         {
@@ -143,5 +146,12 @@ public class EquipmentDataContainer
         Speed,
         Skill,
         Vitality,
-    }
+        Luck,
+        Sagacity,
+        Intelligence,
+        Wisdom,
+        Charisma,
+        Willpower,
+        Faith,
+        }
 }
