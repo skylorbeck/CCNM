@@ -22,6 +22,7 @@ public class HotelManager : MonoBehaviour
         GameManager.Instance.inputReader.PadRight += IncreaseState;
         await Task.Delay(100);
         GetComponent<Animator>().SetTrigger("FadeIn");
+        UpdateButton();
     }
 
     public void Update()
