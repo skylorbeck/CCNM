@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public LootManager lootManager;
     bool playerAccepted = false;
     private float target = 0;
-    
+    public Texture2D cursorTexture;
     public string[] lastScenesUnloaded;
     
     [SerializeField] private GameObject TapToContinue;
@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         bool uiLoaded = false;
         uiStateObject.Clear();
         
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         
         if (SceneManager.sceneCount!=1)
         {
