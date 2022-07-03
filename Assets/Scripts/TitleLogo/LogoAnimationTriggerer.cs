@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class LogoAnimationTriggerer : MonoBehaviour
 {
-    float _timer = 0;
-    bool _hasTriggeredLetters = false;
+    float timer = 0;
+    bool hasTriggeredLetters = false;
     [SerializeField] float timeToWait = 5;
     Animator[] animators;
     Animator logo;
@@ -32,12 +32,12 @@ public class LogoAnimationTriggerer : MonoBehaviour
 
     void Update()
     {
-        if (_hasTriggeredLetters)
+        if (hasTriggeredLetters)
         {
-            _timer += Time.deltaTime;
-            if (_timer > timeToWait)
+            timer += Time.deltaTime;
+            if (timer > timeToWait)
             {
-                _timer = 0;
+                timer = 0;
                 TriggerBounce();
             }
         }
@@ -50,7 +50,7 @@ public class LogoAnimationTriggerer : MonoBehaviour
 
     public async void TriggerLogoEnter()
     {
-        _hasTriggeredLetters = true;
+        hasTriggeredLetters = true;
         foreach (Animator animator in animators)
         {
             await Task.Delay(100);

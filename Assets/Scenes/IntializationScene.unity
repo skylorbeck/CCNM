@@ -1059,7 +1059,6 @@ MonoBehaviour:
   battlefield: {fileID: 11400000, guid: 26afe88ed600df84491cfd52077ac762, type: 2}
   uiStateObject: {fileID: 11400000, guid: 907362c9071d96d4fa7e0bd0ef753179, type: 2}
   eventSystem: {fileID: 1408661005}
-  currentRunData: {fileID: 11400000, guid: e34963f4938d888478be5509c783efe4, type: 2}
   runSettings: {fileID: 11400000, guid: cd5d792f92c596f4c8f8885f76da34a2, type: 2}
   metaPlayer: {fileID: 11400000, guid: 5efdcd83a86bf474eab7301799af83e9, type: 2}
   equipmentRegistries:

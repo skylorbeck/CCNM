@@ -11,7 +11,7 @@ public class MMButtons : MonoBehaviour
         GameManager.Instance.LoadSceneAdditive("RunSettings","MainMenu");
     }
 
-    public void ResumeGame()
+    public void ResumeGame()//todo fix this
     {
         List<string> scenes = new List<string>(GameManager.Instance.lastScenesUnloaded);
         if (scenes.Contains("MapScreen"))
@@ -37,7 +37,6 @@ public class MMButtons : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.inputReader.Back+=Back;
-        GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
         GameManager.Instance.uiStateObject.HideTopBar();
     }
 
