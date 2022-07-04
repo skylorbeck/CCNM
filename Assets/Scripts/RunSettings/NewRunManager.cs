@@ -38,7 +38,7 @@ public class NewRunManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI finalMultiplierText;
 
-    void Start()
+    async void Start()
     {
         uiState.ShowTopBar();
         healthSlider.value = runSettings.health;

@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<Image> blackoutImages;
     [SerializeField] private ImageSwitcher loading;
     public UIStateObject uiStateObject;
+    private bool cursorPumped = false;
+
 
     async void Start()
     {
@@ -38,6 +40,8 @@ public class UIManager : MonoBehaviour
             blackoutImages.Add(image);
             image.CrossFadeAlpha(0, 0.5f, false);
         }
+
+        GameManager.Instance.FixedSecond += PumpCursor;
     }
 
     private void OnDestroy()
@@ -54,7 +58,8 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.inputReader.ButtonDown -= NavUpdate;
         GameManager.Instance.inputReader.ClickEvent -= NavUpdateMouse;
         GameManager.Instance.FixedHalfSecond -= NextSprite;
-
+        
+        GameManager.Instance.FixedSecond -= PumpCursor;
     }
 
     public void SetTopBarText(string text)
@@ -75,6 +80,18 @@ public class UIManager : MonoBehaviour
     void FixedUpdate()
     {
 
+    }
+
+    public void PumpCursor()
+    {
+        cursorPumped = !cursorPumped;
+        if (GameManager.Instance.eventSystem.currentSelectedGameObject != null)
+        {
+            var cursorTransform = cursor.rectTransform;
+            cursorTransform.localScale = cursorPumped
+                ? GameManager.Instance.eventSystem.currentSelectedGameObject.transform.localScale * 1.25f
+                : GameManager.Instance.eventSystem.currentSelectedGameObject.transform.localScale * 1.1f;
+        }
     }
 
     public void ShowTopBar()
@@ -130,7 +147,11 @@ public class UIManager : MonoBehaviour
         await Task.Delay(1);
         if (!GameManager.Instance.uiStateObject.showFadeOut && GameManager.Instance.eventSystem.currentSelectedGameObject!=null)
         {
-            cursor.transform.position = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.position;
+            cursorPumped = true;
+            var cursorTransform = cursor.rectTransform;
+            cursorTransform.position = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.position;
+            cursorTransform.sizeDelta = GameManager.Instance.eventSystem.currentSelectedGameObject.GetComponent<RectTransform>()!.sizeDelta;
+            cursorTransform.localScale = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.localScale * 1.25f;
         }
 
     }
