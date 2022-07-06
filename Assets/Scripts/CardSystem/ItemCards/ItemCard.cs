@@ -19,14 +19,8 @@ public class ItemCard : CardObject
    
     public enum ItemType
     {
-        Shield, //offensive/defensive abilities?
-        Weapon, //offensive abilities?
-        Ring,   //magic abilities?
-        Pants,  //just for stats?
-        Chest,  //defensive abilities?
-        Helmet, //just for stats?
-        Boots,  //just for stats?
-        Gloves, //just for stats?
-        Amulet, //magic abilities?
+        Wallet, //defensive
+        PlayerCard, //offensive
+        Accessory,
     }
 }

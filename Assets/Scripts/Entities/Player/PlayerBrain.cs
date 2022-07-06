@@ -172,6 +172,10 @@ public class PlayerBrain : Brain
                 newcard.SetIndestructible(true);
                 AddCardToInventory(newcard);
             }
+            else
+            {
+                equippedSlots[index] = -1;
+            }
         }
         defaultEquipment = sourcePlayer.defaultEquipment;
         CalculateStats();

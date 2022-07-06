@@ -141,12 +141,12 @@ public class EquipmentDataContainer
     public enum Stats
     {
         None,
-        Strength,
-        Dexterity,
-        Speed,
-        Skill,
-        Vitality,
-        Luck,
+        Strength,//damage
+        Dexterity,//dodge chance
+        Speed,//crit chance
+        Skill,//crit damage
+        Vitality,//health
+        Luck,//loot quality
         Sagacity,
         Intelligence,
         Wisdom,

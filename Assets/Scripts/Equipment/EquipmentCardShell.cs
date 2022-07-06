@@ -75,7 +75,18 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
         levelText.color = GameManager.Instance.colors[(int)item.quality];
         for (var i = 0; i < statText.Length; i++)
         {
-            switch (item.stats[i])
+            if (item.stats[i] !=EquipmentDataContainer.Stats.None)
+            {
+                statText[i].text = "+"
+                                   + item.statValue[i]
+                                   + " "+ item.stats[i];
+            }
+            else
+            {
+                statText[i].text = "";
+            }
+
+            /*switch (item.stats[i])
             {
                 case EquipmentDataContainer.Stats.None:
                     statText[i].text = "";
@@ -95,7 +106,7 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
                 case EquipmentDataContainer.Stats.Vitality:
                     statText[i].text = "+" + item.statValue[i] + " Vitality";
                     break;
-            }
+            }*/
 
             if (i<item.itemCore.guaranteeStats.Length)
             {

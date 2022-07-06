@@ -18,69 +18,20 @@ MonoBehaviour:
   <maxHealth>k__BackingField: 0
   <startingShield>k__BackingField: 0
   <abilities>k__BackingField:
-  - {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+  - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
   - {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
   - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
-  - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
   <baseDamage>k__BackingField: 0
   <baseShield>k__BackingField: 0
   <baseHeal>k__BackingField: 1
-  <equippedSlots>k__BackingField: 00000000ffffffffffffffff01000000ffffffffffffffff00000000ffffffffffffffff
+  <equippedSlots>k__BackingField: 00000000ffffffffffffffff
   <playerInventory>k__BackingField:
   - container:
-    - <itemCore>k__BackingField: {fileID: 11400000, guid: 86d281c4687b5cf4d8238642e243853e, type: 2}
-      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
-      <quality>k__BackingField: 1
-      <level>k__BackingField: 1
-      <stats>k__BackingField: 0200000001000000050000000000000000000000
-      <statValue>k__BackingField: 0500000003000000090000000100000001000000
-      <indestructible>k__BackingField: 0
-  - container: []
-  - container: []
-  - container:
-    - <itemCore>k__BackingField: {fileID: 11400000, guid: 6de06540e989a7e45ad0c55adec69869, type: 2}
-      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
-      <quality>k__BackingField: 0
-      <level>k__BackingField: 1
-      <stats>k__BackingField: 0400000005000000000000000000000000000000
-      <statValue>k__BackingField: 0500000005000000010000000100000001000000
-      <indestructible>k__BackingField: 0
-    - <itemCore>k__BackingField: {fileID: 11400000, guid: 581998245e65b7344b0719e8226fdbbd, type: 2}
-      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
-      <quality>k__BackingField: 1
-      <level>k__BackingField: 1
-      <stats>k__BackingField: 0200000003000000040000000000000000000000
-      <statValue>k__BackingField: 0500000002000000010000000100000001000000
-      <indestructible>k__BackingField: 0
-    - <itemCore>k__BackingField: {fileID: 11400000, guid: 018e9d1cf39ebb1479008e987f789ab7, type: 2}
-      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
-      <quality>k__BackingField: 0
-      <level>k__BackingField: 1
-      <stats>k__BackingField: 0100000004000000000000000000000000000000
-      <statValue>k__BackingField: 0500000004000000010000000100000001000000
-      <indestructible>k__BackingField: 0
-    - <itemCore>k__BackingField: {fileID: 11400000, guid: 41c1e869633b67740b9f5356e0edd626, type: 2}
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 7b0541bbcc360464e89dc2e89fe01966, type: 2}
       <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
       <quality>k__BackingField: 0
       <level>k__BackingField: 1
-      <stats>k__BackingField: 0300000004000000000000000000000000000000
-      <statValue>k__BackingField: 0500000004000000010000000100000001000000
-      <indestructible>k__BackingField: 0
-  - container: []
-  - container: []
-  - container:
-    - <itemCore>k__BackingField: {fileID: 11400000, guid: 0d7a710763bcb8f4780c58bf6e4ad17c, type: 2}
-      <ability>k__BackingField: {fileID: 0}
-      <quality>k__BackingField: 2
-      <level>k__BackingField: 1
-      <stats>k__BackingField: 0200000005000000030000000400000000000000
-      <statValue>k__BackingField: 0500000001000000040000000300000001000000
-      <indestructible>k__BackingField: 0
-    - <itemCore>k__BackingField: {fileID: 11400000, guid: 0d7a710763bcb8f4780c58bf6e4ad17c, type: 2}
-      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
-      <quality>k__BackingField: 0
-      <level>k__BackingField: 1
-      <stats>k__BackingField: 0200000003000000000000000000000000000000
+      <stats>k__BackingField: 0200000005000000000000000000000000000000
       <statValue>k__BackingField: 0500000001000000010000000100000001000000
       <indestructible>k__BackingField: 0
   - container: []
@@ -104,12 +55,21 @@ MonoBehaviour:
     <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
     <quality>k__BackingField: 0
     <level>k__BackingField: 1
-    <stats>k__BackingField: 05000000000000000000000000000000000000000000000000000000000000000000000000000000
+    <stats>k__BackingField: 0500000000000000000000000000000000000000
     <statValue>k__BackingField: 0a000000
     <indestructible>k__BackingField: 0
-  <damageBonus>k__BackingField: 8
-  <shieldBonus>k__BackingField: 15
-  <healthBonus>k__BackingField: 20
+  <damageBonus>k__BackingField: 5
+  <shieldBonus>k__BackingField: 5
+  <healthBonus>k__BackingField: 11
   <healBonus>k__BackingField: 0
-  <skillBonus>k__BackingField: 4
-  <speedBonus>k__BackingField: 6
+  <skillBonus>k__BackingField: 0
+  <speedBonus>k__BackingField: 0
+  <egoBonus>k__BackingField: 0
+  <creditBonus>k__BackingField: 0
+  <credits>k__BackingField: 0
+  <ego>k__BackingField: 0
+  <level>k__BackingField: 0
+  <cardPacks>k__BackingField: 0
+  <capsules>k__BackingField: 0
+  <superCapsules>k__BackingField: 0
+  <cardSouls>k__BackingField: 00000000000000000000000000000000000000000000000000000000

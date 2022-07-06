@@ -1,23 +1,25 @@
 ﻿using UnityEngine;
 
-public class LootManager: MonoBehaviour
+public class LootManager : MonoBehaviour
 {
-    [field: SerializeField] public int[] qualityWeights { get;private set; }
+    [field: SerializeField] public int[] qualityWeights { get; private set; }
 
     public EquipmentDataContainer GetItemCard()
     {
-        return GetItemCard(Random.Range(0, qualityWeights.Length));
+        return GetItemCard(Random.Range(0, 3));
     }
+
     public EquipmentDataContainer GetItemCard(ItemCard.ItemType itemType)
     {
-       return GetItemCard((int)itemType);
+        return GetItemCard((int)itemType);
     }
+
     public EquipmentDataContainer GetItemCard(int itemType)
     {
         EquipmentDataContainer dataContainer = new EquipmentDataContainer();
         dataContainer.InsertItem(
             GameManager.Instance.equipmentRegistries[itemType].GetRandomCard());
-        dataContainer.GenerateDataOfLevel(GameManager.Instance.metaPlayer.level+Random.Range(-3,3));
+        dataContainer.GenerateDataOfLevel(GameManager.Instance.metaPlayer.level + Random.Range(-3, 3));
         return dataContainer;
     }
 
@@ -37,6 +39,7 @@ public class LootManager: MonoBehaviour
                 randomValue -= qualityWeights[i];
             }
         }
+
         return (EquipmentDataContainer.Quality)randomIndex;
     }
 }

@@ -148,6 +148,7 @@ public class InventoryManager : MonoBehaviour
         if (cardSlider.value==0)
         {
             ButtonLeft.interactable = false;
+            GameManager.Instance.eventSystem.SetSelectedGameObject(cardSlider.gameObject);
         }
         else
         {
@@ -157,6 +158,8 @@ public class InventoryManager : MonoBehaviour
         if (Math.Abs(cardSlider.value - cards.Count) < 1.1f)
         {
             ButtonRight.interactable = false;
+            GameManager.Instance.eventSystem.SetSelectedGameObject(cardSlider.gameObject);
+
         }
         else
         {

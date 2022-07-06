@@ -153,7 +153,6 @@ public class UIManager : MonoBehaviour
             cursorTransform.sizeDelta = GameManager.Instance.eventSystem.currentSelectedGameObject.GetComponent<RectTransform>()!.sizeDelta;
             cursorTransform.localScale = GameManager.Instance.eventSystem.currentSelectedGameObject.transform.localScale * 1.25f;
         }
-
     }
     public void DisablePointer()
     {
