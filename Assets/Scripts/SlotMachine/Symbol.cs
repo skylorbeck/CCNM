@@ -76,18 +76,18 @@ public class Symbol : MonoBehaviour
     {
         consumed = true;
 
-        if (ability.shieldTarget)
+        /*if (ability.armorTarget)
         {
             int shield = await target.OnShield(target,user.brain.baseShield);
-            shield = (int)Math.Ceiling(shield * ability.targetShieldMultiplier);
+            shield = (int)Math.Ceiling(shield * ability.targetArmorMultiplier);
             target.Shield(shield, ability.element);
         }
-        if (ability.shieldUser)
+        if (ability.armorUser)
         {
             int shield = await user.OnShield(user,user.brain.baseShield);
-            shield = (int)Math.Ceiling(shield * ability.userShieldMultiplier);
+            shield = (int)Math.Ceiling(shield * ability.userArmorMultiplier);
             user.Shield(shield, ability.element);
-        }
+        }*/
         if (ability.statusTarget)
         {
             target.AddStatusEffect(ability.targetStatus);

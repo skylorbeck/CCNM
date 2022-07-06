@@ -35,6 +35,11 @@ public class StatusEffect : ScriptableObject
         //do something
         return baseDamage;
     }
+    public virtual async Task<int> OnDodge([CanBeNull] Shell attacker, Shell defender, int baseDamage)
+    {
+        //do something
+        return baseDamage;
+    }
     public virtual async Task<int> OnHeal([CanBeNull] Shell healer, Shell target, int baseHeal)
     {
         //do something

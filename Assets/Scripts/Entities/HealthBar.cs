@@ -33,14 +33,14 @@ public class HealthBar : MonoBehaviour
             backplate.enabled = true;
             healthBar.SetPosition(1, new Vector3( Math.Clamp((float)shell.health / shell.maxHealth,0,1), 0, 0));
         }
-        if (!shell.hasShield || shell.maxShield == 0) 
+        if (!shell.hasShield || shell.shieldMax == 0) 
         {
             shieldBar.enabled = false;
         }
         else
         {
             shieldBar.enabled = true;
-            shieldBar.SetPosition(1, new Vector3(Math.Clamp((float)shell.shield / shell.maxShield,0,1), 0, 0));
+            shieldBar.SetPosition(1, new Vector3(Math.Clamp((float)shell.shield / shell.shieldMax,0,1), 0, 0));
         }
 
         healthText.text = shell.health>0? ""+shell.health:"";

@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Shell : MonoBehaviour
 {
@@ -12,7 +13,11 @@ public class Shell : MonoBehaviour
     [field: SerializeField] public int health { get; protected set; } = 10;
     [field: SerializeField] public int maxHealth { get; protected set; } = 10;
     [field: SerializeField] public int shield { get; protected set; } = 0;
-    [field: SerializeField] public int maxShield { get; protected set; } = 0;
+    [field: SerializeField] public int shieldMax { get; protected set; } = 0;
+    [field: SerializeField] public int shieldDelay { get; protected set; } = 0;
+    [field: SerializeField] public int shieldDelayMax { get; protected set; } = 0;
+    [field: SerializeField] public int shieldRate { get; protected set; } = 0;
+    [field: SerializeField] public int dodgeChance { get; protected set; } = 0;
     [field: SerializeField] public AbilityObject[] abilities { get; private set; } = new AbilityObject[0];
     [SerializeField] public StatusDisplayer statusDisplayer;
     public bool isDead => health <= 0;
@@ -44,11 +49,18 @@ public class Shell : MonoBehaviour
     
     public async Task Damage([CanBeNull] Shell source,int baseDamage, StatusEffect.Element element)
     {
+        if (Random.Range(0,100) < dodgeChance)
+        {
+            await statusDisplayer.OnDodge(source,this,baseDamage);
+            TextPopController.Instance.PopPositive("Dodged",transform.position,true);
+            return;
+        }
         int damage = await statusDisplayer.OnDamage(source,this,baseDamage);
         TextPopController.Instance.PopDamage(damage,transform.position);
 
         if (shield > 0)
         {
+            shieldDelay = shieldDelayMax;
             shield -= damage;
             if (shield < 0)
             {
@@ -87,12 +99,14 @@ public class Shell : MonoBehaviour
     
     public virtual void Shield(int amount, StatusEffect.Element element)
     {
-        shield += amount;
-        TextPopController.Instance.PopShield(amount,transform.position);
-
-        if (shield > maxShield)
+        if (shield +amount> shieldMax)
         {
-            maxShield = shield;
+            amount = shieldMax - shield;
+        }
+        shield += amount;
+        if (amount>0)
+        {
+            TextPopController.Instance.PopShield(amount,transform.position);
         }
     }
     
@@ -110,7 +124,17 @@ public class Shell : MonoBehaviour
     {
         await statusDisplayer.Tick();
     }
-    
+
+    public void ShieldCheck()
+    {
+        shieldDelay--;
+        if (shieldDelay < 0)
+        {
+            shieldDelay = 0;
+            Shield(shieldRate, StatusEffect.Element.None);
+        }
+    }
+
     public virtual void InsertBrain(Brain brain)
     {
         this.brain = brain;
@@ -123,8 +147,12 @@ public class Shell : MonoBehaviour
         description = brain.description;
         health = brain.maxHealth;
         maxHealth = brain.maxHealth;
-        shield = brain.startingShield;
-        maxShield = brain.startingShield;
+        shield = brain.baseShield;
+        shieldMax = brain.baseShield;
+        shieldRate = brain.baseShieldRate;
+        shieldDelay = brain.baseShieldDelay;
+        shieldDelayMax = brain.baseShieldDelay;
+        dodgeChance = brain.baseDodge;
         abilities = brain.abilities;
     }
 
@@ -132,7 +160,10 @@ public class Shell : MonoBehaviour
     {
         // await TickStatusEffects();
         TestDeath();
-
+        if (!isDead)
+        {
+            ShieldCheck();
+        }
     }
 
     public void TestDeath()

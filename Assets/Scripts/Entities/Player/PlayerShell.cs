@@ -11,6 +11,8 @@ public class PlayerShell : Shell
     {
         base.InsertBrain(brain);
         health = maxHealth += playerBrain.healthBonus;
+        shield = shieldMax += playerBrain.shieldMax;
+        dodgeChance = playerBrain.dodgeBonus;
     }
     public override Task<int> OnAttack(Shell target, int baseDamage)
     {

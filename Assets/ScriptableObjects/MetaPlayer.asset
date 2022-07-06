@@ -16,17 +16,33 @@ MonoBehaviour:
   <description>k__BackingField: entity.description
   <icon>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   <maxHealth>k__BackingField: 0
-  <startingShield>k__BackingField: 0
   <abilities>k__BackingField:
-  - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+  - {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
   - {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
   - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
   <baseDamage>k__BackingField: 0
   <baseShield>k__BackingField: 0
+  <baseShieldDelay>k__BackingField: 1
+  <baseShieldRate>k__BackingField: 1
   <baseHeal>k__BackingField: 1
-  <equippedSlots>k__BackingField: 00000000ffffffffffffffff
+  <baseDodge>k__BackingField: 1
+  <equippedSlots>k__BackingField: ffffffffffffffffffffffff
   <playerInventory>k__BackingField:
   - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 7b0541bbcc360464e89dc2e89fe01966, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0200000005000000000000000000000000000000
+      <statValue>k__BackingField: 0500000001000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 7b0541bbcc360464e89dc2e89fe01966, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0200000005000000000000000000000000000000
+      <statValue>k__BackingField: 0500000001000000010000000100000001000000
+      <indestructible>k__BackingField: 0
     - <itemCore>k__BackingField: {fileID: 11400000, guid: 7b0541bbcc360464e89dc2e89fe01966, type: 2}
       <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
       <quality>k__BackingField: 0
@@ -41,8 +57,8 @@ MonoBehaviour:
     <ability>k__BackingField: {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
     <quality>k__BackingField: 0
     <level>k__BackingField: 1
-    <stats>k__BackingField: 0200000000000000000000000000000000000000
-    <statValue>k__BackingField: 05000000
+    <stats>k__BackingField: 0c0000000d000000000000000000000000000000
+    <statValue>k__BackingField: 050000000500000005000000
     <indestructible>k__BackingField: 0
   - <itemCore>k__BackingField: {fileID: 11400000, guid: b78146602871eca4ea77a926e011b5db, type: 2}
     <ability>k__BackingField: {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
@@ -60,12 +76,15 @@ MonoBehaviour:
     <indestructible>k__BackingField: 0
   <damageBonus>k__BackingField: 5
   <shieldBonus>k__BackingField: 5
-  <healthBonus>k__BackingField: 11
+  <shieldMax>k__BackingField: 0
+  <shieldRate>k__BackingField: 0
+  <healthBonus>k__BackingField: 10
   <healBonus>k__BackingField: 0
   <skillBonus>k__BackingField: 0
   <speedBonus>k__BackingField: 0
   <egoBonus>k__BackingField: 0
   <creditBonus>k__BackingField: 0
+  <dodgeBonus>k__BackingField: 0
   <credits>k__BackingField: 0
   <ego>k__BackingField: 0
   <level>k__BackingField: 0

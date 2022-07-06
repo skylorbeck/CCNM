@@ -10,7 +10,7 @@ public class StatDisplay : MonoBehaviour
     void Start()
     {
         pauseText[0].text = GameManager.Instance.battlefield.player.damageBonus.ToString();
-        pauseText[1].text = GameManager.Instance.battlefield.player.shieldBonus.ToString();
+        pauseText[1].text = GameManager.Instance.battlefield.player.shieldMax.ToString();
         pauseText[2].text = GameManager.Instance.battlefield.player.healthBonus.ToString();
         pauseText[3].text = GameManager.Instance.battlefield.player.speedBonus.ToString();
         pauseText[4].text = GameManager.Instance.battlefield.player.skillBonus.ToString();

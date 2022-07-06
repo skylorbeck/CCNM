@@ -18,12 +18,15 @@ public class PlayerBrain : Brain
 
     [field: SerializeField] public int damageBonus { get; private set; }
     [field: SerializeField] public int shieldBonus { get; private set; }
+    [field: SerializeField] public int shieldMax { get; private set; }
+    [field: SerializeField] public int shieldRate { get; private set; }
     [field: SerializeField] public int healthBonus { get; private set; }
     [field: SerializeField] public int healBonus { get; private set; }
     [field: SerializeField] public int skillBonus { get; private set; }
     [field: SerializeField] public int speedBonus { get; private set; }
     [field: SerializeField] public int egoBonus { get; private set; }
     [field: SerializeField] public int creditBonus { get; private set; }
+    [field: SerializeField] public int dodgeBonus { get; private set; }
     
     [field: SerializeField] public int credits { get; private set; } = 0;
     [field: SerializeField] public int ego { get; private set; } = 0;
@@ -44,6 +47,8 @@ public class PlayerBrain : Brain
     {
         damageBonus = 0;
         shieldBonus = 0;
+        shieldMax = 0;
+        shieldRate = 0;
         healthBonus = 0;
         skillBonus = 0;
         speedBonus = 0;
@@ -75,14 +80,23 @@ public class PlayerBrain : Brain
                     case EquipmentDataContainer.Stats.Vitality:
                         healthBonus += equippedCard.statValue[j];
                         break;
-                    case EquipmentDataContainer.Stats.Dexterity:
+                    case EquipmentDataContainer.Stats.Willpower:
                         shieldBonus += equippedCard.statValue[j];
+                        break;
+                    case EquipmentDataContainer.Stats.Resolve:
+                        shieldRate += equippedCard.statValue[j];
+                        break;
+                    case EquipmentDataContainer.Stats.Grit:
+                        shieldMax += equippedCard.statValue[j];
                         break;
                     case EquipmentDataContainer.Stats.Skill:
                         skillBonus += equippedCard.statValue[j];
                         break;
                     case EquipmentDataContainer.Stats.Speed:
                         speedBonus += equippedCard.statValue[j];
+                        break;
+                    case EquipmentDataContainer.Stats.Dexterity:
+                        dodgeBonus += equippedCard.statValue[j];
                         break;
                 }
 

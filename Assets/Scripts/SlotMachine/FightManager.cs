@@ -32,7 +32,7 @@ public class FightManager : MonoBehaviour
     private Shell targetEnemy;
     private Symbol targetSymbol;
     [SerializeField] private Battlefield battlefield;
-    private bool turnOver = false;
+    [SerializeField] private bool turnOver = false;
     [SerializeField] private GameObject startingSelection;
     [SerializeField] private GameObject pauseStartingSelection;
     [SerializeField] private Button[] allButtons;
@@ -40,6 +40,7 @@ public class FightManager : MonoBehaviour
     [SerializeField] private GraphicRaycaster pauseRaycaster;
     [SerializeField] private StatDisplay playerStatDisplay;
     private CancellationTokenSource cancellationTokenSource;
+    [SerializeField] private ConsumableMenu consumableMenu;
     private int enemiesAlive
     {
         get
@@ -103,8 +104,10 @@ public class FightManager : MonoBehaviour
         {
             text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ?1 :0, 0.25f,true);
         }
+        consumableMenu.Back();
         playerStatDisplay.FadeInOut();
         pauseRaycaster.enabled = GameManager.Instance.uiStateObject.isPaused;
+        
     }
 
     public void Quit()
@@ -147,6 +150,7 @@ public class FightManager : MonoBehaviour
         {
             case WheelStates.Idle:
                 SpinWheels();
+                player.ShieldCheck();
                 break;
             case WheelStates.Spinning:
                 break;

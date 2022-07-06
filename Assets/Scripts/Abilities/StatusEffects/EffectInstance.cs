@@ -29,6 +29,10 @@ public class EffectInstance : MonoBehaviour
     {
         return await statusEffect.OnDamage(attacker, defender, baseDamage);
     }
+    public async Task<int> OnDodge([CanBeNull] Shell attacker, Shell defender, int baseDamage)
+    {
+        return await statusEffect.OnDodge(attacker, defender, baseDamage);
+    }
     public async Task<int> OnHeal([CanBeNull] Shell healer, Shell target, int baseHeal)
     {
         return await statusEffect.OnHeal(healer, target, baseHeal);

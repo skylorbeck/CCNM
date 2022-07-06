@@ -151,7 +151,8 @@ public class EquipmentDataContainer
         Intelligence,
         Wisdom,
         Charisma,
-        Willpower,
-        Faith,
+        Willpower,//shield delay?
+        Grit,//shield capacity
+        Resolve,//shield recharge rate
         }
 }

@@ -9,12 +9,14 @@ public class Brain : ScriptableObject
     [field: SerializeField] public string description { get; private set; } = "entity.description";
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public int maxHealth { get; private set; } = 100;
-    [field: SerializeField] public int startingShield { get; private set; } = 100;
     [field: SerializeField] public AbilityObject[] abilities { get; private set; } = new AbilityObject[0];
     
     [field: SerializeField] public int baseDamage { get; private set; } = 1;
     [field: SerializeField] public int baseShield { get; private set; } = 1;
+    [field: SerializeField] public int baseShieldDelay { get; private set; } = 1;
+    [field: SerializeField] public int baseShieldRate { get; private set; } = 1;
     [field: SerializeField] public int baseHeal { get; private set; } = 1;
+    [field: SerializeField] public int baseDodge { get; private set; } = 1;
     
     public AbilityObject GetRandomAbility()
     {

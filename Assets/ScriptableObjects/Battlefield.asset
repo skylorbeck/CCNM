@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <deck>k__BackingField: {fileID: 11400000, guid: a721d7203651bfd48bcad82cdf586d59, type: 2}
   <enemies>k__BackingField:
+  - {fileID: 11400000, guid: f868d5253aa36bb439ce5e5ac12e6b68, type: 2}
   - {fileID: 11400000, guid: 00642a671b7aed14da8f6d531375b1d4, type: 2}
-  - {fileID: 11400000, guid: 00642a671b7aed14da8f6d531375b1d4, type: 2}
-  - {fileID: 11400000, guid: 00642a671b7aed14da8f6d531375b1d4, type: 2}
+  - {fileID: 11400000, guid: 08627fe8f244ef940acc4f13b1312e26, type: 2}
   <player>k__BackingField: {fileID: 11400000, guid: a4add858d424d2743ae7049f6b0669cc, type: 2}
   deckChosen: 0
-  <totalHands>k__BackingField: 2
+  <totalHands>k__BackingField: 3
   <enemyLevel>k__BackingField: 1
   <eventObject>k__BackingField: {fileID: 11400000, guid: 5adf14fa4d6b44e41b0e08e94dfdbd6b, type: 2}

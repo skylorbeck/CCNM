@@ -29,11 +29,11 @@ public class AbilityObject : ScriptableObject
     [field: SerializeField] public float userHealMultiplier { get; private set; } = 1;
 
 
-    [field: Header("Shielding")]
-    [field: SerializeField] public bool shieldTarget { get; private set; } = false;
-    [field: SerializeField] public float targetShieldMultiplier { get; private set; } = 1;
-    [field: SerializeField] public bool shieldUser { get; private set; } = false;
-    [field: SerializeField] public float userShieldMultiplier { get; private set; } = 1;
+    [field: Header("Armor (Unused)")]
+    [field: SerializeField] public bool armorTarget { get; private set; } = false;
+    [field: SerializeField] public float targetArmorMultiplier { get; private set; } = 1;
+    [field: SerializeField] public bool armorUser { get; private set; } = false;
+    [field: SerializeField] public float userArmorMultiplier { get; private set; } = 1;
 
 
 

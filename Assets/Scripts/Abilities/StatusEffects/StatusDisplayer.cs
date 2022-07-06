@@ -31,6 +31,16 @@ public class StatusDisplayer : MonoBehaviour
 
         return damage;
     }
+     public async Task<int> OnDodge([CanBeNull] Shell attacker,Shell defender,int baseDamage)
+    {
+        int damage = baseDamage;
+        foreach (EffectInstance instance in statusList)
+        {
+            damage = await instance.OnDodge(attacker,defender,damage);
+        }
+
+        return damage;
+    }
      public async Task<int> OnHeal([CanBeNull] Shell healer,Shell target,int baseHeal)
     {
         int heal = baseHeal;
