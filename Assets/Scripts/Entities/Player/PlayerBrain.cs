@@ -208,6 +208,11 @@ public class PlayerBrain : Brain
         credits += amt;
     }
 
+    public void SpendCredits(int amt)
+    {
+        credits -= amt;
+    }
+
     public void AddEgo(int amt)
     {
         amt = (int)(amt * GameManager.Instance.metaPlayer.egoBonus); 

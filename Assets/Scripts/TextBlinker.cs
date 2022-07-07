@@ -22,6 +22,5 @@ public class TextBlinker : MonoBehaviour
     protected void EnableDisable()
     {
         text.enabled = !text.enabled;
-
     }
 }

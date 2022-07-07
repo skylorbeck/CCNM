@@ -30,7 +30,7 @@ MonoBehaviour:
   <armorUser>k__BackingField: 0
   <userArmorMultiplier>k__BackingField: 1
   <targetStatus>k__BackingField: {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}
-  <statusTarget>k__BackingField: 0
+  <statusTarget>k__BackingField: 1
   <userStatus>k__BackingField: {fileID: 0}
   <statusSelf>k__BackingField: 0
   <element>k__BackingField: 1
