@@ -10,7 +10,7 @@ public class PlayerShell : Shell
     public override void InsertBrain(Brain brain)
     {
         base.InsertBrain(brain);
-        health = maxHealth += playerBrain.healthBonus;
+        health = maxHealth = ((PlayerBrain)brain).currentHealth;
         shield = shieldMax += playerBrain.shieldMax;
         dodgeChance = playerBrain.dodgeBonus;
     }

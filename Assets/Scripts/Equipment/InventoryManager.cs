@@ -81,18 +81,19 @@ public class InventoryManager : MonoBehaviour
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.eventSystem.SetSelectedGameObject(cardSlider.gameObject);
         
-        // for (var index = 0; index < playerObject.playerInventory.Length; index++)
-        // {
-        //     EquipmentList equipmentList = playerObject.playerInventory[index];
-        //     if (equipmentList.container.Count <= amountToTest)
-        //     {
-        //         int amount = 10+index -equipmentList.container.Count;
-        //         for (int j = 0; j < amount; j++)
-        //         {
-        //             equipmentList.container.Add(GameManager.Instance.lootManager.GetItemCard(index));
-        //         }
-        //     }
-        // }
+        //cheating
+        /*for (var index = 0; index < playerObject.playerInventory.Length; index++)
+        {
+            EquipmentList equipmentList = playerObject.playerInventory[index];
+            if (equipmentList.container.Count <= amountToTest)
+            {
+                int amount = 10+index -equipmentList.container.Count;
+                for (int j = 0; j < amount; j++)
+                {
+                    equipmentList.container.Add(GameManager.Instance.lootManager.GetItemCard(index));
+                }
+            }
+        }*/
 
         SelectHand(0);
     }

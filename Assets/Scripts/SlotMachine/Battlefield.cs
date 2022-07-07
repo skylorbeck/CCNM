@@ -41,6 +41,10 @@ public class Battlefield : ScriptableObject
     {
         totalHands = 1;
         player.Clone(GameManager.Instance.metaPlayer);
+        player.ClearConsumables();
+        player.AddConsumables(0,1);
+        player.AddConsumables(1,1);
+        player.AddConsumables(2,1);
     }
     
     public void SetLevel(int level)

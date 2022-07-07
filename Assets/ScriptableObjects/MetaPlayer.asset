@@ -17,8 +17,8 @@ MonoBehaviour:
   <icon>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   <maxHealth>k__BackingField: 0
   <abilities>k__BackingField:
-  - {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
-  - {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
+  - {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+  - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
   - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
   <baseDamage>k__BackingField: 0
   <baseShield>k__BackingField: 0
@@ -26,32 +26,242 @@ MonoBehaviour:
   <baseShieldRate>k__BackingField: 1
   <baseHeal>k__BackingField: 1
   <baseDodge>k__BackingField: 1
-  <equippedSlots>k__BackingField: ffffffffffffffffffffffff
+  <equippedSlots>k__BackingField: 080000000400000004000000
   <playerInventory>k__BackingField:
   - container:
-    - <itemCore>k__BackingField: {fileID: 11400000, guid: 7b0541bbcc360464e89dc2e89fe01966, type: 2}
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 47ac547be6b637a438087ef724dc0656, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0c0000000d000000000000000000000000000000
+      <statValue>k__BackingField: 0500000005000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 2ec74e21850f0514cab067b2358312d0, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0c0000000d000000090000000000000000000000
+      <statValue>k__BackingField: 0500000005000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: d08b348174845294e8cf0f1dc8e7ef9d, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0c0000000d0000000a0000000000000000000000
+      <statValue>k__BackingField: 0500000005000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: d08b348174845294e8cf0f1dc8e7ef9d, type: 2}
+      <ability>k__BackingField: {fileID: 0}
+      <quality>k__BackingField: 2
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0c0000000d000000090000000700000000000000
+      <statValue>k__BackingField: 0500000005000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 47ac547be6b637a438087ef724dc0656, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 2
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0c0000000d000000070000000a00000000000000
+      <statValue>k__BackingField: 0500000005000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: d08b348174845294e8cf0f1dc8e7ef9d, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0c0000000d000000040000000000000000000000
+      <statValue>k__BackingField: 0500000005000000040000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 86d281c4687b5cf4d8238642e243853e, type: 2}
       <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
       <quality>k__BackingField: 0
       <level>k__BackingField: 1
-      <stats>k__BackingField: 0200000005000000000000000000000000000000
-      <statValue>k__BackingField: 0500000001000000010000000100000001000000
+      <stats>k__BackingField: 0c0000000d000000000000000000000000000000
+      <statValue>k__BackingField: 0500000005000000010000000100000001000000
       <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 2ec74e21850f0514cab067b2358312d0, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 2
+      <stats>k__BackingField: 0c0000000d000000000000000000000000000000
+      <statValue>k__BackingField: 0a0000000a000000020000000200000002000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 2ec74e21850f0514cab067b2358312d0, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0c0000000d000000050000000000000000000000
+      <statValue>k__BackingField: 0500000005000000050000000100000001000000
+      <indestructible>k__BackingField: 1
     - <itemCore>k__BackingField: {fileID: 11400000, guid: 7b0541bbcc360464e89dc2e89fe01966, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 2
+      <stats>k__BackingField: 0c0000000d000000060000000000000000000000
+      <statValue>k__BackingField: 0a0000000a000000030000000200000002000000
+      <indestructible>k__BackingField: 0
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 7fc02d296240e5346a5539e5e50cc456, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 01000000040000000b0000000000000000000000
+      <statValue>k__BackingField: 0500000003000000040000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 7fc02d296240e5346a5539e5e50cc456, type: 2}
       <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
       <quality>k__BackingField: 0
       <level>k__BackingField: 1
-      <stats>k__BackingField: 0200000005000000000000000000000000000000
+      <stats>k__BackingField: 0100000006000000000000000000000000000000
       <statValue>k__BackingField: 0500000001000000010000000100000001000000
       <indestructible>k__BackingField: 0
-    - <itemCore>k__BackingField: {fileID: 11400000, guid: 7b0541bbcc360464e89dc2e89fe01966, type: 2}
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: e8196e61b068e0e4f9229f5c43e9b8cb, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 010000000c000000000000000000000000000000
+      <statValue>k__BackingField: 0500000004000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 1cbb30a67f233ea41aedf0673665ddf0, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0100000008000000030000000000000000000000
+      <statValue>k__BackingField: 0500000001000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: e8196e61b068e0e4f9229f5c43e9b8cb, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 2
+      <stats>k__BackingField: 010000000c000000000000000000000000000000
+      <statValue>k__BackingField: 0a00000009000000020000000200000002000000
+      <indestructible>k__BackingField: 1
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 073c5666b3d80a4418bcc67733fc978d, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0100000002000000000000000000000000000000
+      <statValue>k__BackingField: 0500000004000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 1cbb30a67f233ea41aedf0673665ddf0, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0100000003000000050000000000000000000000
+      <statValue>k__BackingField: 0500000004000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 073c5666b3d80a4418bcc67733fc978d, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 010000000c000000000000000000000000000000
+      <statValue>k__BackingField: 0500000003000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 073c5666b3d80a4418bcc67733fc978d, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0100000004000000000000000000000000000000
+      <statValue>k__BackingField: 0500000004000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: e8196e61b068e0e4f9229f5c43e9b8cb, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+      <quality>k__BackingField: 2
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0100000004000000030000000a00000000000000
+      <statValue>k__BackingField: 0500000002000000040000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 6ed1585709cff504a919d1191e98df6b, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 01000000050000000d0000000000000000000000
+      <statValue>k__BackingField: 0500000005000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 96a0a865e893e6e41acb73546fb52e5d, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0500000004000000000000000000000000000000
+      <statValue>k__BackingField: 0a00000001000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 3c126ef0be4140345993533bb585f5c5, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 2
+      <stats>k__BackingField: 0500000008000000020000000000000000000000
+      <statValue>k__BackingField: 1400000002000000030000000200000002000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 3c126ef0be4140345993533bb585f5c5, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 05000000030000000b0000000000000000000000
+      <statValue>k__BackingField: 0a00000004000000020000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 3aaa66caa25f88345882ab3756310bad, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 2
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0500000001000000080000000b00000000000000
+      <statValue>k__BackingField: 0a00000003000000010000000200000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: c61975fe7df1185498dc8fb760b0e18a, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 2
+      <level>k__BackingField: 2
+      <stats>k__BackingField: 050000000d000000080000000c00000000000000
+      <statValue>k__BackingField: 1400000002000000020000000900000002000000
+      <indestructible>k__BackingField: 1
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 3c126ef0be4140345993533bb585f5c5, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 2
+      <stats>k__BackingField: 0500000003000000000000000000000000000000
+      <statValue>k__BackingField: 1400000006000000020000000200000002000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 3c126ef0be4140345993533bb585f5c5, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 2
+      <stats>k__BackingField: 0500000002000000000000000000000000000000
+      <statValue>k__BackingField: 1400000006000000020000000200000002000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 96a0a865e893e6e41acb73546fb52e5d, type: 2}
       <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
       <quality>k__BackingField: 0
       <level>k__BackingField: 1
-      <stats>k__BackingField: 0200000005000000000000000000000000000000
-      <statValue>k__BackingField: 0500000001000000010000000100000001000000
+      <stats>k__BackingField: 0500000009000000000000000000000000000000
+      <statValue>k__BackingField: 0a00000001000000010000000100000001000000
       <indestructible>k__BackingField: 0
-  - container: []
-  - container: []
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: ab1822eec8e6d0944b753abaed85a979, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+      <quality>k__BackingField: 1
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0500000002000000040000000000000000000000
+      <statValue>k__BackingField: 0a00000003000000040000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: c61975fe7df1185498dc8fb760b0e18a, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 2
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 050000000d000000030000000100000000000000
+      <statValue>k__BackingField: 0a00000004000000020000000200000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 96a0a865e893e6e41acb73546fb52e5d, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 0500000008000000000000000000000000000000
+      <statValue>k__BackingField: 0a00000001000000010000000100000001000000
+      <indestructible>k__BackingField: 0
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 3aaa66caa25f88345882ab3756310bad, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 0
+      <level>k__BackingField: 1
+      <stats>k__BackingField: 050000000d000000000000000000000000000000
+      <statValue>k__BackingField: 0a00000003000000010000000100000001000000
+      <indestructible>k__BackingField: 0
   <defaultEquipment>k__BackingField:
   - <itemCore>k__BackingField: {fileID: 11400000, guid: 489bb756569c324439c359804164e342, type: 2}
     <ability>k__BackingField: {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
@@ -74,11 +284,11 @@ MonoBehaviour:
     <stats>k__BackingField: 0500000000000000000000000000000000000000
     <statValue>k__BackingField: 0a000000
     <indestructible>k__BackingField: 0
-  <damageBonus>k__BackingField: 5
-  <shieldBonus>k__BackingField: 5
-  <shieldMax>k__BackingField: 0
-  <shieldRate>k__BackingField: 0
-  <healthBonus>k__BackingField: 10
+  <damageBonus>k__BackingField: 10
+  <shieldBonus>k__BackingField: 0
+  <shieldMax>k__BackingField: 23
+  <shieldRate>k__BackingField: 7
+  <healthBonus>k__BackingField: 25
   <healBonus>k__BackingField: 0
   <skillBonus>k__BackingField: 0
   <speedBonus>k__BackingField: 0
@@ -92,3 +302,4 @@ MonoBehaviour:
   <capsules>k__BackingField: 0
   <superCapsules>k__BackingField: 0
   <cardSouls>k__BackingField: 00000000000000000000000000000000000000000000000000000000
+  <consumables>k__BackingField: 000000000000000000000000

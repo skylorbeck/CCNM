@@ -28,13 +28,15 @@ public class PlayerBrain : Brain
     [field: SerializeField] public int creditBonus { get; private set; }
     [field: SerializeField] public int dodgeBonus { get; private set; }
     
+    [field: SerializeField] public int currentHealth { get; private set; } = 0;
     [field: SerializeField] public int credits { get; private set; } = 0;
     [field: SerializeField] public int ego { get; private set; } = 0;
     [field: SerializeField] public int level { get; private set; } = 0;
     [field: SerializeField] public int cardPacks { get; private set; } = 0;
     [field: SerializeField] public int capsules { get; private set; } = 0;
     [field: SerializeField] public int superCapsules { get; private set; } = 0;
-    [field: SerializeField] public int[] cardSouls { get; private set; } = new int[7];
+    [field: SerializeField] public int[] cardSouls { get; private set; } = new int[3];
+    [field: SerializeField] public int[] consumables { get; private set; } = new int[3];
     
 
     public void Equip(int dataContainerIndex,int cardIndex)
@@ -109,6 +111,11 @@ public class PlayerBrain : Brain
         }
     }
 
+    public void SetCurrentHealth(int health)
+    {
+        currentHealth = health;
+    }
+    
     public void Unequip(int slot)
     {
         equippedSlots[slot] = -1;
@@ -192,6 +199,7 @@ public class PlayerBrain : Brain
             }
         }
         defaultEquipment = sourcePlayer.defaultEquipment;
+        currentHealth = sourcePlayer.maxHealth + sourcePlayer.healthBonus;
         CalculateStats();
     }
     public void AddCredits(int amt)
@@ -257,6 +265,16 @@ public class PlayerBrain : Brain
     public void CopyCardPacks(PlayerBrain source)
     {
         cardPacks += source.cardPacks;
+    }
+
+    public void ClearConsumables()
+    {
+        consumables = new int[3];
+    }
+    
+    public void AddConsumables(int index, int amt)
+    {
+        consumables[index] += amt;
     }
 }
 

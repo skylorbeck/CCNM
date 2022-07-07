@@ -92,6 +92,18 @@ public class EquipmentDataContainer
                 case Stats.Vitality:
                     statMulti = 10;
                     break;
+                case Stats.Luck:
+                    statMulti = 2;
+                    break;
+                case Stats.Willpower:
+                    statMulti = 5;
+                    break;
+                case Stats.Grit:
+                    statMulti = 5;
+                    break;
+                case Stats.Resolve:
+                    statMulti = 5;
+                    break;
             }
 
             float qualityMulti = 0;
@@ -114,7 +126,7 @@ public class EquipmentDataContainer
             statValue[i] += (int)Math.Ceiling(qualityMulti * statValue[i]);
         }
 
-        float abilityChance = 0.5f;
+        /*float abilityChance = 0.5f;
         if (quality == Quality.Noteworthy)
             abilityChance = 0.75f;
         if (quality == Quality.Typical)
@@ -125,7 +137,8 @@ public class EquipmentDataContainer
         if (Random.value < abilityChance)
         {
             ability = GameManager.Instance.abilityRegistry.GetRandomAbility();
-        }
+        }*/
+        ability = GameManager.Instance.abilityRegistry.GetRandomAbility();
     }
 
     public enum Quality

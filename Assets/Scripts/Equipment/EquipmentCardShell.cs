@@ -86,31 +86,13 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
                 statText[i].text = "";
             }
 
-            /*switch (item.stats[i])
-            {
-                case EquipmentDataContainer.Stats.None:
-                    statText[i].text = "";
-                    break;
-                case EquipmentDataContainer.Stats.Strength:
-                    statText[i].text = "+" + item.statValue[i] + " Strength";
-                    break;
-                case EquipmentDataContainer.Stats.Dexterity:
-                    statText[i].text = "+" + item.statValue[i] + " Dexterity";
-                    break;
-                case EquipmentDataContainer.Stats.Speed:
-                    statText[i].text = "+" + item.statValue[i] + " Speed";
-                    break;
-                case EquipmentDataContainer.Stats.Skill:
-                    statText[i].text = "+" + item.statValue[i] + " Skill";
-                    break;
-                case EquipmentDataContainer.Stats.Vitality:
-                    statText[i].text = "+" + item.statValue[i] + " Vitality";
-                    break;
-            }*/
-
             if (i<item.itemCore.guaranteeStats.Length)
             {
                 statText[i].fontStyle = FontStyles.Underline;
+            }
+            else
+            {
+                statText[i].fontStyle = FontStyles.Normal;
             }
         }
         

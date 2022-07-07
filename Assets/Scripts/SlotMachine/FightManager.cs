@@ -121,12 +121,6 @@ public class FightManager : MonoBehaviour
         GameManager.Instance.LoadSceneAdditive("MainMenu","Fight");
     }
 
-    
-   
-   
-
-
-
     private void OnDestroy()
     {
         GameManager.Instance.FixedSecond -= SizeSelector;
@@ -222,21 +216,21 @@ public class FightManager : MonoBehaviour
         } else if (enemies.All(x => x.isDead))
         {
             SetState(WheelStates.FightOver);
+            int credits = 0;
+            foreach (var enemy in enemies)
+            {
+                credits += enemy.enemyBrain.credits;
+            }
+            GameManager.Instance.battlefield.player.AddCredits(credits);
+            battlefield.randomState = null;
+            battlefield.player.SetCurrentHealth(player.health);
+            
             if (battlefield.runOver)
             {
-                //todo add run over win screen
-                battlefield.randomState = null;
                 GameManager.Instance.LoadSceneAdditive("RunOver","Fight");
             }
             else
             {
-                int credits = 0;
-                foreach (var enemy in enemies)
-                {
-                    credits += enemy.enemyBrain.credits;
-                }
-                GameManager.Instance.battlefield.player.AddCredits(credits);
-                battlefield.randomState = null;
                 GameManager.Instance.LoadSceneAdditive("FightWon",  "Fight");
             }
         }
