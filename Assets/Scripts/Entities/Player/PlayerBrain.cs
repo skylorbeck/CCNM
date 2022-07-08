@@ -129,7 +129,12 @@ public class PlayerBrain : Brain
     
     public void RemoveCardFromInventory(EquipmentDataContainer equipmentDataContainer)
     {
-        playerInventory[(int)equipmentDataContainer.itemCore.itemType].container.Remove(equipmentDataContainer);
+        List<EquipmentDataContainer> container = playerInventory[(int)equipmentDataContainer.itemCore.itemType].container;
+        if (equippedSlots[(int)equipmentDataContainer.itemCore.itemType] == container.IndexOf(equipmentDataContainer))
+        {
+            equippedSlots[(int)equipmentDataContainer.itemCore.itemType] = -1;
+        }
+        container.Remove(equipmentDataContainer);
     }
     
     public EquipmentDataContainer GetCard(int equipmentSlot,int cardIndex)

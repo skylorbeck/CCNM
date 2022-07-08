@@ -209,6 +209,7 @@ public class CardShredder : MonoBehaviour
         
         TextPopController.Instance.PopPositive("You have gained " + totalSouls + " souls.",Vector3.zero,false);
         
+        ClearAllShredMarks();
         for (var i = 0; i < cards.Length; i++)
         {
             SetEquipment(i);
