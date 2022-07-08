@@ -27,12 +27,14 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
     [field: SerializeField] public SpriteRenderer arrowSprite { get; private set; } 
     [field: SerializeField] public SpriteRenderer cardSprite { get; private set; }
     [field: SerializeField] public SpriteRenderer cardBackSprite { get; private set; }
+    [field: SerializeField] public SpriteRenderer shredMark { get; private set; }
     [field: SerializeField] public TextMeshPro qualityText { get; private set; }
     [field: SerializeField] public TextMeshPro levelText { get; private set; }
     [field: SerializeField] public Transform innerTransform { get; private set; }
     [field: SerializeField] public int rotateSpeed { get; private set; } = 5;
     [field: SerializeField] public bool MouseOver { get; private set; } = false;
     [field: SerializeField] public bool Selected { get; set; } = false;
+    [field: SerializeField] public bool MarkedForShred { get; set; } = false;
 
 
     public void Start()
@@ -66,6 +68,8 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
 
     public void InsertItem(EquipmentDataContainer item)
     {
+        MouseOver = false;
+        SetShredMark(false);
         EquipmentData = item;
         itemSprite.sprite = item.itemCore.icon;
         title.text = item.itemCore.cardTitle;
@@ -99,6 +103,7 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
         if (item.ability != null)
         {
             arrowSprite.enabled = true;
+            arrowSprite.sprite = item.ability.icon;
             abilitySprite.sprite = item.ability.icon;
             abilityTitle.text = item.ability.title;
             abilityDesc.text = item.ability.descriptionA;
@@ -129,5 +134,19 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
             MouseOver = !MouseOver;;
         }
     }
-   
+
+    public void ShredMarkUpdate()
+    {
+        shredMark.gameObject.SetActive(MarkedForShred);
+    }
+
+    public void ToggleShredMark()
+    {
+        SetShredMark(!MarkedForShred);
+    }
+    public void SetShredMark(bool value)
+    {
+        MarkedForShred = value;
+        ShredMarkUpdate();
+    }
 }
