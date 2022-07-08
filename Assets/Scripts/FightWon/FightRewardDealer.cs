@@ -54,6 +54,7 @@ public class FightRewardDealer : MonoBehaviour
         keepState[index] = !keepState[index];
         lootButtons[index].image.color = keepState[index] ? Color.green : Color.red;
         lootText[index].text = keepState[index] ? "Keep" : "Shred";
+        lootCards[index].SetShredMark(!keepState[index]);
     }
 
     public void NextCard()

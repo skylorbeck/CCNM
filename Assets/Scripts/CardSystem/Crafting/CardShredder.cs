@@ -173,4 +173,63 @@ public class CardShredder : MonoBehaviour
             }
         }
     }
+
+    public void InitiateShred()
+    {
+        int totalSouls = 0;
+        foreach (List<EquipmentCardShell> list in cards)
+        {
+            foreach (EquipmentCardShell shell in list)
+            {
+                if (shell.MarkedForShred)
+                {
+                    totalSouls += GameManager.Instance.metaPlayer.ShredCard(shell.EquipmentData);
+                }
+            }
+        }
+        
+        TextPopController.Instance.PopPositive("You have gained " + totalSouls + " souls.",Vector3.zero,false);
+        
+        for (var i = 0; i < cards.Length; i++)
+        {
+            SetEquipment(i);
+        }
+        SetSortMode();
+    }
+    
+    public void HandUp()
+    {
+        handSlider.value += 1;
+        if (handSlider.value > handSlider.maxValue)
+        {
+            handSlider.value = handSlider.maxValue;
+        }
+    }
+    
+    public void HandDown()
+    {
+        handSlider.value -= 1;
+        if (handSlider.value < 0)
+        {
+            handSlider.value = 0;
+        }
+    }
+    
+    public void SliderUp()
+    {
+        slider.value += 1;
+        if (slider.value > slider.maxValue)
+        {
+            slider.value = slider.maxValue;
+        }
+    }
+    
+    public void SliderDown()
+    {
+        slider.value -= 1;
+        if (slider.value < 0)
+        {
+            slider.value = 0;
+        }
+    }
 }

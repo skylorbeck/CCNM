@@ -87,7 +87,7 @@ public class InventoryManager : MonoBehaviour
             EquipmentList equipmentList = playerObject.playerInventory[index];
             if (equipmentList.container.Count <= amountToTest)
             {
-                int amount = 10+index -equipmentList.container.Count;
+                int amount = Random.Range(10,100) -equipmentList.container.Count;
                 for (int j = 0; j < amount; j++)
                 {
                     equipmentList.container.Add(GameManager.Instance.lootManager.GetItemCard(index));
