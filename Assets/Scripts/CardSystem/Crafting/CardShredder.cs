@@ -21,7 +21,7 @@ public class CardShredder : MonoBehaviour
     public Slider handSlider;
     public TMP_Dropdown sortDropdown;
     public float2 cardSpacing = 1.5f;
-
+    public TextMeshProUGUI countText;
     private void Start()
     {
         GameManager.Instance.inputReader.Back += Back;
@@ -80,7 +80,7 @@ public class CardShredder : MonoBehaviour
                 cardTransform.localPosition = localPosition;
 
             }
-        }
+        } 
     }
 
     private void OnDestroy()
@@ -119,9 +119,26 @@ public class CardShredder : MonoBehaviour
         slider.maxValue = cards[(int)handSlider.value].Count - 1;
     }
 
+    public void UpdateCount()
+    {
+        int count = 0;
+        foreach (List<EquipmentCardShell> list in cards)
+        {
+            foreach (EquipmentCardShell shell in list)
+            {
+                if (shell.MarkedForShred)
+                {
+                    count++;
+                }
+            }
+        }
+        countText.text = count.ToString();
+    }
+
     public void ToggleShredMark()
     {
         cards[(int)handSlider.value][(int)slider.value].ToggleShredMark();
+        UpdateCount();
     }
 
     public void ShredAllOfQuality(int quality)
@@ -136,6 +153,7 @@ public class CardShredder : MonoBehaviour
                 }
             }
         }
+        UpdateCount();
     }
 
     public void ClearAllShredMarks()
@@ -176,6 +194,7 @@ public class CardShredder : MonoBehaviour
 
     public void InitiateShred()
     {
+        //todo confirmation dialogue
         int totalSouls = 0;
         foreach (List<EquipmentCardShell> list in cards)
         {

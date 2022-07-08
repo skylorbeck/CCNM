@@ -137,7 +137,7 @@ public class AbilityWheel : MonoBehaviour
             if (symbol.isActiveAndEnabled)
             {
                 Transform symbolTransform = symbol.transform;
-                if(symbolTransform.localPosition.y<=0.1f && symbolTransform.localPosition.y>=-0.1f)//todo replace this with a better check that can't fail if the users FPS drops
+                if(Math.Abs(symbolTransform.localPosition.y)<=0.1f)
                 {
                     winner = symbol;
                     break;

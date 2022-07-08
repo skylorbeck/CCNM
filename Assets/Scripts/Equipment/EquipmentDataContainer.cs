@@ -15,6 +15,7 @@ public class EquipmentDataContainer
     [field:SerializeField] public int[] statValue { get; private set; }
     [field:SerializeField] public bool indestructible { get; private set; }
 
+    private Guid guid;
     public void SetIndestructible(bool value)
     {
         indestructible = value;
@@ -39,6 +40,7 @@ public class EquipmentDataContainer
 
     public void GenerateDataOfLevel(int ofLevel)
     {
+        guid = Guid.NewGuid();
         if (ofLevel < 1)
         {
             ofLevel = 1;
