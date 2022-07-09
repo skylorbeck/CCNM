@@ -286,6 +286,11 @@ public class PlayerBrain : Brain
     {
         consumables[index] += amt;
     }
+    
+    public void RemoveCardPack(int amt)
+    {
+        cardPacks -= amt;
+    }
 }
 
 [Serializable]
