@@ -97,9 +97,9 @@ public class EquipmentDataContainer
                 case Stats.Luck:
                     statMulti = 2;
                     break;
-                case Stats.Willpower:
-                    statMulti = 5;
-                    break;
+                // case Stats.Willpower:
+                //     statMulti = 5;
+                //     break;
                 case Stats.Grit:
                     statMulti = 5;
                     break;
@@ -158,16 +158,19 @@ public class EquipmentDataContainer
         None,
         Strength,//damage
         Dexterity,//dodge chance
+        Vitality,//health
         Speed,//crit chance
         Skill,//crit damage
-        Vitality,//health
         Luck,//loot quality
-        Sagacity,
-        Intelligence,
-        Wisdom,
-        Charisma,
-        Willpower,//shield delay?
         Grit,//shield capacity
         Resolve,//shield recharge rate
-        }
+        Intelligence,//ego boost
+        Charisma,//credit boost
+
+        // Sagacity,
+
+        // Wisdom,
+
+        // Willpower,//shield delay?
+    }
 }

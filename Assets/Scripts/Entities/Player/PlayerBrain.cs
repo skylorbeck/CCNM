@@ -11,24 +11,11 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "PlayerObject", menuName = "Combat/PlayerSO")]
 public class PlayerBrain : Brain
 {
-
     [field: SerializeField] public int[] equippedSlots { get; private set; }
     [field: SerializeField] public EquipmentList[] playerInventory { get; private set; }
     [field: SerializeField] public EquipmentDataContainer[] defaultEquipment { get; private set; }
 
-    [field: SerializeField] public int damageBonus { get; private set; }
-    [field: SerializeField] public int shieldBonus { get; private set; }
-    [field: SerializeField] public int shieldMax { get; private set; }
-    [field: SerializeField] public int shieldRate { get; private set; }
-    [field: SerializeField] public int healthBonus { get; private set; }
-    [field: SerializeField] public int healBonus { get; private set; }
-    [field: SerializeField] public int skillBonus { get; private set; }
-    [field: SerializeField] public int speedBonus { get; private set; }
-    [field: SerializeField] public int egoBonus { get; private set; }
-    [field: SerializeField] public int creditBonus { get; private set; }
-    [field: SerializeField] public int dodgeBonus { get; private set; }
     
-    [field: SerializeField] public int currentHealth { get; private set; } = 0;
     [field: SerializeField] public int credits { get; private set; } = 0;
     [field: SerializeField] public int ego { get; private set; } = 0;
     [field: SerializeField] public int level { get; private set; } = 0;
@@ -37,23 +24,30 @@ public class PlayerBrain : Brain
     [field: SerializeField] public int superCapsules { get; private set; } = 0;
     [field: SerializeField] public int[] cardSouls { get; private set; } = new int[3];
     [field: SerializeField] public int[] consumables { get; private set; } = new int[3];
-    
 
-    public void Equip(int dataContainerIndex,int cardIndex)
+    #region precomputedStats
+    [field:SerializeField] public int cardStrength { get; private set; } = 0;
+    [field:SerializeField] public int cardDexterity { get; private set; } = 0;
+    [field:SerializeField] public int cardVitality { get; private set; } = 0;
+    [field:SerializeField] public int cardSpeed { get; private set; } = 0;
+    [field:SerializeField] public int cardSkill { get; private set; } = 0;
+    [field:SerializeField] public int cardLuck { get; private set; } = 0;
+    [field:SerializeField] public int cardGrit { get; private set; } = 0;
+    [field:SerializeField] public int cardResolve { get; private set; } = 0;
+    [field:SerializeField] public int cardIntelligence { get; private set; } = 0;
+    [field:SerializeField] public int cardCharisma { get; private set; } = 0;
+    public void CalculateCardStats()
     {
-        equippedSlots[dataContainerIndex] = cardIndex;
-        CalculateStats();
-    }
-
-    private void CalculateStats()
-    {
-        damageBonus = 0;
-        shieldBonus = 0;
-        shieldMax = 0;
-        shieldRate = 0;
-        healthBonus = 0;
-        skillBonus = 0;
-        speedBonus = 0;
+        cardStrength = 0;
+        cardDexterity = 0;
+        cardVitality = 0;
+        cardSpeed = 0;
+        cardSkill = 0;
+        cardLuck = 0;
+        cardGrit = 0;
+        cardResolve = 0;
+        cardIntelligence = 0;
+        cardCharisma = 0;
         ClearAbilities();
         for (var i = 0; i < equippedSlots.Length; i++)
         {
@@ -76,33 +70,40 @@ public class PlayerBrain : Brain
                 EquipmentDataContainer.Stats stat = equippedCard.stats[j];
                 switch (stat)
                 {
+                    default:
+                    case EquipmentDataContainer.Stats.None:
+                        break;
                     case EquipmentDataContainer.Stats.Strength:
-                        damageBonus += equippedCard.statValue[j];
-                        break;
-                    case EquipmentDataContainer.Stats.Vitality:
-                        healthBonus += equippedCard.statValue[j];
-                        break;
-                    case EquipmentDataContainer.Stats.Willpower:
-                        shieldBonus += equippedCard.statValue[j];
-                        break;
-                    case EquipmentDataContainer.Stats.Resolve:
-                        shieldRate += equippedCard.statValue[j];
-                        break;
-                    case EquipmentDataContainer.Stats.Grit:
-                        shieldMax += equippedCard.statValue[j];
-                        break;
-                    case EquipmentDataContainer.Stats.Skill:
-                        skillBonus += equippedCard.statValue[j];
-                        break;
-                    case EquipmentDataContainer.Stats.Speed:
-                        speedBonus += equippedCard.statValue[j];
+                        cardStrength += equippedCard.statValue[j];
                         break;
                     case EquipmentDataContainer.Stats.Dexterity:
-                        dodgeBonus += equippedCard.statValue[j];
+                        cardDexterity += equippedCard.statValue[j];
+                        break;
+                    case EquipmentDataContainer.Stats.Vitality:
+                        cardVitality += equippedCard.statValue[j];
+                        break;
+                    case EquipmentDataContainer.Stats.Speed:
+                        cardSpeed += equippedCard.statValue[j];
+                        break;
+                    case EquipmentDataContainer.Stats.Skill:
+                        cardSkill += equippedCard.statValue[j];
+                        break;
+                    case EquipmentDataContainer.Stats.Luck:
+                        cardLuck += equippedCard.statValue[j];
+                        break;
+                    case EquipmentDataContainer.Stats.Grit:
+                        cardGrit += equippedCard.statValue[j];
+                        break;
+                    case EquipmentDataContainer.Stats.Resolve:
+                        cardResolve += equippedCard.statValue[j];
+                        break;
+                    case EquipmentDataContainer.Stats.Intelligence:
+                        cardIntelligence += equippedCard.statValue[j];
+                        break;
+                    case EquipmentDataContainer.Stats.Charisma:
+                        cardCharisma += equippedCard.statValue[j];
                         break;
                 }
-
-                
             }
             if (equippedCard.ability != null)
             {
@@ -110,16 +111,69 @@ public class PlayerBrain : Brain
             }
         }
     }
-
-    public void SetCurrentHealth(int health)
-    {
-        currentHealth = health;
-    }
+    #endregion
     
+    #region computedStatGetters
+    public override float GetDamage()
+    {
+        return GetStrength() + cardStrength;
+    }
+
+    public override float GetShieldMax()
+    {
+        return GetGrit() + cardGrit;
+    }
+
+    public override float GetShieldRate()
+    {
+        return GetResolve() + cardResolve;
+    }
+
+    public override float GetCritChance()
+    {
+        return GetSpeed() + cardSpeed;
+    }
+
+    public override float GetCritDamage()
+    {
+        return GetSkill() + cardSkill;
+    }
+
+    public override float GetDodgeChance()
+    {
+        return GetDexterity() + cardDexterity;
+    }
+    public override float GetMaxHealth()
+    {
+        return GetVitality() + cardVitality;
+    }
+    public override float GetLootLuck()
+    {
+        return GetLuck() + cardLuck;
+    }
+    public override float GetEgoBoost()
+    {
+        return GetIntelligence() + cardIntelligence;
+    }
+
+    public override float GetCreditBoost()
+    {
+        return GetCharisma() + cardCharisma;
+    }
+    #endregion
+    
+    
+
+    public void Equip(int dataContainerIndex,int cardIndex)
+    {
+        equippedSlots[dataContainerIndex] = cardIndex;
+        CalculateCardStats();
+    }
+
     public void Unequip(int slot)
     {
         equippedSlots[slot] = -1;
-        CalculateStats();
+        CalculateCardStats();
     }
     
     public void AddCardToInventory(EquipmentDataContainer equipmentDataContainer)
@@ -204,12 +258,11 @@ public class PlayerBrain : Brain
             }
         }
         defaultEquipment = sourcePlayer.defaultEquipment;
-        currentHealth = sourcePlayer.maxHealth + sourcePlayer.healthBonus;
-        CalculateStats();
+        SetCurrentHealth((int)sourcePlayer.GetMaxHealth());
     }
     public void AddCredits(int amt)
     {
-        amt = (int)(amt * GameManager.Instance.metaPlayer.creditBonus);
+        amt = (int)(amt * GetCreditBoost());
         credits += amt;
     }
 
@@ -220,7 +273,7 @@ public class PlayerBrain : Brain
 
     public void AddEgo(int amt)
     {
-        amt = (int)(amt * GameManager.Instance.metaPlayer.egoBonus); 
+        amt = (int)(amt * GetEgoBoost());
         ego += amt;
     }
     
