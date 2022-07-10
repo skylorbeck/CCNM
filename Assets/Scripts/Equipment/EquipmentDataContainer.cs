@@ -166,11 +166,8 @@ public class EquipmentDataContainer
         Resolve,//shield recharge rate
         Intelligence,//ego boost
         Charisma,//credit boost
-
-        // Sagacity,
-
+        Sagacity,//status damage
         // Wisdom,
-
         // Willpower,//shield delay?
     }
 }

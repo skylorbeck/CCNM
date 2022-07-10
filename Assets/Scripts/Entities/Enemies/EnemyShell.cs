@@ -19,7 +19,6 @@ public class EnemyShell : Shell
     {
         if (brain is EnemyBrain enemyBrain)
         {
-            
             if (enemyBrain.isBoss)
             {
                 transform.localPosition = new Vector3(0, 2.5f, 0);
@@ -28,26 +27,23 @@ public class EnemyShell : Shell
             }
         }
         base.InsertBrain(brain);
-        health = maxHealth = (int)(health * GameManager.Instance.runSettings.GetHealthMod());
+        brain.SetCurrentHealth((int)brain.GetMaxHealth());
     }
 
     public override Task<int> OnAttack(Shell target, int baseDamage)
     {
-        baseDamage = (int)(baseDamage * GameManager.Instance.runSettings.GetAttackMod());
         GameManager.Instance.uiStateObject.Ping(title+" attacked for "+baseDamage+" damage!");
         return base.OnAttack(target, baseDamage);
     }
 
     public override void Shield(int amount, StatusEffect.Element element)
     {
-        amount = (int)(amount * GameManager.Instance.runSettings.GetDefenseMod());
         GameManager.Instance.uiStateObject.Ping( title+" gained " + amount + " shield!");
         base.Shield(amount,element);
     }
 
     public override void Heal(int baseHeal, StatusEffect.Element element)
     {
-        baseHeal = (int)(baseHeal * GameManager.Instance.runSettings.GetHealthMod());
         GameManager.Instance.uiStateObject.Ping(title+" healed for " + baseHeal + "!");
         base.Heal( baseHeal, element);
     }

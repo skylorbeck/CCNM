@@ -223,7 +223,7 @@ public class FightManager : MonoBehaviour
             }
             GameManager.Instance.battlefield.player.AddCredits(credits);
             battlefield.randomState = null;
-            battlefield.player.SetCurrentHealth(player.health);
+            // battlefield.player.SetCurrentHealth((int)player.brain.currentHealth);//not entirely sure this is needed anymore, since the health is already stored in the brain object
             
             if (battlefield.runOver)
             {

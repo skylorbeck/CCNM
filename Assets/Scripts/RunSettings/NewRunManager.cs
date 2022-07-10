@@ -42,17 +42,13 @@ public class NewRunManager : MonoBehaviour
     {
         uiState.ShowTopBar();
         healthSlider.value = runSettings.health;
-        defenseSlider.value = runSettings.defense;
+        defenseSlider.value = runSettings.shield;
         attackSlider.value = runSettings.attack;
-        xpSlider.value = runSettings.xp;
-        creditsSlider.value = runSettings.credits;
         multiplierSlider.SetValueWithoutNotify(runSettings.multiplier);
         UpdateMultiplier();
         UpdateHealth();
         UpdateDefense();
         UpdateAttack();
-        UpdateXp();
-        UpdateCredits();
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
 
@@ -78,10 +74,10 @@ public class NewRunManager : MonoBehaviour
     
     public void UpdateDefense()
     {
-        runSettings.defense = defenseSlider.value;
-        runSettings.defenseMod = (Math.Round(defenseCurve.Evaluate(runSettings.defense) * 4) * 0.25f);
-        defenseText.text = "x"+runSettings.defenseMod.ToString("0.00");
-        shieldSwitcher.SwapSprite((int)runSettings.defense-1);
+        runSettings.shield = defenseSlider.value;
+        runSettings.shieldMod = (Math.Round(defenseCurve.Evaluate(runSettings.shield) * 4) * 0.25f);
+        defenseText.text = "x"+runSettings.shieldMod.ToString("0.00");
+        shieldSwitcher.SwapSprite((int)runSettings.shield-1);
         UpdateFinalMultiplier();
     }
     
@@ -94,23 +90,7 @@ public class NewRunManager : MonoBehaviour
         UpdateFinalMultiplier();
     }
     
-    public void UpdateXp()
-    {
-        runSettings.xp = xpSlider.value;
-        runSettings.xpMod = (Math.Round(xpCurve.Evaluate(runSettings.xp) * 4) * 0.25f);
-        xpText.text = "x"+runSettings.xpMod.ToString("0.00");
-        experienceSwitcher.SwapSprite((int)runSettings.xp-1);
-        UpdateFinalMultiplier();
-    }
-    
-    public void UpdateCredits()
-    {
-        runSettings.credits = creditsSlider.value;
-        runSettings.creditsMod = (Math.Round(creditsCurve.Evaluate(runSettings.credits) * 4) * 0.25f);
-        creditsText.text = "x"+runSettings.creditsMod.ToString("0.00");
-        creditSwitcher.SwapSprite((int)runSettings.credits-1);
-        UpdateFinalMultiplier();
-    }
+
     
     public void UpdateMultiplier()
     {
@@ -130,7 +110,7 @@ public class NewRunManager : MonoBehaviour
 
     public void UpdateFinalMultiplier()
     {
-        runSettings.finalMultiplier =(Math.Round((Math.Max(0,Math.Pow(10,runSettings.multiplier)*(runSettings.health + runSettings.defense + runSettings.attack-3)/3) + Math.Pow(10,runSettings.multiplier))));
+        runSettings.finalMultiplier =(Math.Round((Math.Max(0,Math.Pow(10,runSettings.multiplier)*(runSettings.health + runSettings.shield + runSettings.attack-3)/3) + Math.Pow(10,runSettings.multiplier))));
         finalMultiplierText.text = "Enemy Lv. "+runSettings.finalMultiplier;
     }
     

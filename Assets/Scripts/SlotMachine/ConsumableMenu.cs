@@ -73,7 +73,7 @@ public class ConsumableMenu : MonoBehaviour
     {
         if (GameManager.Instance.battlefield.player.consumables[1]>0)
         {
-            playerShell.Heal(playerShell.maxHealth,StatusEffect.Element.None);
+            playerShell.Heal((int)playerShell.brain.GetMaxHealth(),StatusEffect.Element.None);
             GameManager.Instance.battlefield.player.consumables[1]--;
             UpdateIcons();
             UpdateTexts();
@@ -86,7 +86,7 @@ public class ConsumableMenu : MonoBehaviour
     {
         if (GameManager.Instance.battlefield.player.consumables[0]>0)
         {
-            playerShell.Shield(playerShell.shieldMax,StatusEffect.Element.None);
+            playerShell.Shield((int)playerShell.brain.GetShieldMax(),StatusEffect.Element.None);
             GameManager.Instance.battlefield.player.consumables[0]--;
             UpdateIcons();
             UpdateTexts();

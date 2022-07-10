@@ -7,27 +7,14 @@ public class PlayerShell : Shell
         get { return (PlayerBrain)brain; }
         private set => InsertBrain(value);
     }
-    public override void InsertBrain(Brain brain)
-    {
-        base.InsertBrain(brain);
-        health = maxHealth = ((PlayerBrain)brain).currentHealth;
-        shield = shieldMax += playerBrain.shieldMax;
-        dodgeChance = playerBrain.dodgeBonus;
-    }
+ 
     public override Task<int> OnAttack(Shell target, int baseDamage)
     {
-        baseDamage += playerBrain.damageBonus;
-        GameManager.Instance.uiStateObject.Ping("You hit " + target.name + " for " + baseDamage + " damage!");
+        GameManager.Instance.uiStateObject.Ping("You hit " + target.name + " for " + baseDamage + " damage!");//todo make this reflect base.onattack
         return base.OnAttack(target, baseDamage);
     }
-    public override Task<int> OnShield(Shell target, int baseShield)
-    {
-        baseShield += playerBrain.shieldBonus;
-        return base.OnShield(target, baseShield);
-    } 
     public override Task<int> OnHeal(Shell target, int baseShield)
     {
-        baseShield += playerBrain.healBonus;
         return base.OnShield(target, baseShield);
     }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Symbol : MonoBehaviour
 {
@@ -98,28 +99,38 @@ public class Symbol : MonoBehaviour
         }
         if (ability.healTarget)
         {
-            int heal = await target.OnHeal(target,user.brain.baseHeal);
+            int heal = await target.OnHeal(target,(int)(user.brain.GetMaxHealth()*0.25f));
             heal = (int)Math.Ceiling(heal * ability.targetHealMultiplier);
             target.Heal(heal, ability.element);
         }
         if (ability.healUser)
         {
-            int heal = await user.OnHeal(user,user.brain.baseHeal);
+            int heal = await user.OnHeal(user,(int)(user.brain.GetMaxHealth()*0.25f));
             heal = (int)Math.Ceiling(heal * ability.userHealMultiplier);
             user.Heal(heal, ability.element);
         }
         if (ability.damageTarget)
         {
-            int damage = await user.OnAttack(target,user.brain.baseDamage);//process status influences
+            int damage = await user.OnAttack(target,(int)user.brain.GetDamage());//process status influences
             damage = (int)(damage * ability.targetDamageMultiplier);//process ability multiplier
+            if (Random.Range(0,100)<user.brain.GetCritChance())
+            {
+               damage +=  (int)(damage * user.brain.GetCritDamage());
+               //todo crit notification
+            }
             DamageAnimator.Instance.TriggerAttack(target, ability.attackAnimation);//play the animation
             await target.Damage(user, damage, ability.element);//damage the target
             target.TestDeath();
         }
         if (ability.damageUser)
         {
-            int damage = await user.OnAttack(user,user.brain.baseDamage);
+            int damage = await user.OnAttack(user,(int)user.brain.GetDamage());
             damage = (int)(damage * ability.userDamageMultiplier);
+            if (Random.Range(0,100)<user.brain.GetCritChance())
+            {
+                damage +=  (int)(damage * user.brain.GetCritDamage());
+                //todo crit notification
+            }
             DamageAnimator.Instance.TriggerAttack(user, ability.attackAnimation);
             await user.Damage(user,damage,ability.element);
             user.TestDeath();

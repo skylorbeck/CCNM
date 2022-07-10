@@ -259,6 +259,7 @@ public class PlayerBrain : Brain
         }
         defaultEquipment = sourcePlayer.defaultEquipment;
         SetCurrentHealth((int)sourcePlayer.GetMaxHealth());
+        CalculateCardStats();
     }
     public void AddCredits(int amt)
     {

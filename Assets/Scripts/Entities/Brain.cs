@@ -19,6 +19,15 @@ public class Brain : ScriptableObject
     {
         currentHealth = health;
     }
+    
+    public void ModifyCurrentHealth(int amount)
+    {
+        currentHealth += amount;
+        if (currentHealth > GetMaxHealth())
+        {
+            SetCurrentHealth((int)GetMaxHealth());
+        }
+    }
     #endregion
     
     #region stats

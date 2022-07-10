@@ -10,19 +10,12 @@ public class Shell : MonoBehaviour
     
     [field: SerializeField] public string title { get; private set; } = "entity.name";
     [field: SerializeField] public string description { get; private set; } = "entity.description";
-    [field: SerializeField] public int health { get; protected set; } = 10;
-    [field: SerializeField] public int maxHealth { get; protected set; } = 10;
     [field: SerializeField] public int shield { get; protected set; } = 0;
-    [field: SerializeField] public int shieldMax { get; protected set; } = 0;
-    [field: SerializeField] public int shieldDelay { get; protected set; } = 0;
-    [field: SerializeField] public int shieldDelayMax { get; protected set; } = 0;
-    [field: SerializeField] public int shieldRate { get; protected set; } = 0;
-    [field: SerializeField] public int dodgeChance { get; protected set; } = 0;
-    [field: SerializeField] public AbilityObject[] abilities { get; private set; } = new AbilityObject[0];
+    [field: SerializeField] public int shieldDelayCurrent { get; protected set; } = 0;
     [SerializeField] public StatusDisplayer statusDisplayer;
-    public bool isDead => health <= 0;
+    public bool isDead => brain.currentHealth <= 0;
     public bool hasShield => shield > 0;
-    public bool isPlayer => !(brain is EnemyBrain);
+    public bool isPlayer => brain is PlayerBrain;
 
     protected SpriteRenderer spriteRenderer;
 
@@ -49,7 +42,7 @@ public class Shell : MonoBehaviour
     
     public async Task Damage([CanBeNull] Shell source,int baseDamage, StatusEffect.Element element)
     {
-        if (Random.Range(0,100) < dodgeChance)
+        if (Random.Range(0,100) < brain.GetDodgeChance())
         {
             await statusDisplayer.OnDodge(source,this,baseDamage);
             TextPopController.Instance.PopPositive("Dodged",transform.position,true);
@@ -60,23 +53,20 @@ public class Shell : MonoBehaviour
 
         if (shield > 0)
         {
-            shieldDelay = shieldDelayMax;
+            shieldDelayCurrent = 1;
             shield -= damage;
             if (shield < 0)
             {
-                health += shield;
+                brain.ModifyCurrentHealth(shield);
                 shield = 0;
             }
         }
         else
         {
-            health -= damage;
+            brain.ModifyCurrentHealth(damage);
         }
 
-        if (health <=0)
-        {
-            health = 0;
-        }
+       TestDeath();
     }
 
     
@@ -90,18 +80,15 @@ public class Shell : MonoBehaviour
     {
         TextPopController.Instance.PopHeal(baseHeal,transform.position);
 
-        health += baseHeal;
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-        }
+        brain.ModifyCurrentHealth(baseHeal);
+        
     }
     
     public virtual void Shield(int amount, StatusEffect.Element element)
     {
-        if (shield +amount> shieldMax)
+        if (shield +amount> brain.GetShieldMax())
         {
-            amount = shieldMax - shield;
+            amount = (int)(brain.GetShieldMax() - shield);
         }
         shield += amount;
         if (amount>0)
@@ -127,11 +114,11 @@ public class Shell : MonoBehaviour
 
     public void ShieldCheck()
     {
-        shieldDelay--;
-        if (shieldDelay < 0)
+        shieldDelayCurrent--;
+        if (shieldDelayCurrent < 0)
         {
-            shieldDelay = 0;
-            Shield(shieldRate, StatusEffect.Element.None);
+            shieldDelayCurrent = 0;
+            Shield((int)brain.GetShieldRate(), StatusEffect.Element.None);
         }
     }
 
@@ -145,15 +132,8 @@ public class Shell : MonoBehaviour
         spriteRenderer.sprite = brain.icon;
         title = brain.title;
         description = brain.description;
-        health = brain.maxHealth;
-        maxHealth = brain.maxHealth;
-        shield = brain.baseShield;
-        shieldMax = brain.baseShield;
-        shieldRate = brain.baseShieldRate;
-        shieldDelay = brain.baseShieldDelay;
-        shieldDelayMax = brain.baseShieldDelay;
-        dodgeChance = brain.baseDodge;
-        abilities = brain.abilities;
+        shield = (int)brain.GetShieldMax();
+        shieldDelayCurrent = 1;
     }
 
     public async Task OnTurnEnd()
@@ -168,7 +148,7 @@ public class Shell : MonoBehaviour
 
     public void TestDeath()
     {
-        if (health <= 0)
+        if (brain.currentHealth <= 0)
         {
             Kill();
         }
