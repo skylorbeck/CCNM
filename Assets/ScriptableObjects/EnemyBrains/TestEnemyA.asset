@@ -15,14 +15,19 @@ MonoBehaviour:
   <title>k__BackingField: entity.name_a
   <description>k__BackingField: entity.description_a
   <icon>k__BackingField: {fileID: 21300000, guid: 7818c8abdda0c284abf429a8bae3b2b1, type: 3}
-  <maxHealth>k__BackingField: 10
   <abilities>k__BackingField:
   - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
-  <baseDamage>k__BackingField: 1
-  <baseShield>k__BackingField: 20
-  <baseShieldDelay>k__BackingField: 1
-  <baseShieldRate>k__BackingField: 1
-  <baseHeal>k__BackingField: 1
-  <baseDodge>k__BackingField: 10
+  <currentHealth>k__BackingField: -8
+  strength: 5
+  dexterity: 5
+  vitality: 5
+  speed: 5
+  skill: 5
+  luck: 5
+  grit: 5
+  resolve: 5
+  intelligence: 5
+  charisma: 5
+  sagacity: 0
   <credits>k__BackingField: 1
   isBoss: 0

@@ -10,10 +10,12 @@ public class Shell : MonoBehaviour
     
     [field: SerializeField] public string title { get; private set; } = "entity.name";
     [field: SerializeField] public string description { get; private set; } = "entity.description";
+    [field: SerializeField] public int currentHealth { get; protected set; } = 0;
     [field: SerializeField] public int shield { get; protected set; } = 0;
     [field: SerializeField] public int shieldDelayCurrent { get; protected set; } = 0;
     [SerializeField] public StatusDisplayer statusDisplayer;
-    public bool isDead => brain.currentHealth <= 0;
+    
+    public bool isDead => currentHealth <= 0;
     public bool hasShield => shield > 0;
     public bool isPlayer => brain is PlayerBrain;
 
@@ -57,13 +59,13 @@ public class Shell : MonoBehaviour
             shield -= damage;
             if (shield < 0)
             {
-                brain.ModifyCurrentHealth(shield);
+                ModifyCurrentHealth(shield);
                 shield = 0;
             }
         }
         else
         {
-            brain.ModifyCurrentHealth(damage);
+            ModifyCurrentHealth(damage);
         }
 
        TestDeath();
@@ -134,6 +136,7 @@ public class Shell : MonoBehaviour
         description = brain.description;
         shield = (int)brain.GetShieldMax();
         shieldDelayCurrent = 1;
+        
     }
 
     public async Task OnTurnEnd()
@@ -145,10 +148,21 @@ public class Shell : MonoBehaviour
             ShieldCheck();
         }
     }
-
+    public void SetCurrentHealth(int health)
+    {
+        currentHealth = health;
+    }
+    public void ModifyCurrentHealth(int amount)
+    {
+        currentHealth += amount;
+        if (currentHealth > brain.GetMaxHealth())
+        {
+            SetCurrentHealth((int)brain.GetMaxHealth());
+        }
+    }
     public void TestDeath()
     {
-        if (brain.currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Kill();
         }

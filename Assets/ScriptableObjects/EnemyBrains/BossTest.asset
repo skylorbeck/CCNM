@@ -15,15 +15,21 @@ MonoBehaviour:
   <title>k__BackingField: boss
   <description>k__BackingField: boss.description
   <icon>k__BackingField: {fileID: 21300000, guid: 48f1bf28ad0b8af4b98c583f010c9c87, type: 3}
-  <maxHealth>k__BackingField: 100
   <abilities>k__BackingField:
   - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
   - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
   - {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
-  <baseDamage>k__BackingField: 1
-  <baseShield>k__BackingField: 100
-  <baseShieldDelay>k__BackingField: 1
-  <baseShieldRate>k__BackingField: 5
-  <baseHeal>k__BackingField: 1
+  <currentHealth>k__BackingField: 5
+  strength: 5
+  dexterity: 5
+  vitality: 5
+  speed: 5
+  skill: 5
+  luck: 5
+  grit: 5
+  resolve: 5
+  intelligence: 5
+  charisma: 5
+  sagacity: 0
   <credits>k__BackingField: 100
   isBoss: 1

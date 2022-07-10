@@ -36,6 +36,7 @@ public class PlayerBrain : Brain
     [field:SerializeField] public int cardResolve { get; private set; } = 0;
     [field:SerializeField] public int cardIntelligence { get; private set; } = 0;
     [field:SerializeField] public int cardCharisma { get; private set; } = 0;
+    [field:SerializeField] public int cardSagacity { get; private set; } = 0;
     public void CalculateCardStats()
     {
         cardStrength = 0;
@@ -48,6 +49,7 @@ public class PlayerBrain : Brain
         cardResolve = 0;
         cardIntelligence = 0;
         cardCharisma = 0;
+        cardSagacity = 0;
         ClearAbilities();
         for (var i = 0; i < equippedSlots.Length; i++)
         {
@@ -103,6 +105,9 @@ public class PlayerBrain : Brain
                     case EquipmentDataContainer.Stats.Charisma:
                         cardCharisma += equippedCard.statValue[j];
                         break;
+                        case EquipmentDataContainer.Stats.Sagacity:
+                            cardSagacity += equippedCard.statValue[j];
+                            break;
                 }
             }
             if (equippedCard.ability != null)
@@ -159,6 +164,11 @@ public class PlayerBrain : Brain
     public override float GetCreditBoost()
     {
         return GetCharisma() + cardCharisma;
+    }
+
+    public override float GetStatusDamage()
+    {
+        return GetSagacity() + cardSagacity;
     }
     #endregion
     
@@ -258,6 +268,18 @@ public class PlayerBrain : Brain
             }
         }
         defaultEquipment = sourcePlayer.defaultEquipment;
+        SetStrength((int)sourcePlayer.GetStrength());
+        SetDexterity((int)sourcePlayer.GetDexterity());
+        SetVitality((int)sourcePlayer.GetVitality());
+        SetSpeed((int)sourcePlayer.GetSpeed());
+        SetSkill((int)sourcePlayer.GetSkill());
+        SetLuck((int)sourcePlayer.GetLuck());
+        SetGrit((int)sourcePlayer.GetGrit());
+        SetResolve((int)sourcePlayer.GetResolve());
+        SetIntelligence((int)sourcePlayer.GetIntelligence());
+        SetCharisma((int)sourcePlayer.GetCharisma());
+        
+        
         SetCurrentHealth((int)sourcePlayer.GetMaxHealth());
         CalculateCardStats();
     }

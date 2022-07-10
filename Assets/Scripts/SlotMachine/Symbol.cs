@@ -120,7 +120,7 @@ public class Symbol : MonoBehaviour
             }
             DamageAnimator.Instance.TriggerAttack(target, ability.attackAnimation);//play the animation
             await target.Damage(user, damage, ability.element);//damage the target
-            target.TestDeath();
+            // target.TestDeath();
         }
         if (ability.damageUser)
         {
@@ -133,7 +133,7 @@ public class Symbol : MonoBehaviour
             }
             DamageAnimator.Instance.TriggerAttack(user, ability.attackAnimation);
             await user.Damage(user,damage,ability.element);
-            user.TestDeath();
+            // user.TestDeath();
         }
         SoundManager.instance.PlaySound(ability.soundEffect);
     }

@@ -14,7 +14,7 @@ public class Brain : ScriptableObject
     
     
     #region persistentData
-    [field:SerializeField] public float currentHealth { get; private set; } = 1;
+    [field:SerializeField] public int currentHealth { get; private set; } = 1;
     public void SetCurrentHealth(int health)
     {
         currentHealth = health;
@@ -41,6 +41,7 @@ public class Brain : ScriptableObject
     [SerializeField] private int resolve;
     [SerializeField] private int intelligence;
     [SerializeField] private int charisma;
+    [SerializeField] private int sagacity;
     #endregion
 
     #region statGetters
@@ -86,6 +87,12 @@ public class Brain : ScriptableObject
     {
         return charisma;
     }
+    
+    public virtual float GetSagacity()
+    {
+        return sagacity;
+    }
+    
     #endregion
 
     #region computedStatGetters
@@ -136,6 +143,11 @@ public class Brain : ScriptableObject
     {
         return GetCharisma();
     }
+    
+    public virtual float GetStatusDamage()
+    {
+        return GetSagacity();
+    }
     #endregion
     
     #region statSetters
@@ -170,6 +182,14 @@ public class Brain : ScriptableObject
     public virtual void SetResolve(int value)
     {
         resolve = value;
+    }
+    public virtual void SetIntelligence(int value)
+    {
+        intelligence = value;
+    }
+    public virtual void SetCharisma(int value)
+    {
+        charisma = value;
     }
     #endregion
     public AbilityObject GetRandomAbility()

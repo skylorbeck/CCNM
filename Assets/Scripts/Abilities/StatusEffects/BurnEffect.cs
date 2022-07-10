@@ -11,7 +11,7 @@ public class BurnEffect : StatusEffect
 
     public override async Task Tick(Shell target)
     {
-        await target.Damage(null,damage,element);
+        await target.Damage(null,(int)(damage* (target.isPlayer?GameManager.Instance.runSettings.GetAttackMod():GameManager.Instance.battlefield.player.GetStatusDamage())),element);
         TextPopController.Instance.PopNegative("Burned", target.transform.position,target.isPlayer);
         await base.Tick(target);
     }

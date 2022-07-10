@@ -31,7 +31,7 @@ public class HealthBar : MonoBehaviour
             healthBar.enabled = true;
             backBar.enabled = true;
             backplate.enabled = true;
-            healthBar.SetPosition(1, new Vector3( Math.Clamp((float)shell.brain.currentHealth / shell.brain.GetMaxHealth(),0,1), 0, 0));
+            healthBar.SetPosition(1, new Vector3( Math.Clamp((float)shell.currentHealth / shell.brain.GetMaxHealth(),0,1), 0, 0));
         }
         if (!shell.hasShield || shell.brain.GetShieldMax() == 0) 
         {
@@ -43,7 +43,7 @@ public class HealthBar : MonoBehaviour
             shieldBar.SetPosition(1, new Vector3(Math.Clamp((float)shell.shield / shell.brain.GetShieldMax(),0,1), 0, 0));
         }
 
-        healthText.text = shell.brain.currentHealth>0? ""+shell.brain.currentHealth:"";
+        healthText.text = shell.currentHealth>0? ""+shell.currentHealth:"";
         shieldText.text = shell.shield>0? "{"+shell.shield+"}":"";
     }
 

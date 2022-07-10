@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
-  m_Name: Block
+  m_Name: Shield Bash
   m_EditorClassIdentifier: 
-  <title>k__BackingField: Block
-  <descriptionA>k__BackingField: 2x Shield Self
+  <title>k__BackingField: Shield Bash
+  <descriptionA>k__BackingField: 1x Damage Target
   <descriptionB>k__BackingField: 
   <icon>k__BackingField: {fileID: 21300000, guid: 99f01e10c7d3a264e9c62c437e746425, type: 3}
   <baseCost>k__BackingField: 1
-  <damageTarget>k__BackingField: 0
+  <damageTarget>k__BackingField: 1
   <targetDamageMultiplier>k__BackingField: 1
   <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
@@ -25,10 +25,10 @@ MonoBehaviour:
   <targetHealMultiplier>k__BackingField: 1
   <healUser>k__BackingField: 0
   <userHealMultiplier>k__BackingField: 1
-  <shieldTarget>k__BackingField: 0
-  <targetShieldMultiplier>k__BackingField: 1
-  <shieldUser>k__BackingField: 1
-  <userShieldMultiplier>k__BackingField: 2
+  <armorTarget>k__BackingField: 0
+  <targetArmorMultiplier>k__BackingField: 1
+  <armorUser>k__BackingField: 0
+  <userArmorMultiplier>k__BackingField: 1
   <targetStatus>k__BackingField: {fileID: 0}
   <statusTarget>k__BackingField: 0
   <userStatus>k__BackingField: {fileID: 0}

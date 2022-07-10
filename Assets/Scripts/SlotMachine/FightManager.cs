@@ -210,12 +210,14 @@ public class FightManager : MonoBehaviour
         if (player.isDead)
         {
             SetState(WheelStates.FightOver);
+            Debug.Log("Player is dead");
             battlefield.randomState = null;//todo replace with gameOver
             GameManager.Instance.LoadSceneAdditive("RunOver","Fight");
 
         } else if (enemies.All(x => x.isDead))
         {
             SetState(WheelStates.FightOver);
+            Debug.Log("Enemies are dead");
             int credits = 0;
             foreach (var enemy in enemies)
             {
@@ -223,7 +225,7 @@ public class FightManager : MonoBehaviour
             }
             GameManager.Instance.battlefield.player.AddCredits(credits);
             battlefield.randomState = null;
-            // battlefield.player.SetCurrentHealth((int)player.brain.currentHealth);//not entirely sure this is needed anymore, since the health is already stored in the brain object
+            battlefield.player.SetCurrentHealth(player.currentHealth);
             
             if (battlefield.runOver)
             {

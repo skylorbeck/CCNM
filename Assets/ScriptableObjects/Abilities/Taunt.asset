@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Taunt
   m_EditorClassIdentifier: 
   <title>k__BackingField: Taunt
-  <descriptionA>k__BackingField: 
+  <descriptionA>k__BackingField: Empowers Self
   <descriptionB>k__BackingField: Empowers Target
   <icon>k__BackingField: {fileID: 21300000, guid: 35eaff2bf77e18e4d8fd988f768610aa, type: 3}
   <baseCost>k__BackingField: 1
@@ -32,7 +32,7 @@ MonoBehaviour:
   <targetStatus>k__BackingField: {fileID: 11400000, guid: c48dca9d4614ddc4d9d66bb0d3c44a09, type: 2}
   <statusTarget>k__BackingField: 1
   <userStatus>k__BackingField: {fileID: 11400000, guid: c48dca9d4614ddc4d9d66bb0d3c44a09, type: 2}
-  <statusSelf>k__BackingField: 0
+  <statusSelf>k__BackingField: 1
   <element>k__BackingField: 0
   <attackAnimation>k__BackingField: 1
   <soundEffect>k__BackingField: {fileID: 8300000, guid: 29e43ce14342e6541a8e8e49b5737db1, type: 3}

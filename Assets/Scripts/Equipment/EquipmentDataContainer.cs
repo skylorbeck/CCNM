@@ -168,6 +168,6 @@ public class EquipmentDataContainer
         Charisma,//credit boost
         Sagacity,//status damage
         // Wisdom,
-        // Willpower,//shield delay?
+        // Willpower,
     }
 }
