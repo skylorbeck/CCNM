@@ -15,7 +15,7 @@ public class EquipmentDataContainer
     [field:SerializeField] public int[] statValue { get; private set; }
     [field:SerializeField] public bool indestructible { get; private set; }
 
-    private Guid guid;
+    public Guid guid { get; private set; }
     public void SetIndestructible(bool value)
     {
         indestructible = value;
@@ -25,17 +25,29 @@ public class EquipmentDataContainer
     {
         itemCore = item;
     }
+    
+    public void InsertAbility(AbilityObject ability)
+    {
+        this.ability = ability;
+    }
+    
+    public void SetStatValue(int[] value)
+    {
+        statValue = value;
+    }
+    public void SetStats(Stats[] stats)
+    {
+        this.stats = stats;
+    }
 
     public int GetItemCoreIndex()
     {
-        GameManager.Instance.equipmentRegistries[(int)itemCore.itemType].CardDictionary.TryGetValue(itemCore.cardTitle, out int index);
-        return index;
+        return GameManager.Instance.equipmentRegistries[(int)itemCore.itemType].GetCardIndex(itemCore.name);
     }
     
     public int GetAbilityIndex()
     {
-        GameManager.Instance.abilityRegistry.Dictionary.TryGetValue(ability.title, out int index);
-        return index;
+        return GameManager.Instance.abilityRegistry.GetAbilityIndex(ability.title);
     }
 
     public void GenerateDataOfLevel(int ofLevel)
@@ -169,5 +181,46 @@ public class EquipmentDataContainer
         Sagacity,//status damage
         // Wisdom,
         // Willpower,
+    }
+
+    public EquipmentDataContainer()
+    {
+    }
+    public EquipmentDataContainer(SavableDataContainer savableDataContainer)
+    {
+        guid = savableDataContainer.guid;
+        itemCore = GameManager.Instance.equipmentRegistries[savableDataContainer.equipmentRegistryIndex].GetCard(savableDataContainer.itemCoreIndex);
+        ability = GameManager.Instance.abilityRegistry.GetAbility(savableDataContainer.abilityIndex);
+        quality = savableDataContainer.quality;
+        level = savableDataContainer.level;
+        stats = savableDataContainer.stats;
+        statValue = savableDataContainer.statValue;
+        indestructible = savableDataContainer.indestructible;
+    }
+}
+
+[Serializable]
+public class SavableDataContainer
+{
+    public Guid guid;
+    public int equipmentRegistryIndex;
+    public int itemCoreIndex;
+    public int abilityIndex;
+    public int level;
+    public int[] statValue;
+    public bool indestructible;
+    public EquipmentDataContainer.Quality quality;
+    public EquipmentDataContainer.Stats[] stats;
+    public SavableDataContainer(EquipmentDataContainer data)
+    {
+        guid = data.guid;
+        equipmentRegistryIndex = (int)data.itemCore.itemType;
+        itemCoreIndex = data.GetItemCoreIndex();
+        abilityIndex = data.GetAbilityIndex();
+        level = data.level;
+        statValue = data.statValue;
+        indestructible = data.indestructible;
+        quality = data.quality;
+        stats = data.stats;
     }
 }

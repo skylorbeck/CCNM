@@ -30,7 +30,7 @@ public class AbilityRegistry : ScriptableObject,  ISerializationCallbackReceiver
             Dictionary.Add(keys[i], values[i]);
         
     }
-    public AbilityObject GetCard(string cardTitle)
+    public AbilityObject GetAbility(string cardTitle)
     {
         if (Dictionary.ContainsKey(cardTitle))
         {
@@ -46,5 +46,23 @@ public class AbilityRegistry : ScriptableObject,  ISerializationCallbackReceiver
     public AbilityObject GetRandomAbility()
     {
         return abilityObjects[UnityEngine.Random.Range(0, abilityObjects.Length)];
+    }
+    
+    public int GetAbilityIndex(string cardTitle)
+    {
+        if (Dictionary.ContainsKey(cardTitle))
+        {
+            return Dictionary[cardTitle];
+        }
+        else
+        {
+            Debug.LogError("Ability not found in registry: " + cardTitle);
+            return -1;
+        }
+    }
+    
+    public AbilityObject GetAbility(int index)
+    {
+        return abilityObjects[index];
     }
 }

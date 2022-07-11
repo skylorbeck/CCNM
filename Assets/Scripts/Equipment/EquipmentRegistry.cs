@@ -42,8 +42,35 @@ public class EquipmentRegistry : ScriptableObject,  ISerializationCallbackReceiv
             return null;
         }
     }
+    
+    public ItemCard GetCard(int cardIndex)
+    {
+        if (cardIndex < itemCards.Length)
+        {
+            return itemCards[cardIndex];
+        }
+        else
+        {
+            Debug.LogError("Card not found in registry: " + cardIndex);
+            return null;
+        }
+    }
+    
     public ItemCard GetRandomCard()
     {
         return itemCards[UnityEngine.Random.Range(0, itemCards.Length)];
+    }
+    
+    public int GetCardIndex(string cardTitle)
+    {
+        if (CardDictionary.ContainsKey(cardTitle))
+        {
+            return CardDictionary[cardTitle];
+        }
+        else
+        {
+            Debug.LogError("Card not found in registry: " + cardTitle);
+            return -1;
+        }
     }
 }

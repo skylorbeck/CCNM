@@ -96,6 +96,7 @@ public class CardPackManager : MonoBehaviour
             tempCards.Add(cardShell);
             GameManager.Instance.metaPlayer.AddCardToInventory(cardShell.EquipmentData);
         }
+        GameManager.Instance.saveManager.Save();
 
         foreach (EquipmentCardShell card in tempCards)
         {

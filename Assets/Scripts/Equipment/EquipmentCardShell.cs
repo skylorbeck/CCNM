@@ -79,7 +79,7 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
         levelText.color = GameManager.Instance.colors[(int)item.quality];
         for (var i = 0; i < statText.Length; i++)
         {
-            if (item.stats[i] !=EquipmentDataContainer.Stats.None)
+            if (i<item.stats.Length&&item.stats[i] !=EquipmentDataContainer.Stats.None)
             {
                 statText[i].text = "+"
                                    + item.statValue[i]

@@ -1,17 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
+[Serializable]
 public class Brain : ScriptableObject
 {
     [field: SerializeField] public string title { get; private set; } = "entity.name";
     [field: SerializeField] public string description { get; private set; } = "entity.description";
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public AbilityObject[] abilities { get; private set; } = new AbilityObject[0];
-    
-
-    
     
     #region persistentData
     [field:SerializeField] public int currentHealth { get; private set; } = 1;
@@ -45,50 +45,50 @@ public class Brain : ScriptableObject
     #endregion
 
     #region statGetters
-    public virtual float GetStrength()
+    public virtual int GetStrength()
     {
         return strength;
     }
-    public virtual float GetDexterity()
+    public virtual int GetDexterity()
     {
         return dexterity;
     }
-    public virtual float GetVitality()
+    public virtual int GetVitality()
     {
         return vitality;
     }
-    public virtual float GetSpeed()
+    public virtual int GetSpeed()
     {
         return speed;
     }
-    public virtual float GetSkill()
+    public virtual int GetSkill()
     {
         return skill;
     }
-    public virtual float GetLuck()
+    public virtual int GetLuck()
     {
         return luck;
     }
-    public virtual float GetGrit()
+    public virtual int GetGrit()
     {
         return grit;
     }
-    public virtual float GetResolve()
+    public virtual int GetResolve()
     {
         return resolve;
     }
     
-    public virtual float GetIntelligence()
+    public virtual int GetIntelligence()
     {
         return intelligence;
     }
     
-    public virtual float GetCharisma()
+    public virtual int GetCharisma()
     {
         return charisma;
     }
     
-    public virtual float GetSagacity()
+    public virtual int GetSagacity()
     {
         return sagacity;
     }

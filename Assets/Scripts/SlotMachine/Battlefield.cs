@@ -40,6 +40,7 @@ public class Battlefield : ScriptableObject
     public void Reset()
     {
         totalHands = 1;
+        player.ClearPlayerObject();
         player.Clone(GameManager.Instance.metaPlayer);
         player.ClearConsumables();
         player.AddConsumables(0,1);

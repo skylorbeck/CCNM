@@ -210,14 +210,14 @@ public class FightManager : MonoBehaviour
         if (player.isDead)
         {
             SetState(WheelStates.FightOver);
-            Debug.Log("Player is dead");
+            // Debug.Log("Player is dead");
             battlefield.randomState = null;//todo replace with gameOver
             GameManager.Instance.LoadSceneAdditive("RunOver","Fight");
 
         } else if (enemies.All(x => x.isDead))
         {
             SetState(WheelStates.FightOver);
-            Debug.Log("Enemies are dead");
+            // Debug.Log("Enemies are dead");
             int credits = 0;
             foreach (var enemy in enemies)
             {

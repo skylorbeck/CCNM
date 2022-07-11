@@ -82,7 +82,9 @@ public class GameManager : MonoBehaviour
         }
         inputReader.EnableUI();
         SceneManager.sceneLoaded += DestroyTEMP;
-        // saveManager.Save();
+        // metaPlayer.ClearPlayerObject();//done in savemanager
+        // battlefield.player.ClearPlayerObject();//done in runsettings
+        saveManager.Load();
     }
 
     private void DestroyTEMP(Scene scene, LoadSceneMode mode)
@@ -121,6 +123,8 @@ public class GameManager : MonoBehaviour
     private async void LoadScene(string sceneToLoad, LoadSceneMode mode, bool waitForInput,
         params string[] sceneToUnload)
     {
+        Instance.saveManager.Save();//might be pointless here, and save too often.
+
         inputReader.DisableUI();
         uiStateObject.FadeOut();
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad, mode);
