@@ -15,6 +15,9 @@ public class EventObject : ScriptableObject
     {
         await Task.Delay(1000);
         //todo add events
+        GameManager.Instance.battlefield.TotalHandsPlus();
+        GameManager.Instance.saveManager.SaveRun();
+
         GameManager.Instance.LoadSceneAdditive("MapScreen","EventScreen");
     } 
     public virtual void UpdateEvent()

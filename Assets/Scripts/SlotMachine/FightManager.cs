@@ -59,7 +59,7 @@ public class FightManager : MonoBehaviour
 
     async void Start()
     {
-        if (battlefield.randomState != null) Random.state = battlefield.randomState.Value;
+        // if (battlefield.randomState != null) Random.state = battlefield.randomState.Value;
         cancellationTokenSource = new CancellationTokenSource();
         for (var i = 0; i < battlefield.enemies.Length; i++)
         {
@@ -112,8 +112,8 @@ public class FightManager : MonoBehaviour
 
     public void Quit()
     {
+        // GameManager.Instance.saveManager.SaveRun();//todo fix this so that it saves the fight
         GameManager.Instance.uiStateObject.Clear();
-        GameManager.Instance.battlefield.deckChosen = false;//todo replace with save system
         foreach (TextMeshProUGUI text in pauseText)
         {
             text.CrossFadeAlpha(0,0.25f,true);
@@ -211,7 +211,8 @@ public class FightManager : MonoBehaviour
         {
             SetState(WheelStates.FightOver);
             // Debug.Log("Player is dead");
-            battlefield.randomState = null;//todo replace with gameOver
+            //todo replace with gameOver
+            
             GameManager.Instance.LoadSceneAdditive("RunOver","Fight");
 
         } else if (enemies.All(x => x.isDead))
@@ -224,9 +225,11 @@ public class FightManager : MonoBehaviour
                 credits += enemy.enemyBrain.credits;
             }
             GameManager.Instance.battlefield.player.AddCredits(credits);
-            battlefield.randomState = null;
+            // battlefield.randomState = null;
             battlefield.player.SetCurrentHealth(player.currentHealth);
-            
+            battlefield.TotalHandsPlus();
+
+            GameManager.Instance.saveManager.SaveRun();
             if (battlefield.runOver)
             {
                 GameManager.Instance.LoadSceneAdditive("RunOver","Fight");

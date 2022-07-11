@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c0c877e765041c18533cc39c0bc479f, type: 3}
+  m_Name: DeckRegistry
+  m_EditorClassIdentifier: 
+  deckObjects:
+  - {fileID: 11400000, guid: a721d7203651bfd48bcad82cdf586d59, type: 2}
+  keys:
+  - World1
+  values: 00000000

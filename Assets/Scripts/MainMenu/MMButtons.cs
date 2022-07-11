@@ -11,19 +11,12 @@ public class MMButtons : MonoBehaviour
         GameManager.Instance.LoadSceneAdditive("RunSettings","MainMenu");
     }
 
-    public void ResumeGame()//todo fix this
+    public void ResumeGame()
     {
-        List<string> scenes = new List<string>(GameManager.Instance.lastScenesUnloaded);
-        if (scenes.Contains("MapScreen"))
-        {
-            GameManager.Instance.battlefield.deckChosen = true;
-            GameManager.Instance.LoadSceneAdditive("MapScreen","MainMenu");
-        } else if (scenes.Contains("Fight"))
-        {
-            GameManager.Instance.battlefield.deckChosen = true;
-            GameManager.Instance.LoadSceneAdditive("Fight","MainMenu");
-        }
+        // GameManager.Instance.saveManager.Load();
+        GameManager.Instance.LoadSceneAdditive("MapScreen", "MainMenu");
     }
+
     public void Hotel()
     {
         GameManager.Instance.LoadSceneAdditive("Hotel","MainMenu");

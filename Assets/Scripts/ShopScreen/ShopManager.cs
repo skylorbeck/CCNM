@@ -97,6 +97,9 @@ public class ShopManager : MonoBehaviour
 
     public void ExitShop()
     {
+        GameManager.Instance.battlefield.TotalHandsPlus();
+        GameManager.Instance.saveManager.SaveRun();
+
         GameManager.Instance.LoadSceneAdditive("MapScreen", "ShopScreen");
     }
 

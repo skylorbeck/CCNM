@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "Battlefield", menuName = "Combat/Battlefield")]
 public class Battlefield : ScriptableObject
@@ -56,5 +58,54 @@ public class Battlefield : ScriptableObject
     public void SetEvent(EventObject eventObject)
     {
         this.eventObject = eventObject;
+    }
+
+    public void InsertSave(SavableBattlefield savableBattlefield)
+    {
+        deckChosen = savableBattlefield.deckChosen;
+        totalHands = savableBattlefield.totalHands;
+        if (savableBattlefield.deckIndex != -1)
+        {
+            deck = GameManager.Instance.deckRegistry.GetDeck(savableBattlefield.deckIndex);
+        }
+        randomState = savableBattlefield.randomState;
+        player.InsertSaveFile(savableBattlefield.player);
+    }
+
+    public void ClearBattlefield()
+    {
+        totalHands = 0;
+        randomState = null;
+        deckChosen = false;
+    }
+}
+[Serializable]
+public class SavableBattlefield
+{
+    public bool deckChosen;
+    public int deckIndex;
+    public int totalHands;
+    public Random.State randomState;
+    public SavablePlayerBrain player;
+    
+    public SavableBattlefield(Battlefield battlefield)
+    {
+        deckChosen = battlefield.deckChosen;
+        if (deckChosen)
+        {
+            deckIndex = GameManager.Instance.deckRegistry.GetDeckIndex(battlefield.deck.name);
+        }
+        else deckIndex = -1;
+        totalHands = battlefield.totalHands;
+        if (battlefield.randomState != null)
+        {
+            randomState = battlefield.randomState.Value;
+        }
+        else
+        {
+            Random.InitState(DateTime.Now.Millisecond);
+            randomState = Random.state;
+        }
+        player = new SavablePlayerBrain(battlefield.player);
     }
 }

@@ -8,31 +8,53 @@ using UnityEngine;
 [Serializable]
 public class SaveManager
 {
-    private SavablePlayerBrain saveFile;
 
-    public void Save()
+    public void SaveMeta()
     {
-        saveFile = new SavablePlayerBrain(GameManager.Instance.metaPlayer);
-        FileStream dataStream = new FileStream(Application.persistentDataPath + "/save.dat", FileMode.Create);
         BinaryFormatter bf = new BinaryFormatter();
-        bf.Serialize(dataStream, saveFile);
+        
+        FileStream dataStream = new FileStream(Application.persistentDataPath + "/meta.dat", FileMode.Create);
+        bf.Serialize(dataStream, new SavablePlayerBrain(GameManager.Instance.metaPlayer));
+        
+        dataStream.Close();
+    }
+
+    public void SaveRun()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+
+        FileStream dataStream = new FileStream(Application.persistentDataPath + "/battlefield.dat", FileMode.Create);
+        bf.Serialize(dataStream, new SavableBattlefield(GameManager.Instance.battlefield));
+        
         dataStream.Close();
     }
 
     public void Load()
     {
+        BinaryFormatter bf = new BinaryFormatter();
+
         if (File.Exists(Application.persistentDataPath + "/save.dat"))
         {
-            FileStream dataStream = new FileStream(Application.persistentDataPath + "/save.dat", FileMode.Open);
-            BinaryFormatter bf = new BinaryFormatter();
-            saveFile = (SavablePlayerBrain)bf.Deserialize(dataStream);
-            GameManager.Instance.metaPlayer.InsertSaveFile(saveFile);
+            FileStream dataStream = new FileStream(Application.persistentDataPath + "/meta.dat", FileMode.Open);
+            GameManager.Instance.metaPlayer.InsertSaveFile((SavablePlayerBrain)bf.Deserialize(dataStream));
             dataStream.Close();
         }
         else
         {
             GameManager.Instance.metaPlayer.ClearPlayerObject();
-            Save();
+            SaveMeta();
+        }
+
+        if (File.Exists(Application.persistentDataPath + "/battlefield.dat"))
+        {
+            FileStream dataStream = new FileStream(Application.persistentDataPath + "/battlefield.dat", FileMode.Open);
+            GameManager.Instance.battlefield.InsertSave((SavableBattlefield)bf.Deserialize(dataStream));
+            dataStream.Close();
+        }
+        else
+        {
+            GameManager.Instance.battlefield.ClearBattlefield();
+            SaveRun();
         }
     }
 }

@@ -22,12 +22,16 @@ public class CardDealer : MonoBehaviour
     {
         if (battlefield.randomState==null)
         {
+            // Debug.Log("No random state");
+            Random.InitState(DateTime.Now.Millisecond);
             battlefield.randomState = Random.state;
         }
         else
         {
+            // Debug.Log("Using random state");
             Random.state = battlefield.randomState.Value;
         }
+        
         foreach (TextMeshProUGUI text in pauseText)
         {
             text.CrossFadeAlpha(0, 0,true);
@@ -78,7 +82,6 @@ public class CardDealer : MonoBehaviour
     public virtual void SetupAndLoad(int selectedCard)
     {
         MapCard mapCard = shells[selectedCard].card as MapCard;
-        battlefield.TotalHandsPlus();
         switch (mapCard!.mapCardType)
         {
             case MapCard.MapCardType.Shop:
@@ -96,7 +99,6 @@ public class CardDealer : MonoBehaviour
                 GameManager.Instance.LoadSceneAdditive("EventScreen","MapScreen");
                 break;
         }
-
         battlefield.randomState = Random.state;
     }
 
@@ -137,6 +139,7 @@ public class CardDealer : MonoBehaviour
     
     public void Quit()
     {
+        GameManager.Instance.saveManager.SaveRun();
         Back();
         GameManager.Instance.LoadSceneAdditive("MainMenu","MapScreen");
     }

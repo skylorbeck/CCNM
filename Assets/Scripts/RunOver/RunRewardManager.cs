@@ -23,7 +23,6 @@ public class RunRewardManager : MonoBehaviour
         GameManager.Instance.metaPlayer.CopyCapsules(GameManager.Instance.battlefield.player);
         GameManager.Instance.metaPlayer.CopySuperCapsules(GameManager.Instance.battlefield.player);
 
-        GameManager.Instance.battlefield.deckChosen = false;
         
         for (var i = 0; i < GameManager.Instance.battlefield.player.playerInventory.Length; i++)
         {
@@ -42,6 +41,7 @@ public class RunRewardManager : MonoBehaviour
         cards.Sort((card1, card2) => card1.EquipmentData.quality.CompareTo(card2.EquipmentData.quality)*-1);
         cards[0].SetShredMark(false);
         cardSlider.maxValue = cards.Count - 1;
+ 
     }
 
     void Update()
@@ -91,6 +91,8 @@ public class RunRewardManager : MonoBehaviour
         }
         TextPopController.Instance.PopPositive("You gained " + soulsGained + " souls!",Vector3.zero, false);
         await Task.Delay(1000);
+        GameManager.Instance.battlefield.ClearBattlefield();
+        GameManager.Instance.saveManager.SaveRun();
         GameManager.Instance.LoadSceneAdditive("MainMenu","RunOver");
     }
 

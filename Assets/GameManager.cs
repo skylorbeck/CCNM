@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public PlayerBrain metaPlayer;
     public EquipmentRegistry[] equipmentRegistries;
     public AbilityRegistry abilityRegistry;
+    public DeckRegistry deckRegistry;
     public EventRegistry eventRegistry;
     public SaveManager saveManager;
     public LootManager lootManager;
@@ -123,7 +124,7 @@ public class GameManager : MonoBehaviour
     private async void LoadScene(string sceneToLoad, LoadSceneMode mode, bool waitForInput,
         params string[] sceneToUnload)
     {
-        Instance.saveManager.Save();//might be pointless here, and save too often.
+        Instance.saveManager.SaveMeta();//might be pointless here, and save too often.
 
         inputReader.DisableUI();
         uiStateObject.FadeOut();
