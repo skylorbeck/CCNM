@@ -2,6 +2,32 @@
 
 public class PlayerShell : Shell
 {
+    #region Event Broadcasts
+    public override void OnDied()
+    {
+    }
+
+    public override void OnShieldRegen()
+    {
+    }
+
+    public override void OnHealed(int amtHealed)
+    {
+    }
+
+    public override void OnShieldBreak(int shieldDamTaken)
+    {
+    }
+
+    public override void OnDamaged(Shell attacker, int damageTaken)
+    {
+    }
+
+    public override void OnAttacked(Shell target,Symbol symbol)
+    {
+    }
+    
+    #endregion
     public PlayerBrain playerBrain
     {
         get { return (PlayerBrain)brain; }

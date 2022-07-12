@@ -9,6 +9,31 @@ public class EnemyShell : Shell
     [SerializeField] private Transform spotLight;
     [SerializeField] private Transform shadow;
 
+    #region Event Broadcasts
+    public override void OnDied()
+    {
+    }
+
+    public override void OnShieldRegen()
+    {
+    }
+
+    public override void OnHealed(int amtHealed)
+    {
+    }
+
+    public override void OnShieldBreak(int shieldDamTaken)
+    {
+    }
+
+    public override void OnDamaged(Shell attacker, int damageTaken)
+    {
+    }
+
+    public override void OnAttacked(Shell target,Symbol symbol)
+    {
+    }
+    #endregion
     public EnemyBrain enemyBrain
     {
         get { return (EnemyBrain)brain; }

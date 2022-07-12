@@ -1,31 +1,92 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class Shell : MonoBehaviour
 {
     [field: SerializeField] public Brain brain { get; private set; }
-    
     [field: SerializeField] public string title { get; private set; } = "entity.name";
     [field: SerializeField] public string description { get; private set; } = "entity.description";
     [field: SerializeField] public int currentHealth { get; protected set; } = 0;
     [field: SerializeField] public int shield { get; protected set; } = 0;
     [field: SerializeField] public int shieldDelayCurrent { get; protected set; } = 0;
     [SerializeField] public StatusDisplayer statusDisplayer;
-    
     public bool isDead => currentHealth <= 0;
     public bool hasShield => shield > 0;
     public bool isPlayer => brain is PlayerBrain;
+    private SpriteRenderer spriteRenderer;
+    
+  
 
-    protected SpriteRenderer spriteRenderer;
+    public void Start()
+    {
+        foreach (Relic relic in brain.relics)
+        {
+            relic.Subscribe(this);
+        }
+        Attacked+=OnAttacked;
+        Damaged+=OnDamaged;
+        ShieldBreak+=OnShieldBreak;
+        ShieldRegen+=OnShieldRegen;
+        Healed += OnHealed;
+        Died+=OnDied;
+    }
+    public void OnDestroy()
+    {
+        foreach (Relic relic in brain.relics)
+        {
+            relic.Unsubscribe(this);
+        }
+        Attacked-=OnAttacked;
+        Damaged-=OnDamaged;
+        ShieldBreak-=OnShieldBreak;
+        ShieldRegen-=OnShieldRegen;
+        Healed -= OnHealed;
+        Died-=OnDied;
+    }
 
+    #region Event Broadcasts
+    public event UnityAction<int> ShieldBreak = delegate { };
+    public event UnityAction ShieldRegen = delegate { };
+    public event UnityAction Died = delegate { };
+    public event UnityAction<int> Healed = delegate { };
+    public event UnityAction<Shell,Symbol> Attacked = delegate { };
+    public event UnityAction<Shell,int> Damaged = delegate { };
+
+    public virtual void OnDied()
+    {
+    }
+
+    public virtual void OnShieldRegen()
+    {
+    }
+
+    public virtual void OnHealed(int amtHealed)
+    {
+    }
+
+    public virtual void OnShieldBreak(int shieldDamTaken)
+    {
+    }
+
+    public virtual void OnDamaged(Shell attacker, int damageTaken)
+    {
+    }
+
+    public virtual void OnAttacked(Shell target,Symbol symbol)
+    {
+    }
+    
+    #endregion
+   
     public virtual async Task Attack(Shell target,Symbol attack)
     {
+        Attacked.Invoke(target,attack);
         await attack.Consume(target,this);
-        await Task.Delay(500);
-        target.TestDeath();
     }
 
     public virtual async Task<int> OnAttack(Shell target,int baseDamage)
@@ -52,13 +113,14 @@ public class Shell : MonoBehaviour
         }
         int damage = await statusDisplayer.OnDamage(source,this,baseDamage);
         TextPopController.Instance.PopDamage(damage,transform.position);
-
+        Damaged.Invoke(source,damage);
         if (shield > 0)
         {
             shieldDelayCurrent = 1;
             shield -= damage;
             if (shield < 0)
             {
+                ShieldBreak.Invoke(damage + shield);
                 ModifyCurrentHealth(shield);
                 shield = 0;
             }
@@ -74,12 +136,14 @@ public class Shell : MonoBehaviour
     
     public virtual void Kill()
     {
+        Died.Invoke();
         spriteRenderer.sprite = null;
         statusDisplayer.Clear();
     }
     
     public virtual void Heal(int baseHeal, StatusEffect.Element element)
     {
+        Healed.Invoke(baseHeal);
         TextPopController.Instance.PopHeal(baseHeal,transform.position);
 
         brain.ModifyCurrentHealth(baseHeal);
@@ -119,7 +183,8 @@ public class Shell : MonoBehaviour
         shieldDelayCurrent--;
         if (shieldDelayCurrent < 0)
         {
-            shieldDelayCurrent = 0;
+            // shieldDelayCurrent = 0;
+            ShieldRegen.Invoke();
             Shield((int)brain.GetShieldRate(), StatusEffect.Element.None);
         }
     }
@@ -142,9 +207,9 @@ public class Shell : MonoBehaviour
     public async Task OnTurnEnd()
     {
         // await TickStatusEffects();
-        TestDeath();
         if (!isDead)
         {
+            TestDeath();
             ShieldCheck();
         }
     }

@@ -15,6 +15,8 @@ public class Brain : ScriptableObject
     
     #region persistentData
     [field:SerializeField] public int currentHealth { get; private set; } = 1;
+    [field:SerializeField] public Relic[] relics{ get; private set; }
+
     public void SetCurrentHealth(int health)
     {
         currentHealth = health;
@@ -103,6 +105,14 @@ public class Brain : ScriptableObject
 
     public virtual float GetShieldMax()
     {
+        foreach (Relic relic in relics)
+        {
+            if (relic is RelicTradeHpForShield trade)
+            {
+                trade.AdjustShield((int)GetMaxHealth());
+            }
+        }
+
         return GetGrit();
     }
 

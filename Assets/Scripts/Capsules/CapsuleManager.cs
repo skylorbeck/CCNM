@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,9 +8,12 @@ public class CapsuleManager : MonoBehaviour
 {
     async void Start()
     {
-        await Task.Delay(1000);
-        //todo add rewards
-        GameManager.Instance.LoadSceneAdditive("MainMenu","Capsules");
+        GameManager.Instance.inputReader.Back+=Back;
+    }
+
+    public void OnDestroy()
+    {
+        GameManager.Instance.inputReader.Back -= Back;
     }
 
     void Update()
@@ -20,6 +24,11 @@ public class CapsuleManager : MonoBehaviour
     void FixedUpdate()
     {
         
+    }
+
+    public void Back()
+    {
+        GameManager.Instance.LoadSceneAdditive("Hotel","Capsules");
     }
 
 }

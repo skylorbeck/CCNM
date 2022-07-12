@@ -129,7 +129,7 @@ public class EquipmentDataContainer
                 case Quality.Fabled:
                     qualityMulti = 0.2f;
                     break;
-                case Quality.Curator:
+                case Quality.Exalted:
                     qualityMulti = 0.3f;
                     break;
             }
@@ -157,13 +157,13 @@ public class EquipmentDataContainer
 
     public enum Quality
     {
-        Typical, //white 2 stats, 100% ability
-        Noteworthy, //green 3 stats, 75% ability
-        Remarkable, //blue 4 stats, 50% ability
-        Choice, //purple 5 stats, 50% ability
-        Signature, //yellow 5 stats, 1 max stats, 50% ability
-        Fabled, //orange 5 stats, 2 max stats, 50% ability
-        Curator, //red 5 stats, 3 max stats, 50% ability
+        Typical, //white 2 stats
+        Noteworthy, //green 3 stats
+        Remarkable, //blue 4 stats
+        Choice, //purple 5 stats
+        Signature, //yellow 5 stats, 1 max stats
+        Fabled, //orange 5 stats, 2 max stats
+        Exalted, //red 5 stats, 3 max stats
     }
     public enum Stats
     {

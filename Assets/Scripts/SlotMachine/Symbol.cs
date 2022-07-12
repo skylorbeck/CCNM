@@ -120,7 +120,7 @@ public class Symbol : MonoBehaviour
             }
             DamageAnimator.Instance.TriggerAttack(target, ability.attackAnimation);//play the animation
             await target.Damage(user, damage, ability.element);//damage the target
-            // target.TestDeath();
+            // target.TestDeath(); handled in target.damage
         }
         if (ability.damageUser)
         {
