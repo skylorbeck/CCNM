@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relics:
   - {fileID: 11400000, guid: 3bac3e5095a26204f9ed609174985819, type: 2}
+  - {fileID: 11400000, guid: dc98678aa1785e34aa8731a5419122af, type: 2}
   keys:
   - Relic
-  values: 00000000
+  - TradeHPForShield
+  values: 0000000001000000

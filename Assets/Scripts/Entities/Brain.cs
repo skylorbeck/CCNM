@@ -25,9 +25,9 @@ public class Brain : ScriptableObject
     public void ModifyCurrentHealth(int amount)
     {
         currentHealth += amount;
-        if (currentHealth > GetMaxHealth())
+        if (currentHealth > GetHealthMax())
         {
-            SetCurrentHealth((int)GetMaxHealth());
+            SetCurrentHealth((int)GetHealthMax());
         }
     }
     #endregion
@@ -97,66 +97,131 @@ public class Brain : ScriptableObject
     
     #endregion
 
-    #region computedStatGetters
-    public virtual float GetDamage()
+    #region unModifiedStatGetters
+
+    public virtual int GetUnmodifiedDamage()
     {
         return GetStrength();
     }
-
-    public virtual float GetShieldMax()
+    public virtual int GetShieldMaxUnmodified()
     {
-        foreach (Relic relic in relics)
-        {
-            if (relic is RelicTradeHpForShield trade)
-            {
-                trade.AdjustShield((int)GetMaxHealth());
-            }
-        }
-
         return GetGrit();
     }
-
-    public virtual float GetShieldRate()
+    public virtual int GetHealthMaxUnmodified()
+    {
+        return GetVitality();
+    }
+    public virtual int GetShieldRateUnmodified()
     {
         return GetResolve();
     }
-
-    public virtual float GetCritChance()
+    public virtual int GetCritChanceUnmodified()
     {
         return GetSpeed();
     }
 
-    public virtual float GetCritDamage()
+    public virtual int GetCritDamageUnmodified()
     {
         return GetSkill();
     }
 
-    public virtual float GetDodgeChance()
+    public virtual int GetDodgeChanceUnmodified()
     {
         return GetDexterity();
     }
-    public virtual float GetMaxHealth()
-    {
-        return GetVitality();
-    }
-    public virtual float GetLootLuck()
+    
+    public virtual int GetLootLuckUnmodified()
     {
         return GetLuck();
     }
 
-    public virtual float GetEgoBoost()
+    public virtual int GetEgoBoostUnmodified()
     {
         return GetIntelligence();
     }
 
-    public virtual float GetCreditBoost()
+    public virtual int GetCreditBoostUnmodified()
     {
         return GetCharisma();
     }
     
-    public virtual float GetStatusDamage()
+    public virtual int GetStatusDamageUnmodified()
     {
         return GetSagacity();
+    }
+    #endregion
+    
+    #region computedStatGetters
+    public virtual int GetDamage()
+    {
+        return GetUnmodifiedDamage();
+    }
+
+    public virtual int GetShieldMax()
+    {
+        int shieldMax = GetShieldMaxUnmodified();
+        foreach (Relic relic in relics)
+        {
+            if (relic is RelicTradeHpForShield trade)
+            {
+                shieldMax += trade.GetShieldBonus(GetHealthMaxUnmodified());
+            }
+        }
+
+        return shieldMax;
+    }
+
+    public virtual int GetShieldRate()
+    {
+        return GetShieldRateUnmodified();
+    }
+
+    public virtual int GetCritChance()
+    {
+        return GetCritChanceUnmodified();
+    }
+
+    public virtual int GetCritDamage()
+    {
+        return GetCritDamageUnmodified();
+    }
+
+    public virtual int GetDodgeChance()
+    {
+        return GetDodgeChanceUnmodified();
+    }
+    public virtual int GetHealthMax()
+    {
+        int healthMax = GetHealthMaxUnmodified();
+        foreach (Relic relic in relics)
+        {
+            if (relic is RelicTradeHpForShield trade)
+            {
+                healthMax -= trade.GetHpPenalty(GetHealthMaxUnmodified());
+            }
+        }
+
+        return healthMax;
+    } 
+  
+    public virtual int GetLootLuck()
+    {
+        return GetLootLuckUnmodified();
+    }
+
+    public virtual int GetEgoBoost()
+    {
+        return GetEgoBoostUnmodified();
+    }
+
+    public virtual int GetCreditBoost()
+    {
+        return GetCreditBoostUnmodified();
+    }
+    
+    public virtual int GetStatusDamage()
+    {
+        return GetStatusDamageUnmodified();
     }
     #endregion
     
@@ -223,5 +288,17 @@ public class Brain : ScriptableObject
     public void ClearAbilities()
     {
         abilities = new AbilityObject[0];
+    }
+    
+    public void ClearRelics()
+    {
+        relics = new Relic[0];
+    }
+    
+    public void AddRelic(Relic relic)
+    {
+        List<Relic> newRelics = new List<Relic>(relics);
+        newRelics.Add(relic);
+        relics = newRelics.ToArray();
     }
 }

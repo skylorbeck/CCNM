@@ -976,11 +976,9 @@ MonoBehaviour:
   <brain>k__BackingField: {fileID: 0}
   <title>k__BackingField: entity.name
   <description>k__BackingField: entity.description
-  <health>k__BackingField: 10
-  <maxHealth>k__BackingField: 10
+  <currentHealth>k__BackingField: 0
   <shield>k__BackingField: 0
-  <maxShield>k__BackingField: 0
-  <abilities>k__BackingField: []
+  <shieldDelayCurrent>k__BackingField: 0
   statusDisplayer: {fileID: 1324527001174920847}
   animator: {fileID: 6071886850172906328}
   spotLight: {fileID: 6746581059347437901}
@@ -1146,7 +1144,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6527612945758671532}
   - component: {fileID: 1887068109095244589}
-  - component: {fileID: 1911150606352829975}
   m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
@@ -1221,30 +1218,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1911150606352829975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014758164334593639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55a08e2de12a4928a380ba30dad06ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <brain>k__BackingField: {fileID: 0}
-  <title>k__BackingField: entity.name
-  <description>k__BackingField: entity.description
-  <health>k__BackingField: 10
-  <maxHealth>k__BackingField: 10
-  <shield>k__BackingField: 0
-  <maxShield>k__BackingField: 0
-  <abilities>k__BackingField: []
-  statusDisplayer: {fileID: 1324527001174920847}
-  animator: {fileID: 0}
-  spotLight: {fileID: 0}
-  shadow: {fileID: 0}
 --- !u!1 &2031979971929819463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,7 +1228,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6746581059347437901}
   - component: {fileID: 443333239098517321}
-  - component: {fileID: 3545085775616973280}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -1330,27 +1302,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3545085775616973280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031979971929819463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55a08e2de12a4928a380ba30dad06ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <brain>k__BackingField: {fileID: 0}
-  <title>k__BackingField: entity.name
-  <description>k__BackingField: entity.description
-  <health>k__BackingField: 10
-  <maxHealth>k__BackingField: 10
-  <shield>k__BackingField: 0
-  <maxShield>k__BackingField: 0
-  <abilities>k__BackingField: []
-  statusDisplayer: {fileID: 1324527001174920847}
-  animator: {fileID: 0}
-  spotLight: {fileID: 0}
-  shadow: {fileID: 0}

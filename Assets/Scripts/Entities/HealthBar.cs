@@ -31,7 +31,7 @@ public class HealthBar : MonoBehaviour
             healthBar.enabled = true;
             backBar.enabled = true;
             backplate.enabled = true;
-            healthBar.SetPosition(1, new Vector3( Math.Clamp((float)shell.currentHealth / shell.brain.GetMaxHealth(),0,1), 0, 0));
+            healthBar.SetPosition(1, new Vector3( Math.Clamp((float)shell.currentHealth / shell.brain.GetHealthMax(),0,1), 0, 0));
         }
         if (!shell.hasShield || shell.brain.GetShieldMax() == 0) 
         {

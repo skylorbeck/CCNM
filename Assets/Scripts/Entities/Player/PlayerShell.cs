@@ -36,7 +36,7 @@ public class PlayerShell : Shell
     public override void InsertBrain(Brain brain)
     {
         base.InsertBrain(brain);
-        SetCurrentHealth(playerBrain.currentHealth);
+        SetCurrentHealth(brain.currentHealth);
     }
  
     public override Task<int> OnAttack(Shell target, int baseDamage)

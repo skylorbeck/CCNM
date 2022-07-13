@@ -16,12 +16,12 @@ public class RelicTradeHpForShield : Relic
         
     }
 
-    public int AdjustShield(int hp)
+    public int GetShieldBonus(int hp)
     {
         return (int)(hp* hpPercent);
     }
     
-    public int AdjustHp(int hp)
+    public int GetHpPenalty(int hp)
     {
         return (int)(hp* hpPercent);
     }

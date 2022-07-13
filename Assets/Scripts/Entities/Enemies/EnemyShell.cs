@@ -52,7 +52,7 @@ public class EnemyShell : Shell
             }
         }
         base.InsertBrain(brain);
-        SetCurrentHealth((int)brain.GetMaxHealth());
+        SetCurrentHealth(brain.GetHealthMax());
     }
 
     public override Task<int> OnAttack(Shell target, int baseDamage)

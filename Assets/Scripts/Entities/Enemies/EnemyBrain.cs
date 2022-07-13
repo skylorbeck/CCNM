@@ -10,38 +10,38 @@ public class EnemyBrain : Brain
     public bool isBoss;
 
     #region computedStatGetters
-    public override float GetDamage()
+    public override int GetDamage()
     {
-        return GetStrength()* GameManager.Instance.runSettings.GetAttackMod();
+        return (int)(base.GetDamage()* GameManager.Instance.runSettings.GetAttackMod());
     }
 
-    public override float GetShieldMax()
+    public override int GetShieldMax()
     {
-        return GetGrit() * GameManager.Instance.runSettings.GetShieldMod();
+        return (int)(base.GetShieldMax() * GameManager.Instance.runSettings.GetShieldMod());
     }
 
-    public override float GetShieldRate()
+    public override int GetShieldRate()
     {
-        return GetResolve() * GameManager.Instance.runSettings.GetShieldMod();
+        return (int)(base.GetShieldRate() * GameManager.Instance.runSettings.GetShieldMod());
     }
 
-    public override float GetCritChance()
+    public override int GetCritChance()
     {
-        return GetSpeed() * GameManager.Instance.runSettings.GetCritChanceMod();
+        return (int)(base.GetCritChance() * GameManager.Instance.runSettings.GetCritChanceMod());
     }
 
-    public override float GetCritDamage()
+    public override int GetCritDamage()
     {
-        return GetSkill() * GameManager.Instance.runSettings.GetCritDamageMod();
+        return (int)(base.GetCritDamage() * GameManager.Instance.runSettings.GetCritDamageMod());
     }
 
-    public override float GetDodgeChance()
+    public override int GetDodgeChance()
     {
-        return GetDexterity() * GameManager.Instance.runSettings.GetDodgeMod();
+        return (int)(base.GetDodgeChance() * GameManager.Instance.runSettings.GetDodgeMod());
     }
-    public override float GetMaxHealth()
+    public override int GetHealthMax()
     {
-        return GetVitality() * GameManager.Instance.runSettings.GetHealthMod();
+        return (int)(base.GetHealthMax() * GameManager.Instance.runSettings.GetHealthMod());
     }
     #endregion
     public async Task Think()

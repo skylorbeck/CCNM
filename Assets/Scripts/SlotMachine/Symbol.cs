@@ -99,13 +99,13 @@ public class Symbol : MonoBehaviour
         }
         if (ability.healTarget)
         {
-            int heal = await target.OnHeal(target,(int)(user.brain.GetMaxHealth()*0.25f));
+            int heal = await target.OnHeal(target,(int)(user.brain.GetHealthMax()*0.25f));
             heal = (int)Math.Ceiling(heal * ability.targetHealMultiplier);
             target.Heal(heal, ability.element);
         }
         if (ability.healUser)
         {
-            int heal = await user.OnHeal(user,(int)(user.brain.GetMaxHealth()*0.25f));
+            int heal = await user.OnHeal(user,(int)(user.brain.GetHealthMax()*0.25f));
             heal = (int)Math.Ceiling(heal * ability.userHealMultiplier);
             user.Heal(heal, ability.element);
         }

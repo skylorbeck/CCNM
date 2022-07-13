@@ -11,7 +11,7 @@ public class StatDisplay : MonoBehaviour
     {
         pauseText[0].text = GameManager.Instance.battlefield.player.GetDamage().ToString();
         pauseText[1].text = GameManager.Instance.battlefield.player.GetShieldMax().ToString();
-        pauseText[2].text = GameManager.Instance.battlefield.player.GetMaxHealth().ToString();
+        pauseText[2].text = GameManager.Instance.battlefield.player.GetHealthMax().ToString();
         pauseText[3].text = GameManager.Instance.battlefield.player.GetDodgeChance().ToString();
         pauseText[4].text = GameManager.Instance.battlefield.player.GetCritChance().ToString();
         //todo redo this entirely with all the stats

@@ -24,10 +24,6 @@ public class Shell : MonoBehaviour
 
     public void Start()
     {
-        foreach (Relic relic in brain.relics)
-        {
-            relic.Subscribe(this);
-        }
         Attacked+=OnAttacked;
         Damaged+=OnDamaged;
         ShieldBreak+=OnShieldBreak;
@@ -201,7 +197,11 @@ public class Shell : MonoBehaviour
         description = brain.description;
         shield = (int)brain.GetShieldMax();
         shieldDelayCurrent = 1;
-        
+        for (var index = 0; index < brain.relics.Length; index++)
+        {
+            Relic relic = brain.relics[index];
+            relic.Subscribe(this);
+        }
     }
 
     public async Task OnTurnEnd()
@@ -215,14 +215,18 @@ public class Shell : MonoBehaviour
     }
     public void SetCurrentHealth(int health)
     {
+        if (health>brain.GetHealthMax())
+        {
+            health = brain.GetHealthMax();
+        }
         currentHealth = health;
     }
     public void ModifyCurrentHealth(int amount)
     {
         currentHealth += amount;
-        if (currentHealth > brain.GetMaxHealth())
+        if (currentHealth > brain.GetHealthMax())
         {
-            SetCurrentHealth((int)brain.GetMaxHealth());
+            SetCurrentHealth(brain.GetHealthMax());
         }
     }
     public void TestDeath()

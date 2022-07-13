@@ -121,65 +121,64 @@ public class PlayerBrain : Brain
 
     #endregion
 
-    #region computedStatGetters
+    #region unModifiedStatGetters
 
-    public override float GetDamage()
+    public override int GetUnmodifiedDamage()
     {
-        return GetStrength() + cardStrength;
+        return base.GetUnmodifiedDamage() + cardStrength;
     }
 
-    public override float GetShieldMax()
+    public override int GetShieldMaxUnmodified()
     {
-        return GetGrit() + cardGrit;
+        return base.GetShieldMaxUnmodified() + cardGrit;
     }
 
-    public override float GetShieldRate()
+    public override int GetHealthMaxUnmodified()
     {
-        return GetResolve() + cardResolve;
+        return base.GetHealthMaxUnmodified() + cardVitality;
     }
 
-    public override float GetCritChance()
+    public override int GetShieldRateUnmodified()
     {
-        return GetSpeed() + cardSpeed;
+        return base.GetShieldRateUnmodified() + cardResolve;
     }
 
-    public override float GetCritDamage()
+    public override int GetCritChanceUnmodified()
     {
-        return GetSkill() + cardSkill;
+        return base.GetCritChanceUnmodified() + cardSpeed;
     }
 
-    public override float GetDodgeChance()
+    public override int GetCritDamageUnmodified()
     {
-        return GetDexterity() + cardDexterity;
+        return base.GetCritDamageUnmodified() + cardSkill;
     }
 
-    public override float GetMaxHealth()
+    public override int GetDodgeChanceUnmodified()
     {
-        return GetVitality() + cardVitality;
+        return base.GetDodgeChanceUnmodified() + cardDexterity;
     }
 
-    public override float GetLootLuck()
+    public override int GetLootLuckUnmodified()
     {
-        return GetLuck() + cardLuck;
+        return base.GetLootLuckUnmodified() + cardLuck;
     }
 
-    public override float GetEgoBoost()
+    public override int GetEgoBoostUnmodified()
     {
-        return GetIntelligence() + cardIntelligence;
+        return base.GetEgoBoostUnmodified() + cardIntelligence;
     }
 
-    public override float GetCreditBoost()
+    public override int GetCreditBoostUnmodified()
     {
-        return GetCharisma() + cardCharisma;
+        return base.GetCreditBoostUnmodified() + cardCharisma;
     }
 
-    public override float GetStatusDamage()
+    public override int GetStatusDamageUnmodified()
     {
-        return GetSagacity() + cardSagacity;
+        return base.GetStatusDamageUnmodified() + cardSagacity;
     }
 
     #endregion
-
 
 
     public void Equip(int dataContainerIndex, int cardIndex)
@@ -242,7 +241,9 @@ public class PlayerBrain : Brain
             playerInventory[i].container = new List<EquipmentDataContainer>();
             equippedSlots[i] = -1;
         }
+        
     }
+    
 
     public int ShredCard(EquipmentDataContainer card)
     {
@@ -269,7 +270,6 @@ public class PlayerBrain : Brain
 
     public void Clone(PlayerBrain sourcePlayer)
     {
-        ClearInventory();
         for (var index = 0; index < sourcePlayer.equippedSlots.Length; index++)
         {
             if (sourcePlayer.EquippedCardExists(index))
@@ -298,7 +298,7 @@ public class PlayerBrain : Brain
         SetCharisma(sourcePlayer.GetCharisma());
 
 
-        SetCurrentHealth((int)sourcePlayer.GetMaxHealth());
+        SetCurrentHealth(sourcePlayer.GetHealthMax());
         CalculateCardStats();
     }
 
@@ -391,6 +391,8 @@ public class PlayerBrain : Brain
     {
         SetDefaultEquipment();
         ClearInventory();
+        ClearRelics();
+        ClearConsumables();
         cardSouls = new int[7];
         consumables = new int[3];
         capsules = 0;
@@ -411,6 +413,7 @@ public class PlayerBrain : Brain
         SetCurrentHealth(5);
         CalculateCardStats();
     }
+
     public void InsertSaveFile(SavablePlayerBrain saveFile)
     {
         ClearPlayerObject();
@@ -425,6 +428,7 @@ public class PlayerBrain : Brain
                 playerInventory[i].container.Add(new EquipmentDataContainer(saveFile.playerInventory[i][j]));
             }
         }
+
         cardSouls = saveFile.cardSouls;
         consumables = saveFile.consumables;
         capsules = saveFile.capsules;
@@ -457,20 +461,21 @@ public class PlayerBrain : Brain
         defaultEquipment[0].InsertAbility(GameManager.Instance.abilityRegistry.GetAbility("Fireball"));
         defaultEquipment[0].InsertItem(GameManager.Instance.equipmentRegistries[0].GetCard(0));
         defaultEquipment[0].SetIndestructible(true);
-        defaultEquipment[0].SetStatValue(new int[]{5,5});
-        defaultEquipment[0].SetStats(new EquipmentDataContainer.Stats[]{EquipmentDataContainer.Stats.Grit,EquipmentDataContainer.Stats.Resolve});
-        
+        defaultEquipment[0].SetStatValue(new int[] { 5, 5 });
+        defaultEquipment[0].SetStats(new EquipmentDataContainer.Stats[]
+            { EquipmentDataContainer.Stats.Grit, EquipmentDataContainer.Stats.Resolve });
+
         defaultEquipment[1].InsertAbility(GameManager.Instance.abilityRegistry.GetAbility("Slash"));
         defaultEquipment[1].InsertItem(GameManager.Instance.equipmentRegistries[1].GetCard(0));
         defaultEquipment[1].SetIndestructible(true);
-        defaultEquipment[1].SetStatValue(new int[]{5});
-        defaultEquipment[1].SetStats(new EquipmentDataContainer.Stats[]{EquipmentDataContainer.Stats.Strength});
-        
+        defaultEquipment[1].SetStatValue(new int[] { 5 });
+        defaultEquipment[1].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Strength });
+
         defaultEquipment[2].InsertAbility(GameManager.Instance.abilityRegistry.GetAbility("Headbutt"));
         defaultEquipment[2].InsertItem(GameManager.Instance.equipmentRegistries[2].GetCard(0));
         defaultEquipment[2].SetIndestructible(true);
-        defaultEquipment[2].SetStatValue(new int[]{5});
-        defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[]{EquipmentDataContainer.Stats.Vitality});
+        defaultEquipment[2].SetStatValue(new int[] { 5 });
+        defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vitality });
     }
 }
 
@@ -508,8 +513,8 @@ public class SavablePlayerBrain
     public int resolve;
     public int intelligence;
     public int charisma;
-    
-    
+
+
     public SavablePlayerBrain(PlayerBrain player)
     {
         currentHealth = player.currentHealth;
@@ -525,6 +530,7 @@ public class SavablePlayerBrain
                 playerInventory[i][j] = new SavableDataContainer(dataContainer);
             }
         }
+
         credits = player.credits;
         ego = player.ego;
         level = player.level;
