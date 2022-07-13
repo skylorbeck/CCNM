@@ -429,6 +429,11 @@ public class PlayerBrain : Brain
             }
         }
 
+        foreach (int i in saveFile.relicIndexes)
+        {
+            AddRelic(GameManager.Instance.relicRegistry.GetRelic(i));
+        }
+        
         cardSouls = saveFile.cardSouls;
         consumables = saveFile.consumables;
         capsules = saveFile.capsules;
@@ -490,7 +495,7 @@ public class SavablePlayerBrain
 {
     //brain
     public int currentHealth;
-
+    public int[] relicIndexes;
     //playerbrain
     public int[] equippedSlots;
     public SavableDataContainer[][] playerInventory;
@@ -529,6 +534,13 @@ public class SavablePlayerBrain
                 EquipmentDataContainer dataContainer = equipmentList.container[j];
                 playerInventory[i][j] = new SavableDataContainer(dataContainer);
             }
+        }
+
+        relicIndexes = new int[player.relics.Length];
+        for (var i = 0; i < player.relics.Length; i++)
+        {
+            Relic relic = player.relics[i];
+            relicIndexes[i] = GameManager.Instance.relicRegistry.GetRelicIndex(relic.name);
         }
 
         credits = player.credits;

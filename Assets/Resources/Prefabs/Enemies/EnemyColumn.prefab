@@ -980,6 +980,7 @@ MonoBehaviour:
   <shield>k__BackingField: 0
   <shieldDelayCurrent>k__BackingField: 0
   statusDisplayer: {fileID: 1324527001174920847}
+  healthBar: {fileID: 1324527000336823101}
   animator: {fileID: 6071886850172906328}
   spotLight: {fileID: 6746581059347437901}
   shadow: {fileID: 6527612945758671532}

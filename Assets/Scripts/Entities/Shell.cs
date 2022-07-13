@@ -15,6 +15,7 @@ public class Shell : MonoBehaviour
     [field: SerializeField] public int shield { get; protected set; } = 0;
     [field: SerializeField] public int shieldDelayCurrent { get; protected set; } = 0;
     [SerializeField] public StatusDisplayer statusDisplayer;
+    [SerializeField] public HealthBar healthBar;
     public bool isDead => currentHealth <= 0;
     public bool hasShield => shield > 0;
     public bool isPlayer => brain is PlayerBrain;
@@ -125,6 +126,7 @@ public class Shell : MonoBehaviour
         {
             ModifyCurrentHealth(damage);
         }
+        healthBar.ManualUpdate();
 
        TestDeath();
     }
@@ -135,6 +137,8 @@ public class Shell : MonoBehaviour
         Died.Invoke();
         spriteRenderer.sprite = null;
         statusDisplayer.Clear();
+        healthBar.ManualUpdate();
+
     }
     
     public virtual void Heal(int baseHeal, StatusEffect.Element element)
@@ -143,7 +147,8 @@ public class Shell : MonoBehaviour
         TextPopController.Instance.PopHeal(baseHeal,transform.position);
 
         brain.ModifyCurrentHealth(baseHeal);
-        
+        healthBar.ManualUpdate();
+
     }
     
     public virtual void Shield(int amount, StatusEffect.Element element)
@@ -157,6 +162,8 @@ public class Shell : MonoBehaviour
         {
             TextPopController.Instance.PopShield(amount,transform.position);
         }
+        healthBar.ManualUpdate();
+
     }
     
     public void AddStatusEffect(StatusEffect statusEffect)
@@ -202,11 +209,12 @@ public class Shell : MonoBehaviour
             Relic relic = brain.relics[index];
             relic.Subscribe(this);
         }
+        healthBar.ManualUpdate();
     }
 
     public async Task OnTurnEnd()
     {
-        // await TickStatusEffects();
+        healthBar.ManualUpdate();
         if (!isDead)
         {
             TestDeath();
@@ -220,6 +228,8 @@ public class Shell : MonoBehaviour
             health = brain.GetHealthMax();
         }
         currentHealth = health;
+        healthBar.ManualUpdate();
+
     }
     public void ModifyCurrentHealth(int amount)
     {
@@ -228,6 +238,8 @@ public class Shell : MonoBehaviour
         {
             SetCurrentHealth(brain.GetHealthMax());
         }
+        healthBar.ManualUpdate();
+
     }
     public void TestDeath()
     {

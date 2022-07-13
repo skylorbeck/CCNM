@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
         
     }
 
-    void Update()
+    public void ManualUpdate()
     {
         if (shell.isDead)
         {

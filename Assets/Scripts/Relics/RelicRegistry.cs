@@ -45,15 +45,7 @@ public class RelicRegistry : ScriptableObject,  ISerializationCallbackReceiver
     
     public Relic GetRelic(int relicIndex)
     {
-        if (relicIndex < relics.Length)
-        {
             return relics[relicIndex];
-        }
-        else
-        {
-            Debug.LogError("Relic not found in registry: " + relicIndex);
-            return null;
-        }
     }
     
     public Relic GetRandomRelic()

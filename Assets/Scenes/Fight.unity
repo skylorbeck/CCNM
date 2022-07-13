@@ -3248,16 +3248,11 @@ MonoBehaviour:
   <brain>k__BackingField: {fileID: 0}
   <title>k__BackingField: entity.name
   <description>k__BackingField: entity.description
-  <health>k__BackingField: 10
-  <maxHealth>k__BackingField: 10
+  <currentHealth>k__BackingField: 0
   <shield>k__BackingField: 0
-  <shieldMax>k__BackingField: 0
-  <shieldDelay>k__BackingField: 1
-  <shieldDelayMax>k__BackingField: 1
-  <shieldRate>k__BackingField: 0
-  <dodgeChance>k__BackingField: 0
-  <abilities>k__BackingField: []
+  <shieldDelayCurrent>k__BackingField: 0
   statusDisplayer: {fileID: 1751743443}
+  healthBar: {fileID: 1582135325}
 --- !u!1 &949850991
 GameObject:
   m_ObjectHideFlags: 0
