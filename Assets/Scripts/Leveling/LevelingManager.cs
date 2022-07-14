@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelingManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class LevelingManager : MonoBehaviour
     [field: SerializeField] public TextMeshProUGUI egoCostText { get; private set; }
     [field: SerializeField] public TextMeshProUGUI egoCurrentText { get; private set; }
     [field: SerializeField] public TextMeshProUGUI egoRemainingText { get; private set; }
+    [field: SerializeField] public Button levelUpButton { get; private set; }
     List<StatController> statControllers = new List<StatController>();
     async void Start()
     {
@@ -81,6 +83,8 @@ public class LevelingManager : MonoBehaviour
         {
             controller.UpdateButtons();
         }
+        levelUpButton.interactable =totalLevels>0 && GameManager.Instance.metaPlayer.ego >= egoCost;
+
     }
 
     public void ConfirmLevelUp()
@@ -89,8 +93,12 @@ public class LevelingManager : MonoBehaviour
         foreach (StatController controller in statControllers)
         {
             GameManager.Instance.metaPlayer.LevelUpStat(controller.stat, controller.GetLevelDifference());
+            controller.ResetInitial();
         }
         egoCurrentText.text = GameManager.Instance.metaPlayer.ego.ToString();
+        initialValue = GameManager.Instance.metaPlayer.level;
+        currentValue = initialValue;
+        UpdateEgoCost();
     }
     
     private void OnDestroy()

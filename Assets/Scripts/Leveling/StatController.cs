@@ -65,4 +65,9 @@ public class StatController : MonoBehaviour
         parent.UpdateEgoCost();
     }
 
+    public void ResetInitial()
+    {
+        initialValue = GameManager.Instance.metaPlayer.GetUnmodifiedStatValue(stat);
+        currentValue = initialValue;
+    }
 }

@@ -20,21 +20,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
   - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
   <credits>k__BackingField: 0
-  <ego>k__BackingField: 100
-  <level>k__BackingField: 1
+  <ego>k__BackingField: 38
+  <level>k__BackingField: 6
   <currentHealth>k__BackingField: 5
   <relics>k__BackingField: []
-  strength: 5
-  dexterity: 5
+  strength: 9
+  dexterity: 6
   vitality: 5
   speed: 5
   skill: 5
   luck: 5
   grit: 5
   resolve: 5
-  intelligence: 5
+  intelligence: 6
   charisma: 5
-  sagacity: 5
+  sagacity: 8
   <equippedSlots>k__BackingField: ffffffffffffffffffffffff
   <playerInventory>k__BackingField:
   - container: []
