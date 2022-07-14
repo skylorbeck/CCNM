@@ -6,7 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyObject", menuName = "Combat/EnemySO")]
 public class EnemyBrain : Brain
 {
-    [field: SerializeField] public int credits { get; private set; }
     public bool isBoss;
 
     #region computedStatGetters

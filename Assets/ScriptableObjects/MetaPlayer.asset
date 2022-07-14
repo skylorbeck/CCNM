@@ -19,6 +19,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
   - {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
   - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+  <credits>k__BackingField: 0
+  <ego>k__BackingField: 100
+  <level>k__BackingField: 1
   <currentHealth>k__BackingField: 5
   <relics>k__BackingField: []
   strength: 5
@@ -31,7 +34,7 @@ MonoBehaviour:
   resolve: 5
   intelligence: 5
   charisma: 5
-  sagacity: 0
+  sagacity: 5
   <equippedSlots>k__BackingField: ffffffffffffffffffffffff
   <playerInventory>k__BackingField:
   - container: []
@@ -59,9 +62,6 @@ MonoBehaviour:
     <stats>k__BackingField: 03000000
     <statValue>k__BackingField: 05000000
     <indestructible>k__BackingField: 1
-  <credits>k__BackingField: 0
-  <ego>k__BackingField: 0
-  <level>k__BackingField: 0
   <cardPacks>k__BackingField: 0
   <capsules>k__BackingField: 0
   <superCapsules>k__BackingField: 0

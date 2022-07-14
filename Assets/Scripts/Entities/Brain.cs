@@ -12,7 +12,9 @@ public class Brain : ScriptableObject
     [field: SerializeField] public string description { get; private set; } = "entity.description";
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public AbilityObject[] abilities { get; private set; } = new AbilityObject[0];
-    
+    [field: SerializeField] public int credits { get; protected set; }
+    [field: SerializeField] public int ego { get; protected set; }
+    [field: SerializeField] public int level { get; protected set; } = 0;
     #region persistentData
     [field:SerializeField] public int currentHealth { get; private set; } = 1;
     [field:SerializeField] public Relic[] relics{ get; private set; }
@@ -94,7 +96,37 @@ public class Brain : ScriptableObject
     {
         return sagacity;
     }
-    
+    public int GetUnmodifiedStatValue(EquipmentDataContainer.Stats desiredStat)
+    {
+        switch (desiredStat)
+        {
+            default:
+            case EquipmentDataContainer.Stats.None:
+                return 0;
+            case EquipmentDataContainer.Stats.Strength:
+                return GetStrength();
+            case EquipmentDataContainer.Stats.Dexterity:
+                return GetDexterity();
+            case EquipmentDataContainer.Stats.Vitality:
+                return GetVitality();
+            case EquipmentDataContainer.Stats.Speed:
+                return GetSpeed();
+            case EquipmentDataContainer.Stats.Skill:
+                return GetSkill();
+            case EquipmentDataContainer.Stats.Luck:
+                return GetLuck();
+            case EquipmentDataContainer.Stats.Grit:
+                return GetGrit();
+            case EquipmentDataContainer.Stats.Resolve:
+                return GetResolve();
+            case EquipmentDataContainer.Stats.Intelligence:
+                return GetIntelligence();
+            case EquipmentDataContainer.Stats.Charisma:
+                return GetCharisma();
+            case EquipmentDataContainer.Stats.Sagacity:
+                return GetSagacity();
+        }
+    }
     #endregion
 
     #region unModifiedStatGetters
@@ -266,6 +298,56 @@ public class Brain : ScriptableObject
     {
         charisma = value;
     }
+    
+    public virtual void SetSagacity(int value)
+    {
+        sagacity = value;
+    }
+
+    public void LevelUpStat(EquipmentDataContainer.Stats controllerStat, int levelDifference)
+    {
+        switch (controllerStat)
+        {
+            default:
+            case EquipmentDataContainer.Stats.None:
+                break;
+            case EquipmentDataContainer.Stats.Strength:
+                SetStrength(GetStrength() + levelDifference);
+                break;
+            case EquipmentDataContainer.Stats.Dexterity:
+                SetDexterity(GetDexterity() + levelDifference);
+                break;
+            case EquipmentDataContainer.Stats.Vitality:
+                SetVitality(GetVitality() + levelDifference);
+                break;
+            case EquipmentDataContainer.Stats.Speed:
+                SetSpeed(GetSpeed() + levelDifference);
+                break;
+            case EquipmentDataContainer.Stats.Skill:
+                SetSkill(GetSkill() + levelDifference);
+                break;
+            case EquipmentDataContainer.Stats.Luck:
+                SetLuck(GetLuck() + levelDifference);
+                break;
+            case EquipmentDataContainer.Stats.Grit:
+                SetGrit(GetGrit() + levelDifference);
+                break;
+            case EquipmentDataContainer.Stats.Resolve:
+                SetResolve(GetResolve() + levelDifference);
+                break;
+            case EquipmentDataContainer.Stats.Intelligence:
+                SetIntelligence(GetIntelligence() + levelDifference);
+                break;
+            case EquipmentDataContainer.Stats.Charisma:
+                SetCharisma(GetCharisma() + levelDifference);
+                break;
+            case EquipmentDataContainer.Stats.Sagacity:
+                SetSagacity(GetSagacity() + levelDifference);
+                break;
+        }
+        level += levelDifference;
+    }
+
     #endregion
     public AbilityObject GetRandomAbility()
     {

@@ -11,10 +11,6 @@ public class PlayerBrain : Brain
     [field: SerializeField] public EquipmentList[] playerInventory { get; private set; }
     [field: SerializeField] public EquipmentDataContainer[] defaultEquipment { get; private set; }
 
-
-    [field: SerializeField] public int credits { get; private set; }
-    [field: SerializeField] public int ego { get; private set; }
-    [field: SerializeField] public int level { get; private set; } = 0;
     [field: SerializeField] public int cardPacks { get; private set; }
     [field: SerializeField] public int capsules { get; private set; }
     [field: SerializeField] public int superCapsules { get; private set; }
@@ -180,7 +176,7 @@ public class PlayerBrain : Brain
 
     #endregion
 
-
+  
     public void Equip(int dataContainerIndex, int cardIndex)
     {
         equippedSlots[dataContainerIndex] = cardIndex;
@@ -296,7 +292,7 @@ public class PlayerBrain : Brain
         SetResolve(sourcePlayer.GetResolve());
         SetIntelligence(sourcePlayer.GetIntelligence());
         SetCharisma(sourcePlayer.GetCharisma());
-
+        SetSagacity(sourcePlayer.GetSagacity());
 
         SetCurrentHealth(sourcePlayer.GetHealthMax());
         CalculateCardStats();
@@ -319,6 +315,11 @@ public class PlayerBrain : Brain
         ego += amt;
     }
 
+    public void SpendEgo(int amt)
+    {
+        ego -= amt;
+    }
+    
     public void AddCardSoul(int index, int amt)
     {
         cardSouls[index] += amt;
@@ -400,6 +401,7 @@ public class PlayerBrain : Brain
         cardPacks = 0;
         ego = 0;
         credits = 0;
+        level = 1;
         SetStrength(5);
         SetDexterity(5);
         SetVitality(5);
@@ -410,6 +412,7 @@ public class PlayerBrain : Brain
         SetResolve(5);
         SetIntelligence(5);
         SetCharisma(5);
+        SetSagacity(5);
         SetCurrentHealth(5);
         CalculateCardStats();
     }
@@ -441,6 +444,7 @@ public class PlayerBrain : Brain
         cardPacks = saveFile.cardPacks;
         ego = saveFile.ego;
         credits = saveFile.credits;
+        level = saveFile.level<=0?1:saveFile.level;
         SetStrength(saveFile.strength);
         SetDexterity(saveFile.dexterity);
         SetVitality(saveFile.vitality);
@@ -482,6 +486,8 @@ public class PlayerBrain : Brain
         defaultEquipment[2].SetStatValue(new int[] { 5 });
         defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vitality });
     }
+
+    
 }
 
 [Serializable]

@@ -33,7 +33,7 @@ public class SaveManager
     {
         BinaryFormatter bf = new BinaryFormatter();
 
-        if (File.Exists(Application.persistentDataPath + "/save.dat"))
+        if (File.Exists(Application.persistentDataPath + "/meta.dat"))
         {
             FileStream dataStream = new FileStream(Application.persistentDataPath + "/meta.dat", FileMode.Open);
             GameManager.Instance.metaPlayer.InsertSaveFile((SavablePlayerBrain)bf.Deserialize(dataStream));
