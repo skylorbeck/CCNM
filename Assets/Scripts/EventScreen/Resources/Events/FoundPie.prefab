@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Found a fresh Coffee. It's still hot.
+  m_text: You found a fresh Pie. It's still hot.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e79df2db43eccdf4ab8097d52d22f3eb, type: 2}
   m_sharedMaterial: {fileID: 1453109464263487061, guid: e79df2db43eccdf4ab8097d52d22f3eb, type: 2}
@@ -667,7 +667,7 @@ GameObject:
   - component: {fileID: 2559856582930965428}
   - component: {fileID: 2559856582930965431}
   m_Layer: 0
-  m_Name: FoundConsumable
+  m_Name: FoundPie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94f438961e6b104d9eba1b6b0e14894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <itemType>k__BackingField: 0
+  <itemType>k__BackingField: 1
   <itemAmt>k__BackingField: 1
   <text>k__BackingField:
   - {fileID: 2559856583463361631}

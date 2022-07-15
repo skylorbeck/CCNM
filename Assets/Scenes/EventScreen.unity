@@ -169,4 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentEvent: {fileID: 0}
   <eventNames>k__BackingField:
-  - FoundConsumable
+  - FoundCoffee
+  - FoundTea
+  - FoundPie
