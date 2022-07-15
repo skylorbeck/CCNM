@@ -89,12 +89,9 @@ public class LevelingManager : MonoBehaviour
 
     public int EgoScale(int value)
     {
-        // return (int)Math.Pow(2, value);
         float x = Mathf.Max(value - 11,0) * 0.02f;
         float result = (x + 0.1f) * Mathf.Pow(value + 81 ,2) + 1;
-        
-        Debug.Log("Input: "+value+" X:"+x+"  Result: "+result);
-        
+        // Debug.Log("Input: "+value+" X:"+x+"  Result: "+result);
         return Mathf.CeilToInt(result);
     }
 
