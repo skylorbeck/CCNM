@@ -67,13 +67,13 @@ public class LevelingManager : MonoBehaviour
         {
             for (int i = 0; i < totalLevels; i++)
             {
-                egoCost += (int)Math.Pow(2, initialValue + i);
+                egoCost +=EgoScale(initialValue+i);
             }
-            egoCostNext = egoCost+ (int)Math.Pow(2, currentValue);
+            egoCostNext = egoCost+EgoScale(currentValue);
         }
         else
         {
-            egoCostNext = (int)Math.Pow(2, currentValue);
+            egoCostNext = EgoScale(currentValue);
         }
         egoCostText.text = egoCost.ToString();
         egoCurrentText.text = GameManager.Instance.metaPlayer.ego.ToString();
@@ -84,7 +84,18 @@ public class LevelingManager : MonoBehaviour
             controller.UpdateButtons();
         }
         levelUpButton.interactable =totalLevels>0 && GameManager.Instance.metaPlayer.ego >= egoCost;
+        GameManager.Instance.uiStateObject.Ping("Your Level: "+ GameManager.Instance.metaPlayer.level);
+    }
 
+    public int EgoScale(int value)
+    {
+        // return (int)Math.Pow(2, value);
+        float x = Mathf.Max(value - 11,0) * 0.02f;
+        float result = (x + 0.1f) * Mathf.Pow(value + 81 ,2) + 1;
+        
+        Debug.Log("Input: "+value+" X:"+x+"  Result: "+result);
+        
+        return Mathf.CeilToInt(result);
     }
 
     public void ConfirmLevelUp()
@@ -99,6 +110,7 @@ public class LevelingManager : MonoBehaviour
         initialValue = GameManager.Instance.metaPlayer.level;
         currentValue = initialValue;
         UpdateEgoCost();
+        GameManager.Instance.saveManager.SaveMeta();
     }
     
     private void OnDestroy()

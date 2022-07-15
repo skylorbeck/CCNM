@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     public event UnityAction FixedHalfSecond = delegate {  };
     private int fixedMinuteClock = 0;
     public event UnityAction FixedMinute = delegate {  };
-    async void Start()
+    void Start()
     {
         if (Instance == null)
         {
@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
         
         Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         
+        saveManager.Load();
+
         if (SceneManager.sceneCount!=1)
         {
             mainMenuLoaded = true;
@@ -86,7 +88,6 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += DestroyTEMP;
         // metaPlayer.ClearPlayerObject();//done in savemanager
         // battlefield.player.ClearPlayerObject();//done in runsettings
-        saveManager.Load();
     }
 
     private void DestroyTEMP(Scene scene, LoadSceneMode mode)
@@ -125,7 +126,9 @@ public class GameManager : MonoBehaviour
     private async void LoadScene(string sceneToLoad, LoadSceneMode mode, bool waitForInput,
         params string[] sceneToUnload)
     {
-        Instance.saveManager.SaveMeta();//might be pointless here, and save too often.
+        //might be pointless here, and save too often.
+        //also might conflict with loading the player at boot
+        Instance.saveManager.SaveMeta();
 
         inputReader.DisableUI();
         uiStateObject.FadeOut();

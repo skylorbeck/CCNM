@@ -10,26 +10,28 @@ public class HotelManager : MonoBehaviour
 {
     [SerializeField] Button button;
     [SerializeField] TextMeshProUGUI buttonText;
-    [SerializeField] MenuState menuState = MenuState.Equipment;
-    [SerializeField] GameObject[] menuImages;
+    
+    [SerializeField] int state = 0;
+    [SerializeField] MenuLink[] menuLinks;
+
+
     private async void Start()
     {
+        await Task.Delay(10);
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
         GameManager.Instance.uiStateObject.ShowTopBar();
         GameManager.Instance.uiStateObject.Ping("The Hotel");
         GameManager.Instance.inputReader.PadLeft += DecreaseState;
         GameManager.Instance.inputReader.PadRight += IncreaseState;
-        await Task.Delay(100);
         GetComponent<Animator>().SetTrigger("FadeIn");
-        UpdateButton();
     }
 
     public void Update()
     {
-        for (var i = 0; i < menuImages.Length; i++)
+        for (var i = 0; i < menuLinks.Length; i++)
         {
-            menuImages[i].transform.localPosition = Vector3.Lerp(menuImages[i].transform.localPosition, new Vector3(i*100-((int)menuState*100), 0, 0),Time.deltaTime*10);
+            menuLinks[i].transform.localPosition = Vector3.Lerp(menuLinks[i].transform.localPosition, new Vector3(i*100-(state*100), 0, 0),Time.deltaTime*10);
         }
     }
 
@@ -37,69 +39,35 @@ public class HotelManager : MonoBehaviour
     {
         button.interactable = true;
     }
-    public enum MenuState
+    
+    public void SetMenuState(int newState)
     {
-        Equipment,
-        Shredding,
-        Packs,
-        Capsules,
-        Quit
-    }
-    public void UpdateButton()
-    {
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() =>
-        {
-            button.interactable = false;
-        });
-        switch (menuState)
-        {
-            case MenuState.Equipment:
-                    buttonText.text = "Equipment";
-                    button.onClick.AddListener(Equipment);
-                break;
-            case MenuState.Shredding:
-                buttonText.text = "Shredder";
-                button.onClick.AddListener(CardShredding);
-                break;
-            case MenuState.Packs:
-                buttonText.text = "Card Packs";
-                button.onClick.AddListener(CardPacks);
-                break;
-            case MenuState.Capsules:
-                buttonText.text = "Capsules";
-                button.onClick.AddListener(Capsules);
-                break;
-            case MenuState.Quit:
-                buttonText.text = "Back";
-                button.onClick.AddListener(Back);
-                break;
-        }
-    }
-    public void SetMenuState(MenuState state)
-    {
-        menuState = state;
-        UpdateButton();
+        state = newState;
     }
 
     public void IncreaseState()
     {
-        menuState++;
-        if (menuState > MenuState.Quit)
+        state++;
+        if (state > menuLinks.Length-1)
         {
-            menuState = MenuState.Equipment;
+            state = 0;
         }
-        UpdateButton();
+        UpdateButtonText();
     }
 
     public void DecreaseState()
     {
-        menuState--;
-        if (menuState < MenuState.Equipment)
+        state--;
+        if (state < 0)
         {
-            menuState = MenuState.Quit;
+            state = menuLinks.Length-1;
         }
-        UpdateButton();
+        UpdateButtonText();
+    }
+    
+    private void UpdateButtonText()
+    {
+        buttonText.text = menuLinks[state].text;
     }
 
     private void OnDestroy()
@@ -113,22 +81,8 @@ public class HotelManager : MonoBehaviour
     {
         GameManager.Instance.LoadSceneAdditive("MainMenu","Hotel");
     }
-    public void Equipment()
+    public void Enter()
     {
-        GameManager.Instance.LoadSceneAdditive("Equipment","Hotel");
-    }
-    public void CardShredding()
-    {
-        GameManager.Instance.LoadSceneAdditive("CardShredding","Hotel");
-    }
-    
-    public void CardPacks()
-    {
-        GameManager.Instance.LoadSceneAdditive("CardPacks","Hotel");
-    }
-    
-    public void Capsules()
-    {
-        GameManager.Instance.LoadSceneAdditive("Capsules","Hotel");
+        GameManager.Instance.LoadSceneAdditive(menuLinks[state].scene,"Hotel");
     }
 }

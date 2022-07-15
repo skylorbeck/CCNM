@@ -19,14 +19,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
   - {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
   - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
-  <credits>k__BackingField: 0
-  <ego>k__BackingField: 38
-  <level>k__BackingField: 6
+  <credits>k__BackingField: 4170
+  <ego>k__BackingField: 238880
+  <level>k__BackingField: 18
   <currentHealth>k__BackingField: 5
   <relics>k__BackingField: []
-  strength: 9
+  strength: 11
   dexterity: 6
-  vitality: 5
+  vitality: 13
   speed: 5
   skill: 5
   luck: 5
@@ -34,12 +34,19 @@ MonoBehaviour:
   resolve: 5
   intelligence: 6
   charisma: 5
-  sagacity: 8
-  <equippedSlots>k__BackingField: ffffffffffffffffffffffff
+  sagacity: 5
+  <equippedSlots>k__BackingField: ffffffffffffffff00000000
   <playerInventory>k__BackingField:
   - container: []
   - container: []
-  - container: []
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 96a0a865e893e6e41acb73546fb52e5d, type: 2}
+      <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+      <quality>k__BackingField: 2
+      <level>k__BackingField: 15
+      <stats>k__BackingField: 0300000008000000040000000a00000000000000
+      <statValue>k__BackingField: 9600000016000000160000000f0000000f000000
+      <indestructible>k__BackingField: 0
   <defaultEquipment>k__BackingField:
   - <itemCore>k__BackingField: {fileID: 11400000, guid: 86d281c4687b5cf4d8238642e243853e, type: 2}
     <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
@@ -65,16 +72,16 @@ MonoBehaviour:
   <cardPacks>k__BackingField: 0
   <capsules>k__BackingField: 0
   <superCapsules>k__BackingField: 0
-  <cardSouls>k__BackingField: 00000000000000000000000000000000000000000000000000000000
+  <cardSouls>k__BackingField: 170000000f0000000500000000000000000000000000000000000000
   <consumables>k__BackingField: 000000000000000000000000
   <cardStrength>k__BackingField: 5
   <cardDexterity>k__BackingField: 0
-  <cardVitality>k__BackingField: 5
-  <cardSpeed>k__BackingField: 0
+  <cardVitality>k__BackingField: 150
+  <cardSpeed>k__BackingField: 22
   <cardSkill>k__BackingField: 0
   <cardLuck>k__BackingField: 0
   <cardGrit>k__BackingField: 5
-  <cardResolve>k__BackingField: 5
+  <cardResolve>k__BackingField: 27
   <cardIntelligence>k__BackingField: 0
-  <cardCharisma>k__BackingField: 0
+  <cardCharisma>k__BackingField: 15
   <cardSagacity>k__BackingField: 0

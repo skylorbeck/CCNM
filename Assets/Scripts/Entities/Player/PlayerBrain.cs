@@ -280,8 +280,9 @@ public class PlayerBrain : Brain
                 equippedSlots[index] = -1;
             }
         }
-
+        level = sourcePlayer.level;
         defaultEquipment = sourcePlayer.defaultEquipment;
+        
         SetStrength(sourcePlayer.GetStrength());
         SetDexterity(sourcePlayer.GetDexterity());
         SetVitality(sourcePlayer.GetVitality());
