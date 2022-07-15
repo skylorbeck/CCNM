@@ -1067,7 +1067,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9027344e14f8ba409322caed058d851, type: 2}
   abilityRegistry: {fileID: 11400000, guid: 01c3f387e1f65ad49ba5df351713b295, type: 2}
   deckRegistry: {fileID: 11400000, guid: 47a96529410288448b46d7fb869e5815, type: 2}
-  eventRegistry: {fileID: 11400000, guid: d3e400176d04d824198d754de79c8ce9, type: 2}
   relicRegistry: {fileID: 11400000, guid: af620037e4a4d76479ca62ae808ddee9, type: 2}
   lootManager: {fileID: 1825388446}
   cursorTexture: {fileID: 2800000, guid: 46240bf1a48113746809d1af6b73f683, type: 3}

@@ -111,7 +111,7 @@ public class Symbol : MonoBehaviour
         }
         if (ability.damageTarget)
         {
-            int damage = await user.OnAttack(target,(int)user.brain.GetDamage());//process status influences
+            int damage = await user.OnAttack(target,user.brain.GetDamage());//process status influences
             damage = (int)(damage * ability.targetDamageMultiplier);//process ability multiplier
             if (Random.Range(0,100)<user.brain.GetCritChance())
             {
@@ -124,7 +124,7 @@ public class Symbol : MonoBehaviour
         }
         if (ability.damageUser)
         {
-            int damage = await user.OnAttack(user,(int)user.brain.GetDamage());
+            int damage = await user.OnAttack(user,user.brain.GetDamage());
             damage = (int)(damage * ability.userDamageMultiplier);
             if (Random.Range(0,100)<user.brain.GetCritChance())
             {

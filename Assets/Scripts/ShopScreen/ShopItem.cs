@@ -10,7 +10,7 @@ public class ShopItem : MonoBehaviour
     [field:SerializeField] public string itemName{get;private set;}
     [field:SerializeField] public string itemDescription{get;private set;}
     [field:SerializeField] public int itemPrice{get;private set;}
-    [field:SerializeField] public int consumableID{get;private set;}
+    [field:SerializeField] public ItemType consumableID{get;private set;}
     [field:SerializeField] public int itemCount{get;private set;}
 
     void Start()
@@ -90,5 +90,12 @@ public class ShopItem : MonoBehaviour
     {
         itemCount = amount;
         UpdateVisual();
+    }
+    
+    public enum ItemType
+    {
+        Coffee,
+        Pie,
+        Tea
     }
 }

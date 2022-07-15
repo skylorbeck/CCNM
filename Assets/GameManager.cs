@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     public EquipmentRegistry[] equipmentRegistries;
     public AbilityRegistry abilityRegistry;
     public DeckRegistry deckRegistry;
-    public EventRegistry eventRegistry;
     public RelicRegistry relicRegistry;
     public SaveManager saveManager;
     public LootManager lootManager;

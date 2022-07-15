@@ -63,7 +63,7 @@ public class ShopManager : MonoBehaviour
         {
             currentItem = -1;
             items[slot].Buy();
-            GameManager.Instance.battlefield.player.AddConsumables(items[slot].consumableID, 1);
+            GameManager.Instance.battlefield.player.AddConsumables((int)items[slot].consumableID, 1);
         }
         else
         {

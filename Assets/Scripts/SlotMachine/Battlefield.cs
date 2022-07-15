@@ -14,7 +14,6 @@ public class Battlefield : ScriptableObject
     public bool deckChosen = false;
     [field: SerializeField] public int totalHands { get; private set; } = 0;
     [field: SerializeField] public int enemyLevel { get; private set; } = 0;
-    [field: SerializeField] public EventObject eventObject { get; private set; }
     public Random.State? randomState = null;
 
     
@@ -54,10 +53,6 @@ public class Battlefield : ScriptableObject
         enemyLevel = level;
     }
 
-    public void SetEvent(EventObject eventObject)
-    {
-        this.eventObject = eventObject;
-    }
 
     public void InsertSave(SavableBattlefield savableBattlefield)
     {

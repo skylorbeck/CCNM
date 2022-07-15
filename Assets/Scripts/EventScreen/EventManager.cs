@@ -7,22 +7,27 @@ using UnityEngine.UI;
 
 public class EventManager : MonoBehaviour
 {
-    public TextMeshProUGUI text;
-    public Image image;
-    async void Start()
+    [SerializeField] private Event currentEvent;
+
+    [field: SerializeField] public string[] eventNames { get; private set; }
+
+    void Start()
     {
-        image.sprite = GameManager.Instance.battlefield.eventObject.eventImage;
-        text.text = GameManager.Instance.battlefield.eventObject.eventDescription;
-        await GameManager.Instance.battlefield.eventObject.StartEvent();
+        if (currentEvent == null)
+        {
+            currentEvent = Instantiate(Resources
+                .Load<GameObject>("Events/" + eventNames[Random.Range(0, eventNames.Length)]).GetComponent<Event>(),transform);
+        }
+
+        currentEvent.Init(this);
     }
 
-    void Update()
-    {
-        GameManager.Instance.battlefield.eventObject.UpdateEvent();
-    }
 
-    void FixedUpdate()
+    public void MoveOn()
     {
-        GameManager.Instance.battlefield.eventObject.FixedUpdateEvent();
+        GameManager.Instance.battlefield.TotalHandsPlus();
+        GameManager.Instance.saveManager.SaveRun();
+
+        GameManager.Instance.LoadSceneAdditive("MapScreen", "EventScreen");
     }
 }
