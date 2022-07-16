@@ -6,18 +6,25 @@ using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance;
+    public static SoundManager Instance;
     [SerializeField] private AudioSource prefab;
     private ObjectPool<AudioSource> audioPool;
     CancellationTokenSource cts;
+    
+    [SerializeField] private AudioClip uiClick;
+    [SerializeField] private AudioClip uiAccept;
+    [SerializeField] private AudioClip uiDeny;
+    [SerializeField] private AudioClip uiBack;
+    [SerializeField] private AudioClip wheelClick;
     void Start()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -46,6 +53,30 @@ public class SoundManager : MonoBehaviour
         );
     }
     
+    public void PlayUiClick()
+    {
+        PlaySound(uiClick);
+    }
+    
+    public void PlayUiAccept()
+    {
+        PlaySound(uiAccept);
+    }
+    
+    public void PlayUiDeny()
+    {
+        PlaySound(uiDeny);
+    }
+    
+    public void PlayUiBack()
+    {
+        PlaySound(uiBack);
+    }
+    
+    public void PlayWheelClick()
+    {
+        PlaySound(wheelClick);
+    }
 
     public void PlayEffect(string clip)
     {
@@ -60,7 +91,9 @@ public class SoundManager : MonoBehaviour
     {
         AudioSource audioSource = audioPool.Get();
         audioSource.clip = clip;
+        audioSource.volume = 1;
         audioSource.Play();
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
         do
         {
             await Task.Delay(100);

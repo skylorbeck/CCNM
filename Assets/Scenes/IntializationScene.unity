@@ -252,6 +252,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 5359790779792596671, guid: b4da3046f8dcd88409c87f1583f6ff5f, type: 3}
+  uiClick: {fileID: 8300000, guid: 53f8662f6d4ea5a4eb6a891310897d7c, type: 3}
+  uiAccept: {fileID: 8300000, guid: 8655ae43a146cb844940564566f9c182, type: 3}
+  uiDeny: {fileID: 8300000, guid: 2c39b451276141a488912cfb82ff511d, type: 3}
+  uiBack: {fileID: 8300000, guid: 4291f48efc4c14447b35218d28158349, type: 3}
+  wheelClick: {fileID: 8300000, guid: 1342d6e267f273444a6808e6e872cb08, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

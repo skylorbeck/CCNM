@@ -311,7 +311,7 @@ public class FightManager : MonoBehaviour
                     break;
                 }
             }
-            SoundManager.instance.PlayEffect("click");
+            SoundManager.Instance.PlayWheelClick();
             await Task.Delay(100);
         } while (anySpinning && !cancellationTokenSource.Token.IsCancellationRequested);
         // await Task.WhenAll(tasks.ToArray());
@@ -506,7 +506,7 @@ public class FightManager : MonoBehaviour
                     dirty = true;
                 }
             }
-            SoundManager.instance.PlayEffect("click");
+            SoundManager.Instance.PlayWheelClick();
             await Task.Delay(100);
 
         } while (dirty && !cancellationTokenSource.Token.IsCancellationRequested);

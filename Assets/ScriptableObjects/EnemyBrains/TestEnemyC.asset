@@ -17,10 +17,14 @@ MonoBehaviour:
   <icon>k__BackingField: {fileID: 21300000, guid: 2f96a90482709c04a82e30328c07564b, type: 3}
   <abilities>k__BackingField:
   - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+  <credits>k__BackingField: 1
+  <ego>k__BackingField: 0
+  <level>k__BackingField: 0
   <currentHealth>k__BackingField: 5
+  <relics>k__BackingField: []
   strength: 5
   dexterity: 5
-  vitality: 5
+  vitality: 10
   speed: 5
   skill: 5
   luck: 5
@@ -29,5 +33,4 @@ MonoBehaviour:
   intelligence: 5
   charisma: 5
   sagacity: 0
-  <credits>k__BackingField: 1
   isBoss: 0

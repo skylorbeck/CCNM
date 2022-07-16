@@ -48,6 +48,7 @@ public class HotelManager : MonoBehaviour
     public void IncreaseState()
     {
         state++;
+        SoundManager.Instance.PlayUiClick();
         if (state > menuLinks.Length-1)
         {
             state = 0;
@@ -58,6 +59,7 @@ public class HotelManager : MonoBehaviour
     public void DecreaseState()
     {
         state--;
+        SoundManager.Instance.PlayUiClick();
         if (state < 0)
         {
             state = menuLinks.Length-1;
@@ -79,10 +81,12 @@ public class HotelManager : MonoBehaviour
 
     public void Back()
     {
+        SoundManager.Instance.PlayUiBack();
         GameManager.Instance.LoadSceneAdditive("MainMenu","Hotel");
     }
     public void Enter()
     {
+        SoundManager.Instance.PlayUiAccept();
         GameManager.Instance.LoadSceneAdditive(menuLinks[state].scene,"Hotel");
     }
 }

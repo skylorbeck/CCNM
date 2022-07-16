@@ -8,22 +8,25 @@ public class MMButtons : MonoBehaviour
 {
     public void NewGame()
     {
+        SoundManager.Instance.PlayUiAccept();
         GameManager.Instance.LoadSceneAdditive("RunSettings","MainMenu");
     }
 
     public void ResumeGame()
     {
-        // GameManager.Instance.saveManager.Load();
+        SoundManager.Instance.PlayUiAccept();
         GameManager.Instance.LoadSceneAdditive("MapScreen", "MainMenu");
     }
 
     public void Hotel()
     {
+        SoundManager.Instance.PlayUiAccept();
         GameManager.Instance.LoadSceneAdditive("Hotel","MainMenu");
     }
     
     public void Settings()
     {
+        SoundManager.Instance.PlayUiAccept();
         GameManager.Instance.LoadSceneAdditive("Settings","MainMenu");
     }
     
@@ -40,6 +43,7 @@ public class MMButtons : MonoBehaviour
 
     public void Back()
     {
+        SoundManager.Instance.PlayUiBack();
         Application.Quit();
     }
 

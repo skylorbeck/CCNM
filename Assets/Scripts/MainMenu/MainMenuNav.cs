@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class MainMenuNav : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class MainMenuNav : MonoBehaviour
     [SerializeField] MMButtons mmButtons;
     [SerializeField] MenuState menuState = MenuState.Main;
     [SerializeField] GameObject[] menuImages;
-    
     async void Start()
     {
         await Task.Delay(10);
@@ -87,6 +87,8 @@ public class MainMenuNav : MonoBehaviour
     public void IncreaseState()
     {
         menuState++;
+        SoundManager.Instance.PlayUiClick();
+        
         if (menuState > MenuState.Quit)
         {
             menuState = MenuState.Main;
@@ -97,6 +99,8 @@ public class MainMenuNav : MonoBehaviour
     public void DecreaseState()
     {
         menuState--;
+        SoundManager.Instance.PlayUiClick();
+
         if (menuState < MenuState.Main)
         {
             menuState = MenuState.Quit;
