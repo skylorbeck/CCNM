@@ -25,6 +25,7 @@ public class HotelManager : MonoBehaviour
         GameManager.Instance.inputReader.PadLeft += DecreaseState;
         GameManager.Instance.inputReader.PadRight += IncreaseState;
         GetComponent<Animator>().SetTrigger("FadeIn");
+        MusicManager.Instance.PlayDefaultTrack2();
     }
 
     public void Update()

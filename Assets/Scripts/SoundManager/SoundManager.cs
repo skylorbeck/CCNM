@@ -11,9 +11,8 @@ using Random = UnityEngine.Random;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
-    [SerializeField] private AudioSource prefab;
-    private ObjectPool<AudioSource> audioPool;
-    CancellationTokenSource cts;
+    
+    [SerializeField] private AudioSource effectSource;
     
     [SerializeField] private AudioClip uiClick;
     [SerializeField] private AudioClip uiAccept;
@@ -30,79 +29,52 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        cts = new CancellationTokenSource();
-        audioPool = new ObjectPool<AudioSource>(
-            () =>
-            {
-                AudioSource audioSource = Instantiate(prefab, transform);
-                return audioSource;
-            },
-            audioSource =>
-            {
-                audioSource.gameObject.SetActive(true);
-            },
-            audioSource =>
-            {
-                audioSource.gameObject.SetActive(false);
-            },
-            audioSource => {
-                Destroy(audioSource);
-            },
-            true, 10, 20
-        );
     }
     
-    public void PlayUiClick()
+    public void PlayUiClick(float volumeScale = 1f)
     {
-        PlaySound(uiClick);
+        PlaySound(uiClick,volumeScale);
     }
     
-    public void PlayUiAccept()
+    public void PlayUiAccept(float volumeScale = 1f)
     {
-        PlaySound(uiAccept);
+        PlaySound(uiAccept,volumeScale);
     }
     
-    public void PlayUiDeny()
+    public void PlayUiDeny(float volumeScale = 1f)
     {
-        PlaySound(uiDeny);
+        PlaySound(uiDeny,volumeScale);
     }
     
-    public void PlayUiBack()
+    public void PlayUiBack(float volumeScale = 1f)
     {
-        PlaySound(uiBack);
+        PlaySound(uiBack,volumeScale);
     }
     
-    public void PlayWheelClick()
+    public void PlayWheelClick(float volumeScale = 1f)
     {
-        PlaySound(wheelClick);
+        PlaySound(wheelClick,volumeScale);
     }
 
-    public void PlayEffect(string clip)
+    public void PlayEffect(string clip, float volumeScale = 1f)
     {
-        PlaySound(Resources.Load<AudioClip>("Audio/effect/" + clip));
+        PlayEffect(Resources.Load<AudioClip>("Audio/effect/" + clip),volumeScale);
     }
-    public void PlayEffect(AudioClip clip)
+    public void PlayEffect(AudioClip clip, float volumeScale = 1f)
     {
-        PlaySound(clip);
+        PlaySound(clip, volumeScale);
     }
     
-    public async void PlaySound(AudioClip clip)
+    public void PlaySound(AudioClip clip, float volumeScale = 1f)
     {
-        AudioSource audioSource = audioPool.Get();
-        audioSource.clip = clip;
-        audioSource.volume = 1;
-        audioSource.Play();
-        audioSource.pitch = Random.Range(0.9f, 1.1f);
-        do
-        {
-            await Task.Delay(100);
-        } while (!cts.Token.IsCancellationRequested && audioSource.isPlaying);
-        audioPool.Release(audioSource);
+        effectSource.volume = Random.Range(0.8f, 1f)* PlayerPrefs.GetFloat("EffectVolume", 1f) * volumeScale;
+        effectSource.pitch = Random.Range(0.9f, 1.1f);
+
+        effectSource.PlayOneShot(clip);
     }
 
     public void OnDestroy()
     {
-        cts.Cancel();
+        
     }
 }

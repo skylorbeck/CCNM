@@ -22,6 +22,7 @@ public class MainMenuNav : MonoBehaviour
         GameManager.Instance.inputReader.PadLeft += DecreaseState;
         GameManager.Instance.inputReader.PadRight += IncreaseState;
         UpdateButton();
+        MusicManager.Instance.PlayDefaultTrack();
     }
 
     public void OnDestroy()

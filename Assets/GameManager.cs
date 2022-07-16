@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
         }
         inputReader.EnableUI();
         SceneManager.sceneLoaded += DestroyTEMP;
+        
         // metaPlayer.ClearPlayerObject();//done in savemanager
         // battlefield.player.ClearPlayerObject();//done in runsettings
     }
