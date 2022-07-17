@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public AbilityRegistry abilityRegistry;
     public DeckRegistry deckRegistry;
     public RelicRegistry relicRegistry;
+    public MusicRegistry musicRegistry;
     public SaveManager saveManager;
     public LootManager lootManager;
     bool playerAccepted = false;

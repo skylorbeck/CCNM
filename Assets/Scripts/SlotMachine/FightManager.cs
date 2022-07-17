@@ -59,6 +59,7 @@ public class FightManager : MonoBehaviour
 
     async void Start()
     {
+        MusicManager.Instance.PlayTrack(GameManager.Instance.musicRegistry.GetMusic(0));
         // if (battlefield.randomState != null) Random.state = battlefield.randomState.Value;
         cancellationTokenSource = new CancellationTokenSource();
         for (var i = 0; i < battlefield.enemies.Length; i++)

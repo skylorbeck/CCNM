@@ -12,9 +12,8 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance;
     
-    [SerializeField] private AudioSource currentTrack;
-    [SerializeField] private AudioClip defaultTrack;
-    [SerializeField] private AudioClip defaultTrack2;
+    [SerializeField] private AudioSource track;
+
     void Start()
     {
         if (Instance == null)
@@ -30,43 +29,52 @@ public class MusicManager : MonoBehaviour
 
     public void UpdateVolume()
     {
-        currentTrack.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
+        track.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
     }
     
     public void UpdateVolume(float volume)
     {
-        currentTrack.volume = volume;
-    }
-    
-    public void PlayDefaultTrack()
-    {
-        PlayTrack(defaultTrack);
-    }
-    
-    public void PlayDefaultTrack2()
-    {
-        PlayTrack(defaultTrack2);
+        track.volume = volume;
     }
 
     public async void PlayTrack(AudioClip clip)
     {
-        if (currentTrack.clip.Equals(clip))
+        if (track.clip != null)
         {
-            return;
+            if (track.clip.Equals(clip))
+            {
+                return;
+            }
+
+            do
+            {
+                track.volume = Mathf.Lerp(track.volume, -0.5f, Time.deltaTime);
+                await Task.Delay(TimeSpan.FromSeconds(Time.deltaTime));
+            } while (track.isPlaying && track.volume > 0);
         }
+
+        track.clip = clip;
+        track.volume = 0;
+        track.Play();
         do
         {
-            currentTrack.volume = Mathf.Lerp(currentTrack.volume, -0.5f, Time.deltaTime);
+            track.volume = Mathf.Lerp(track.volume, PlayerPrefs.GetFloat("MusicVolume", 1f)+0.5f, Time.deltaTime);
             await Task.Delay(TimeSpan.FromSeconds(Time.deltaTime));
-        } while (currentTrack.isPlaying && currentTrack.volume > 0);
-
-        currentTrack.clip = clip;
-        currentTrack.volume =PlayerPrefs.GetFloat("MusicVolume", 1f); //*volumeParam
-        currentTrack.Play();
+        } while (track.volume < PlayerPrefs.GetFloat("MusicVolume", 1f)*0.9f);
+        track.volume = PlayerPrefs.GetFloat("MusicVolume", 1f);
     }
 
 
     public void OnDestroy()
     {
+    }
+
+    public void PlayTrack(string trackTitle)
+    {
+        PlayTrack(GameManager.Instance.musicRegistry.GetMusic(trackTitle));
+    }
+    public void PlayTrack(int trackIndex)
+    {
+        PlayTrack(GameManager.Instance.musicRegistry.GetMusic(trackIndex));
     }
 }

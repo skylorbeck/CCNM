@@ -1210,9 +1210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b24fafa44f4968a44148fe4c1f3230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTrack: {fileID: 274670348}
-  defaultTrack: {fileID: 8300000, guid: f06e1eccce0830e4aa3cbbeb5e0ba4b9, type: 3}
-  defaultTrack2: {fileID: 8300000, guid: 7f048456fccd795498209af6a75a2232, type: 3}
+  track: {fileID: 274670348}
 --- !u!1 &1825388443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,6 +1254,7 @@ MonoBehaviour:
   abilityRegistry: {fileID: 11400000, guid: 01c3f387e1f65ad49ba5df351713b295, type: 2}
   deckRegistry: {fileID: 11400000, guid: 47a96529410288448b46d7fb869e5815, type: 2}
   relicRegistry: {fileID: 11400000, guid: af620037e4a4d76479ca62ae808ddee9, type: 2}
+  musicRegistry: {fileID: 11400000, guid: 617b74035ba585c4b8e56f7937b08b58, type: 2}
   lootManager: {fileID: 1825388446}
   cursorTexture: {fileID: 2800000, guid: 46240bf1a48113746809d1af6b73f683, type: 3}
   lastScenesUnloaded: []
