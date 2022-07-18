@@ -15,8 +15,10 @@ public class EventManager : MonoBehaviour
     {
         if (currentEvent == null)
         {
-            currentEvent = Instantiate(Resources
-                .Load<GameObject>("Events/" + eventNames[Random.Range(0, eventNames.Length)]).GetComponent<Event>(),transform);
+            Event instance = Instantiate(
+                Resources.Load<GameObject>("Events/" + eventNames[Random.Range(0, eventNames.Length)]).GetComponent<Event>(),transform);
+            Debug.Log(instance.name);
+            currentEvent = instance;
         }
 
         currentEvent.Init(this);
