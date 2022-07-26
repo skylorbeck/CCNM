@@ -124,7 +124,7 @@ public class Shell : MonoBehaviour
         }
         else
         {
-            ModifyCurrentHealth(damage);
+            ModifyCurrentHealth(-damage);
         }
         healthBar.ManualUpdate();
 
@@ -146,9 +146,9 @@ public class Shell : MonoBehaviour
         Healed.Invoke(baseHeal);
         TextPopController.Instance.PopHeal(baseHeal,transform.position);
 
-        brain.ModifyCurrentHealth(baseHeal);
+        // brain.ModifyCurrentHealth(baseHeal);
+        ModifyCurrentHealth(baseHeal);
         healthBar.ManualUpdate();
-
     }
     
     public virtual void Shield(int amount, StatusEffect.Element element)

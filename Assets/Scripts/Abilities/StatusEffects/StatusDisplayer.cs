@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -10,58 +11,63 @@ public class StatusDisplayer : MonoBehaviour
     [SerializeField] private EffectInstance statusPrefab;
     private bool isDisplaying = true;
     public List<EffectInstance> statusList { get; private set; } = new List<EffectInstance>();
+    private CancellationTokenSource cts = new CancellationTokenSource();
 
-    public async Task<int> OnAttack(Shell target,Shell attacker,int baseDamage)
+    public async Task<int> OnAttack(Shell target, Shell attacker, int baseDamage)
     {
         int damage = baseDamage;
         foreach (EffectInstance instance in statusList)
         {
-            damage = await instance.OnAttack(target,attacker,damage);
+            damage = await instance.OnAttack(target, attacker, damage);
         }
 
         return damage;
     }
-     public async Task<int> OnDamage([CanBeNull] Shell attacker,Shell defender,int baseDamage)
+
+    public async Task<int> OnDamage([CanBeNull] Shell attacker, Shell defender, int baseDamage)
     {
         int damage = baseDamage;
         foreach (EffectInstance instance in statusList)
         {
-            damage = await instance.OnDamage(attacker,defender,damage);
+            damage = await instance.OnDamage(attacker, defender, damage);
         }
 
         return damage;
     }
-     public async Task<int> OnDodge([CanBeNull] Shell attacker,Shell defender,int baseDamage)
+
+    public async Task<int> OnDodge([CanBeNull] Shell attacker, Shell defender, int baseDamage)
     {
         int damage = baseDamage;
         foreach (EffectInstance instance in statusList)
         {
-            damage = await instance.OnDodge(attacker,defender,damage);
+            damage = await instance.OnDodge(attacker, defender, damage);
         }
 
         return damage;
     }
-     public async Task<int> OnHeal([CanBeNull] Shell healer,Shell target,int baseHeal)
+
+    public async Task<int> OnHeal([CanBeNull] Shell healer, Shell target, int baseHeal)
     {
         int heal = baseHeal;
         foreach (EffectInstance instance in statusList)
         {
-            heal = await instance.OnHeal(healer,target,heal);
+            heal = await instance.OnHeal(healer, target, heal);
         }
 
         return heal;
     }
-     public async Task<int> OnShield([CanBeNull] Shell shielder,Shell target,int baseShield)
+
+    public async Task<int> OnShield([CanBeNull] Shell shielder, Shell target, int baseShield)
     {
         int shield = baseShield;
         foreach (EffectInstance instance in statusList)
         {
-            shield = await instance.OnShield(shielder,target,shield);
+            shield = await instance.OnShield(shielder, target, shield);
         }
 
         return shield;
     }
-    
+
     public void AddStatus(StatusEffect statusEffect, Shell target)
     {
         foreach (EffectInstance instance in statusList)
@@ -72,16 +78,18 @@ public class StatusDisplayer : MonoBehaviour
                 return;
             }
         }
+
         EffectInstance status = Instantiate(statusPrefab, transform);
         status.SetStatusEffect(statusEffect, target);
         if (!isDisplaying || statusEffect.isHidden)
         {
             status.DisableVisuals();
         }
+
         statusList.Add(status);
         SetStatusLocation();
     }
-    
+
     public async Task Tick()
     {
         List<EffectInstance> toRemove = new List<EffectInstance>();
@@ -90,20 +98,25 @@ public class StatusDisplayer : MonoBehaviour
         {
             await statusList[i].Tick();
             await Task.Delay(500);
-
+            if (cts.IsCancellationRequested)
+            {
+                return;
+            }
             if (!statusList[i].isActive)
             {
                 toRemove.Add(statusList[i]);
             }
         }
-        
+
         foreach (EffectInstance instance in toRemove)
         {
             statusList.Remove(instance);
             Destroy(instance.gameObject);
         }
+
         SetStatusLocation();
-    }    
+    }
+
     public void RemoveStatus(StatusEffect statusEffect)
     {
         for (int i = 0; i < statusList.Count; i++)
@@ -116,15 +129,18 @@ public class StatusDisplayer : MonoBehaviour
                 break;
             }
         }
+
         SetStatusLocation();
     }
 
     public void Clear()
     {
+        Cancel();
         foreach (EffectInstance instance in statusList)
         {
             Destroy(instance.gameObject);
         }
+
         statusList.Clear();
     }
 
@@ -137,18 +153,20 @@ public class StatusDisplayer : MonoBehaviour
                 return true;
             }
         }
+
         return false;
     }
 
     public void SetStatusLocation()
     {
         List<EffectInstance> tempstack = statusList.FindAll(instance => !instance.statusEffect.isHidden);
-        int xOffset = Math.Min(tempstack.Count - 1,2);
+        int xOffset = Math.Min(tempstack.Count - 1, 2);
 
         for (var i = 0; i < tempstack.Count; i++)
         {
             int offset = i / 3 % 3;
-            tempstack[i].transform.localPosition = new Vector3((i * 0.5f)-(offset*1.5f)-(xOffset*0.25f) ,offset*0.5f , 0);
+            tempstack[i].transform.localPosition =
+                new Vector3((i * 0.5f) - (offset * 1.5f) - (xOffset * 0.25f), offset * 0.5f, 0);
         }
     }
 
@@ -160,7 +178,7 @@ public class StatusDisplayer : MonoBehaviour
             instance.DisableVisuals();
         }
     }
-    
+
     public void EnableVisuals()
     {
         isDisplaying = true;
@@ -168,4 +186,10 @@ public class StatusDisplayer : MonoBehaviour
         {
             instance.EnableVisuals();
         }
-    }}
+    }
+
+    public void Cancel()
+    {
+        cts.Cancel();
+    }
+}

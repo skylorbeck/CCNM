@@ -231,14 +231,7 @@ public class FightManager : MonoBehaviour
             battlefield.TotalHandsPlus();
 
             GameManager.Instance.saveManager.SaveRun();
-            if (battlefield.runOver)
-            {
-                GameManager.Instance.LoadSceneAdditive("RunOver","Fight");
-            }
-            else
-            {
-                GameManager.Instance.LoadSceneAdditive("FightWon",  "Fight");
-            }
+            GameManager.Instance.LoadSceneAdditive("FightWon",  "Fight");
         }
     }
 

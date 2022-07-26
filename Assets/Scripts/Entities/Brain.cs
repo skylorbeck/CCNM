@@ -24,12 +24,13 @@ public class Brain : ScriptableObject
         currentHealth = health;
     }
     
+    [Obsolete("Use ModifyCurrentHealth inside the Shell instead")]
     public void ModifyCurrentHealth(int amount)
     {
         currentHealth += amount;
         if (currentHealth > GetHealthMax())
         {
-            SetCurrentHealth((int)GetHealthMax());
+            SetCurrentHealth(GetHealthMax());
         }
     }
     #endregion

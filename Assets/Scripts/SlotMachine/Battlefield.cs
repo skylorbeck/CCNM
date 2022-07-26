@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,7 +18,7 @@ public class Battlefield : ScriptableObject
     public Random.State? randomState = null;
 
     
-    public bool runOver => totalHands > deck.BossAt;
+    public bool runOver => deck.BossAt.Contains(totalHands);
 
     public void TotalHandsPlus()
     {

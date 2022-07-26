@@ -5,8 +5,10 @@ using UnityEngine;
 public class DeckObject : ScriptableObject
 {
     [field:SerializeField] public Sprite icon { get;private set; }
-    [field: SerializeField] public int BossAt { get; private set; } = 5;
-    [field: SerializeField] public int MiniBossAt { get; private set; } = 3;
+    [field: SerializeField] public int[] BossAt { get; private set; } = new[] { 5 };
+    [field: SerializeField] public int[] MiniBossAt { get; private set; } = new[] { 3 };
+    [field: SerializeField] public int[] shopAt { get; private set; } = new[] { 4 };
+    [field: SerializeField] public int[] eventAt { get; private set; } = new[] { 1,2 };
     [field:SerializeField] public BossCard BossCard { get;private set; }
     [field:SerializeField] public MiniBossCard[] MiniBossCard { get;private set; }
     [field:SerializeField] public MinionCard[] MinionCards { get;private set; }

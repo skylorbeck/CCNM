@@ -28,4 +28,9 @@ public class Event : MonoBehaviour
     {
         
     }
+
+    public virtual void MoveOn()
+    {
+        eventManager.MoveOn();
+    }
 }

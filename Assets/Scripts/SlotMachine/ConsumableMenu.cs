@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ConsumableMenu : MonoBehaviour
 {
-    public bool isOpen { get; private set; } = false;
+    public bool isOpen { get; private set; }
     [SerializeField] private Transform backgroundLeft;
     [SerializeField] private Transform backgroundRight;
     [SerializeField] private Button buttonLeft;
@@ -26,7 +23,7 @@ public class ConsumableMenu : MonoBehaviour
     {
         for (int i = 0; i < consumableButtons.Length; i++)
         {
-            consumableValues[i].text = "x"+ GameManager.Instance.battlefield.player.consumables[i].ToString();
+            consumableValues[i].text = "x"+ GameManager.Instance.battlefield.player.consumables[i];
         }
     }
 
@@ -73,7 +70,7 @@ public class ConsumableMenu : MonoBehaviour
     {
         if (GameManager.Instance.battlefield.player.consumables[1]>0)
         {
-            playerShell.Heal((int)playerShell.brain.GetHealthMax(),StatusEffect.Element.None);
+            playerShell.Heal(playerShell.brain.GetHealthMax(),StatusEffect.Element.None);
             GameManager.Instance.battlefield.player.consumables[1]--;
             UpdateIcons();
             UpdateTexts();
@@ -86,7 +83,7 @@ public class ConsumableMenu : MonoBehaviour
     {
         if (GameManager.Instance.battlefield.player.consumables[0]>0)
         {
-            playerShell.Shield((int)playerShell.brain.GetShieldMax(),StatusEffect.Element.None);
+            playerShell.Shield(playerShell.brain.GetShieldMax(),StatusEffect.Element.None);
             GameManager.Instance.battlefield.player.consumables[0]--;
             UpdateIcons();
             UpdateTexts();

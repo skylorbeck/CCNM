@@ -105,7 +105,15 @@ public class FightRewardDealer : MonoBehaviour
 
     public void MoveOn()
     {
-        GameManager.Instance.LoadSceneAdditive("MapScreen","FightWon");
+        
+        if (GameManager.Instance.battlefield.runOver)
+        {
+            GameManager.Instance.LoadSceneAdditive("RunOver","FightWon");
+        }
+        else
+        {
+            GameManager.Instance.LoadSceneAdditive("MapScreen","FightWon");
+        }
         for (var i = 0; i < lootCards.Length; i++)
         {
             if (keepState[i])

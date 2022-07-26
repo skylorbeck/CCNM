@@ -7,11 +7,11 @@ public class DiceRollable : MonoBehaviour
 {
     [SerializeField] private Image curSprite;
     [SerializeField] Sprite[] diceSprite;
-    
-    bool isRolling = false;
+
+    public bool isRolling { get; private set; } = false;
     [field:SerializeField] public int diceValue{get; private set;}
     float time = 0;
-    float timeLimit = 0.5f;
+    [SerializeField] float timeLimit = 0.25f;
     private int rollCount = 5;
     [SerializeField] private int maxRolls = 5;
     void Start()
@@ -32,10 +32,12 @@ public class DiceRollable : MonoBehaviour
                 curSprite.sprite = diceSprite[diceValue];
                 curSprite.rectTransform.sizeDelta = new Vector2(45, 45);
                 rollCount--;
+                timeLimit = Random.Range(0.25f, 0.4f);
                 if (rollCount <= 0)
                 {
                     isRolling = false;
                     rollCount = maxRolls;
+                    TextPopController.Instance.PopPositive((diceValue+1).ToString(),Camera.main.ScreenToWorldPoint( transform.position),true);
                 }
             }
         }
@@ -43,6 +45,8 @@ public class DiceRollable : MonoBehaviour
 
     public void Roll()
     {
+        timeLimit = Random.Range(0.25f, 0.4f);
+        maxRolls = Random.Range(4, 8);
         isRolling = true;
     }
 }

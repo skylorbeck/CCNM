@@ -53,10 +53,6 @@ public class FoundConsumableEvent : Event
         SetItemAmt(amt);
     }
 
-    public void MoveOn()
-    {
-        eventManager.MoveOn();
-    }
 
     public async void AcceptItems()
     {

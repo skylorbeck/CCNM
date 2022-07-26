@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
@@ -37,13 +38,13 @@ public class CardDealer : MonoBehaviour
             text.CrossFadeAlpha(0, 0,true);
         }
         totalCardsText.text = battlefield.totalHands + "/" + battlefield.deck.BossAt;
-        if (battlefield.totalHands == battlefield.deck.BossAt)
+        if (battlefield.deck.BossAt.Contains(battlefield.totalHands))
         {
             shells[0].InsertCard(battlefield.deck.DrawBossCard(), false);
             shells[1].gameObject.SetActive(false);
             shells[2].gameObject.SetActive(false);
         }
-        else if (battlefield.totalHands == battlefield.deck.MiniBossAt)
+        else if (battlefield.deck.MiniBossAt.Contains(battlefield.totalHands))
         {
             shells[0].gameObject.SetActive(false);
             shells[1].InsertCard(battlefield.deck.DrawMiniBossCard(), false);
@@ -54,7 +55,27 @@ public class CardDealer : MonoBehaviour
             for (var i = 0; i < shells.Length; i++)
             {
                 CardShell shell = shells[i];
-                shell.InsertCard(battlefield.deck.DrawRandomCard(), i == 0);
+                shell.InsertCard(battlefield.deck.DrawMinionCard(), i == 0);
+            }
+        }
+
+        List<int> specialCards = new List<int>();
+        if (battlefield.deck.shopAt.Contains(battlefield.totalHands))
+        {
+            int index = Random.Range(0, 3);
+            if (!specialCards.Contains(index))
+            {
+                specialCards.Add(index);
+                shells[index].InsertCard(battlefield.deck.DrawShopCard(), index == 0);
+            }
+        }
+        if (battlefield.deck.eventAt.Contains(battlefield.totalHands))
+        {
+            int index = Random.Range(0, 3);
+            if (!specialCards.Contains(index))
+            {
+                specialCards.Add(index);
+                shells[index].InsertCard(battlefield.deck.DrawEventCard(), index == 0);
             }
         }
         await Task.Delay(1000);//this is to wait for the screen to load in before dealing the cards
