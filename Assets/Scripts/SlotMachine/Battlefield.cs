@@ -17,8 +17,8 @@ public class Battlefield : ScriptableObject
     [field: SerializeField] public int enemyLevel { get; private set; } = 0;
     public Random.State? randomState = null;
 
-    
-    public bool runOver => deck.BossAt.Contains(totalHands);
+
+    public bool runOver => totalHands > deck.BossAt;
 
     public void TotalHandsPlus()
     {

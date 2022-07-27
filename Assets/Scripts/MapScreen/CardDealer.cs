@@ -38,46 +38,46 @@ public class CardDealer : MonoBehaviour
             text.CrossFadeAlpha(0, 0,true);
         }
         totalCardsText.text = battlefield.totalHands + "/" + battlefield.deck.BossAt;
-        if (battlefield.deck.BossAt.Contains(battlefield.totalHands))
-        {
-            shells[0].InsertCard(battlefield.deck.DrawBossCard(), false);
-            shells[1].gameObject.SetActive(false);
-            shells[2].gameObject.SetActive(false);
-        }
-        else if (battlefield.deck.MiniBossAt.Contains(battlefield.totalHands))
-        {
-            shells[0].gameObject.SetActive(false);
-            shells[1].InsertCard(battlefield.deck.DrawMiniBossCard(), false);
-            shells[2].InsertCard(battlefield.deck.DrawMiniBossCard(), true);
-        }
-        else
-        {
-            for (var i = 0; i < shells.Length; i++)
-            {
-                CardShell shell = shells[i];
-                shell.InsertCard(battlefield.deck.DrawMinionCard(), i == 0);
-            }
-        }
-
-        List<int> specialCards = new List<int>();
+        
+        List<MapCard> mapCards = new List<MapCard>();
+        
         if (battlefield.deck.shopAt.Contains(battlefield.totalHands))
         {
-            int index = Random.Range(0, 3);
-            if (!specialCards.Contains(index))
-            {
-                specialCards.Add(index);
-                shells[index].InsertCard(battlefield.deck.DrawShopCard(), index == 0);
-            }
+            mapCards.Add(battlefield.deck.DrawShopCard());
         }
         if (battlefield.deck.eventAt.Contains(battlefield.totalHands))
         {
-            int index = Random.Range(0, 3);
-            if (!specialCards.Contains(index))
+            mapCards.Add(battlefield.deck.DrawEventCard());
+        }
+        if (battlefield.deck.MiniBossAt.Contains(battlefield.totalHands))
+        {
+            mapCards.Add(battlefield.deck.DrawMiniBossCard());
+        }
+        for (int index = mapCards.Count; index < 3; index++)
+        {
+            mapCards.Add(battlefield.deck.DrawMinionCard());
+        }
+        
+mapCards.Sort((a, b) => Random.Range(-1, 1));
+        
+        if (battlefield.totalHands == battlefield.deck.BossAt)
+        {
+            mapCards.Clear();
+            mapCards.Add(battlefield.deck.DrawBossCard());
+        }
+        
+        for (var i = 0; i < mapCards.Count; i++)
+        {
+                shells[i].InsertCard(mapCards[i],i==0);
+        }
+        foreach (CardShell shell in shells)
+        {
+            if (!shell.hasBrain)
             {
-                specialCards.Add(index);
-                shells[index].InsertCard(battlefield.deck.DrawEventCard(), index == 0);
+                shell.gameObject.SetActive(false);
             }
         }
+      
         await Task.Delay(1000);//this is to wait for the screen to load in before dealing the cards
         DealCards();
         GameManager.Instance.eventSystem.SetSelectedGameObject(buttons[0].gameObject);

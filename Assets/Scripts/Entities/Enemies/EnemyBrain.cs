@@ -40,7 +40,7 @@ public class EnemyBrain : Brain
     }
     public override int GetHealthMax()
     {
-        return (int)(base.GetHealthMax() * GameManager.Instance.runSettings.GetHealthMod());
+        return (int)(base.GetHealthMax() * GameManager.Instance.runSettings.GetHealthMod());//todo multiply by player level
     }
     #endregion
     public async Task Think()
