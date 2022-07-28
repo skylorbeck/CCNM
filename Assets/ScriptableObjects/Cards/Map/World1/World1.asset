@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: World1
   m_EditorClassIdentifier: 
   <icon>k__BackingField: {fileID: 21300000, guid: 48f1bf28ad0b8af4b98c583f010c9c87, type: 3}
-  <BossAt>k__BackingField: 5
-  <MiniBossAt>k__BackingField: 3
+  <BossAt>k__BackingField: 10
+  <MiniBossAt>k__BackingField: 0300000006000000
+  <shopAt>k__BackingField: 04000000
+  <eventAt>k__BackingField: 01000000020000000500000007000000
   <BossCard>k__BackingField: {fileID: 11400000, guid: a6c2b7848cac98a4982daed8695a935d, type: 2}
   <MiniBossCard>k__BackingField:
   - {fileID: 11400000, guid: f13c005cfebab3c47b89404d5eaacf4c, type: 2}

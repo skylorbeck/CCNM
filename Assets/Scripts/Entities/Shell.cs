@@ -17,6 +17,7 @@ public class Shell : MonoBehaviour
     [SerializeField] public StatusDisplayer statusDisplayer;
     [SerializeField] public HealthBar healthBar;
     public bool isDead => currentHealth <= 0;
+    public bool hasBrain = false;
     public bool hasShield => shield > 0;
     public bool isPlayer => brain is PlayerBrain;
     private SpriteRenderer spriteRenderer;
@@ -134,6 +135,7 @@ public class Shell : MonoBehaviour
     
     public virtual void Kill()
     {
+        currentHealth = 0;
         Died.Invoke();
         spriteRenderer.sprite = null;
         statusDisplayer.Clear();
@@ -195,6 +197,7 @@ public class Shell : MonoBehaviour
     public virtual void InsertBrain(Brain brain)
     {
         this.brain = brain;
+        hasBrain = true;
         if (spriteRenderer == null)
         {
             spriteRenderer = GetComponent<SpriteRenderer>();

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b027d360112a34ea7fc3fd846dc632, type: 3}
+  m_Name: BlankEnemy
+  m_EditorClassIdentifier: 
+  <title>k__BackingField: should not see
+  <description>k__BackingField: should not see
+  <icon>k__BackingField: {fileID: 0}
+  <abilities>k__BackingField: []
+  <credits>k__BackingField: 0
+  <ego>k__BackingField: 0
+  <level>k__BackingField: 0
+  <currentHealth>k__BackingField: 0
+  <relics>k__BackingField: []
+  strength: 0
+  dexterity: 0
+  vitality: 0
+  speed: 0
+  skill: 0
+  luck: 0
+  grit: 0
+  resolve: 0
+  intelligence: 0
+  charisma: 0
+  sagacity: 0
+  isBoss: 0
+  isBlank: 1

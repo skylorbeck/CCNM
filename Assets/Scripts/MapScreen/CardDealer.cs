@@ -21,7 +21,7 @@ public class CardDealer : MonoBehaviour
 
     async void Start()
     {
-        if (battlefield.randomState==null)
+        if (battlefield.randomState == null)
         {
             // Debug.Log("No random state");
             Random.InitState(DateTime.Now.Millisecond);
@@ -32,44 +32,49 @@ public class CardDealer : MonoBehaviour
             // Debug.Log("Using random state");
             Random.state = battlefield.randomState.Value;
         }
-        
+
         foreach (TextMeshProUGUI text in pauseText)
         {
-            text.CrossFadeAlpha(0, 0,true);
+            text.CrossFadeAlpha(0, 0, true);
         }
+
         totalCardsText.text = battlefield.totalHands + "/" + battlefield.deck.BossAt;
-        
+
         List<MapCard> mapCards = new List<MapCard>();
-        
+
         if (battlefield.deck.shopAt.Contains(battlefield.totalHands))
         {
             mapCards.Add(battlefield.deck.DrawShopCard());
         }
+
         if (battlefield.deck.eventAt.Contains(battlefield.totalHands))
         {
             mapCards.Add(battlefield.deck.DrawEventCard());
         }
+
         if (battlefield.deck.MiniBossAt.Contains(battlefield.totalHands))
         {
             mapCards.Add(battlefield.deck.DrawMiniBossCard());
         }
+
         for (int index = mapCards.Count; index < 3; index++)
         {
             mapCards.Add(battlefield.deck.DrawMinionCard());
         }
-        
-mapCards.Sort((a, b) => Random.Range(-1, 1));
-        
+
+        mapCards.Sort((a, b) => Random.Range(-1, 2));
+
         if (battlefield.totalHands == battlefield.deck.BossAt)
         {
             mapCards.Clear();
             mapCards.Add(battlefield.deck.DrawBossCard());
         }
-        
+
         for (var i = 0; i < mapCards.Count; i++)
         {
-                shells[i].InsertCard(mapCards[i],i==0);
+            shells[i].InsertCard(mapCards[i], i == 0);
         }
+
         foreach (CardShell shell in shells)
         {
             if (!shell.hasBrain)
@@ -77,8 +82,8 @@ mapCards.Sort((a, b) => Random.Range(-1, 1));
                 shell.gameObject.SetActive(false);
             }
         }
-      
-        await Task.Delay(1000);//this is to wait for the screen to load in before dealing the cards
+
+        await Task.Delay(1000); //this is to wait for the screen to load in before dealing the cards
         DealCards();
         GameManager.Instance.eventSystem.SetSelectedGameObject(buttons[0].gameObject);
 
@@ -96,7 +101,8 @@ mapCards.Sort((a, b) => Random.Range(-1, 1));
                 buttons[i].interactable = true;
             }
         }
-        GameManager.Instance.inputReader.Back+=Back;
+
+        GameManager.Instance.inputReader.Back += Back;
 
     }
 
@@ -106,40 +112,43 @@ mapCards.Sort((a, b) => Random.Range(-1, 1));
         switch (mapCard!.mapCardType)
         {
             case MapCard.MapCardType.Shop:
-                GameManager.Instance.LoadSceneAdditive("ShopScreen","MapScreen");
+                GameManager.Instance.LoadSceneAdditive("ShopScreen", "MapScreen");
                 break;
             case MapCard.MapCardType.Boss:
             case MapCard.MapCardType.MiniBoss:
             case MapCard.MapCardType.Minion:
                 FightCard fightCard = mapCard as FightCard;
                 battlefield.InsertEnemies(fightCard!.enemies);
-                GameManager.Instance.LoadSceneAdditive("Fight","MapScreen");
+                GameManager.Instance.LoadSceneAdditive("Fight", "MapScreen");
                 break;
             case MapCard.MapCardType.Event:
-                // GameManager.Instance.battlefield.SetEvent(((EventCard)mapCard).eventObject);
-                GameManager.Instance.LoadSceneAdditive("EventScreen","MapScreen");
+                // GameManager.Instance.battlefield.SetEvent(((EventCard)mapCard).eventObject);//todo figure out event clusters
+                GameManager.Instance.LoadSceneAdditive("EventScreen", "MapScreen");
                 break;
         }
+
         battlefield.randomState = Random.state;
     }
 
     public virtual void Equipment()
     {
-        GameManager.Instance.LoadSceneAdditive("Equipment","MapScreen");
+        GameManager.Instance.LoadSceneAdditive("Equipment", "MapScreen");
     }
-    
+
     public void Back()
     {
         GameManager.Instance.uiStateObject.TogglePause();
-        
+
         foreach (Button button in buttons)
         {
             button.interactable = !button.interactable;
         }
+
         foreach (TextMeshProUGUI text in pauseText)
         {
-            text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ?1 :0, 0.25f,true);
+            text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ? 1 : 0, 0.25f, true);
         }
+
         playerStatDisplay.FadeInOut();
         pauseRaycaster.enabled = GameManager.Instance.uiStateObject.isPaused;
         if (GameManager.Instance.uiStateObject.isPaused)
@@ -147,7 +156,7 @@ mapCards.Sort((a, b) => Random.Range(-1, 1));
             GameManager.Instance.eventSystem.SetSelectedGameObject(buttons[0].gameObject);
         }
         else
-        { 
+        {
             GameManager.Instance.eventSystem.SetSelectedGameObject(buttons[4].gameObject);
         }
     }
@@ -155,13 +164,13 @@ mapCards.Sort((a, b) => Random.Range(-1, 1));
 
     private void OnDestroy()
     {
-        GameManager.Instance.inputReader.Back-=Back;
+        GameManager.Instance.inputReader.Back -= Back;
     }
-    
+
     public void Quit()
     {
         GameManager.Instance.saveManager.SaveRun();
         Back();
-        GameManager.Instance.LoadSceneAdditive("MainMenu","MapScreen");
+        GameManager.Instance.LoadSceneAdditive("MainMenu", "MapScreen");
     }
 }

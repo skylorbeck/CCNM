@@ -2092,7 +2092,7 @@ GameObject:
   - component: {fileID: 680794442}
   - component: {fileID: 680794441}
   m_Layer: 5
-  m_Name: MiddleEnemy
+  m_Name: LeftEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2111,11 +2111,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1060516520}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -2}
+  m_AnchoredPosition: {x: -35, y: -2}
   m_SizeDelta: {x: 35, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &680794441
@@ -2169,7 +2169,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3253,6 +3253,7 @@ MonoBehaviour:
   <shieldDelayCurrent>k__BackingField: 0
   statusDisplayer: {fileID: 1751743443}
   healthBar: {fileID: 1582135325}
+  hasBrain: 0
 --- !u!1 &949850991
 GameObject:
   m_ObjectHideFlags: 0
@@ -3312,8 +3313,8 @@ MonoBehaviour:
   - {fileID: 111743707}
   - {fileID: 1503204893}
   - {fileID: 1548836882}
-  - {fileID: 1246417762}
   - {fileID: 680794441}
+  - {fileID: 1246417762}
   - {fileID: 1786478594}
   - {fileID: 1462047952}
   - {fileID: 2061791211}
@@ -3621,8 +3622,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1246417761}
   - {fileID: 680794440}
+  - {fileID: 1246417761}
   - {fileID: 1786478593}
   m_Father: {fileID: 174482746}
   m_RootOrder: 6
@@ -4302,7 +4303,7 @@ GameObject:
   - component: {fileID: 1246417763}
   - component: {fileID: 1246417762}
   m_Layer: 5
-  m_Name: LeftEnemy
+  m_Name: MiddleEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4321,11 +4322,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1060516520}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -35, y: -2}
+  m_AnchoredPosition: {x: 0, y: -2}
   m_SizeDelta: {x: 35, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246417762
@@ -4379,7 +4380,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

@@ -13,6 +13,7 @@ public class AbilityWheel : MonoBehaviour
     private ObjectPool<Symbol> symbolPool;
     [SerializeField] private List<Symbol> symbols = new List<Symbol>();
     [SerializeField] private int totalSymbolsPassed = 0;
+    [SerializeField] private int failedFrames = 0;
 
     [field:SerializeField] public bool isSpinning { get; private set; } = false;
     [field:SerializeField] public bool winnerChosen { get; private set; } = false;
@@ -85,6 +86,15 @@ public class AbilityWheel : MonoBehaviour
                         Transform symbolTransform = symbol.transform;
                         symbolTransform.localPosition = new Vector3(0, (float)(Math.Round(symbolTransform.localPosition.y/1.5f,MidpointRounding.AwayFromZero)*1.5), 0);
                     }
+                }
+            }
+
+            if (symbols.Count <= 1)
+            {
+                failedFrames++;
+                if (failedFrames > 120)
+                {
+                    isSpinning = false;
                 }
             }
         }

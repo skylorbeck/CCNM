@@ -7,6 +7,7 @@ using UnityEngine;
 public class EnemyBrain : Brain
 {
     public bool isBoss;
+    public bool isBlank;
 
     #region computedStatGetters
     public override int GetDamage()

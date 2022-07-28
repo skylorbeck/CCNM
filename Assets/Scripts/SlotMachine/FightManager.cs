@@ -66,7 +66,15 @@ public class FightManager : MonoBehaviour
         {
             enemies[i].InsertBrain(battlefield.enemies[i]);
         }
-
+       
+        foreach (EnemyShell enemy in enemies)
+        {
+            if (enemy.enemyBrain.isBlank)
+            {
+                enemy.Kill();
+            }
+        }
+        
         player.InsertBrain(battlefield.player);
         foreach (TextMeshProUGUI text in pauseText)
         {
@@ -216,14 +224,18 @@ public class FightManager : MonoBehaviour
             
             GameManager.Instance.LoadSceneAdditive("RunOver","Fight");
 
-        } else if (enemies.All(x => x.isDead))
+        // } else if (enemies.All(x => x.isDead))
+        } else if (enemiesAlive == 0)
         {
             SetState(WheelStates.FightOver);
             // Debug.Log("Enemies are dead");
             int credits = 0;
             foreach (var enemy in enemies)
             {
-                credits += enemy.enemyBrain.credits;
+                if (enemy.hasBrain && !enemy.enemyBrain.isBlank)
+                {
+                    credits += enemy.enemyBrain.credits;
+                }
             }
             GameManager.Instance.battlefield.player.AddCredits(credits);
             // battlefield.randomState = null;
@@ -287,7 +299,7 @@ public class FightManager : MonoBehaviour
         for (var i = 0; i < enemies.Length; i++)
         {
             EnemyShell enemy = enemies[i];
-            if (!enemy.isDead)
+            if (!enemy.isDead && !enemy.enemyBrain.isBlank)
             {
                // tasks.Add(enemyWheels[i].Spin());
                enemyWheels[i].Spin();
