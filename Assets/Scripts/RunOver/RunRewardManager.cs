@@ -22,7 +22,7 @@ public class RunRewardManager : MonoBehaviour
         GameManager.Instance.metaPlayer.CopyCardPacks(GameManager.Instance.battlefield.player);
         GameManager.Instance.metaPlayer.CopyCapsules(GameManager.Instance.battlefield.player);
         GameManager.Instance.metaPlayer.CopySuperCapsules(GameManager.Instance.battlefield.player);
-        if (GameManager.Instance.battlefield.player.currentHealth <= 0)
+        if (GameManager.Instance.battlefield.player.currentHealth > 0)
         {
             GameManager.Instance.metaPlayer.AddCardPack(1);//todo replace with algorithm based on score
         }

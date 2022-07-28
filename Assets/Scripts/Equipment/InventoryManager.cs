@@ -50,7 +50,7 @@ public class InventoryManager : MonoBehaviour
         GameManager.Instance.FixedHalfSecond += SizeSelector;
         GameManager.Instance.FixedSecond += SizeSelector;
         await Task.Delay(10);
-        if (GameManager.Instance.battlefield.deckChosen)
+        if (GameManager.Instance.battlefield.runStarted)
         {
             playerObject = GameManager.Instance.battlefield.player;
         } else
@@ -272,7 +272,7 @@ public class InventoryManager : MonoBehaviour
 
     public void Back()
     {
-        if (GameManager.Instance.battlefield.deckChosen)
+        if (GameManager.Instance.battlefield.runStarted)
         {
             GameManager.Instance.LoadSceneAdditive("MapScreen","Equipment");
         }

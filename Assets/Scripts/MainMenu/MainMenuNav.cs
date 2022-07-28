@@ -41,7 +41,7 @@ public class MainMenuNav : MonoBehaviour
         switch (menuState)
         {
             case MenuState.Main:
-                if (GameManager.Instance.battlefield.deckChosen)
+                if (GameManager.Instance.battlefield.runStarted)
                 {
                     buttonText.text = "Continue";
                     button.onClick.AddListener(mmButtons.ResumeGame);

@@ -12,7 +12,8 @@ public class Battlefield : ScriptableObject
     [field:SerializeField] public DeckObject deck{ get;private set; }
     [field:SerializeField] public EnemyBrain[] enemies{ get;private set; }
     [field:SerializeField] public PlayerBrain player{ get;private set; }
-    public bool deckChosen = false;
+    [field:SerializeField] public bool deckChosen{ get;private set; }= false;
+    [field:SerializeField] public bool runStarted{ get;private set; }= false;
     [field: SerializeField] public int totalHands { get; private set; } = 0;
     [field: SerializeField] public int enemyLevel { get; private set; } = 0;
     public Random.State? randomState = null;
@@ -58,6 +59,7 @@ public class Battlefield : ScriptableObject
     public void InsertSave(SavableBattlefield savableBattlefield)
     {
         deckChosen = savableBattlefield.deckChosen;
+        runStarted = savableBattlefield.runStarted;
         totalHands = savableBattlefield.totalHands;
         if (savableBattlefield.deckIndex != -1)
         {
@@ -72,12 +74,18 @@ public class Battlefield : ScriptableObject
         totalHands = 0;
         randomState = null;
         deckChosen = false;
+        runStarted = false;
+    }
+    public void StartRun()
+    {
+        runStarted = true;
     }
 }
 [Serializable]
 public class SavableBattlefield
 {
     public bool deckChosen;
+    public bool runStarted;
     public int deckIndex;
     public int totalHands;
     public Random.State randomState;
@@ -85,6 +93,7 @@ public class SavableBattlefield
     
     public SavableBattlefield(Battlefield battlefield)
     {
+        runStarted = battlefield.runStarted;
         deckChosen = battlefield.deckChosen;
         if (deckChosen)
         {
