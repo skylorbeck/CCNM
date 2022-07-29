@@ -272,6 +272,8 @@ public class InventoryManager : MonoBehaviour
 
     public void Back()
     {
+        GameManager.Instance.saveManager.SaveRun();
+
         if (GameManager.Instance.battlefield.runStarted || GameManager.Instance.battlefield.deckChosen)
         {
             GameManager.Instance.LoadSceneAdditive("MapScreen","Equipment");

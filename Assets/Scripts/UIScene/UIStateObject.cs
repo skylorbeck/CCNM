@@ -96,6 +96,10 @@ public class UIStateObject : ScriptableObject
     
     public void Ping(string text)
     {
+        if (!showTopBar)
+        {
+            ShowTopBar();
+        }
         TopBarPing.Invoke(text);
     }
 }

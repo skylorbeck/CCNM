@@ -19,6 +19,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private StatDisplay playerStatDisplay;
     [SerializeField] private Button[] cardButtons;
     [SerializeField] private Button selectDeckButton;
+    [SerializeField] private Button startButton;
 
     async void Start()
     {
@@ -49,21 +50,29 @@ public class MapManager : MonoBehaviour
             deckManager.gameObject.SetActive(false);
             cardDealer.transform.localPosition = Vector3.zero;
             deckManager.transform.localPosition = new Vector3(-100, 0, 0);
+            cardDealer.InsertDeck(GameManager.Instance.battlefield.deck);
             cardDealer.GenerateCards();
             await Task.Delay(10);
             cardDealer.DealCards();
             selectDeckButton.gameObject.SetActive(false);
+            startButton.gameObject.SetActive(false);
             totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
                                   GameManager.Instance.battlefield.deck
                                       .BossAt;
         }
         else
         {
+            startButton.interactable = GameManager.Instance.battlefield.deckChosen;
             cardDealer.DisableButtons();
             cardDealer.transform.localPosition = new Vector3(0, -100, 0);
             deckManager.transform.localPosition = Vector3.zero;
             deckManager.InitalizeDecks();
             totalCardsText.text = "";
+            if (GameManager.Instance.battlefield.deckChosen)
+            {
+                deckManager.SetSelectedDeck(GameManager.Instance.battlefield.deck);
+                InsertDeck();
+            }
         }
 
         GameManager.Instance.inputReader.Back += Back;
@@ -71,38 +80,50 @@ public class MapManager : MonoBehaviour
 
     public void Back()
     {
-        GameManager.Instance.uiStateObject.TogglePause();
+        if (GameManager.Instance.battlefield.runStarted)
+        {
+            GameManager.Instance.uiStateObject.TogglePause();
 
-        foreach (Button button in cardButtons)
-        {
-            button.interactable = !button.interactable;
-        }
-
-        foreach (TextMeshProUGUI text in pauseText)
-        {
-            text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ? 1 : 0, 0.25f, true);
-        }
-
-        playerStatDisplay.FadeInOut();
-        pauseRaycaster.enabled = GameManager.Instance.uiStateObject.isPaused;
-        if (GameManager.Instance.uiStateObject.isPaused)
-        {
-            GameManager.Instance.eventSystem.SetSelectedGameObject(cardButtons[0].gameObject);
-            cardDealer.DisableButtons();
-        }
-        else
-        {
-            GameManager.Instance.eventSystem.SetSelectedGameObject(cardButtons[1].gameObject);
-            if (GameManager.Instance.battlefield.runStarted)//might need a deckchosen check here
+            foreach (Button button in cardButtons)
             {
-                cardDealer.EnableButtons();
+                button.interactable = !button.interactable;
             }
+
+            foreach (TextMeshProUGUI text in pauseText)
+            {
+                text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ? 1 : 0, 0.25f, true);
+            }
+
+            playerStatDisplay.FadeInOut();
+            pauseRaycaster.enabled = GameManager.Instance.uiStateObject.isPaused;
+            if (GameManager.Instance.uiStateObject.isPaused)
+            {
+                GameManager.Instance.eventSystem.SetSelectedGameObject(cardButtons[0].gameObject);
+                cardDealer.DisableButtons();
+            }
+            else
+            {
+                GameManager.Instance.eventSystem.SetSelectedGameObject(cardButtons[1].gameObject);
+                if (GameManager.Instance.battlefield.runStarted) //might need a deckchosen check here
+                {
+                    cardDealer.EnableButtons();
+                }
+            }
+        } else
+        {
+            GameManager.Instance.LoadSceneAdditive("RunSettings", "MapScreen");
         }
     }
 
     public void Quit()
     {
-        GameManager.Instance.saveManager.SaveRun();
+        if (GameManager.Instance.battlefield.runStarted)
+        {
+            GameManager.Instance.saveManager.SaveRun();
+        } else if (GameManager.Instance.battlefield.deckChosen)
+        {
+            GameManager.Instance.saveManager.SaveMeta();
+        }
         Back();
         GameManager.Instance.LoadSceneAdditive("MainMenu", "MapScreen");
     }
@@ -112,23 +133,42 @@ public class MapManager : MonoBehaviour
         GameManager.Instance.inputReader.Back -= Back;
     }
 
-    public async void InsertDeck()
+    public void InsertDeck()
+    {
+        deckManager.SelectDeck();
+        startButton.interactable = GameManager.Instance.battlefield.deckChosen;
+        
+        DOTween.To(()=>startButton.transform.localPosition, x=>startButton.transform.localPosition = x, new Vector3(-10, -85, 0), 1f);
+    }
+
+    public async void StartGame()
     {
         selectDeckButton.gameObject.SetActive(false);
-        deckManager.SelectDeck();
+        startButton.gameObject.SetActive(false);
+
         DOTween.To(() => deckManager.transform.localPosition, x => deckManager.transform.localPosition = x,
             new Vector3(-100, 0, 0), 5f);
         DOTween.To(() => cardDealer.transform.localPosition, x => cardDealer.transform.localPosition = x,
             new Vector3(0, 0, 0), 1f);
         cardDealer.InsertDeck(GameManager.Instance.battlefield.deck);
+        GameManager.Instance.battlefield.ClearBattlefield();
+        UpdateTotalCardsText();
         GameManager.Instance.battlefield.StartRun();
         cardDealer.GenerateCards();
-        await Task.Delay(1000);
+        await Task.Delay(1250);
         cardDealer.DealCards();
     }
+   public void UpdateTotalCardsText()
+    {
+        totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
+                              GameManager.Instance.battlefield.deck
+                                  .BossAt;
+    }
     
-   
-    
+   public void UpdateTotalCardsText(DeckObject deck)
+    {
+        totalCardsText.text = "0/" + deck.BossAt;
+    }
     void Update()
     {
 

@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class DeckManager : MonoBehaviour
 {
+    [SerializeField] private MapManager mapManager;
     [SerializeField] private float yDistance = 3f;
     [SerializeField] private float currentY = 0f;
     [SerializeField] private float xDistance = 1.5f;
@@ -15,7 +16,6 @@ public class DeckManager : MonoBehaviour
     [SerializeField] private DeckPreviewer deckPrefab;
     [SerializeField] private DeckPreviewer CurrentDeck;
     [SerializeField] private List<DeckPreviewer> decks;
-    [SerializeField] TextMeshProUGUI totalCardsText;
 
     void Start()
     {
@@ -49,7 +49,7 @@ public class DeckManager : MonoBehaviour
         if (newSelected != selected)
         {
             selected = newSelected;
-            UpdateDecks();
+            // UpdateDecks();
         }
         for (var i = 0; i < decks.Count; i++)
         {
@@ -59,6 +59,8 @@ public class DeckManager : MonoBehaviour
             deckPosition.y = (i * yDistance) + currentY;
             deckPosition.x = Mathf.Cos(Mathf.Abs(deckPosition.y * 0.5f)) * xDistance;
             deckTransform.localPosition = deckPosition;
+            // deckTransform.localScale = Vector3.Lerp(new Vector3(1.25f, 1.25f, 1.25f),Vector3.one, 
+            //     Mathf.Abs(deckPosition.y));
         }
         
     }
@@ -66,7 +68,7 @@ public class DeckManager : MonoBehaviour
     private void UpdateDecks()
     {
        CurrentDeck.InsertDeck(GetDeck());
-           totalCardsText.text = "0/" + GetDeck().BossAt;
+       mapManager.UpdateTotalCardsText(GetDeck());
     }
 
     void FixedUpdate()
@@ -76,16 +78,23 @@ public class DeckManager : MonoBehaviour
 
     public void OnDrag(Vector2 delta)
     {
-        currentY += delta.y * Time.deltaTime;
+        currentY += delta.y * Time.deltaTime*PlayerPrefs.GetFloat("TouchSensitivity",1f);
     }
 
     public void SelectDeck()
     {
         GameManager.Instance.battlefield.InsertDeck(GetDeck());
+        UpdateDecks();
     }
     
     public DeckObject GetDeck()
     {
         return deckRegistry.GetDeck(selected);
+    }
+
+    public void SetSelectedDeck(DeckObject battlefieldDeck)
+    {
+        selected = deckRegistry.GetDeckIndex(battlefieldDeck.name);
+        currentY = -selected * yDistance;
     }
 }

@@ -118,7 +118,6 @@ public class NewRunManager : MonoBehaviour
     {
         GameManager.Instance.battlefield.Reset();
         GameManager.Instance.battlefield.SetLevel((int)runSettings.finalMultiplier);
-        GameManager.Instance.battlefield.StartRun();
         GameManager.Instance.LoadSceneAdditive("MapScreen", "RunSettings");
     }
     
