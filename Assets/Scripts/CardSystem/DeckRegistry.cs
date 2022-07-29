@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DeckRegistry", menuName = "Data/DeckRegistry")]
 public class DeckRegistry : ScriptableObject,  ISerializationCallbackReceiver
 {
+    public int deckCount => deckObjects.Length;
     public DeckObject[] deckObjects;
     public List<string> keys = new List<string> ();
     public List<int> values = new List<int>();

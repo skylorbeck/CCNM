@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deckObjects:
   - {fileID: 11400000, guid: a721d7203651bfd48bcad82cdf586d59, type: 2}
+  - {fileID: 11400000, guid: f26770483d4052b47993ba2f829f8312, type: 2}
   keys:
   - World1
-  values: 00000000
+  - World2
+  values: 0000000001000000

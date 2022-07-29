@@ -5,6 +5,7 @@ using UnityEngine;
 public class DeckObject : ScriptableObject
 {
     [field:SerializeField] public Sprite icon { get;private set; }
+    [field: SerializeField] public Color[] colors { get; private set; } = new Color[]{Color.white,Color.white};
     [field: SerializeField] public int BossAt { get; private set; } =  5;
     [field: SerializeField] public int[] MiniBossAt { get; private set; } = new[] { 3 };
     [field: SerializeField] public int[] shopAt { get; private set; } = new[] { 4 };

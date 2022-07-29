@@ -20,6 +20,7 @@ public class InputReader : ScriptableObject, CCNM.IUIActions
     public event UnityAction PadRight = delegate { };
     public event UnityAction PadAny = delegate { };
     public event UnityAction Back = delegate { };
+    public event UnityAction<Vector2> Drag = delegate { };
 
     private CCNM _ccnm;
 
@@ -151,6 +152,14 @@ public class InputReader : ScriptableObject, CCNM.IUIActions
         if (context.performed)
         {
             Back();
+        }
+    }
+
+    public void OnDrag(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Drag(context.ReadValue<Vector2>());
         }
     }
 

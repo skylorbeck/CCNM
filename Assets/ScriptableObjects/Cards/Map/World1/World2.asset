@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ed280c95b42c94290137c99ae21c55, type: 3}
+  m_Name: World2
+  m_EditorClassIdentifier: 
+  <icon>k__BackingField: {fileID: 21300000, guid: 2daa181ce92529344a5e6568ed5b95ac, type: 3}
+  <colors>k__BackingField:
+  - {r: 0, g: 0.63529414, b: 1, a: 1}
+  - {r: 1, g: 0.65882355, b: 0.4862745, a: 1}
+  <BossAt>k__BackingField: 20
+  <MiniBossAt>k__BackingField: 0300000006000000
+  <shopAt>k__BackingField: 04000000
+  <eventAt>k__BackingField: 01000000020000000500000007000000
+  <BossCard>k__BackingField: {fileID: 11400000, guid: a6c2b7848cac98a4982daed8695a935d, type: 2}
+  <MiniBossCard>k__BackingField:
+  - {fileID: 11400000, guid: f13c005cfebab3c47b89404d5eaacf4c, type: 2}
+  - {fileID: 11400000, guid: 3e033b7bbd8987841a2d3181a5c8fbde, type: 2}
+  <MinionCards>k__BackingField:
+  - {fileID: 11400000, guid: 13563d5ffcb8a984d8cb7edd2a225b7d, type: 2}
+  - {fileID: 11400000, guid: 9fa23546537b5ea4bbafbd3352ed7170, type: 2}
+  - {fileID: 11400000, guid: 2438b04b1ee0f95468981a91d8dad2f0, type: 2}
+  <EventCards>k__BackingField:
+  - {fileID: 11400000, guid: e697c6948548bf14c80e5d0c8eab84fd, type: 2}
+  <ShopCards>k__BackingField:
+  - {fileID: 11400000, guid: a7667085ea0ee8a4fba84e59cc7cdb96, type: 2}
+  <ItemCards>k__BackingField: []
+  <ConsumableCards>k__BackingField: []

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -7,8 +8,9 @@ public class StatDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI[] pauseText;
 
-    void Start()
+    async void Start()
     {
+        await Task.Delay(10);
         pauseText[0].text = GameManager.Instance.battlefield.player.GetDamage().ToString();
         pauseText[1].text = GameManager.Instance.battlefield.player.GetShieldMax().ToString();
         pauseText[2].text = GameManager.Instance.battlefield.player.GetHealthMax().ToString();

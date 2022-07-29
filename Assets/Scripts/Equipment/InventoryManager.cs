@@ -272,7 +272,7 @@ public class InventoryManager : MonoBehaviour
 
     public void Back()
     {
-        if (GameManager.Instance.battlefield.runStarted)
+        if (GameManager.Instance.battlefield.runStarted || GameManager.Instance.battlefield.deckChosen)
         {
             GameManager.Instance.LoadSceneAdditive("MapScreen","Equipment");
         }

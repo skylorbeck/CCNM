@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eaa34a7959a00c4c800488bc83194e0, type: 3}
   m_Name: Battlefield
   m_EditorClassIdentifier: 
-  <deck>k__BackingField: {fileID: 11400000, guid: a721d7203651bfd48bcad82cdf586d59, type: 2}
+  <deck>k__BackingField: {fileID: 11400000, guid: f26770483d4052b47993ba2f829f8312, type: 2}
   <enemies>k__BackingField:
   - {fileID: 11400000, guid: ae3a5c91ab84f9a4ebce9c7c0c80d971, type: 2}
   - {fileID: 11400000, guid: d4fab5bdca3850c43bb3795eac3ce269, type: 2}
   - {fileID: 11400000, guid: ae3a5c91ab84f9a4ebce9c7c0c80d971, type: 2}
   <player>k__BackingField: {fileID: 11400000, guid: a4add858d424d2743ae7049f6b0669cc, type: 2}
-  deckChosen: 1
-  <totalHands>k__BackingField: 6
+  <deckChosen>k__BackingField: 0
+  <runStarted>k__BackingField: 0
+  <totalHands>k__BackingField: 2
   <enemyLevel>k__BackingField: 1
