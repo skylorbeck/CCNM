@@ -24,6 +24,7 @@ public class MapManager : MonoBehaviour
     async void Start()
     {
         await Task.Delay(10);
+        playerStatDisplay.FadeInOut();
 
         if (GameManager.Instance.battlefield.randomState == null)
         {
@@ -43,7 +44,6 @@ public class MapManager : MonoBehaviour
         }
 
 
-        playerStatDisplay.FadeInOut();
 
         if (GameManager.Instance.battlefield.runStarted)
         {
@@ -52,13 +52,13 @@ public class MapManager : MonoBehaviour
             deckManager.transform.localPosition = new Vector3(-100, 0, 0);
             cardDealer.InsertDeck(GameManager.Instance.battlefield.deck);
             cardDealer.GenerateCards();
-            await Task.Delay(10);
-            cardDealer.DealCards();
             selectDeckButton.gameObject.SetActive(false);
             startButton.gameObject.SetActive(false);
             totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
                                   GameManager.Instance.battlefield.deck
                                       .BossAt;
+            await Task.Delay(1500);
+            cardDealer.DealCards();
         }
         else
         {
