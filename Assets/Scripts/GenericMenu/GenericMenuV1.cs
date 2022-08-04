@@ -142,6 +142,11 @@ public class GenericMenuV1 : MonoBehaviour
         BottomWheel,
         FullWheel
     }
+    
+    public void InvokeSelected()
+    {
+        entries[selected].method.Invoke();
+    }
 }
 [Serializable]
 public class GenericMenuEntry
