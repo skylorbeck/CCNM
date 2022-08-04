@@ -10,11 +10,13 @@ public class SettingsManager : MonoBehaviour
     [field:SerializeField] public Slider effectSlider { get; private set; }
     [field:SerializeField] public Slider touchSensitivitySlider { get; private set; }
     [field:SerializeField] public Toggle leftToggle { get; private set; }
+    [field:SerializeField] public Toggle stickyMenuToggle { get; private set; }
     private async void Start()
     {
         musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("MusicVolume", 1)*10);
         effectSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("EffectVolume", 1)*10);
         leftToggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt("LeftHanded", 0) == 1);
+        stickyMenuToggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt("StickyMenu", 0) == 1);
         touchSensitivitySlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("TouchSensitivity", 1)*10);
         await Task.Delay(10);
         
@@ -29,6 +31,7 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("EffectVolume", effectSlider.value*0.1f);
         PlayerPrefs.SetInt("LeftHanded", leftToggle.isOn ? 1 : 0);
         PlayerPrefs.SetFloat("TouchSensitivity", touchSensitivitySlider.value*0.1f);
+        PlayerPrefs.SetInt("StickyMenu", stickyMenuToggle.isOn ? 1 : 0);
         PlayerPrefs.Save();
         MusicManager.Instance.UpdateVolume();
         SoundManager.Instance.PlayUiClick();

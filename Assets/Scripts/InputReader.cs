@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class InputReader : ScriptableObject, CCNM.IUIActions
 {
     public event UnityAction ClickEvent = delegate { };
+    public event UnityAction<InputAction.CallbackContext> ClickEventWithContext = delegate { };
     public event UnityAction PushAnyButton = delegate { };
     public event UnityAction ButtonUp = delegate { };
     public event UnityAction ButtonDown = delegate { };
@@ -21,6 +22,7 @@ public class InputReader : ScriptableObject, CCNM.IUIActions
     public event UnityAction PadAny = delegate { };
     public event UnityAction Back = delegate { };
     public event UnityAction<Vector2> Drag = delegate { };
+    public event UnityAction<InputAction.CallbackContext> DragWithContext = delegate { };
 
     private CCNM _ccnm;
 
@@ -109,6 +111,7 @@ public class InputReader : ScriptableObject, CCNM.IUIActions
 
     public void OnClick(InputAction.CallbackContext context)
     {
+        ClickEventWithContext(context);
         if (context.performed)
         {
             ClickEvent();
@@ -157,6 +160,7 @@ public class InputReader : ScriptableObject, CCNM.IUIActions
 
     public void OnDrag(InputAction.CallbackContext context)
     {
+        DragWithContext(context);
         if (context.performed)
         {
             Drag(context.ReadValue<Vector2>());

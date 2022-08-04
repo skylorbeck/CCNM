@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -40,7 +41,9 @@ public class UIManager : MonoBehaviour
             blackoutImages.Add(image);
             image.CrossFadeAlpha(0, 0.5f, false);
         }
-
+    
+        // GameManager.Instance.inputReader.ClickEventWithContext += SetCursorPosition;
+        
         GameManager.Instance.FixedSecond += PumpCursor;
     }
 
@@ -59,7 +62,30 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.inputReader.ClickEvent -= NavUpdateMouse;
         GameManager.Instance.FixedHalfSecond -= NextSprite;
         
+        // GameManager.Instance.inputReader.ClickEventWithContext -= SetCursorPosition;
+
         GameManager.Instance.FixedSecond -= PumpCursor;
+        
+        
+        
+    }
+    
+    public void SetCursorPosition(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            cursor.enabled = true;
+            cursor.rectTransform.position = Camera.main.WorldToScreenPoint(Vector3.zero);
+            cursor.color = Color.blue;
+        }
+
+        if (context.canceled)
+        {
+            cursor.enabled = true;
+
+            cursor.color = Color.red;
+        }
+        
     }
 
     public void SetTopBarText(string text)

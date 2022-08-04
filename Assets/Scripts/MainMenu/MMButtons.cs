@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MMButtons : MonoBehaviour
 {
+    [SerializeField] Button button;
+    [SerializeField] GenericMenuV1 menu;
+
     public void NewGame()
     {
         SoundManager.Instance.PlayUiAccept();
@@ -34,6 +38,8 @@ public class MMButtons : MonoBehaviour
     {
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.uiStateObject.HideTopBar();
+        GameManager.Instance.eventSystem.SetSelectedGameObject(button.gameObject);
+        MusicManager.Instance.PlayTrack(GameManager.Instance.musicRegistry.GetMusic(2));
     }
 
     private void OnDestroy()
@@ -49,9 +55,7 @@ public class MMButtons : MonoBehaviour
 
     public void EnableButtons()
     {
-        foreach (Button button in GetComponentsInChildren<Button>())
-        {
+        DOTween.To(()=>menu.transform.localPosition, x=>menu.transform.localPosition = x, new Vector3(0,0,0), 0.5f);
             button.interactable = true;
-        }
     }
 }

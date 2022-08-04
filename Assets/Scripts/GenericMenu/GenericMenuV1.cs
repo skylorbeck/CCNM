@@ -2,30 +2,40 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class GenericMenuV1 : MonoBehaviour
 {
     [SerializeField] private MenuEntry menuPrefab;
     [SerializeField] private Mode mode = Mode.FullWheel;
+    [SerializeField] TextMeshProUGUI buttonText;
 
     [SerializeField] private GenericMenuEntry[] entries;
     [SerializeField] private List<MenuEntry> menuEntries = new List<MenuEntry>();
+
     [SerializeField] private float yDistance = 3f;
     [SerializeField] private float xDistance = 1.5f;
     [SerializeField] private float offset = 0f;
+    [SerializeField] private bool sticky = false;
     [SerializeField] private float stickiness = 1f;
+    [SerializeField] private bool userIsHolding = false;
     [field:SerializeField] public int selected{ get; private set; }
+    
     async void Start()
     {
+        buttonText.text = entries[selected].name;
+        sticky = PlayerPrefs.GetInt("StickyMenu",0) == 1;
         await Task.Delay(10);
         Init();
     }
 
     private void Init()
     {
-        GameManager.Instance.inputReader.Drag += OnDrag;
+        GameManager.Instance.inputReader.DragWithContext += OnDrag;
+        GameManager.Instance.inputReader.ClickEventWithContext += OnClick;
 
         foreach (GenericMenuEntry generic in entries)
         {
@@ -46,8 +56,11 @@ public class GenericMenuV1 : MonoBehaviour
             case Mode.FullWheel:
                 target = (float)(Math.Round(offset / menuEntries.Count, MidpointRounding.AwayFromZero)) *
                          (menuEntries.Count + 0.25f);
-
-                offset = Mathf.Lerp(offset, target, Time.deltaTime * menuEntries.Count);
+                
+                if (sticky || !userIsHolding)
+                {
+                    offset = Mathf.Lerp(offset, target, Time.deltaTime * menuEntries.Count);
+                }
 
                 newSelected = (int)Math.Round(offset / menuEntries.Count, MidpointRounding.AwayFromZero);
 
@@ -56,26 +69,33 @@ public class GenericMenuV1 : MonoBehaviour
             case Mode.LeftWheel:
             case Mode.RightWheel:
                 target = (float)(Math.Round(offset / yDistance, MidpointRounding.AwayFromZero) * yDistance);
-                offset = Mathf.Clamp(Mathf.Lerp(offset, target, Time.deltaTime * yDistance * stickiness),
-                    yDistance - menuEntries.Count * yDistance, 0);
-
+                
+                if (sticky || !userIsHolding)
+                {
+                    offset = Mathf.Lerp(offset, target, Time.deltaTime * yDistance * stickiness);
+                }
+                
+                offset = Mathf.Clamp(offset, yDistance - menuEntries.Count * yDistance, 0);
+                
                 newSelected = Mathf.Abs((int)Math.Round(offset / yDistance, MidpointRounding.AwayFromZero));
                 break;
             case Mode.TopWheel:
             case Mode.BottomWheel:
                 target = (float)(Math.Round(offset / xDistance, MidpointRounding.AwayFromZero) * xDistance);
-                offset = Mathf.Clamp(Mathf.Lerp(offset, target, Time.deltaTime * xDistance * stickiness),
-                    xDistance - menuEntries.Count * xDistance, 0);
+                
+                if (sticky || !userIsHolding)
+                {
+                    offset = Mathf.Lerp(offset, target, Time.deltaTime * xDistance * stickiness);
+                }
+                
+                offset = Mathf.Clamp(offset, xDistance - menuEntries.Count * xDistance, 0);
 
                 newSelected = Mathf.Abs((int)Math.Round(offset / xDistance, MidpointRounding.AwayFromZero));
                 break;
         }
 
 
-        if (newSelected != selected)
-        {
-            selected = newSelected;
-        }
+        UpdateSelected(newSelected);
 
         for (var i = 0; i < menuEntries.Count; i++)
         {
@@ -113,25 +133,53 @@ public class GenericMenuV1 : MonoBehaviour
         }
     }
 
-    public void OnDrag(Vector2 delta)
+    private void UpdateSelected(int newSelected)
     {
-        switch (mode)
+        if (newSelected != selected)
         {
-            case Mode.FullWheel:
-            case Mode.TopWheel:
-            case Mode.BottomWheel:
-                offset += delta.x * Time.deltaTime * PlayerPrefs.GetFloat("TouchSensitivity", 1f);
-                break;
-            case Mode.LeftWheel:
-            case Mode.RightWheel:
-                offset += delta.y * Time.deltaTime * PlayerPrefs.GetFloat("TouchSensitivity", 1f);
-                break;
+            selected = newSelected;
+            buttonText.text = entries[selected].name;
+            SoundManager.Instance.PlayUiClick();
+        }
+    }
+
+    public void OnClick(InputAction.CallbackContext context)
+    { 
+        if (context.started)
+        {
+            userIsHolding = true;
+        }
+
+        if (context.canceled)
+        {
+            userIsHolding = false;
+        }
+    }
+    public void OnDrag(InputAction.CallbackContext context)
+    {
+       
+        if (context.performed)
+        {
+            Vector2 delta = context.ReadValue<Vector2>();
+            switch (mode)
+            {
+                case Mode.FullWheel:
+                case Mode.TopWheel:
+                case Mode.BottomWheel:
+                    offset += delta.x * Time.deltaTime * PlayerPrefs.GetFloat("TouchSensitivity", 1f);
+                    break;
+                case Mode.LeftWheel:
+                case Mode.RightWheel:
+                    offset += delta.y * Time.deltaTime * PlayerPrefs.GetFloat("TouchSensitivity", 1f);
+                    break;
+            }
         }
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.inputReader.Drag -= OnDrag;
+        GameManager.Instance.inputReader.DragWithContext -= OnDrag;
+        GameManager.Instance.inputReader.ClickEventWithContext -= OnClick;
     }
 
     private enum Mode
