@@ -13,7 +13,7 @@ public class GenericMenuV1 : MonoBehaviour
     [SerializeField] private Mode mode = Mode.FullWheel;
     [SerializeField] TextMeshProUGUI buttonText;
 
-    [SerializeField] private GenericMenuEntry[] entries;
+    [SerializeField] private List<GenericMenuEntry> entries;
     [SerializeField] private List<MenuEntry> menuEntries = new List<MenuEntry>();
 
     [SerializeField] private float yDistance = 3f;
@@ -42,6 +42,58 @@ public class GenericMenuV1 : MonoBehaviour
             MenuEntry entry = Instantiate(menuPrefab, transform);
             entry.InsertData(generic.description, generic.icon);
             menuEntries.Add(entry);
+        }
+    }
+    
+    public void AddEntry(GenericMenuEntry entry,int index)
+    {
+        MenuEntry menuEntry = Instantiate(menuPrefab, transform);
+        menuEntry.InsertData(entry.description, entry.icon);
+        entries.Insert(index, entry);
+        menuEntries.Insert(index, menuEntry);
+    }
+    
+    public void RemoveEntry(int index)
+    {
+        Destroy(menuEntries[index].gameObject);
+        menuEntries.RemoveAt(index);
+    }
+    
+    public void AddEntry(GenericMenuEntry entry)
+    {
+        MenuEntry menuEntry = Instantiate(menuPrefab, transform);
+        menuEntry.InsertData(entry.description, entry.icon);
+        entries.Add(entry);
+        menuEntries.Add(menuEntry);
+    }
+    
+    public void SetOffset(float offset)
+    {
+        this.offset = offset;
+    }
+    
+    
+    public void SetStickiness(float stickiness)
+    {
+        this.stickiness = stickiness;
+    }
+    
+    public void SetSelected(int selected)
+    {
+        this.selected = selected;
+        switch (mode)
+        {
+            default:
+            case Mode.RightWheel:
+            case Mode.LeftWheel:
+                offset = -selected*yDistance;
+                break;
+            case Mode.TopWheel:
+            case Mode.BottomWheel:
+                offset = -selected*xDistance;
+                break;
+            case Mode.FullWheel:
+                break;
         }
     }
 
@@ -133,7 +185,7 @@ public class GenericMenuV1 : MonoBehaviour
         }
     }
 
-    private void UpdateSelected(int newSelected)
+    void UpdateSelected(int newSelected)
     {
         if (newSelected != selected)
         {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class MMButtons : MonoBehaviour
 {
     [SerializeField] Button button;
     [SerializeField] GenericMenuV1 menu;
+    [SerializeField] GenericMenuEntry continueEntry;
 
     public void NewGame()
     {
@@ -34,12 +36,19 @@ public class MMButtons : MonoBehaviour
         GameManager.Instance.LoadSceneAdditive("Settings","MainMenu");
     }
     
-    private void Start()
+    private async void Start()
     {
+        await Task.Delay(10);
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.uiStateObject.HideTopBar();
         GameManager.Instance.eventSystem.SetSelectedGameObject(button.gameObject);
         MusicManager.Instance.PlayTrack(GameManager.Instance.musicRegistry.GetMusic(2));
+        await Task.Delay(90);
+        if (GameManager.Instance.battlefield.runStarted)
+        {
+            menu.AddEntry(continueEntry,1);
+            menu.SetSelected(1);
+        }
     }
 
     private void OnDestroy()

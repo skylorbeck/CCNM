@@ -9,10 +9,7 @@ using UnityEngine.UI;
 public class HotelManager : MonoBehaviour
 {
     [SerializeField] Button button;
-    [SerializeField] TextMeshProUGUI buttonText;
-    
-    [SerializeField] int state = 0;
-    [SerializeField] MenuLink[] menuLinks;
+    [SerializeField] GenericMenuV1 menu;
 
 
     private async void Start()
@@ -22,18 +19,13 @@ public class HotelManager : MonoBehaviour
         GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
         GameManager.Instance.uiStateObject.ShowTopBar();
         GameManager.Instance.uiStateObject.Ping("The Hotel");
-        GameManager.Instance.inputReader.PadLeft += DecreaseState;
-        GameManager.Instance.inputReader.PadRight += IncreaseState;
         GetComponent<Animator>().SetTrigger("FadeIn");
         MusicManager.Instance.PlayTrack("Hotel");
+      
     }
 
     public void Update()
     {
-        for (var i = 0; i < menuLinks.Length; i++)
-        {
-            menuLinks[i].transform.localPosition = Vector3.Lerp(menuLinks[i].transform.localPosition, new Vector3(i*100-(state*100), 0, 0),Time.deltaTime*10);
-        }
     }
 
     public void EnableButtons()
@@ -41,43 +33,11 @@ public class HotelManager : MonoBehaviour
         button.interactable = true;
     }
     
-    public void SetMenuState(int newState)
-    {
-        state = newState;
-    }
 
-    public void IncreaseState()
-    {
-        state++;
-        SoundManager.Instance.PlayUiClick();
-        if (state > menuLinks.Length-1)
-        {
-            state = 0;
-        }
-        UpdateButtonText();
-    }
-
-    public void DecreaseState()
-    {
-        state--;
-        SoundManager.Instance.PlayUiClick();
-        if (state < 0)
-        {
-            state = menuLinks.Length-1;
-        }
-        UpdateButtonText();
-    }
-    
-    private void UpdateButtonText()
-    {
-        buttonText.text = menuLinks[state].text;
-    }
 
     private void OnDestroy()
     {
         GameManager.Instance.inputReader.Back -= Back;
-        GameManager.Instance.inputReader.PadLeft -= DecreaseState;
-        GameManager.Instance.inputReader.PadRight -= IncreaseState;
     }
 
     public void Back()
@@ -85,9 +45,29 @@ public class HotelManager : MonoBehaviour
         SoundManager.Instance.PlayUiBack();
         GameManager.Instance.LoadSceneAdditive("MainMenu","Hotel");
     }
-    public void Enter()
+    public void Equipment()
     {
         SoundManager.Instance.PlayUiAccept();
-        GameManager.Instance.LoadSceneAdditive(menuLinks[state].scene,"Hotel");
+        GameManager.Instance.LoadSceneAdditive("Equipment","Hotel");
+    }
+    public void Leveling()
+    {
+        SoundManager.Instance.PlayUiAccept();
+        GameManager.Instance.LoadSceneAdditive("Leveling","Hotel");
+    }
+    public void Shredding()
+    {
+        SoundManager.Instance.PlayUiAccept();
+        GameManager.Instance.LoadSceneAdditive("CardShredding","Hotel");
+    }
+    public void CardPacks()
+    {
+        SoundManager.Instance.PlayUiAccept();
+        GameManager.Instance.LoadSceneAdditive("CardPacks","Hotel");
+    }
+    public void Capsules()
+    {
+        SoundManager.Instance.PlayUiAccept();
+        GameManager.Instance.LoadSceneAdditive("Capsules","Hotel");
     }
 }
