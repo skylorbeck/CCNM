@@ -2174,7 +2174,7 @@ MonoBehaviour:
   - {fileID: 1625489056}
   - {fileID: 1942181573}
   - {fileID: 670981220}
-  cardPrefab: {fileID: 761222036289701337, guid: a5596c5df4ffba6458f41d7dbc72b7c2, type: 3}
+  cardPrefab: {fileID: 2936789436814341088, guid: 08f04cb4a383ce44bab03c81a985d939, type: 3}
   cardContainer: {fileID: 2139272094}
   selector: {fileID: 1902409873}
   selectorBig: 0

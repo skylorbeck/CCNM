@@ -12,6 +12,7 @@ public class AbilityObject : ScriptableObject
     [field: SerializeField] public string descriptionA { get; private set; } = "ability.description.a";
     [field: SerializeField] public string descriptionB { get; private set; } = "ability.description.b";
     [field: SerializeField] public Sprite icon { get; private set; }
+    [field: SerializeField] public Sprite gemIcon { get; private set; }
     [field: SerializeField] public int baseCost { get; private set; } = 1;
 
     [field: Header("Damage")]
@@ -45,6 +46,8 @@ public class AbilityObject : ScriptableObject
     [field: SerializeField] public bool statusSelf { get; private set; } = false;
 
     [field: Header("Other")]
+    [field: SerializeField]
+    public EquipmentDataContainer.SlotType slotType { get; private set; } = EquipmentDataContainer.SlotType.Offense;
     [field: SerializeField] public StatusEffect.Element element { get; private set; } = StatusEffect.Element.None;
 
     [field: SerializeField] public AttackAnimator.AttackType attackAnimation { get; private set; } = AttackAnimator.AttackType.None;

@@ -124,7 +124,7 @@ public class ShopManager : MonoBehaviour
         if (viewingSpecialStock && !boughtCard)
         {
             itemText[0].text = equipmentCardShell.title.text;
-            itemText[1].text = equipmentCardShell.abilityTitle.text;
+            // itemText[1].text = equipmentCardShell.abilityTitle.text;//todo replace with gem description
             itemText[2].text =
                 equipmentCardShell.EquipmentData.itemCore.cardCost +
                 "C"; //todo replace with value calculated from equipmentData

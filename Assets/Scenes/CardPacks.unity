@@ -900,7 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   packCount: {fileID: 243160512}
-  cardPrefab: {fileID: 761222036289701337, guid: a5596c5df4ffba6458f41d7dbc72b7c2, type: 3}
+  cardPrefab: {fileID: 2936789436814341088, guid: 08f04cb4a383ce44bab03c81a985d939, type: 3}
   cardPackHolder: {fileID: 1966403681}
   packSprite: {fileID: 90603453}
   cards: []

@@ -8,7 +8,9 @@ using Random = UnityEngine.Random;
 public class EquipmentDataContainer
 {
     [field:SerializeField] public ItemCard itemCore { get; private set; }
-    [field:SerializeField] public AbilityObject ability{ get; protected set; }
+    [field:SerializeField] public int gemSlots { get; private set; }//1-3. If less than 3, the rest are hidden and locked and empty.
+    [field:SerializeField] public bool[] lockedSlots { get; private set; }
+    [field:SerializeField] public AbilityObject[] abilities { get; protected set; }
     [field:SerializeField] public Quality quality { get; private set; }
     [field:SerializeField] public int level { get; private set; }
     [field:SerializeField] public Stats[] stats { get; private set; }
@@ -28,7 +30,16 @@ public class EquipmentDataContainer
     
     public void InsertAbility(AbilityObject ability)
     {
-        this.ability = ability;
+        List<AbilityObject> newAbilities = new List<AbilityObject>();
+        if (abilities!=null && abilities.Length>0)
+        {
+            newAbilities.Add(ability);
+        }
+        else
+        {
+            newAbilities = new List<AbilityObject> {ability};
+        }
+        abilities = newAbilities.ToArray();
     }
     
     public void SetStatValue(int[] value)
@@ -39,15 +50,30 @@ public class EquipmentDataContainer
     {
         this.stats = stats;
     }
+    public void SetGemSlots(int value)
+    {
+        gemSlots = value;
+    }
+    
+    public void SetLockedSlots(bool[] value)
+    {
+        lockedSlots = value;
+    }
 
     public int GetItemCoreIndex()
     {
         return GameManager.Instance.equipmentRegistries[(int)itemCore.itemType].GetCardIndex(itemCore.name);
     }
     
+    [Obsolete ("Use GetAbilityIndex(int) instead")]
     public int GetAbilityIndex()
     {
-        return GameManager.Instance.abilityRegistry.GetAbilityIndex(ability.title);
+        return 0;
+        // return GameManager.Instance.abilityRegistry.GetAbilityIndex(ability.title);
+    }
+    public int GetAbilityIndex(int abilityIndex)
+    {
+        return GameManager.Instance.abilityRegistry.GetAbilityIndex(abilities[abilityIndex].title);
     }
 
     public void GenerateDataOfLevel(int ofLevel)
@@ -140,21 +166,83 @@ public class EquipmentDataContainer
             statValue[i] += (int)Math.Ceiling(qualityMulti * statValue[i]);
         }
 
-        /*float abilityChance = 0.5f;
-        if (quality == Quality.Noteworthy)
-            abilityChance = 0.75f;
-        if (quality == Quality.Typical)
+        lockedSlots = new bool[3];
+        for (int i = 0; i < lockedSlots.Length; i++)
         {
-            abilityChance = 1f;
+            lockedSlots[i] = true;
         }
-
-        if (Random.value < abilityChance)
+        abilities = new AbilityObject[lockedSlots.Length];
+        gemSlots = 0;
+        
+        switch (quality)
         {
-            ability = GameManager.Instance.abilityRegistry.GetRandomAbility();
-        }*/
-        ability = GameManager.Instance.abilityRegistry.GetRandomAbility();
-    }
+            default:
+            case Quality.Typical:
+                gemSlots = 1;
+                break;
+            case Quality.Noteworthy:
+                gemSlots = 1;
+                for (int i = 0; i < gemSlots; i++)
+                {
+                    lockedSlots[i] = Random.Range(0,3) != 0;//66% chance of being locked
+                }
+                break;
+            case Quality.Remarkable:
+                gemSlots = 1+Random.Range(0,3);
+                for (int i = 0; i < gemSlots; i++)
+                {
+                    lockedSlots[i] = Random.Range(0,2) == 0;//50% chance of being locked
+                }
+                break;
+            case Quality.Choice:
+                gemSlots = 1+Random.Range(0,3);
+                for (int i = 0; i < gemSlots; i++)
+                {
+                    lockedSlots[i] = Random.Range(0,3) == 0;//33% chance of being locked
+                }
+                break;
+            case Quality.Signature:
+                gemSlots = 2+Random.Range(0,2);
+                for (int i = 0; i < gemSlots; i++)
+                {
+                    lockedSlots[i] = Random.Range(0,4) == 0;//25% chance of being locked
+                }
+                break;
+            case Quality.Fabled:
+                gemSlots = 2+Random.Range(0,2);
+                for (int i = 0; i < gemSlots; i++)
+                {
+                    lockedSlots[i] = Random.Range(0,4) == 0;//25% chance of being locked
+                }
+                break;
+            case Quality.Exalted:
+                gemSlots = 3;
+                for (int i = 0; i < lockedSlots.Length; i++)
+                {
+                    lockedSlots[i] = false;
 
+                }//all slots are unlocked
+                break;
+        }
+        abilities[0] = GameManager.Instance.abilityRegistry.GetRandomAbility();
+        for (int i = 1; i < gemSlots; i++)
+        {
+            abilities[i] = Random.Range(0, 3) != 0 ? null: GameManager.Instance.abilityRegistry.GetRandomAbility();
+        }
+    }
+    public AbilityObject[] GetAbilities()
+    {
+        return abilities;
+    }
+    public AbilityObject GetAbility(int index)
+    {
+        if (abilities != null && abilities.Length > index)
+        {
+            return abilities[index];
+        }
+        return null;
+    }
+    
     public enum Quality
     {
         Typical, //white 2 stats
@@ -164,6 +252,13 @@ public class EquipmentDataContainer
         Signature, //yellow 5 stats, 1 max stats
         Fabled, //orange 5 stats, 2 max stats
         Exalted, //red 5 stats, 3 max stats
+    }
+
+    public enum SlotType
+    {
+        Offense,
+        Defense,
+        Utility,
     }
     public enum Stats
     {
@@ -190,7 +285,30 @@ public class EquipmentDataContainer
     {
         guid = savableDataContainer.guid;
         itemCore = GameManager.Instance.equipmentRegistries[savableDataContainer.equipmentRegistryIndex].GetCard(savableDataContainer.itemCoreIndex);
-        ability = GameManager.Instance.abilityRegistry.GetAbility(savableDataContainer.abilityIndex);
+        gemSlots = savableDataContainer.gemSlots;
+        if (gemSlots<=0)
+        {
+            gemSlots = 1;
+        }
+        lockedSlots = savableDataContainer.lockedSlots;
+        if (lockedSlots == null || lockedSlots.Length <= 2)
+        {
+            lockedSlots = new bool[3];
+            for (var i = 0; i < lockedSlots.Length; i++)
+            {
+                lockedSlots[i] = true;
+            }
+        }
+
+        abilities = new AbilityObject[3];
+        for (int i = 0; i < savableDataContainer.abilityIndex.Length; i++)
+        {
+            if (savableDataContainer.abilityIndex[i] <0)
+            {
+                savableDataContainer.abilityIndex[i] = 0;  
+            }
+            abilities[i] = GameManager.Instance.abilityRegistry.GetAbility(savableDataContainer.abilityIndex[i]);
+        }
         quality = savableDataContainer.quality;
         level = savableDataContainer.level;
         stats = savableDataContainer.stats;
@@ -205,10 +323,14 @@ public class SavableDataContainer
     public Guid guid;
     public int equipmentRegistryIndex;
     public int itemCoreIndex;
-    public int abilityIndex;
+    public int[] abilityIndex;
     public int level;
     public int[] statValue;
     public bool indestructible;
+
+    public int gemSlots;
+    public bool[] lockedSlots;
+    
     public EquipmentDataContainer.Quality quality;
     public EquipmentDataContainer.Stats[] stats;
     public SavableDataContainer(EquipmentDataContainer data)
@@ -216,11 +338,17 @@ public class SavableDataContainer
         guid = data.guid;
         equipmentRegistryIndex = (int)data.itemCore.itemType;
         itemCoreIndex = data.GetItemCoreIndex();
-        abilityIndex = data.GetAbilityIndex();
+        abilityIndex = new int[data.abilities.Length];
+        for (int i = 0; i < abilityIndex.Length; i++)
+        {
+            abilityIndex[i] = data.abilities[i] == null ? -1 : data.GetAbilityIndex(i);
+        }
         level = data.level;
         statValue = data.statValue;
         indestructible = data.indestructible;
         quality = data.quality;
         stats = data.stats;
+        lockedSlots = data.lockedSlots;
+        gemSlots = data.gemSlots;
     }
 }

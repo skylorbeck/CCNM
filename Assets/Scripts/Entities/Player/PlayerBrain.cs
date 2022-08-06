@@ -10,7 +10,7 @@ public class PlayerBrain : Brain
     [field: SerializeField] public int[] equippedSlots { get; private set; }
     [field: SerializeField] public EquipmentList[] playerInventory { get; private set; }
     [field: SerializeField] public EquipmentDataContainer[] defaultEquipment { get; private set; }
-
+    
     [field: SerializeField] public int cardPacks { get; private set; }
     [field: SerializeField] public int capsules { get; private set; }
     [field: SerializeField] public int superCapsules { get; private set; }
@@ -108,9 +108,13 @@ public class PlayerBrain : Brain
                 }
             }
 
-            if (equippedCard.ability != null)
+            AbilityObject[] abilities = equippedCard.GetAbilities();
+            if (abilities != null)
             {
-                AddAbility(equippedCard.ability);
+                for (var j = 0; j < abilities.Length; j++)
+                {
+                    AddAbility(abilities[j]);
+                }
             }
         }
     }
@@ -467,25 +471,30 @@ public class PlayerBrain : Brain
         {
             defaultEquipment[i] = new EquipmentDataContainer();
         }
-
         defaultEquipment[0].InsertAbility(GameManager.Instance.abilityRegistry.GetAbility("Fireball"));
         defaultEquipment[0].InsertItem(GameManager.Instance.equipmentRegistries[0].GetCard(0));
         defaultEquipment[0].SetIndestructible(true);
         defaultEquipment[0].SetStatValue(new int[] { 5, 5 });
         defaultEquipment[0].SetStats(new EquipmentDataContainer.Stats[]
             { EquipmentDataContainer.Stats.Grit, EquipmentDataContainer.Stats.Resolve });
-
+        defaultEquipment[0].SetGemSlots(1);
+        defaultEquipment[0].SetLockedSlots(new bool[] { true, true, true });
+        
         defaultEquipment[1].InsertAbility(GameManager.Instance.abilityRegistry.GetAbility("Slash"));
         defaultEquipment[1].InsertItem(GameManager.Instance.equipmentRegistries[1].GetCard(0));
         defaultEquipment[1].SetIndestructible(true);
         defaultEquipment[1].SetStatValue(new int[] { 5 });
         defaultEquipment[1].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Strength });
+        defaultEquipment[1].SetGemSlots(1);
+        defaultEquipment[1].SetLockedSlots(new bool[] { true, true, true });
 
         defaultEquipment[2].InsertAbility(GameManager.Instance.abilityRegistry.GetAbility("Headbutt"));
         defaultEquipment[2].InsertItem(GameManager.Instance.equipmentRegistries[2].GetCard(0));
         defaultEquipment[2].SetIndestructible(true);
         defaultEquipment[2].SetStatValue(new int[] { 5 });
         defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vitality });
+        defaultEquipment[2].SetGemSlots(1);
+        defaultEquipment[2].SetLockedSlots(new bool[] { true, true, true });
     }
 
     

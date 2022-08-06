@@ -16,6 +16,7 @@ MonoBehaviour:
   <descriptionA>k__BackingField: 1x Damage Target
   <descriptionB>k__BackingField: 
   <icon>k__BackingField: {fileID: 21300000, guid: 99f01e10c7d3a264e9c62c437e746425, type: 3}
+  <gemIcon>k__BackingField: {fileID: 21300000, guid: f844865b5db816c4d979c35023a735d4, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
   <targetDamageMultiplier>k__BackingField: 1

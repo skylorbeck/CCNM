@@ -14,17 +14,13 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
     [field: SerializeField] public SpriteRenderer itemSprite { get; private set; }
     [field: SerializeField] public TextMeshPro title { get; private set; }
     [field: SerializeField] public TextMeshPro[] statText { get; private set; }
+    [field: SerializeField] public GemSlot[] gemSlotsFront { get; private set; } 
+
 
     [field: Header("Back")]
-    [field: SerializeField]
-    public SpriteRenderer abilitySprite { get; private set; }
-
-    [field: SerializeField] public TextMeshPro abilityTitle { get; private set; }
-    [field: SerializeField] public TextMeshPro abilityDesc { get; private set; }
-    [field: SerializeField] public TextMeshPro abilityDesc2 { get; private set; }
+    [field: SerializeField] public GemSlot[] gemSlots { get; private set; } 
     [field: Header("Misc")]
 
-    [field: SerializeField] public SpriteRenderer arrowSprite { get; private set; } 
     [field: SerializeField] public SpriteRenderer cardSprite { get; private set; }
     [field: SerializeField] public SpriteRenderer cardBackSprite { get; private set; }
     [field: SerializeField] public SpriteRenderer shredMark { get; private set; }
@@ -100,28 +96,44 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
             }
         }
         
-        if (item.ability != null)
+        for (var i = 0; i < gemSlots.Length; i++)
         {
-            arrowSprite.enabled = true;
-            arrowSprite.sprite = item.ability.icon;
-            abilitySprite.sprite = item.ability.icon;
-            abilityTitle.text = item.ability.title;
-            abilityDesc.text = item.ability.descriptionA;
-            abilityDesc2.text = item.ability.descriptionB;
+            GemSlot gemSlot = gemSlots[i];
+            gemSlot.ClearGem();
+            gemSlot.SetLock(item.lockedSlots[i]);
+            
+            gemSlot = gemSlotsFront[i];
+            gemSlot.ClearGem();
+            gemSlot.SetLock(item.lockedSlots[i]);
         }
-        else
+
+        for (int i = 0; i < item.gemSlots; i++)
         {
-            arrowSprite.enabled = false;
-            abilitySprite.sprite = null;
-            abilityTitle.text = "";
-            abilityDesc.text = "";
-            abilityDesc2.text = "";
+            gemSlots[i].gameObject.SetActive(true);
+            gemSlotsFront[i].gameObject.SetActive(true);
+            AbilityObject ability = item.GetAbility(i);
+            if (ability != null)
+            {
+                gemSlots[i].SetGem(ability);
+                gemSlotsFront[i].SetGem(ability);
+            }
+        }
+        
+        for(int i = item.gemSlots; i < 3; i++)
+        {
+            gemSlots[i].gameObject.SetActive(false);
+            gemSlotsFront[i].gameObject.SetActive(false);
         }
 
         cardSprite.color= GameManager.Instance.colors[(int)item.quality];
         cardBackSprite.color = GameManager.Instance.colors[(int)item.quality];
     }
 
+    public void TestInsert()
+    {
+        InsertItem(GameManager.Instance.lootManager.GetItemCard());
+    }
+    
     public void OnPointerClick(PointerEventData eventData)
     {
         FlipCard();
