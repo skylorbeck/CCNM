@@ -52,10 +52,15 @@ public class EquipmentMenu : MonoBehaviour
             {
                 EquipmentCardShell card = Instantiate(cardPrefab, cardContainer);
                 card.InsertItem(equipmentList.container[j]);
+                if (GameManager.Instance.metaPlayer.GetEquippedCard(i).guid ==card.EquipmentData.guid)
+                {
+                    card.SetHighlighted(true);
+                }
                 menuEntry.Add(card);
             }
             menuEntries.Add(menuEntry);
         }
+        SetSelected(GameManager.Instance.metaPlayer.equippedSlots[selectedMenu]);
     }
     
     public void AddEntry(EquipmentDataContainer entry,int menuIndex,int index)
@@ -88,15 +93,42 @@ public class EquipmentMenu : MonoBehaviour
             default:
             case Mode.RightWheel:
             case Mode.LeftWheel:
-                xOffset = -selected*yDistance;
+                xOffset = -selected*xDistance;//which of these goes with which?
                 break;
             case Mode.TopWheel:
             case Mode.BottomWheel:
-                yOffset = -selected*xDistance;
+                yOffset = -selected*yDistance;//these are super confusingly labeled
                 break;
         }
     }
 
+    public void Equip()
+    {
+        Equip(selectedMenu,selected);
+        for (var i = 0; i < menuEntries.Count; i++)
+        {
+            List<EquipmentCardShell> menuEntry = menuEntries[i];
+            for (var j = 0; j < menuEntry.Count; j++)
+            {
+                EquipmentCardShell card = menuEntry[j];
+                if (card.EquipmentData.guid == GameManager.Instance.metaPlayer.GetEquippedCard(i).guid)
+                {
+                    card.SetHighlighted(true);
+                }
+                else
+                {
+                    card.SetHighlighted(false);
+                }
+            }
+        }
+        SoundManager.Instance.PlayUiAccept();
+    }
+    
+    public void Equip(int menuIndex,int index)
+    {
+        GameManager.Instance.metaPlayer.Equip(menuIndex,index);
+    }
+    
     void Update()
     {
         if (menuEntries.Count == 0)
@@ -112,8 +144,8 @@ public class EquipmentMenu : MonoBehaviour
             {
 
                 Transform entryTransform = menuEntry[index].transform;
-                Vector3 entryPosition = entryTransform.position;
-
+                Vector3 entryPosition = entryTransform.localPosition;
+                Vector3 entryScale = entryTransform.localScale;
                 switch (mode)
                 {
                     case Mode.RightWheel:
@@ -121,6 +153,19 @@ public class EquipmentMenu : MonoBehaviour
                         if (i == selectedMenu)
                         {
                             entryPosition.x = (index * xDistance) +xOffset;
+                            if (index == selected)
+                            {
+                                entryScale = Vector3.Lerp(entryScale, Vector3.one,Time.deltaTime*5f);
+                            }
+                            else
+                            {
+                                entryScale = Vector3.Lerp(entryScale, Vector3.one * 0.5f,Time.deltaTime*5f);
+                            }
+                        }
+                        else
+                        {
+                            entryPosition.x = Mathf.Lerp(entryPosition.x,(index * xDistance) - (xDistance* GameManager.Instance.metaPlayer.equippedSlots[i]),Time.deltaTime*5f);
+                            entryScale = Vector3.Lerp(entryScale, Vector3.one * 0.5f, Time.deltaTime*5f);
                         }
                         break;
                     case Mode.LeftWheel:
@@ -138,6 +183,7 @@ public class EquipmentMenu : MonoBehaviour
                 }
 
                 entryTransform.localPosition = entryPosition;
+                entryTransform.localScale = entryScale;
             }
         }
     }
@@ -189,7 +235,7 @@ public class EquipmentMenu : MonoBehaviour
             default:
             case Mode.LeftWheel:
             case Mode.RightWheel:
-                target = (float)(Math.Round(xOffset / yDistance, MidpointRounding.AwayFromZero) * xDistance);
+                target = (float)(Math.Round(xOffset / xDistance, MidpointRounding.AwayFromZero) * xDistance);
 
                 if (sticky || !userIsHolding)
                 {
@@ -239,7 +285,18 @@ public class EquipmentMenu : MonoBehaviour
 
     public void OnPoint(Vector2 pos)
     {
-        Debug.Log(pos);
+        if (userIsHolding)
+        {
+            return;
+        }
+        if (pos.y > Screen.height * 0.45f && pos.y < Screen.height * 0.65f && pos.x >Screen.width*0.25f)
+        {
+            dragMode = DragMode.Horizontal;
+        }
+        else
+        {
+            dragMode = DragMode.Vertical;
+        }
     }
 
     public void OnClick(InputAction.CallbackContext context)
@@ -265,7 +322,6 @@ public class EquipmentMenu : MonoBehaviour
             if (delta.magnitude > 0.1f)
             {
                 userIsHolding = true;
-                dragMode = DragMode.None;
             }
             else
             {
@@ -281,17 +337,6 @@ public class EquipmentMenu : MonoBehaviour
                     xOffset += delta.x * Time.deltaTime * PlayerPrefs.GetFloat("TouchSensitivity", 1f);
                     break;
             }
-            /*switch (mode)
-            {
-                case Mode.TopWheel:
-                case Mode.BottomWheel:
-                    
-                    break;
-                case Mode.LeftWheel:
-                case Mode.RightWheel:
-                    xOffset += delta.y * Time.deltaTime * PlayerPrefs.GetFloat("TouchSensitivity", 1f);
-                    break;
-            }*/
         }
         
     }

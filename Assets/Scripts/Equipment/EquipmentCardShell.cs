@@ -21,6 +21,7 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
     [field: SerializeField] public GemSlot[] gemSlots { get; private set; } 
     [field: Header("Misc")]
 
+    [field: SerializeField] public SpriteRenderer[] cardHighlightRenderers { get; private set; }
     [field: SerializeField] public SpriteRenderer cardSprite { get; private set; }
     [field: SerializeField] public SpriteRenderer cardBackSprite { get; private set; }
     [field: SerializeField] public SpriteRenderer shredMark { get; private set; }
@@ -30,6 +31,7 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
     [field: SerializeField] public int rotateSpeed { get; private set; } = 5;
     [field: SerializeField] public bool MouseOver { get; private set; } = false;
     [field: SerializeField] public bool Selected { get; set; } = false;
+    [field: SerializeField] public bool Highlighted { get; set; } = false;
     [field: SerializeField] public bool MarkedForShred { get; set; } = false;
 
 
@@ -127,6 +129,19 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
 
         cardSprite.color= GameManager.Instance.colors[(int)item.quality];
         cardBackSprite.color = GameManager.Instance.colors[(int)item.quality];
+        for (var i = 0; i < cardHighlightRenderers.Length; i++)
+        {
+            cardHighlightRenderers[i].gameObject.SetActive(false);
+        }
+    }
+    
+    public void SetHighlighted(bool highlighted)
+    {
+        Highlighted = highlighted;
+        for (var i = 0; i < cardHighlightRenderers.Length; i++)
+        {
+            cardHighlightRenderers[i].gameObject.SetActive(highlighted);
+        }
     }
 
     public void TestInsert()
