@@ -460,38 +460,39 @@ public class FightManager : MonoBehaviour
         {
             return;
         }
-        if (enemySlot == selectedEnemy)
+
+        if (selectedWheel == Lane.None)
         {
-            switch (selectedWheel)
+            if (enemySlot == selectedEnemy)
             {
-                case Lane.None:
-                    selectedEnemy = Lane.None;
-                    enemySelector.enabled = false;
-                    ClearPreviewText();
-                    CheckForBothSelected();
+                selectedEnemy = Lane.None;
+                enemySelector.enabled = false;
+                ClearPreviewText();
+                CheckForBothSelected();
+                return;
+            }
+            enemySelector.enabled = true;
+            selectedEnemy = enemySlot;
+            switch (enemySlot)
+            {
+                case Lane.Left:
+                    enemySelector.rectTransform.anchoredPosition = new Vector2(-33.5f,-52);
                     break;
-                default:
-                    PlayerAttack();
+                case Lane.Middle:
+                    enemySelector.rectTransform.anchoredPosition = new Vector2(0f, -52);
+                    break;
+                case Lane.Right:
+                    enemySelector.rectTransform.anchoredPosition = new Vector2(33.5f,-52);
                     break;
             }
+            GetSelectedEnemy();
+            SetPreviewText(targetEnemy);
             return;
         }
-        enemySelector.enabled = true;
         selectedEnemy = enemySlot;
-        switch (enemySlot)
-        {
-            case Lane.Left:
-                enemySelector.rectTransform.anchoredPosition = new Vector2(-33.5f,-52);
-                break;
-            case Lane.Middle:
-                enemySelector.rectTransform.anchoredPosition = new Vector2(0f, -52);
-                break;
-            case Lane.Right:
-                enemySelector.rectTransform.anchoredPosition = new Vector2(33.5f,-52);
-                break;
-        }
+        
         GetSelectedEnemy(); 
-        SetPreviewText(targetEnemy);
+        PlayerAttack();
         CheckForBothSelected();
     }
 
