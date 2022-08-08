@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 public class GenericMenuV1 : MonoBehaviour
 {
     [SerializeField] private MenuEntry menuPrefab;
-    [SerializeField] private Mode mode = Mode.FullWheel;
+    [SerializeField] private Mode mode = Mode.LeftWheel;
     [SerializeField] TextMeshProUGUI buttonText;
 
     [SerializeField] private List<GenericMenuEntry> entries;
@@ -92,8 +92,6 @@ public class GenericMenuV1 : MonoBehaviour
             case Mode.BottomWheel:
                 offset = -selected*xDistance;
                 break;
-            case Mode.FullWheel:
-                break;
         }
     }
 
@@ -105,7 +103,7 @@ public class GenericMenuV1 : MonoBehaviour
         int newSelected;
         switch (mode)
         {
-            case Mode.FullWheel:
+            /*case Mode.FullWheel:
                 target = (float)(Math.Round(offset / menuEntries.Count, MidpointRounding.AwayFromZero)) *
                          (menuEntries.Count + 0.25f);
                 
@@ -116,7 +114,7 @@ public class GenericMenuV1 : MonoBehaviour
 
                 newSelected = (int)Math.Round(offset / menuEntries.Count, MidpointRounding.AwayFromZero);
 
-                break;
+                break;*/
             default:
             case Mode.LeftWheel:
             case Mode.RightWheel:
@@ -157,12 +155,12 @@ public class GenericMenuV1 : MonoBehaviour
 
             switch (mode)
             {
-                case Mode.FullWheel:
+                /*case Mode.FullWheel:
                     float angle = i * Mathf.PI * 2 / menuEntries.Count;
                     angle += offset / menuEntries.Count;
                     entryPosition.y = Mathf.Sin(angle) * yDistance;
                     entryPosition.x = Mathf.Cos(angle) * xDistance;
-                    break;
+                    break;*/
                 case Mode.RightWheel:
                     entryPosition.y = (i * yDistance) + offset;
                     entryPosition.x = Mathf.Cos(Mathf.Abs(entryPosition.y * 0.5f)) * xDistance;
@@ -215,7 +213,6 @@ public class GenericMenuV1 : MonoBehaviour
             Vector2 delta = context.ReadValue<Vector2>();
             switch (mode)
             {
-                case Mode.FullWheel:
                 case Mode.TopWheel:
                 case Mode.BottomWheel:
                     offset += delta.x * Time.deltaTime * PlayerPrefs.GetFloat("TouchSensitivity", 1f);
@@ -234,13 +231,12 @@ public class GenericMenuV1 : MonoBehaviour
         GameManager.Instance.inputReader.ClickEventWithContext -= OnClick;
     }
 
-    private enum Mode
+    public enum Mode
     {
         RightWheel,
         LeftWheel,
         TopWheel,
         BottomWheel,
-        FullWheel
     }
     
     public void InvokeSelected()

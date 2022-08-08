@@ -22,6 +22,7 @@ public class InputReader : ScriptableObject, CCNM.IUIActions
     public event UnityAction PadAny = delegate { };
     public event UnityAction Back = delegate { };
     public event UnityAction<Vector2> Drag = delegate { };
+    public event UnityAction<Vector2> Point = delegate { };
     public event UnityAction<InputAction.CallbackContext> DragWithContext = delegate { };
 
     private CCNM _ccnm;
@@ -106,7 +107,7 @@ public class InputReader : ScriptableObject, CCNM.IUIActions
 
     public void OnPoint(InputAction.CallbackContext context)
     {
-
+        Point(context.ReadValue<Vector2>());
     }
 
     public void OnClick(InputAction.CallbackContext context)
