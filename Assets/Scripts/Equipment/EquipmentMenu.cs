@@ -15,6 +15,7 @@ public class EquipmentMenu : MonoBehaviour
     [SerializeField] private Mode mode = Mode.LeftWheel;
 
     [SerializeField] private List<List<EquipmentCardShell>> menuEntries = new List<List<EquipmentCardShell>>();
+    [SerializeField] private List<EquipmentCardShell> previews  = new List<EquipmentCardShell>();
 
     [SerializeField] private float yDistance = 3f;
     [SerializeField] private float xDistance = 1.5f;
@@ -28,6 +29,7 @@ public class EquipmentMenu : MonoBehaviour
     [field:SerializeField] public DragMode dragMode{ get; private set; } 
     
     [SerializeField] private Transform cardContainer;
+    [SerializeField] private Transform previewContainer;
 
     async void Start()
     {
@@ -59,8 +61,13 @@ public class EquipmentMenu : MonoBehaviour
                 menuEntry.Add(card);
             }
             menuEntries.Add(menuEntry);
+            EquipmentCardShell preview = Instantiate(cardPrefab, previewContainer);
+            preview.InsertItem(GameManager.Instance.metaPlayer.GetEquippedCard(i));
+            preview.SetHighlighted(true);
+            previews.Add(preview);
         }
         SetSelected(GameManager.Instance.metaPlayer.equippedSlots[selectedMenu]);
+        
     }
     
     public void AddEntry(EquipmentDataContainer entry,int menuIndex,int index)
@@ -114,6 +121,8 @@ public class EquipmentMenu : MonoBehaviour
                 if (card.EquipmentData.guid == GameManager.Instance.metaPlayer.GetEquippedCard(i).guid)
                 {
                     card.SetHighlighted(true);
+                    previews[i].InsertItem(card.EquipmentData);
+                    previews[i].SetHighlighted(true);
                 }
                 else
                 {
@@ -155,7 +164,7 @@ public class EquipmentMenu : MonoBehaviour
                             entryPosition.x = (index * xDistance) +xOffset;
                             if (index == selected)
                             {
-                                entryScale = Vector3.Lerp(entryScale, Vector3.one,Time.deltaTime*5f);
+                                entryScale = Vector3.Lerp(entryScale, Vector3.one*0.9f,Time.deltaTime*5f);
                             }
                             else
                             {
@@ -184,7 +193,13 @@ public class EquipmentMenu : MonoBehaviour
 
                 entryTransform.localPosition = entryPosition;
                 entryTransform.localScale = entryScale;
+                
+                
             }
+
+            Vector3 transformLocalPosition = previews[i].transform.localPosition;
+            transformLocalPosition.y = (i * yDistance) + yOffset;
+            previews[i].transform.localPosition = transformLocalPosition;
         }
     }
 
@@ -289,7 +304,7 @@ public class EquipmentMenu : MonoBehaviour
         {
             return;
         }
-        if (pos.y > Screen.height * 0.45f && pos.y < Screen.height * 0.65f && pos.x >Screen.width*0.25f)
+        if (pos.y > Screen.height * 0.35f && pos.y < Screen.height * 0.65f && pos.x >Screen.width*0.5f)
         {
             dragMode = DragMode.Horizontal;
         }
@@ -319,14 +334,7 @@ public class EquipmentMenu : MonoBehaviour
         if (context.performed)
         {
             Vector2 delta = context.ReadValue<Vector2>();
-            if (delta.magnitude > 0.1f)
-            {
-                userIsHolding = true;
-            }
-            else
-            {
-                userIsHolding = false;
-            }
+           
             switch (dragMode)
             {
                 default:
