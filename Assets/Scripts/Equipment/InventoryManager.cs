@@ -6,6 +6,7 @@ using UnityEngine.Pool;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+[Obsolete("Use EquipmentMenu instead")]
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private Slider cardSlider;

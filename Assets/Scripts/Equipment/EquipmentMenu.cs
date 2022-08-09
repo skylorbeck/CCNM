@@ -23,6 +23,7 @@ public class EquipmentMenu : MonoBehaviour
     [SerializeField] private float xOffset = 0f;
     [SerializeField] private float cardScaleLower = 0.6f;
     [SerializeField] private float cardScaleUpper = 0.9f;
+    [SerializeField] private float cardPreviewMax = 1.2f;
     [SerializeField] private bool sticky = false;
     [SerializeField] private float stickiness = 1f;
     [SerializeField] private bool userIsHolding = false;
@@ -38,6 +39,7 @@ public class EquipmentMenu : MonoBehaviour
         menuEntries = new List<List<EquipmentCardShell>>();
         sticky = PlayerPrefs.GetInt("StickyMenu",0) == 1;
         await Task.Delay(10);
+        GameManager.Instance.inputReader.Back+=Back;
         Init();
     }
 
@@ -114,14 +116,14 @@ public class EquipmentMenu : MonoBehaviour
 
     public void Equip()
     {
+        GameManager.Instance.metaPlayer.Equip(selectedMenu,menuEntries[selectedMenu][selected].EquipmentData);
         for (var i = 0; i < menuEntries.Count; i++)
         {
             List<EquipmentCardShell> menuEntry = menuEntries[i];
             for (var j = 0; j < menuEntry.Count; j++)
             {
                 EquipmentCardShell card = menuEntry[j];
-                if (i==selectedMenu && j==selected)
-                    GameManager.Instance.metaPlayer.Equip(i,card.EquipmentData);
+                    
 
                 if (card.EquipmentData.guid == GameManager.Instance.metaPlayer.GetEquippedCard(i).guid)
                 {
@@ -262,7 +264,7 @@ public class EquipmentMenu : MonoBehaviour
             if (i == selectedMenu)
             {
                 previews[i].Selected = true;
-                transformLocalScale = Vector3.Lerp(transformLocalScale, Vector3.one * 1.1f, Time.deltaTime * 5f);
+                transformLocalScale = Vector3.Lerp(transformLocalScale, Vector3.one * cardPreviewMax, Time.deltaTime * 5f);
             }
             else
             {
@@ -372,10 +374,10 @@ public class EquipmentMenu : MonoBehaviour
 
     public void OnPoint(Vector2 pos)
     {
-        if (userIsHolding)
-        {
-            return;
-        }
+        // if (userIsHolding)
+        // {
+        //     return;
+        // }//todo fix this so it works on mobile
 
         switch (mode)
         {
@@ -471,7 +473,22 @@ public class EquipmentMenu : MonoBehaviour
         GameManager.Instance.inputReader.DragWithContext -= OnDrag;
         GameManager.Instance.inputReader.ClickEventWithContext -= OnClick;
         GameManager.Instance.inputReader.Point -= OnPoint;
+        GameManager.Instance.inputReader.Back-=Back;
+        
     }
 
-    
+    public void Back()
+    {
+        GameManager.Instance.saveManager.SaveRun();
+        GameManager.Instance.LoadSceneAdditive("Hotel","Equipment");
+        //todo decide if equipment can be changed mid-run or not;
+        /*if (GameManager.Instance.battlefield.runStarted || GameManager.Instance.battlefield.deckChosen)
+        {
+            GameManager.Instance.LoadSceneAdditive("MapScreen","Equipment");
+        }
+        else
+        {
+            GameManager.Instance.LoadSceneAdditive("Hotel","Equipment");
+        }*/
+    }
 }
