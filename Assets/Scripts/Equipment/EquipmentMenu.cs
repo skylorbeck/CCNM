@@ -21,6 +21,8 @@ public class EquipmentMenu : MonoBehaviour
     [SerializeField] private float xDistance = 1.5f;
     [SerializeField] private float yOffset = 0f;
     [SerializeField] private float xOffset = 0f;
+    [SerializeField] private float cardScaleLower = 0.6f;
+    [SerializeField] private float cardScaleUpper = 0.9f;
     [SerializeField] private bool sticky = false;
     [SerializeField] private float stickiness = 1f;
     [SerializeField] private bool userIsHolding = false;
@@ -64,6 +66,7 @@ public class EquipmentMenu : MonoBehaviour
             EquipmentCardShell preview = Instantiate(cardPrefab, previewContainer);
             preview.InsertItem(GameManager.Instance.metaPlayer.GetEquippedCard(i));
             preview.SetHighlighted(true);
+            
             previews.Add(preview);
         }
         SetSelected(GameManager.Instance.metaPlayer.equippedSlots[selectedMenu]);
@@ -111,13 +114,15 @@ public class EquipmentMenu : MonoBehaviour
 
     public void Equip()
     {
-        Equip(selectedMenu,selected);
         for (var i = 0; i < menuEntries.Count; i++)
         {
             List<EquipmentCardShell> menuEntry = menuEntries[i];
             for (var j = 0; j < menuEntry.Count; j++)
             {
                 EquipmentCardShell card = menuEntry[j];
+                if (i==selectedMenu && j==selected)
+                    GameManager.Instance.metaPlayer.Equip(i,card.EquipmentData);
+
                 if (card.EquipmentData.guid == GameManager.Instance.metaPlayer.GetEquippedCard(i).guid)
                 {
                     card.SetHighlighted(true);
@@ -133,10 +138,6 @@ public class EquipmentMenu : MonoBehaviour
         SoundManager.Instance.PlayUiAccept();
     }
     
-    public void Equip(int menuIndex,int index)
-    {
-        GameManager.Instance.metaPlayer.Equip(menuIndex,index);
-    }
     
     void Update()
     {
@@ -146,60 +147,131 @@ public class EquipmentMenu : MonoBehaviour
         ProcessSelectedMenu();
         ProcessSelectedCard();
 
+        CardPosUpdate();
+    }
+
+    private void CardPosUpdate()
+    {
         for (var i = 0; i < menuEntries.Count; i++)
         {
             List<EquipmentCardShell> menuEntry = menuEntries[i];
             for (var index = 0; index < menuEntry.Count; index++)
             {
-
                 Transform entryTransform = menuEntry[index].transform;
                 Vector3 entryPosition = entryTransform.localPosition;
                 Vector3 entryScale = entryTransform.localScale;
                 switch (mode)
                 {
                     case Mode.RightWheel:
+                    case Mode.LeftWheel:
                         entryPosition.y = (i * yDistance) + yOffset;
                         if (i == selectedMenu)
                         {
-                            entryPosition.x = (index * xDistance) +xOffset;
+                            entryPosition.x = (index * xDistance) + xOffset;
+                            menuEntry[index].Selected = true;
+
                             if (index == selected)
                             {
-                                entryScale = Vector3.Lerp(entryScale, Vector3.one*0.9f,Time.deltaTime*5f);
+                                entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleUpper, Time.deltaTime * 5f);
+                                entryPosition.z = 0f;
                             }
                             else
                             {
-                                entryScale = Vector3.Lerp(entryScale, Vector3.one * 0.5f,Time.deltaTime*5f);
+                                entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
+                                entryPosition.z = 1f;
                             }
                         }
                         else
                         {
-                            entryPosition.x = Mathf.Lerp(entryPosition.x,(index * xDistance) - (xDistance* GameManager.Instance.metaPlayer.equippedSlots[i]),Time.deltaTime*5f);
-                            entryScale = Vector3.Lerp(entryScale, Vector3.one * 0.5f, Time.deltaTime*5f);
+                            entryPosition.x = Mathf.Lerp(entryPosition.x,
+                                (index * xDistance) - (xDistance * GameManager.Instance.metaPlayer.equippedSlots[i]),
+                                Time.deltaTime * 5f);
+                            entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
+                            entryPosition.z = 0;
+                            menuEntry[index].Selected = false;
+
                         }
-                        break;
-                    case Mode.LeftWheel:
-                        entryPosition.y = (i * yDistance) + xOffset;
-                        entryPosition.x = -Mathf.Cos(Mathf.Abs(entryPosition.y * 0.5f)) * xDistance;
+                   
                         break;
                     case Mode.TopWheel:
-                        entryPosition.x = (i * xDistance) + xOffset;
-                        entryPosition.y = Mathf.Cos(Mathf.Abs(entryPosition.x * 0.5f)) * yDistance;
-                        break;
                     case Mode.BottomWheel:
                         entryPosition.x = (i * xDistance) + xOffset;
-                        entryPosition.y = -Mathf.Cos(Mathf.Abs(entryPosition.x * 0.5f)) * yDistance;
+                        if (i == selectedMenu)
+                        {
+                            entryPosition.y = (index * yDistance) + yOffset;
+                            menuEntry[index].Selected = true;
+
+                            if (index == selected)
+                            {
+                                entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleUpper, Time.deltaTime * 5f);
+                                entryPosition.z = 0f;
+                            }
+                            else
+                            {
+                                entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
+                                entryPosition.z = 1f;
+                            }
+                        }
+                        else
+                        {
+                            entryPosition.y = Mathf.Lerp(entryPosition.y,
+                                (index * yDistance) - (yDistance * GameManager.Instance.metaPlayer.equippedSlots[i]),
+                                Time.deltaTime * 5f);
+                            entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
+                            entryPosition.z = 0;
+                            menuEntry[index].Selected = false;
+
+                        }
                         break;
                 }
 
                 entryTransform.localPosition = entryPosition;
                 entryTransform.localScale = entryScale;
-                
-                
             }
 
             Vector3 transformLocalPosition = previews[i].transform.localPosition;
-            transformLocalPosition.y = (i * yDistance) + yOffset;
+            Vector3 transformLocalScale = previews[i].transform.localScale;
+            switch (mode)
+            {
+                default:
+                case Mode.RightWheel:
+                    previewContainer.transform.localPosition = new Vector3(-1.25f, 0, -1);
+                    cardContainer.transform.localPosition = new Vector3(1.25f, 0, 0);
+                    transformLocalPosition.y = (i * yDistance) + yOffset;
+                    transformLocalPosition.x = 0;
+                    break;
+                case Mode.LeftWheel:
+                    previewContainer.transform.localPosition = new Vector3(1.25f, 0, -1);
+                    cardContainer.transform.localPosition = new Vector3(-1.25f, 0, 0);
+                    transformLocalPosition.y = (i * yDistance) + yOffset;
+                    transformLocalPosition.x = 0;
+                    break;
+                case Mode.TopWheel:
+                    previewContainer.transform.localPosition = new Vector3(0,3.25f, -1);
+                    cardContainer.transform.localPosition = new Vector3(0, 0, 0);
+                    transformLocalPosition.y = 0;
+                    transformLocalPosition.x = (i * xDistance) + xOffset;
+                    break;
+                case Mode.BottomWheel:
+                    previewContainer.transform.localPosition = new Vector3(0,-3.25f, -1);
+                    cardContainer.transform.localPosition = new Vector3(0, 0, 0);
+                    transformLocalPosition.y = 0;
+                    transformLocalPosition.x = (i * xDistance) + xOffset;
+                    break;
+            }
+            if (i == selectedMenu)
+            {
+                previews[i].Selected = true;
+                transformLocalScale = Vector3.Lerp(transformLocalScale, Vector3.one * 1.1f, Time.deltaTime * 5f);
+            }
+            else
+            {
+                previews[i].Selected = false;
+                transformLocalScale = Vector3.Lerp(transformLocalScale, Vector3.one, Time.deltaTime * 5f);
+            }
+
             previews[i].transform.localPosition = transformLocalPosition;
+            previews[i].transform.localScale = transformLocalScale;
         }
     }
 
@@ -304,14 +376,53 @@ public class EquipmentMenu : MonoBehaviour
         {
             return;
         }
-        if (pos.y > Screen.height * 0.35f && pos.y < Screen.height * 0.65f && pos.x >Screen.width*0.5f)
+
+        switch (mode)
         {
-            dragMode = DragMode.Horizontal;
+            default:
+            case Mode.RightWheel:
+                if (pos.y > Screen.height * 0.35f && pos.y < Screen.height * 0.65f && pos.x > Screen.width*0.5f)
+                {
+                    dragMode = DragMode.Horizontal;
+                }
+                else
+                {
+                    dragMode = DragMode.Vertical;
+                }
+                break;
+            case Mode.LeftWheel:
+                if (pos.y > Screen.height * 0.35f && pos.y < Screen.height * 0.65f && pos.x < Screen.width*0.5f)
+                {
+                    dragMode = DragMode.Horizontal;
+                }
+                else
+                {
+                    dragMode = DragMode.Vertical;
+                }
+                break;
+            case Mode.TopWheel:
+                if (pos.y < Screen.height * 0.65f)
+                {
+                    dragMode = DragMode.Vertical;
+                }
+                else
+                {
+                    dragMode = DragMode.Horizontal;
+                }
+                break;
+            case Mode.BottomWheel:
+                if (pos.y > Screen.height * 0.35f)
+                {
+                    dragMode = DragMode.Vertical;
+                }
+                else
+                {
+                    dragMode = DragMode.Horizontal;
+                }
+                break;
         }
-        else
-        {
-            dragMode = DragMode.Vertical;
-        }
+
+       
     }
 
     public void OnClick(InputAction.CallbackContext context)

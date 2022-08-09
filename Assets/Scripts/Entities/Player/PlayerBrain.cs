@@ -181,6 +181,17 @@ public class PlayerBrain : Brain
     #endregion
 
   
+    public void Equip(int slot, EquipmentDataContainer equipment)
+    {
+        if (slot < 0 || slot >= equippedSlots.Length)
+        {
+            return;
+        }
+       
+        equippedSlots[slot] = playerInventory[slot].container.IndexOf(equipment);
+        CalculateCardStats();
+    }
+    
     public void Equip(int dataContainerIndex, int cardIndex)
     {
         equippedSlots[dataContainerIndex] = cardIndex;
