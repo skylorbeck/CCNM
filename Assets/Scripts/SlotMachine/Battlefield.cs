@@ -42,7 +42,7 @@ public class Battlefield : ScriptableObject
 
     public void Reset()
     {
-        totalHands = 1;
+        ClearBattlefield();
         player.ClearPlayerObject();
         player.Clone(GameManager.Instance.metaPlayer);
         player.AddConsumables(0,1);
@@ -71,7 +71,7 @@ public class Battlefield : ScriptableObject
 
     public void ClearBattlefield()
     {
-        totalHands = 0;
+        totalHands = 1;
         randomState = null;
         deckChosen = false;
         runStarted = false;

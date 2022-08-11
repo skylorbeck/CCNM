@@ -116,6 +116,6 @@ public class LevelingManager : MonoBehaviour
     }
     public void Back()
     {
-        GameManager.Instance.LoadSceneAdditive("Hotel","Leveling");
+        GameManager.Instance.LoadSceneAdditive("MainMenu","Leveling");
     }
 }

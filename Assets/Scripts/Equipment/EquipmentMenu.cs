@@ -143,17 +143,22 @@ public class EquipmentMenu : MonoBehaviour
     
     void Update()
     {
-        if (menuEntries.Count == 0)
-            return;
-        
-        ProcessSelectedMenu();
-        ProcessSelectedCard();
+        if (menuEntries.Count != 0)
+        {
+            ProcessSelectedMenu();
+            if (menuEntries[selectedMenu].Count != 0)
+            {
+                ProcessSelectedCard();
+            }
+        }
 
         CardPosUpdate();
     }
 
     private void CardPosUpdate()
     {
+        if (menuEntries.Count == 0)
+            return;
         for (var i = 0; i < menuEntries.Count; i++)
         {
             List<EquipmentCardShell> menuEntry = menuEntries[i];
@@ -480,7 +485,7 @@ public class EquipmentMenu : MonoBehaviour
     public void Back()
     {
         GameManager.Instance.saveManager.SaveRun();
-        GameManager.Instance.LoadSceneAdditive("Hotel","Equipment");
+        GameManager.Instance.LoadSceneAdditive("MainMenu","Equipment");
         //todo decide if equipment can be changed mid-run or not;
         /*if (GameManager.Instance.battlefield.runStarted || GameManager.Instance.battlefield.deckChosen)
         {

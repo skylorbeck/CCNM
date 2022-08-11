@@ -1482,7 +1482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197dd48eefd1bb14da85bc09d63d85cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 761222036289701337, guid: a5596c5df4ffba6458f41d7dbc72b7c2, type: 3}
+  cardPrefab: {fileID: 2936789436814341088, guid: 08f04cb4a383ce44bab03c81a985d939, type: 3}
   cardContainer: {fileID: 2063275632}
   cards: []
   cardSlider: {fileID: 703878627}

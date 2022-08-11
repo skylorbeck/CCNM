@@ -451,8 +451,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5785410998544796747, guid: 8634e4dbdeca75b47996f7dfff0eba85, type: 3}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
+      propertyPath: rotationalSpeed
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[0].icon

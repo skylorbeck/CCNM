@@ -281,7 +281,7 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.LoadSceneAdditive("Hotel","Equipment");
+            GameManager.Instance.LoadSceneAdditive("MainMenu","Equipment");
         }
     }
 }

@@ -1516,7 +1516,7 @@ MonoBehaviour:
   - {fileID: 2089169940}
   - {fileID: 238392506}
   - {fileID: 1594617649}
-  CardPrefab: {fileID: 3241255835491342939, guid: a5596c5df4ffba6458f41d7dbc72b7c2, type: 3}
+  CardPrefab: {fileID: 1056854992277793890, guid: 08f04cb4a383ce44bab03c81a985d939, type: 3}
   CardHouse: {fileID: 406891975}
 --- !u!1 &1887569408
 GameObject:

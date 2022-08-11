@@ -8,7 +8,8 @@ using UnityEngine;
 [Serializable]
 public class SaveManager
 {
-
+    int version = 1;
+    
     public void SaveMeta()
     {
         BinaryFormatter bf = new BinaryFormatter();

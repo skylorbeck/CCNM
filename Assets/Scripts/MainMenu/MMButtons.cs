@@ -15,7 +15,9 @@ public class MMButtons : MonoBehaviour
     public void NewGame()
     {
         SoundManager.Instance.PlayUiAccept();
-        GameManager.Instance.LoadSceneAdditive("RunSettings","MainMenu");
+        GameManager.Instance.battlefield.Reset();
+        // GameManager.Instance.LoadSceneAdditive("RunSettings","MainMenu");//todo put this back in when the run settings are done
+        GameManager.Instance.LoadSceneAdditive("MapScreen", "MainMenu");
     }
 
     public void ResumeGame()
@@ -24,10 +26,10 @@ public class MMButtons : MonoBehaviour
         GameManager.Instance.LoadSceneAdditive("MapScreen", "MainMenu");
     }
 
-    public void Hotel()
+    public void MainMenu()
     {
         SoundManager.Instance.PlayUiAccept();
-        GameManager.Instance.LoadSceneAdditive("Hotel","MainMenu");
+        GameManager.Instance.LoadSceneAdditive("MainMenu","MainMenu");
     }
     
     public void Settings()
@@ -35,7 +37,31 @@ public class MMButtons : MonoBehaviour
         SoundManager.Instance.PlayUiAccept();
         GameManager.Instance.LoadSceneAdditive("Settings","MainMenu");
     }
-    
+    public void Equipment()
+    {
+        SoundManager.Instance.PlayUiAccept();
+        GameManager.Instance.LoadSceneAdditive("Equipment","MainMenu");
+    }
+    public void Leveling()
+    {
+        SoundManager.Instance.PlayUiAccept();
+        GameManager.Instance.LoadSceneAdditive("Leveling","MainMenu");
+    }
+    public void Shredding()
+    {
+        SoundManager.Instance.PlayUiAccept();
+        GameManager.Instance.LoadSceneAdditive("CardShredding","MainMenu");
+    }
+    public void CardPacks()
+    {
+        SoundManager.Instance.PlayUiAccept();
+        GameManager.Instance.LoadSceneAdditive("CardPacks","MainMenu");
+    }
+    public void Capsules()
+    {
+        SoundManager.Instance.PlayUiAccept();
+        GameManager.Instance.LoadSceneAdditive("Capsules","MainMenu");
+    }
     private async void Start()
     {
         await Task.Delay(10);

@@ -28,7 +28,7 @@ public class CapsuleManager : MonoBehaviour
 
     public void Back()
     {
-        GameManager.Instance.LoadSceneAdditive("Hotel","Capsules");
+        GameManager.Instance.LoadSceneAdditive("MainMenu","Capsules");
     }
 
 }

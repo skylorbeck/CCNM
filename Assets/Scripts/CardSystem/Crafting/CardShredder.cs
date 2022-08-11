@@ -90,7 +90,7 @@ public class CardShredder : MonoBehaviour
 
     public void Back()
     {
-        GameManager.Instance.LoadSceneAdditive("Hotel", "CardShredding");
+        GameManager.Instance.LoadSceneAdditive("MainMenu", "CardShredding");
     }
 
 

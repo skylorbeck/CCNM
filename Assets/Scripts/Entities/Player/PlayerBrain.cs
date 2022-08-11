@@ -239,6 +239,10 @@ public class PlayerBrain : Brain
 
     public EquipmentDataContainer GetEquippedCard(int equipmentList)
     {
+        if (equippedSlots[equipmentList] == -1)
+        {
+            return defaultEquipment[equipmentList];
+        }
         return playerInventory[equipmentList].container[equippedSlots[equipmentList]];
     }
 

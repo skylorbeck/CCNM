@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -328,7 +330,9 @@ public class SavableDataContainer
     public int[] statValue;
     public bool indestructible;
 
+    [OptionalField]
     public int gemSlots;
+    [OptionalField]
     public bool[] lockedSlots;
     
     public EquipmentDataContainer.Quality quality;

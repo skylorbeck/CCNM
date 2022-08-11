@@ -141,6 +141,6 @@ public class CardPackManager : MonoBehaviour
 
     public void Back()
     {
-        GameManager.Instance.LoadSceneAdditive("Hotel","CardPacks");
+        GameManager.Instance.LoadSceneAdditive("MainMenu","CardPacks");
     }
 }

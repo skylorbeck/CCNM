@@ -18,6 +18,7 @@ public class GenericMenuV1 : MonoBehaviour
 
     [SerializeField] private float yDistance = 3f;
     [SerializeField] private float xDistance = 1.5f;
+    [SerializeField] private float rotationalSpeed = 1f;
     [SerializeField] private float offset = 0f;
     [SerializeField] private bool sticky = false;
     [SerializeField] private float stickiness = 1f;
@@ -164,18 +165,22 @@ public class GenericMenuV1 : MonoBehaviour
                 case Mode.RightWheel:
                     entryPosition.y = (i * yDistance) + offset;
                     entryPosition.x = Mathf.Cos(Mathf.Abs(entryPosition.y * 0.5f)) * xDistance;
+                    entryTransform.rotation = Quaternion.Euler(0, 0, entryPosition.y * rotationalSpeed);
                     break;
                 case Mode.LeftWheel:
                     entryPosition.y = (i * yDistance) + offset;
                     entryPosition.x = -Mathf.Cos(Mathf.Abs(entryPosition.y * 0.5f)) * xDistance;
+                    entryTransform.rotation = Quaternion.Euler(0, 0, entryPosition.y * rotationalSpeed);
                     break;
                 case Mode.TopWheel:
                     entryPosition.x = (i * xDistance) + offset;
                     entryPosition.y = Mathf.Cos(Mathf.Abs(entryPosition.x * 0.5f)) * yDistance;
+                    entryTransform.rotation = Quaternion.Euler(0, 0, entryPosition.x * rotationalSpeed);
                     break;
                 case Mode.BottomWheel:
                     entryPosition.x = (i * xDistance) + offset;
                     entryPosition.y = -Mathf.Cos(Mathf.Abs(entryPosition.x * 0.5f)) * yDistance;
+                    entryTransform.rotation = Quaternion.Euler(0, 0, entryPosition.x * rotationalSpeed);
                     break;
             }
 
