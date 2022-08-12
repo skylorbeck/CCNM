@@ -11,6 +11,11 @@ public class GemSlot : MonoBehaviour
     [field: SerializeField] public SpriteRenderer lockRenderer { get; set; }
     [field: SerializeField] public TextMeshPro text { get; set; }
 
+
+    public void SetQuality(EquipmentDataContainer.Quality quality)
+    {
+        slotRenderer.color = GameManager.Instance.colors[(int)quality];
+    }
     public void SetGem(AbilityObject gem)
     {
         gemRenderer.sprite = gem.gemIcon;

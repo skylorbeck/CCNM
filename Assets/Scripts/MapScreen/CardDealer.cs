@@ -16,7 +16,7 @@ public class CardDealer : MonoBehaviour
     [SerializeField] private CardShell[] shells;
     [SerializeField] private Button[] buttons;
     [SerializeField] private DeckPreviewer deckPreviewer;
-
+    [SerializeField] private Vector3[] positions;
     async void Start()
     {
 
@@ -63,6 +63,7 @@ public class CardDealer : MonoBehaviour
         for (var i = 0; i < mapCards.Count; i++)
         {
             shells[i].InsertCard(mapCards[i], i == 0);
+            shells[i].SetTargetPosition(positions[i]);
         }
 
         foreach (CardShell shell in shells)

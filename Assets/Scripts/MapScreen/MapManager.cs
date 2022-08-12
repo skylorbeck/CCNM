@@ -48,7 +48,7 @@ public class MapManager : MonoBehaviour
         if (GameManager.Instance.battlefield.runStarted)
         {
             deckManager.gameObject.SetActive(false);
-            cardDealer.transform.localPosition = Vector3.zero;
+            cardDealer.transform.localPosition = new Vector3(0,-1,0);
             deckManager.transform.localPosition = new Vector3(-100, 0, 0);
             cardDealer.InsertDeck(GameManager.Instance.battlefield.deck);
             cardDealer.GenerateCards();
@@ -149,7 +149,7 @@ public class MapManager : MonoBehaviour
         DOTween.To(() => deckManager.transform.localPosition, x => deckManager.transform.localPosition = x,
             new Vector3(-100, 0, 0), 5f);
         DOTween.To(() => cardDealer.transform.localPosition, x => cardDealer.transform.localPosition = x,
-            new Vector3(0, 0, 0), 1f);
+            new Vector3(0, -1, 0), 1f);
         cardDealer.InsertDeck(GameManager.Instance.battlefield.deck);
         GameManager.Instance.battlefield.ClearBattlefield();
         UpdateTotalCardsText();

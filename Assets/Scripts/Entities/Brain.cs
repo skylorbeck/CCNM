@@ -104,27 +104,27 @@ public class Brain : ScriptableObject
             default:
             case EquipmentDataContainer.Stats.None:
                 return 0;
-            case EquipmentDataContainer.Stats.Strength:
+            case EquipmentDataContainer.Stats.Str:
                 return GetStrength();
-            case EquipmentDataContainer.Stats.Dexterity:
-                return GetDexterity();
-            case EquipmentDataContainer.Stats.Vitality:
-                return GetVitality();
-            case EquipmentDataContainer.Stats.Speed:
+            case EquipmentDataContainer.Stats.Spd:
                 return GetSpeed();
-            case EquipmentDataContainer.Stats.Skill:
+            case EquipmentDataContainer.Stats.Vit:
+                return GetVitality();
+            case EquipmentDataContainer.Stats.Dex:
+                return GetDexterity();
+            case EquipmentDataContainer.Stats.Skl:
                 return GetSkill();
-            case EquipmentDataContainer.Stats.Luck:
+            case EquipmentDataContainer.Stats.Lck:
                 return GetLuck();
-            case EquipmentDataContainer.Stats.Grit:
+            case EquipmentDataContainer.Stats.Cap:
                 return GetGrit();
-            case EquipmentDataContainer.Stats.Resolve:
+            case EquipmentDataContainer.Stats.Chg:
                 return GetResolve();
-            case EquipmentDataContainer.Stats.Intelligence:
+            case EquipmentDataContainer.Stats.Int:
                 return GetIntelligence();
-            case EquipmentDataContainer.Stats.Charisma:
+            case EquipmentDataContainer.Stats.Cha:
                 return GetCharisma();
-            case EquipmentDataContainer.Stats.Sagacity:
+            case EquipmentDataContainer.Stats.Wis:
                 return GetSagacity();
         }
     }
@@ -312,37 +312,37 @@ public class Brain : ScriptableObject
             default:
             case EquipmentDataContainer.Stats.None:
                 break;
-            case EquipmentDataContainer.Stats.Strength:
+            case EquipmentDataContainer.Stats.Str:
                 SetStrength(GetStrength() + levelDifference);
                 break;
-            case EquipmentDataContainer.Stats.Dexterity:
+            case EquipmentDataContainer.Stats.Dex:
                 SetDexterity(GetDexterity() + levelDifference);
                 break;
-            case EquipmentDataContainer.Stats.Vitality:
+            case EquipmentDataContainer.Stats.Vit:
                 SetVitality(GetVitality() + levelDifference);
                 break;
-            case EquipmentDataContainer.Stats.Speed:
+            case EquipmentDataContainer.Stats.Spd:
                 SetSpeed(GetSpeed() + levelDifference);
                 break;
-            case EquipmentDataContainer.Stats.Skill:
+            case EquipmentDataContainer.Stats.Skl:
                 SetSkill(GetSkill() + levelDifference);
                 break;
-            case EquipmentDataContainer.Stats.Luck:
+            case EquipmentDataContainer.Stats.Lck:
                 SetLuck(GetLuck() + levelDifference);
                 break;
-            case EquipmentDataContainer.Stats.Grit:
+            case EquipmentDataContainer.Stats.Cap:
                 SetGrit(GetGrit() + levelDifference);
                 break;
-            case EquipmentDataContainer.Stats.Resolve:
+            case EquipmentDataContainer.Stats.Chg:
                 SetResolve(GetResolve() + levelDifference);
                 break;
-            case EquipmentDataContainer.Stats.Intelligence:
+            case EquipmentDataContainer.Stats.Int:
                 SetIntelligence(GetIntelligence() + levelDifference);
                 break;
-            case EquipmentDataContainer.Stats.Charisma:
+            case EquipmentDataContainer.Stats.Cha:
                 SetCharisma(GetCharisma() + levelDifference);
                 break;
-            case EquipmentDataContainer.Stats.Sagacity:
+            case EquipmentDataContainer.Stats.Wis:
                 SetSagacity(GetSagacity() + levelDifference);
                 break;
         }

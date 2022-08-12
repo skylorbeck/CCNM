@@ -61,7 +61,16 @@ public class PlayerBrain : Brain
             }
             else
             {
-                equippedCard = playerInventory[i].container[equippedSlots[i]];
+                try
+                {
+                    equippedCard = playerInventory[i].container[equippedSlots[i]];
+                }
+                catch
+                {
+                    equippedSlots[i] = -1;
+                    equippedCard = defaultEquipment[i];
+                    Debug.Log("Invalid Equipment Slot, resetting to default");   
+                }
             }
 
             for (var j = 0; j < equippedCard.stats.Length; j++)
@@ -72,37 +81,37 @@ public class PlayerBrain : Brain
                     default:
                     case EquipmentDataContainer.Stats.None:
                         break;
-                    case EquipmentDataContainer.Stats.Strength:
+                    case EquipmentDataContainer.Stats.Str:
                         cardStrength += equippedCard.statValue[j];
                         break;
-                    case EquipmentDataContainer.Stats.Dexterity:
+                    case EquipmentDataContainer.Stats.Dex:
                         cardDexterity += equippedCard.statValue[j];
                         break;
-                    case EquipmentDataContainer.Stats.Vitality:
+                    case EquipmentDataContainer.Stats.Vit:
                         cardVitality += equippedCard.statValue[j];
                         break;
-                    case EquipmentDataContainer.Stats.Speed:
+                    case EquipmentDataContainer.Stats.Spd:
                         cardSpeed += equippedCard.statValue[j];
                         break;
-                    case EquipmentDataContainer.Stats.Skill:
+                    case EquipmentDataContainer.Stats.Skl:
                         cardSkill += equippedCard.statValue[j];
                         break;
-                    case EquipmentDataContainer.Stats.Luck:
+                    case EquipmentDataContainer.Stats.Lck:
                         cardLuck += equippedCard.statValue[j];
                         break;
-                    case EquipmentDataContainer.Stats.Grit:
+                    case EquipmentDataContainer.Stats.Cap:
                         cardGrit += equippedCard.statValue[j];
                         break;
-                    case EquipmentDataContainer.Stats.Resolve:
+                    case EquipmentDataContainer.Stats.Chg:
                         cardResolve += equippedCard.statValue[j];
                         break;
-                    case EquipmentDataContainer.Stats.Intelligence:
+                    case EquipmentDataContainer.Stats.Int:
                         cardIntelligence += equippedCard.statValue[j];
                         break;
-                    case EquipmentDataContainer.Stats.Charisma:
+                    case EquipmentDataContainer.Stats.Cha:
                         cardCharisma += equippedCard.statValue[j];
                         break;
-                    case EquipmentDataContainer.Stats.Sagacity:
+                    case EquipmentDataContainer.Stats.Wis:
                         cardSagacity += equippedCard.statValue[j];
                         break;
                 }
@@ -211,14 +220,12 @@ public class PlayerBrain : Brain
 
     public void RemoveCardFromInventory(EquipmentDataContainer equipmentDataContainer)
     {
-        List<EquipmentDataContainer> container =
-            playerInventory[(int)equipmentDataContainer.itemCore.itemType].container;
-        if (equippedSlots[(int)equipmentDataContainer.itemCore.itemType] == container.IndexOf(equipmentDataContainer))
+        if ( equippedSlots[(int)equipmentDataContainer.itemCore.itemType] == playerInventory[(int)equipmentDataContainer.itemCore.itemType].container.IndexOf(equipmentDataContainer))
         {
             equippedSlots[(int)equipmentDataContainer.itemCore.itemType] = -1;
         }
+        playerInventory[(int)equipmentDataContainer.itemCore.itemType].container.Remove(equipmentDataContainer);
 
-        container.Remove(equipmentDataContainer);
     }
 
     public EquipmentDataContainer GetCard(int equipmentSlot, int cardIndex)
@@ -491,7 +498,7 @@ public class PlayerBrain : Brain
         defaultEquipment[0].SetIndestructible(true);
         defaultEquipment[0].SetStatValue(new int[] { 5, 5 });
         defaultEquipment[0].SetStats(new EquipmentDataContainer.Stats[]
-            { EquipmentDataContainer.Stats.Grit, EquipmentDataContainer.Stats.Resolve });
+            { EquipmentDataContainer.Stats.Cap, EquipmentDataContainer.Stats.Chg });
         defaultEquipment[0].SetGemSlots(1);
         defaultEquipment[0].SetLockedSlots(new bool[] { true, true, true });
         
@@ -499,7 +506,7 @@ public class PlayerBrain : Brain
         defaultEquipment[1].InsertItem(GameManager.Instance.equipmentRegistries[1].GetCard(0));
         defaultEquipment[1].SetIndestructible(true);
         defaultEquipment[1].SetStatValue(new int[] { 5 });
-        defaultEquipment[1].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Strength });
+        defaultEquipment[1].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Str });
         defaultEquipment[1].SetGemSlots(1);
         defaultEquipment[1].SetLockedSlots(new bool[] { true, true, true });
 
@@ -507,7 +514,7 @@ public class PlayerBrain : Brain
         defaultEquipment[2].InsertItem(GameManager.Instance.equipmentRegistries[2].GetCard(0));
         defaultEquipment[2].SetIndestructible(true);
         defaultEquipment[2].SetStatValue(new int[] { 5 });
-        defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vitality });
+        defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vit });
         defaultEquipment[2].SetGemSlots(1);
         defaultEquipment[2].SetLockedSlots(new bool[] { true, true, true });
     }

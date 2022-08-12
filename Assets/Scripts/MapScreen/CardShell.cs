@@ -24,7 +24,7 @@ public class CardShell : MonoBehaviour
     [SerializeField] private float speed = 25f;
     public void InsertCard(MapCard cardObject, bool above)
     {
-        TargetPosition = transform.localPosition;
+        // TargetPosition = transform.localPosition;
         card = cardObject;
         textAbove = above;
         text.text = card.cardTitle;
@@ -55,6 +55,11 @@ public class CardShell : MonoBehaviour
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, TargetPosition, speed * Time.deltaTime);
         }
+    }
+    
+    public void SetTargetPosition(Vector3 position)
+    {
+        TargetPosition = position;
     }
 
     public void Flip()

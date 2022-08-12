@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cbfb4afc0bea34596d3f2c05d16ce4, type: 3}
   m_Name: Test 5
   m_EditorClassIdentifier: 
-  <icon>k__BackingField: {fileID: 21300000, guid: 7fb180cfc6f99ab44a8ce9e953aa9054, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: 781f806f1294a494db75f691888f5edb, type: 3}
   <cardTitle>k__BackingField: Emerald Card
   <cardDescription>k__BackingField: ClubCard Description
   <cardCost>k__BackingField: 10

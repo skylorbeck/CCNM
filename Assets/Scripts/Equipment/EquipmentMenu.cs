@@ -11,10 +11,12 @@ using static GenericMenuV1;
 
 public class EquipmentMenu : MonoBehaviour
 {
+    [SerializeField] private MicroCard cardMicroPrefab;
     [SerializeField] private EquipmentCardShell cardPrefab;
+    [SerializeField] private ItemStatCompare cardCompare;
     [SerializeField] private Mode mode = Mode.LeftWheel;
 
-    [SerializeField] private List<List<EquipmentCardShell>> menuEntries = new List<List<EquipmentCardShell>>();
+    [SerializeField] private List<List<MicroCard>> menuEntries = new List<List<MicroCard>>();
     [SerializeField] private List<EquipmentCardShell> previews  = new List<EquipmentCardShell>();
 
     [SerializeField] private float yDistance = 3f;
@@ -36,7 +38,7 @@ public class EquipmentMenu : MonoBehaviour
 
     async void Start()
     {
-        menuEntries = new List<List<EquipmentCardShell>>();
+        menuEntries = new List<List<MicroCard>>();
         sticky = PlayerPrefs.GetInt("StickyMenu",0) == 1;
         await Task.Delay(10);
         GameManager.Instance.inputReader.Back+=Back;
@@ -48,15 +50,15 @@ public class EquipmentMenu : MonoBehaviour
         GameManager.Instance.inputReader.DragWithContext += OnDrag;
         GameManager.Instance.inputReader.ClickEventWithContext += OnClick;
         GameManager.Instance.inputReader.Point += OnPoint;
-        menuEntries = new List<List<EquipmentCardShell>>();
+        menuEntries = new List<List<MicroCard>>();
         for (var i = 0; i < GameManager.Instance.metaPlayer.playerInventory.Length; i++)
         {
-            List<EquipmentCardShell> menuEntry = new List<EquipmentCardShell>();
+            List<MicroCard> menuEntry = new List<MicroCard>();
             EquipmentList equipmentList = GameManager.Instance.metaPlayer.playerInventory[i];
             
             for (var j = 0; j < equipmentList.container.Count; j++)
             {
-                EquipmentCardShell card = Instantiate(cardPrefab, cardContainer);
+                MicroCard card = Instantiate(cardMicroPrefab, cardContainer);
                 card.InsertItem(equipmentList.container[j]);
                 if (GameManager.Instance.metaPlayer.GetEquippedCard(i).guid ==card.EquipmentData.guid)
                 {
@@ -77,7 +79,7 @@ public class EquipmentMenu : MonoBehaviour
     
     public void AddEntry(EquipmentDataContainer entry,int menuIndex,int index)
     {
-        EquipmentCardShell menuEntry = Instantiate(cardPrefab, transform);
+        MicroCard menuEntry = Instantiate(cardMicroPrefab, transform);
         menuEntry.InsertItem(entry);
         menuEntries[menuIndex].Insert(index, menuEntry);
     }
@@ -116,13 +118,18 @@ public class EquipmentMenu : MonoBehaviour
 
     public void Equip()
     {
+        if (menuEntries[selectedMenu].Count<=0)
+        {
+            SoundManager.Instance.PlayUiDeny();
+            return;
+        }
         GameManager.Instance.metaPlayer.Equip(selectedMenu,menuEntries[selectedMenu][selected].EquipmentData);
         for (var i = 0; i < menuEntries.Count; i++)
         {
-            List<EquipmentCardShell> menuEntry = menuEntries[i];
+            List<MicroCard> menuEntry = menuEntries[i];
             for (var j = 0; j < menuEntry.Count; j++)
             {
-                EquipmentCardShell card = menuEntry[j];
+                MicroCard card = menuEntry[j];
                     
 
                 if (card.EquipmentData.guid == GameManager.Instance.metaPlayer.GetEquippedCard(i).guid)
@@ -157,11 +164,11 @@ public class EquipmentMenu : MonoBehaviour
 
     private void CardPosUpdate()
     {
-        if (menuEntries.Count == 0)
+        if (menuEntries.Count == 0  || previews.Count == 0)
             return;
         for (var i = 0; i < menuEntries.Count; i++)
         {
-            List<EquipmentCardShell> menuEntry = menuEntries[i];
+            List<MicroCard> menuEntry = menuEntries[i];
             for (var index = 0; index < menuEntry.Count; index++)
             {
                 Transform entryTransform = menuEntry[index].transform;
@@ -175,7 +182,7 @@ public class EquipmentMenu : MonoBehaviour
                         if (i == selectedMenu)
                         {
                             entryPosition.x = (index * xDistance) + xOffset;
-                            menuEntry[index].Selected = true;
+                            // menuEntry[index].Selected = true;
 
                             if (index == selected)
                             {
@@ -195,18 +202,18 @@ public class EquipmentMenu : MonoBehaviour
                                 Time.deltaTime * 5f);
                             entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
                             entryPosition.z = 0;
-                            menuEntry[index].Selected = false;
+                            // menuEntry[index].Selected = false;
 
                         }
                    
                         break;
                     case Mode.TopWheel:
                     case Mode.BottomWheel:
-                        entryPosition.x = (i * xDistance) + xOffset;
+                        entryPosition.x =Mathf.Lerp(entryPosition.x,(i * xDistance) + xOffset+((i==selectedMenu&&index==selected)?0:-1.5f),Time.deltaTime * 5f);
                         if (i == selectedMenu)
                         {
                             entryPosition.y = (index * yDistance) + yOffset;
-                            menuEntry[index].Selected = true;
+                            // menuEntry[index].Selected = true;
 
                             if (index == selected)
                             {
@@ -226,7 +233,7 @@ public class EquipmentMenu : MonoBehaviour
                                 Time.deltaTime * 5f);
                             entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
                             entryPosition.z = 0;
-                            menuEntry[index].Selected = false;
+                            // menuEntry[index].Selected = false;
 
                         }
                         break;
@@ -254,27 +261,29 @@ public class EquipmentMenu : MonoBehaviour
                     transformLocalPosition.x = 0;
                     break;
                 case Mode.TopWheel:
-                    previewContainer.transform.localPosition = new Vector3(0,3.25f, -1);
+                    previewContainer.transform.localPosition = new Vector3(0,2.75f, -1);
                     cardContainer.transform.localPosition = new Vector3(0, 0, 0);
                     transformLocalPosition.y = 0;
                     transformLocalPosition.x = (i * xDistance) + xOffset;
                     break;
                 case Mode.BottomWheel:
-                    previewContainer.transform.localPosition = new Vector3(0,-3.25f, -1);
-                    cardContainer.transform.localPosition = new Vector3(0, 0, 0);
+                    previewContainer.transform.localPosition = new Vector3(0,-2.75f, -1);
+                    cardContainer.transform.localPosition = new Vector3(0, -1.4f, 0);
                     transformLocalPosition.y = 0;
                     transformLocalPosition.x = (i * xDistance) + xOffset;
                     break;
             }
             if (i == selectedMenu)
             {
-                previews[i].Selected = true;
+                // previews[i].Selected = true;
                 transformLocalScale = Vector3.Lerp(transformLocalScale, Vector3.one * cardPreviewMax, Time.deltaTime * 5f);
+                transformLocalPosition.z = -1f;
             }
             else
             {
-                previews[i].Selected = false;
+                // previews[i].Selected = false;
                 transformLocalScale = Vector3.Lerp(transformLocalScale, Vector3.one, Time.deltaTime * 5f);
+                transformLocalPosition.z = 0f;
             }
 
             previews[i].transform.localPosition = transformLocalPosition;
@@ -362,6 +371,7 @@ public class EquipmentMenu : MonoBehaviour
     {
         if (newSelected != selected)
         {
+            cardCompare.InsertItemStats(GameManager.Instance.metaPlayer.EquippedCardExists(selectedMenu)?GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu):GameManager.Instance.metaPlayer.defaultEquipment[selectedMenu], menuEntries[selectedMenu][newSelected].EquipmentData);
             selected = newSelected;
             SoundManager.Instance.PlayUiClick();
         }
@@ -418,7 +428,7 @@ public class EquipmentMenu : MonoBehaviour
                 }
                 break;
             case Mode.BottomWheel:
-                if (pos.y > Screen.height * 0.35f)
+                if (pos.y > Screen.height * 0.4f)
                 {
                     dragMode = DragMode.Vertical;
                 }

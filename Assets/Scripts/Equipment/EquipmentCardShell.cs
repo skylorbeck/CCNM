@@ -11,19 +11,21 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
     //this class should be only used for data display
     [field: Header("Front")]
     [field: SerializeField] public EquipmentDataContainer EquipmentData { get; private set; }
-    [field: SerializeField] public SpriteRenderer itemSprite { get; private set; }
+    // [field: SerializeField] public SpriteRenderer itemSprite { get; private set; }
+    [field: SerializeField] public MicroCard microCard { get; private set; }
     [field: SerializeField] public TextMeshPro title { get; private set; }
-    [field: SerializeField] public TextMeshPro[] statText { get; private set; }
+    [field: SerializeField] public TextMeshPro[] statTitleText { get; private set; }
+    [field: SerializeField] public TextMeshPro[] statValueText { get; private set; }
     [field: SerializeField] public GemSlot[] gemSlotsFront { get; private set; } 
 
 
     [field: Header("Back")]
-    [field: SerializeField] public GemSlot[] gemSlots { get; private set; } 
+    // [field: SerializeField] public GemSlot[] gemSlots { get; private set; } 
     [field: Header("Misc")]
 
     [field: SerializeField] public SpriteRenderer[] cardHighlightRenderers { get; private set; }
     [field: SerializeField] public SpriteRenderer cardSprite { get; private set; }
-    [field: SerializeField] public SpriteRenderer cardBackSprite { get; private set; }
+    // [field: SerializeField] public SpriteRenderer cardBackSprite { get; private set; }
     [field: SerializeField] public SpriteRenderer shredMark { get; private set; }
     [field: SerializeField] public TextMeshPro qualityText { get; private set; }
     [field: SerializeField] public TextMeshPro levelText { get; private set; }
@@ -69,66 +71,70 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
         MouseOver = false;
         SetShredMark(false);
         EquipmentData = item;
-        itemSprite.sprite = item.itemCore.icon;
+        // itemSprite.sprite = item.itemCore.icon;
+        microCard.InsertItem(item);
         title.text = item.itemCore.cardTitle;
         qualityText.text = item.quality.ToString();
         qualityText.color = GameManager.Instance.colors[(int)item.quality];
         levelText.text = "lv."+ item.level;
         levelText.color = GameManager.Instance.colors[(int)item.quality];
-        for (var i = 0; i < statText.Length; i++)
+        for (var i = 0; i < statTitleText.Length; i++)
         {
             if (i<item.stats.Length&&item.stats[i] !=EquipmentDataContainer.Stats.None)
             {
-                statText[i].text = "+"
-                                   + item.statValue[i]
-                                   + " "+ item.stats[i];
+                statValueText[i].text = item.statValue[i].ToString();
+                statTitleText[i].text = item.stats[i].ToString();
             }
             else
             {
-                statText[i].text = "";
+                statTitleText[i].text = "";
+                statValueText[i].text = "";
             }
 
-            if (i<item.itemCore.guaranteeStats.Length)
+            /*if (i<item.itemCore.guaranteeStats.Length)
             {
                 statText[i].fontStyle = FontStyles.Underline;
             }
             else
             {
                 statText[i].fontStyle = FontStyles.Normal;
-            }
+            }*/
         }
         
-        for (var i = 0; i < gemSlots.Length; i++)
+        for (var i = 0; i < gemSlotsFront.Length; i++)
         {
-            GemSlot gemSlot = gemSlots[i];
-            gemSlot.ClearGem();
-            gemSlot.SetLock(item.lockedSlots[i]);
+            // GemSlot gemSlot = gemSlots[i];
+            // gemSlot.ClearGem();
+            // gemSlot.SetLock(item.lockedSlots[i]);
             
-            gemSlot = gemSlotsFront[i];
+            GemSlot gemSlot = gemSlotsFront[i];
             gemSlot.ClearGem();
             gemSlot.SetLock(item.lockedSlots[i]);
         }
 
         for (int i = 0; i < item.gemSlots; i++)
         {
-            gemSlots[i].gameObject.SetActive(true);
             gemSlotsFront[i].gameObject.SetActive(true);
+            // gemSlots[i].gameObject.SetActive(true);
+            // gemSlots[i].SetQuality(item.quality);
+            gemSlotsFront[i].SetQuality(item.quality);
             AbilityObject ability = item.GetAbility(i);
             if (ability != null)
             {
-                gemSlots[i].SetGem(ability);
+                // gemSlots[i].SetGem(ability);
+         
                 gemSlotsFront[i].SetGem(ability);
             }
         }
         
         for(int i = item.gemSlots; i < 3; i++)
         {
-            gemSlots[i].gameObject.SetActive(false);
+            // gemSlots[i].gameObject.SetActive(false);
             gemSlotsFront[i].gameObject.SetActive(false);
         }
 
         cardSprite.color= GameManager.Instance.colors[(int)item.quality];
-        cardBackSprite.color = GameManager.Instance.colors[(int)item.quality];
+        // cardBackSprite.color = GameManager.Instance.colors[(int)item.quality];
         for (var i = 0; i < cardHighlightRenderers.Length; i++)
         {
             cardHighlightRenderers[i].gameObject.SetActive(false);

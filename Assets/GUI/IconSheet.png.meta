@@ -1042,7 +1042,6 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       IconSheet_34: -1811170093
-      Key: -1149724283
       Heart: -806962554
       Point_Up: -279038660
       Point_Right: 24964915
@@ -1078,11 +1077,12 @@ TextureImporter:
       Shield: -1842966404
       Skull: -110709596
       Finger: 2062866816
+      Key: -1149724283
       Armor: -1235024799
       Square: 2070343927
-      Point_Left_Down: 1259526753
-      IconSheet_40: -387707300
       Go: -1247832851
+      IconSheet_40: -387707300
+      Point_Left_Down: 1259526753
       Point_Up_Left: -34144482
   spritePackingTag: 
   pSDRemoveMatte: 0

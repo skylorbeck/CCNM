@@ -93,7 +93,7 @@ public class EquipmentDataContainer
         List<Stats> allStats = new List<Stats>();
         List<Stats> pickedStats = new List<Stats>();
         allStats.AddRange(Enum.GetValues(typeof(Stats)).Cast<Stats>());
-        allStats.Remove(Stats.None);
+        allStats.Remove(Stats.None);//todo remove the bottom three?
         
         for (int i = 0; i < itemCore.guaranteeStats.Length; i++)
         {
@@ -119,31 +119,31 @@ public class EquipmentDataContainer
             int statMulti = 1;
             switch (stats[i])
             {
-                case Stats.Strength:
+                case Stats.Str:
                     statMulti = 5;
                     break;
-                case Stats.Dexterity:
+                case Stats.Spd:
                     statMulti = 5;
                     break;
-                case Stats.Speed:
+                case Stats.Dex:
                     statMulti = 5;
                     break;
-                case Stats.Skill:
+                case Stats.Skl:
                     statMulti = 5;
                     break;
-                case Stats.Vitality:
+                case Stats.Vit:
                     statMulti = 10;
                     break;
-                case Stats.Luck:
+                case Stats.Lck:
                     statMulti = 2;
                     break;
                 // case Stats.Willpower:
                 //     statMulti = 5;
                 //     break;
-                case Stats.Grit:
+                case Stats.Cap:
                     statMulti = 5;
                     break;
-                case Stats.Resolve:
+                case Stats.Chg:
                     statMulti = 5;
                     break;
             }
@@ -183,7 +183,7 @@ public class EquipmentDataContainer
                 gemSlots = 1;
                 break;
             case Quality.Noteworthy:
-                gemSlots = 1;
+                gemSlots = 1+Random.Range(0,2);
                 for (int i = 0; i < gemSlots; i++)
                 {
                     lockedSlots[i] = Random.Range(0,3) != 0;//66% chance of being locked
@@ -229,7 +229,8 @@ public class EquipmentDataContainer
         abilities[0] = GameManager.Instance.abilityRegistry.GetRandomAbility();
         for (int i = 1; i < gemSlots; i++)
         {
-            abilities[i] = Random.Range(0, 3) != 0 ? null: GameManager.Instance.abilityRegistry.GetRandomAbility();
+            // abilities[i] = Random.Range(0, 3) != 0 ? null: GameManager.Instance.abilityRegistry.GetRandomAbility();
+            abilities[i] = Random.Range(0, 3) != 0 ? null: itemCore.GetRandomAbility();
         }
     }
     public AbilityObject[] GetAbilities()
@@ -265,18 +266,19 @@ public class EquipmentDataContainer
     public enum Stats
     {
         None,
-        Strength,//damage
-        Dexterity,//dodge chance
-        Vitality,//health
-        Speed,//crit chance
-        Skill,//crit damage
-        Luck,//loot quality
-        Grit,//shield capacity
-        Resolve,//shield recharge rate
-        Intelligence,//ego boost
-        Charisma,//credit boost
-        Sagacity,//status damage
-        // Wisdom,
+        Str,//damage
+        Spd,//dodge chance
+        Vit,//health
+        Dex,//crit chance
+        Skl,//crit damage
+        Cap,//shield capacity
+        Chg,//shield recharge rate
+        Wis,//status damage
+
+        Int,//ego boost
+        Cha,//credit boost
+        Lck,//loot quality
+
         // Willpower,
     }
 
@@ -307,9 +309,12 @@ public class EquipmentDataContainer
         {
             if (savableDataContainer.abilityIndex[i] <0)
             {
-                savableDataContainer.abilityIndex[i] = 0;  
+                abilities[i] = null;
             }
-            abilities[i] = GameManager.Instance.abilityRegistry.GetAbility(savableDataContainer.abilityIndex[i]);
+            else
+            {
+                abilities[i] = GameManager.Instance.abilityRegistry.GetAbility(savableDataContainer.abilityIndex[i]);
+            }
         }
         quality = savableDataContainer.quality;
         level = savableDataContainer.level;

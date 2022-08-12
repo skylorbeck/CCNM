@@ -178,7 +178,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SpritePixelsToUnits
-    value: 100
+    value: 32
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SpriteBorder.x
@@ -422,7 +422,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_PlatformSettings.Array.data[3].m_Overridden
-    value: 1
+    value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_PlatformSettings.Array.data[3].m_AndroidETC2FallbackOverride
