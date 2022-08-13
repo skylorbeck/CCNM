@@ -32,7 +32,7 @@ public class Symbol : MonoBehaviour
         spriteRenderer.color = consumed
             ? Color.gray
             : Color.Lerp(Color.white, Color.black, Math.Abs(localPosition.y * darknessRamp));
-
+        
         if (ability.userStatus)
         {
             userStatusSprite.color =

@@ -11,27 +11,27 @@ using UnityEngine.UI;
 public class CardPackManager : MonoBehaviour
 {
     [field: SerializeField] private TextMeshProUGUI packCount;
-    [field: SerializeField] private EquipmentCardShell cardPrefab;
+    [field: SerializeField] private MicroCard cardPrefab;
     [field: SerializeField] private GameObject cardPackHolder;
     [field: SerializeField] private Transform packSprite;
-    [field: SerializeField] private List<EquipmentCardShell> cards;
-    [field: SerializeField] private List<EquipmentCardShell> tempCards;
+    [field: SerializeField] private List<MicroCard> cards;
+    [field: SerializeField] private List<MicroCard> tempCards;
     [field: SerializeField] private Vector3[] cardPositions;
     [field: SerializeField] private bool isPackOpen = false;
     [field: SerializeField] private Button openButton;
     [field: SerializeField] private TextMeshProUGUI openButtonText;
     private CancellationTokenSource cancellationTokenSource;
 
-    private ObjectPool<EquipmentCardShell> cardPool;
+    private ObjectPool<MicroCard> cardPool;
 
     async void Start()
     {
         cancellationTokenSource = new CancellationTokenSource();
 
-        cardPool = new ObjectPool<EquipmentCardShell>(
+        cardPool = new ObjectPool<MicroCard>(
             () =>
             {
-                EquipmentCardShell card = Instantiate(cardPrefab, cardPackHolder.transform);
+                MicroCard card = Instantiate(cardPrefab, cardPackHolder.transform);
                 return card;
             },
             card =>
@@ -88,7 +88,7 @@ public class CardPackManager : MonoBehaviour
         UpdatePackCount();
         for (int i = 0; i < 5; i++)
         {
-            EquipmentCardShell cardShell = cardPool.Get();
+            MicroCard cardShell = cardPool.Get();
             cardShell.InsertItem(GameManager.Instance.lootManager.GetItemCard());
             Transform cardTransform = cardShell.transform;
             cardTransform.localScale = Vector3.one * 0.75f;
@@ -98,7 +98,7 @@ public class CardPackManager : MonoBehaviour
         }
         GameManager.Instance.saveManager.SaveMeta();
 
-        foreach (EquipmentCardShell card in tempCards)
+        foreach (MicroCard card in tempCards)
         {
             await Task.Delay(500, cancellationTokenSource.Token);
             cards.Add(card);
@@ -115,7 +115,7 @@ public class CardPackManager : MonoBehaviour
 
             isPackOpen = false;
             
-            foreach (EquipmentCardShell card in tempCards)
+            foreach (MicroCard card in tempCards)
             {
                 cardPool.Release(card);
             }

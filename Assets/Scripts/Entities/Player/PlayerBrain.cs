@@ -122,7 +122,11 @@ public class PlayerBrain : Brain
             {
                 for (var j = 0; j < abilities.Length; j++)
                 {
-                    AddAbility(abilities[j]);
+                    if (abilities[j] != null)
+                    {
+                        AddAbility(abilities[j]);
+                        
+                    }
                 }
             }
         }

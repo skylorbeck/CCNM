@@ -209,12 +209,10 @@ public class EquipmentMenu : MonoBehaviour
                         break;
                     case Mode.TopWheel:
                     case Mode.BottomWheel:
-                        entryPosition.x =Mathf.Lerp(entryPosition.x,(i * xDistance) + xOffset+((i==selectedMenu&&index==selected)?0:-1.5f),Time.deltaTime * 5f);
+                        float xTarget =(i * xDistance) + xOffset;
+                        float yTarget =(index * yDistance) + yOffset;
                         if (i == selectedMenu)
                         {
-                            entryPosition.y = (index * yDistance) + yOffset;
-                            // menuEntry[index].Selected = true;
-
                             if (index == selected)
                             {
                                 entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleUpper, Time.deltaTime * 5f);
@@ -222,20 +220,27 @@ public class EquipmentMenu : MonoBehaviour
                             }
                             else
                             {
+                                xTarget -= 1.5f;
+                                if ( index == selected-1|| index == selected+1)
+                                {
+                                    xTarget += 0.65f;
+                                }
                                 entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
                                 entryPosition.z = 1f;
                             }
                         }
                         else
                         {
-                            entryPosition.y = Mathf.Lerp(entryPosition.y,
-                                (index * yDistance) - (yDistance * GameManager.Instance.metaPlayer.equippedSlots[i]),
-                                Time.deltaTime * 5f);
+                            yTarget = (index * yDistance*0.75f) - (yDistance*0.75f * GameManager.Instance.metaPlayer.equippedSlots[i]);
                             entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
                             entryPosition.z = 0;
                             // menuEntry[index].Selected = false;
+                            xTarget -= 1.5f;
 
                         }
+                        entryPosition.x =Mathf.Lerp(entryPosition.x,xTarget,Time.deltaTime * 5f);   
+                        entryPosition.y =Mathf.Lerp(entryPosition.y,yTarget,Time.deltaTime * 5f);
+
                         break;
                 }
 
