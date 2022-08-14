@@ -28,11 +28,11 @@ public class MicroCard : MonoBehaviour
         
         for (int i = 0; i < item.gemSlots; i++)
         {
-            AbilityObject ability = item.GetAbility(i);
+            AbilityObject ability = item.GetAbility(i)?.GetAbility();
             Color color = Color.clear;
             if (ability != null)
             {
-                switch (item.abilities[i].slotType)
+                switch (ability.slotType)
                     {
                         case EquipmentDataContainer.SlotType.Offense:
                             color = Color.red;

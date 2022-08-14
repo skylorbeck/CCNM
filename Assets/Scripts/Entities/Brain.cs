@@ -11,7 +11,7 @@ public class Brain : ScriptableObject
     [field: SerializeField] public string title { get; private set; } = "entity.name";
     [field: SerializeField] public string description { get; private set; } = "entity.description";
     [field: SerializeField] public Sprite icon { get; private set; }
-    [field: SerializeField] public AbilityObject[] abilities { get; private set; } = new AbilityObject[0];
+    [field: SerializeField] public AbilityGem[] abilities { get; private set; } = new AbilityGem[0];
     [field: SerializeField] public int credits { get; protected set; }
     [field: SerializeField] public int ego { get; protected set; }
     [field: SerializeField] public int level { get; protected set; } = 0;
@@ -350,27 +350,27 @@ public class Brain : ScriptableObject
     }
 
     #endregion
-    public AbilityObject GetRandomAbility()
+    public AbilityGem GetRandomAbility()
     {
         int randomIndex = Random.Range(0,abilities.Length);
         return abilities[randomIndex];
     }
     
-    public AbilityObject GetAbility(int index)
+    public AbilityGem GetAbility(int index)
     {
         return abilities[index];
     }
     
-    public void AddAbility(AbilityObject ability)
+    public void AddAbility(AbilityGem ability)
     {
-        List<AbilityObject> newAbilities = new List<AbilityObject>(abilities);
+        List<AbilityGem> newAbilities = new List<AbilityGem>(abilities);
         newAbilities.Add(ability);
         abilities = newAbilities.ToArray();
     }
     
     public void ClearAbilities()
     {
-        abilities = new AbilityObject[0];
+        abilities = new AbilityGem[0];
     }
     
     public void ClearRelics()

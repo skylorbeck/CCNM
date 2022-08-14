@@ -38,7 +38,7 @@ public class AbilityWheel : MonoBehaviour
             symbol =>
             {
                 symbol.transform.localPosition = new Vector3(0, 3f, 0);
-                symbol.SetAbility(owner.brain.GetRandomAbility());
+                symbol.SetAbility(owner.brain.GetRandomAbility().GetAbility());
                 symbol.gameObject.SetActive(true);
             },
             symbol =>

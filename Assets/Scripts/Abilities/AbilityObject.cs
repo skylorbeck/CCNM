@@ -54,3 +54,30 @@ public class AbilityObject : ScriptableObject
 
     [field: SerializeField] public AudioClip soundEffect { get; private set; }
 }
+[Serializable]
+public class AbilityGem
+{
+    [field: SerializeField] public int abilityIndex { get; private set; }
+    [field: SerializeField] public int gemLevel { get; private set; }
+    public AbilityGem(int abilityIndex, int gemLevel)
+    {
+        this.abilityIndex = abilityIndex;
+        this.gemLevel = gemLevel;
+    }
+    
+    public AbilityGem(AbilityObject ability, int gemLevel)
+    {
+        this.abilityIndex = GameManager.Instance.abilityRegistry.GetAbilityIndex(ability.title);
+        this.gemLevel = gemLevel;
+    }
+    public void SetGem(int abilityIndex, int gemLevel)
+    {
+        this.abilityIndex = abilityIndex;
+        this.gemLevel = gemLevel;
+    }
+    
+    public AbilityObject GetAbility()
+    {
+        return GameManager.Instance.abilityRegistry.GetAbility(abilityIndex);
+    }
+}

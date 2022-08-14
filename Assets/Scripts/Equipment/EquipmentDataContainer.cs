@@ -12,7 +12,8 @@ public class EquipmentDataContainer
     [field:SerializeField] public ItemCard itemCore { get; private set; }
     [field:SerializeField] public int gemSlots { get; private set; }//1-3. If less than 3, the rest are hidden and locked and empty.
     [field:SerializeField] public bool[] lockedSlots { get; private set; }
-    [field:SerializeField] public AbilityObject[] abilities { get; protected set; }
+    // [field:SerializeField] public AbilityObject[] abilities { get; protected set; }
+    [field:SerializeField] public AbilityGem[] abilities { get; protected set; }
     [field:SerializeField] public Quality quality { get; private set; }
     [field:SerializeField] public int level { get; private set; }
     [field:SerializeField] public Stats[] stats { get; private set; }
@@ -30,16 +31,16 @@ public class EquipmentDataContainer
         itemCore = item;
     }
     
-    public void InsertAbility(AbilityObject ability)
+    public void InsertAbility(AbilityGem ability)
     {
-        List<AbilityObject> newAbilities = new List<AbilityObject>();
+        List<AbilityGem> newAbilities = new List<AbilityGem>();
         if (abilities!=null && abilities.Length>0)
         {
             newAbilities.Add(ability);
         }
         else
         {
-            newAbilities = new List<AbilityObject> {ability};
+            newAbilities = new List<AbilityGem> {ability};
         }
         abilities = newAbilities.ToArray();
     }
@@ -75,7 +76,7 @@ public class EquipmentDataContainer
     }
     public int GetAbilityIndex(int abilityIndex)
     {
-        return GameManager.Instance.abilityRegistry.GetAbilityIndex(abilities[abilityIndex].title);
+        return abilities[abilityIndex].abilityIndex;
     }
 
     public void GenerateDataOfLevel(int ofLevel)
@@ -173,7 +174,7 @@ public class EquipmentDataContainer
         {
             lockedSlots[i] = true;
         }
-        abilities = new AbilityObject[lockedSlots.Length];
+        abilities = new AbilityGem[lockedSlots.Length];
         gemSlots = 0;
         
         switch (quality)
@@ -226,18 +227,19 @@ public class EquipmentDataContainer
                 }//all slots are unlocked
                 break;
         }
-        abilities[0] = GameManager.Instance.abilityRegistry.GetRandomAbility();
+
+        abilities[0] = new AbilityGem(itemCore.GetRandomAbility(), 0);
         for (int i = 1; i < gemSlots; i++)
         {
             // abilities[i] = Random.Range(0, 3) != 0 ? null: GameManager.Instance.abilityRegistry.GetRandomAbility();
-            abilities[i] = Random.Range(0, 3) != 0 ? null: itemCore.GetRandomAbility();
+            abilities[i] = Random.Range(0, 3) != 0 ? null: new AbilityGem(itemCore.GetRandomAbility(), 0);
         }
     }
-    public AbilityObject[] GetAbilities()
+    public AbilityGem[] GetAbilities()
     {
         return abilities;
     }
-    public AbilityObject GetAbility(int index)
+    public AbilityGem GetAbility(int index)
     {
         if (abilities != null && abilities.Length > index)
         {
@@ -304,18 +306,7 @@ public class EquipmentDataContainer
             }
         }
 
-        abilities = new AbilityObject[3];
-        for (int i = 0; i < savableDataContainer.abilityIndex.Length; i++)
-        {
-            if (savableDataContainer.abilityIndex[i] <0)
-            {
-                abilities[i] = null;
-            }
-            else
-            {
-                abilities[i] = GameManager.Instance.abilityRegistry.GetAbility(savableDataContainer.abilityIndex[i]);
-            }
-        }
+        abilities = savableDataContainer.abilityGems;
         quality = savableDataContainer.quality;
         level = savableDataContainer.level;
         stats = savableDataContainer.stats;
@@ -330,7 +321,7 @@ public class SavableDataContainer
     public Guid guid;
     public int equipmentRegistryIndex;
     public int itemCoreIndex;
-    public int[] abilityIndex;
+    public AbilityGem[] abilityGems;
     public int level;
     public int[] statValue;
     public bool indestructible;
@@ -347,11 +338,7 @@ public class SavableDataContainer
         guid = data.guid;
         equipmentRegistryIndex = (int)data.itemCore.itemType;
         itemCoreIndex = data.GetItemCoreIndex();
-        abilityIndex = new int[data.abilities.Length];
-        for (int i = 0; i < abilityIndex.Length; i++)
-        {
-            abilityIndex[i] = data.abilities[i] == null ? -1 : data.GetAbilityIndex(i);
-        }
+        abilityGems = data.GetAbilities();
         level = data.level;
         statValue = data.statValue;
         indestructible = data.indestructible;

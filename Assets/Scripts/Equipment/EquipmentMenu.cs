@@ -282,13 +282,13 @@ public class EquipmentMenu : MonoBehaviour
             {
                 // previews[i].Selected = true;
                 transformLocalScale = Vector3.Lerp(transformLocalScale, Vector3.one * cardPreviewMax, Time.deltaTime * 5f);
-                transformLocalPosition.z = -1f;
+                transformLocalPosition.z = -1.5f;
             }
             else
             {
                 // previews[i].Selected = false;
                 transformLocalScale = Vector3.Lerp(transformLocalScale, Vector3.one, Time.deltaTime * 5f);
-                transformLocalPosition.z = 0f;
+                transformLocalPosition.z = -0.5f;
             }
 
             previews[i].transform.localPosition = transformLocalPosition;

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,7 +12,8 @@ public class PlayerBrain : Brain
     [field: SerializeField] public int[] equippedSlots { get; private set; }
     [field: SerializeField] public EquipmentList[] playerInventory { get; private set; }
     [field: SerializeField] public EquipmentDataContainer[] defaultEquipment { get; private set; }
-    
+    [field: SerializeField] public AbilityGem[] ownedGems { get; private set; } = new AbilityGem[0];
+
     [field: SerializeField] public int cardPacks { get; private set; }
     [field: SerializeField] public int capsules { get; private set; }
     [field: SerializeField] public int superCapsules { get; private set; }
@@ -61,15 +64,23 @@ public class PlayerBrain : Brain
             }
             else
             {
-                try
-                {
-                    equippedCard = playerInventory[i].container[equippedSlots[i]];
-                }
-                catch
+                if (equippedSlots[i] >= playerInventory[i].container.Count)
                 {
                     equippedSlots[i] = -1;
                     equippedCard = defaultEquipment[i];
-                    Debug.Log("Invalid Equipment Slot, resetting to default");   
+                }
+                else
+                {
+                    try
+                    {
+                        equippedCard = playerInventory[i].container[equippedSlots[i]];
+                    }
+                    catch
+                    {
+                        equippedSlots[i] = -1;
+                        equippedCard = defaultEquipment[i];
+                        Debug.Log("Invalid Equipment Slot, resetting to default");
+                    }
                 }
             }
 
@@ -117,7 +128,7 @@ public class PlayerBrain : Brain
                 }
             }
 
-            AbilityObject[] abilities = equippedCard.GetAbilities();
+            AbilityGem[] abilities = equippedCard.GetAbilities();
             if (abilities != null)
             {
                 for (var j = 0; j < abilities.Length; j++)
@@ -250,8 +261,9 @@ public class PlayerBrain : Brain
 
     public EquipmentDataContainer GetEquippedCard(int equipmentList)
     {
-        if (equippedSlots[equipmentList] == -1)
+        if (equippedSlots[equipmentList] == -1|| equippedSlots[equipmentList] >= playerInventory[equipmentList].container.Count)
         {
+            equippedSlots[equipmentList] = -1;
             return defaultEquipment[equipmentList];
         }
         return playerInventory[equipmentList].container[equippedSlots[equipmentList]];
@@ -280,6 +292,15 @@ public class PlayerBrain : Brain
 
         int soulsGained = Random.Range(1, 10);
         cardSouls[(int)card.quality] += soulsGained;
+        
+        for (var i = 0; i < card.abilities?.Length; i++)
+        {
+            if (card.abilities[i] != null)
+            {
+                AddAbilityGem(card.abilities[i]);
+            }
+        }
+        
         return soulsGained;
     }
 
@@ -447,7 +468,16 @@ public class PlayerBrain : Brain
         SetCurrentHealth(5);
         CalculateCardStats();
     }
-
+    public void AddAbilityGem(AbilityGem gem)
+    {
+        List<AbilityGem> newGems = new List<AbilityGem>();
+        if (ownedGems!=null && ownedGems.Length>0)
+        {
+            newGems.AddRange(ownedGems);
+        }
+        newGems.Add(gem);
+        ownedGems = newGems.ToArray();
+    }
     public void InsertSaveFile(SavablePlayerBrain saveFile)
     {
         ClearPlayerObject();
@@ -467,6 +497,8 @@ public class PlayerBrain : Brain
         {
             AddRelic(GameManager.Instance.relicRegistry.GetRelic(i));
         }
+        
+        ownedGems = saveFile.ownedGems;
         
         cardSouls = saveFile.cardSouls;
         consumables = saveFile.consumables;
@@ -497,7 +529,7 @@ public class PlayerBrain : Brain
         {
             defaultEquipment[i] = new EquipmentDataContainer();
         }
-        defaultEquipment[0].InsertAbility(GameManager.Instance.abilityRegistry.GetAbility("Fireball"));
+        defaultEquipment[0].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Fireball"),0));
         defaultEquipment[0].InsertItem(GameManager.Instance.equipmentRegistries[0].GetCard(0));
         defaultEquipment[0].SetIndestructible(true);
         defaultEquipment[0].SetStatValue(new int[] { 5, 5 });
@@ -506,7 +538,7 @@ public class PlayerBrain : Brain
         defaultEquipment[0].SetGemSlots(1);
         defaultEquipment[0].SetLockedSlots(new bool[] { true, true, true });
         
-        defaultEquipment[1].InsertAbility(GameManager.Instance.abilityRegistry.GetAbility("Slash"));
+        defaultEquipment[1].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Slash"),0));
         defaultEquipment[1].InsertItem(GameManager.Instance.equipmentRegistries[1].GetCard(0));
         defaultEquipment[1].SetIndestructible(true);
         defaultEquipment[1].SetStatValue(new int[] { 5 });
@@ -514,7 +546,7 @@ public class PlayerBrain : Brain
         defaultEquipment[1].SetGemSlots(1);
         defaultEquipment[1].SetLockedSlots(new bool[] { true, true, true });
 
-        defaultEquipment[2].InsertAbility(GameManager.Instance.abilityRegistry.GetAbility("Headbutt"));
+        defaultEquipment[2].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Headbutt"),0));
         defaultEquipment[2].InsertItem(GameManager.Instance.equipmentRegistries[2].GetCard(0));
         defaultEquipment[2].SetIndestructible(true);
         defaultEquipment[2].SetStatValue(new int[] { 5 });
@@ -538,6 +570,7 @@ public class SavablePlayerBrain
     //brain
     public int currentHealth;
     public int[] relicIndexes;
+    [OptionalField] public AbilityGem[] ownedGems;
     //playerbrain
     public int[] equippedSlots;
     public SavableDataContainer[][] playerInventory;
@@ -584,6 +617,8 @@ public class SavablePlayerBrain
             Relic relic = player.relics[i];
             relicIndexes[i] = GameManager.Instance.relicRegistry.GetRelicIndex(relic.name);
         }
+
+        ownedGems = player.ownedGems;
 
         credits = player.credits;
         ego = player.ego;
