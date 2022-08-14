@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class GemShell : MonoBehaviour
 {
-    [field:SerializeField] public AbilityObject ability { get; private set; }
+    [field:SerializeField] public AbilityGem ability { get; private set; }
     [field:SerializeField] public SpriteRenderer gemRenderer { get; private set; }
+    [field:SerializeField] public SpriteRenderer levelRenderer { get; private set; }
     
-    public void InsertAbility(AbilityObject ability)
+    public void InsertAbility(AbilityGem ability)
     {
         this.ability = ability;
-        gemRenderer.sprite = ability.gemIcon;
+        gemRenderer.sprite = ability.GetAbility().gemIcon;
+        Sprite[] levelSprites = Resources.LoadAll<Sprite>("IconSheet");
+        foreach (Sprite sprite in levelSprites)
+        {
+            if (sprite.name == "Roman"+ability.gemLevel)
+            {
+                levelRenderer.sprite = sprite;
+                break;
+            }
+        }
     }
 
     public void TestInsert()
     {
-        InsertAbility(GameManager.Instance.abilityRegistry.GetRandomAbility());
+        InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetRandomAbility(),Random.Range(0,5)));
     }
     
     void Start()
@@ -31,5 +41,12 @@ public class GemShell : MonoBehaviour
     void FixedUpdate()
     {
         
+    }
+
+    public void ClearAbility()
+    {
+        this.gemRenderer.sprite = null;
+        this.levelRenderer.sprite = null;
+        this.ability = null;
     }
 }

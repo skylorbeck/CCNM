@@ -529,30 +529,34 @@ public class PlayerBrain : Brain
         {
             defaultEquipment[i] = new EquipmentDataContainer();
         }
-        defaultEquipment[0].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Fireball"),0));
+
         defaultEquipment[0].InsertItem(GameManager.Instance.equipmentRegistries[0].GetCard(0));
+        defaultEquipment[0].SetGemSlots(1);
+        defaultEquipment[0].SetLockedSlots(new bool[] { false, true, true });
+        defaultEquipment[0].SetAbilities(new AbilityGem[3]);
+        defaultEquipment[0].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Fireball"),0),0);
         defaultEquipment[0].SetIndestructible(true);
         defaultEquipment[0].SetStatValue(new int[] { 5, 5 });
         defaultEquipment[0].SetStats(new EquipmentDataContainer.Stats[]
             { EquipmentDataContainer.Stats.Cap, EquipmentDataContainer.Stats.Chg });
-        defaultEquipment[0].SetGemSlots(1);
-        defaultEquipment[0].SetLockedSlots(new bool[] { true, true, true });
-        
-        defaultEquipment[1].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Slash"),0));
+
         defaultEquipment[1].InsertItem(GameManager.Instance.equipmentRegistries[1].GetCard(0));
+        defaultEquipment[1].SetGemSlots(1);
+        defaultEquipment[1].SetLockedSlots(new bool[] { false, true, true });
+        defaultEquipment[1].SetAbilities(new AbilityGem[3]);
+        defaultEquipment[1].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Slash"),0),0);
         defaultEquipment[1].SetIndestructible(true);
         defaultEquipment[1].SetStatValue(new int[] { 5 });
         defaultEquipment[1].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Str });
-        defaultEquipment[1].SetGemSlots(1);
-        defaultEquipment[1].SetLockedSlots(new bool[] { true, true, true });
 
-        defaultEquipment[2].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Headbutt"),0));
         defaultEquipment[2].InsertItem(GameManager.Instance.equipmentRegistries[2].GetCard(0));
+        defaultEquipment[2].SetGemSlots(1);
+        defaultEquipment[2].SetLockedSlots(new bool[] { false, true, true });
+        defaultEquipment[2].SetAbilities(new AbilityGem[3]);
+        defaultEquipment[2].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Headbutt"),0),0);
         defaultEquipment[2].SetIndestructible(true);
         defaultEquipment[2].SetStatValue(new int[] { 5 });
         defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vit });
-        defaultEquipment[2].SetGemSlots(1);
-        defaultEquipment[2].SetLockedSlots(new bool[] { true, true, true });
     }
 
     

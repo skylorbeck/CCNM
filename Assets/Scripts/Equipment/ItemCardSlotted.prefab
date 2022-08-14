@@ -2882,10 +2882,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2071908240881982533, guid: d4217c0b94f39de428e886e85611da4f, type: 3}
-      propertyPath: <isFront>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2071908240881982535, guid: d4217c0b94f39de428e886e85611da4f, type: 3}
       propertyPath: m_Name
       value: GemSlotFront (2)
@@ -2958,10 +2954,6 @@ PrefabInstance:
     - target: {fileID: 2071908240881982532, guid: d4217c0b94f39de428e886e85611da4f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2071908240881982533, guid: d4217c0b94f39de428e886e85611da4f, type: 3}
-      propertyPath: <isFront>k__BackingField
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2071908240881982535, guid: d4217c0b94f39de428e886e85611da4f, type: 3}
       propertyPath: m_Name
@@ -3108,10 +3100,6 @@ PrefabInstance:
     - target: {fileID: 2071908240881982532, guid: d4217c0b94f39de428e886e85611da4f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2071908240881982533, guid: d4217c0b94f39de428e886e85611da4f, type: 3}
-      propertyPath: <isFront>k__BackingField
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2071908240881982535, guid: d4217c0b94f39de428e886e85611da4f, type: 3}
       propertyPath: m_Name

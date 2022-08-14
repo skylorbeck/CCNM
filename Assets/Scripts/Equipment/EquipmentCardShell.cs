@@ -114,12 +114,12 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
 
         for (int i = 0; i < item.gemSlots; i++)
         {
-            gemSlotsFront[i].gameObject.SetActive(true);
             // gemSlots[i].gameObject.SetActive(true);
             // gemSlots[i].SetQuality(item.quality);
+            gemSlotsFront[i].gameObject.SetActive(true);
             gemSlotsFront[i].SetQuality(item.quality);
-            AbilityObject ability = item.GetAbility(i)?.GetAbility();
-            if (ability != null)
+            AbilityGem ability = item.GetAbility(i);
+            if (ability?.GetAbility() != null)
             {
                 // gemSlots[i].SetGem(ability);
          

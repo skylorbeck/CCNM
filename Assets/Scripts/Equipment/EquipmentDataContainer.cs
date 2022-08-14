@@ -31,20 +31,28 @@ public class EquipmentDataContainer
         itemCore = item;
     }
     
-    public void InsertAbility(AbilityGem ability)
+    public bool InsertAbility(AbilityGem ability,int slot)
     {
-        List<AbilityGem> newAbilities = new List<AbilityGem>();
-        if (abilities!=null && abilities.Length>0)
+        if (slot >= gemSlots || slot < 0)
         {
-            newAbilities.Add(ability);
-        }
-        else
+            Debug.LogWarning("Slot is out of range");
+            return false;
+        } else if (lockedSlots[slot])
         {
-            newAbilities = new List<AbilityGem> {ability};
+            Debug.LogWarning("Slot is locked");
+            return false;
+        } else if (abilities[slot] != null)
+        {
+            Debug.LogWarning("Slot is not empty");
+            return false;
+        } else
+        {
+            abilities[slot] = ability;
+            lockedSlots[slot] = true;
+            return true;
         }
-        abilities = newAbilities.ToArray();
     }
-    
+
     public void SetStatValue(int[] value)
     {
         statValue = value;
@@ -61,6 +69,11 @@ public class EquipmentDataContainer
     public void SetLockedSlots(bool[] value)
     {
         lockedSlots = value;
+    }
+    
+    public void SetAbilities(AbilityGem[] value)
+    {
+        abilities = value;
     }
 
     public int GetItemCoreIndex()
@@ -170,10 +183,10 @@ public class EquipmentDataContainer
         }
 
         lockedSlots = new bool[3];
-        for (int i = 0; i < lockedSlots.Length; i++)
+        /*for (int i = 0; i < lockedSlots.Length; i++)
         {
             lockedSlots[i] = true;
-        }
+        }*/
         abilities = new AbilityGem[lockedSlots.Length];
         gemSlots = 0;
         
@@ -185,54 +198,66 @@ public class EquipmentDataContainer
                 break;
             case Quality.Noteworthy:
                 gemSlots = 1+Random.Range(0,2);
-                for (int i = 0; i < gemSlots; i++)
+                //we used to randomize the locked slots here, but it's not necessary anymore because slots are locked when gems are inserted.
+                
+                /*for (int i = 0; i < gemSlots; i++)
                 {
                     lockedSlots[i] = Random.Range(0,3) != 0;//66% chance of being locked
-                }
+                }*/
                 break;
             case Quality.Remarkable:
                 gemSlots = 1+Random.Range(0,3);
-                for (int i = 0; i < gemSlots; i++)
+                /*for (int i = 0; i < gemSlots; i++)
                 {
                     lockedSlots[i] = Random.Range(0,2) == 0;//50% chance of being locked
-                }
+                }*/
                 break;
             case Quality.Choice:
                 gemSlots = 1+Random.Range(0,3);
-                for (int i = 0; i < gemSlots; i++)
+                /*for (int i = 0; i < gemSlots; i++)
                 {
                     lockedSlots[i] = Random.Range(0,3) == 0;//33% chance of being locked
-                }
+                }*/
                 break;
             case Quality.Signature:
                 gemSlots = 2+Random.Range(0,2);
-                for (int i = 0; i < gemSlots; i++)
+                /*for (int i = 0; i < gemSlots; i++)
                 {
                     lockedSlots[i] = Random.Range(0,4) == 0;//25% chance of being locked
-                }
+                }*/
                 break;
             case Quality.Fabled:
                 gemSlots = 2+Random.Range(0,2);
-                for (int i = 0; i < gemSlots; i++)
+                /*for (int i = 0; i < gemSlots; i++)
                 {
                     lockedSlots[i] = Random.Range(0,4) == 0;//25% chance of being locked
-                }
+                }*/
                 break;
             case Quality.Exalted:
                 gemSlots = 3;
-                for (int i = 0; i < lockedSlots.Length; i++)
+                /*for (int i = 0; i < lockedSlots.Length; i++)
                 {
                     lockedSlots[i] = false;
 
-                }//all slots are unlocked
+                }//all slots are unlocked*/
                 break;
         }
 
         abilities[0] = new AbilityGem(itemCore.GetRandomAbility(), 0);
+        lockedSlots[0] = true;
         for (int i = 1; i < gemSlots; i++)
         {
             // abilities[i] = Random.Range(0, 3) != 0 ? null: GameManager.Instance.abilityRegistry.GetRandomAbility();
-            abilities[i] = Random.Range(0, 3) != 0 ? null: new AbilityGem(itemCore.GetRandomAbility(), 0);
+            if (Random.Range(0, 3) != 0)
+            {
+                abilities[i] = null;
+                lockedSlots[i] = false;
+            }
+            else
+            {
+                abilities[i] = new AbilityGem(itemCore.GetRandomAbility(), 0);
+                lockedSlots[i] = true;
+            }
         }
     }
     public AbilityGem[] GetAbilities()
