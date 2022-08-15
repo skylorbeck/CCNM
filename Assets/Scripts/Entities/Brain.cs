@@ -352,7 +352,9 @@ public class Brain : ScriptableObject
     #endregion
     public AbilityGem GetRandomAbility()
     {
+        
         int randomIndex = Random.Range(0,abilities.Length);
+        
         return abilities[randomIndex];
     }
     
@@ -363,6 +365,10 @@ public class Brain : ScriptableObject
     
     public void AddAbility(AbilityGem ability)
     {
+        if (ability.abilityIndex==-1)
+        {
+            return;
+        }
         List<AbilityGem> newAbilities = new List<AbilityGem>(abilities);
         newAbilities.Add(ability);
         abilities = newAbilities.ToArray();

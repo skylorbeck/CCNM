@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class Symbol : MonoBehaviour
 {
-    [field:SerializeField] public AbilityObject ability { get; private set; }
+    [field:SerializeField] public AbilityObject ability { get; private set; }//todo replace with AbilityGem
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private SpriteRenderer userStatusSprite;
     [SerializeField] private SpriteRenderer userStatusShadow;
@@ -32,7 +32,7 @@ public class Symbol : MonoBehaviour
         spriteRenderer.color = consumed
             ? Color.gray
             : Color.Lerp(Color.white, Color.black, Math.Abs(localPosition.y * darknessRamp));
-        
+
         if (ability.userStatus)
         {
             userStatusSprite.color =

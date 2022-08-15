@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -295,7 +296,7 @@ public class PlayerBrain : Brain
         
         for (var i = 0; i < card.abilities?.Length; i++)
         {
-            if (card.abilities[i] != null)
+            if (card.abilities[i] != null && card.abilities[i].abilityIndex!= -1)
             {
                 AddAbilityGem(card.abilities[i]);
             }
@@ -322,9 +323,9 @@ public class PlayerBrain : Brain
             if (sourcePlayer.EquippedCardExists(index))
             {
                 equippedSlots[index] = 0;
-                EquipmentDataContainer newcard = sourcePlayer.GetEquippedCard(index);
-                newcard.SetIndestructible(true);
-                AddCardToInventory(newcard);
+                EquipmentDataContainer equippedCard = new EquipmentDataContainer(sourcePlayer.GetEquippedCard(index));
+                equippedCard.SetIndestructible(true);
+                AddCardToInventory(equippedCard);
             }
             else
             {

@@ -22,6 +22,21 @@ public class EquipmentDataContainer
     [field:SerializeField] public bool indestructible { get; private set; }
 
     public Guid guid { get; private set; }
+
+    public EquipmentDataContainer(EquipmentDataContainer old)//clone
+    {
+        itemCore = old.itemCore;
+        gemSlots = old.gemSlots;
+        lockedSlots = old.lockedSlots;
+        abilities = old.abilities;
+        quality = old.quality;
+        level = old.level;
+        stats = old.stats;
+        statValue = old.statValue;
+        indestructible = old.indestructible;
+        guid = Guid.NewGuid();//do we want a new GUID? This would allow for the same item to be duplicated.
+    }
+    
     public void SetIndestructible(bool value)
     {
         indestructible = value;
