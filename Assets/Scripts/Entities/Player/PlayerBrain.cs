@@ -440,6 +440,26 @@ public class PlayerBrain : Brain
         cardPacks -= amt;
     }
 
+    public void RemoveGem(int gemIndex, int amt)
+    {
+        List<AbilityGem> newList = new List<AbilityGem>();
+        for (var i = 0; i < ownedGems.Length; i++)
+        {
+            if (i != gemIndex)
+            {
+                newList.Add(ownedGems[i]);
+                continue;
+            }
+            ownedGems[i].AddAmountOwned(-amt);
+            if (ownedGems[i].amountOwned > 0)
+            {
+                newList.Add(ownedGems[i]);
+            }
+        }
+        ownedGems = newList.ToArray();
+        
+    }
+
     public void ClearPlayerObject()
     {
         SetDefaultEquipment();
@@ -475,7 +495,21 @@ public class PlayerBrain : Brain
         {
             newGems.AddRange(ownedGems);
         }
-        newGems.Add(gem);
+        
+        bool found = false;
+        for (var j = 0; j < newGems.Count; j++)
+        {
+            if (newGems[j].abilityIndex == gem.abilityIndex && newGems[j].gemLevel == gem.gemLevel)
+            {
+                newGems[j].AddAmountOwned(1);
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            newGems.Add(gem);
+        }
         ownedGems = newGems.ToArray();
     }
     public void InsertSaveFile(SavablePlayerBrain saveFile)
@@ -559,7 +593,11 @@ public class PlayerBrain : Brain
         defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vit });
     }
 
-    
+
+    public void SpendSouls(int cardQuality, int cardLevel)
+    {
+        cardSouls[cardQuality] -= cardLevel;
+    }
 }
 
 [Serializable]

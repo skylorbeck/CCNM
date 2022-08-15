@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
@@ -31,7 +32,7 @@ public class EquipmentDataContainer
         itemCore = item;
     }
     
-    public bool InsertAbility(AbilityGem ability,int slot)
+    public bool InsertAbility([AllowNull]AbilityGem ability,int slot)
     {
         if (slot >= gemSlots || slot < 0)
         {
@@ -45,12 +46,30 @@ public class EquipmentDataContainer
         {
             Debug.LogWarning("Slot is not empty");
             return false;
-        } else
+        } else if (ability!=null)
         {
-            abilities[slot] = ability;
+            abilities[slot] =new AbilityGem(ability);
+            abilities[slot].SetAmountOwned(1);
             lockedSlots[slot] = true;
-            return true;
+        } 
+        return true;
+    }
+
+    public bool RemoveAbility(int slot)
+    { 
+        if (slot >= gemSlots || slot < 0)
+        {
+            Debug.LogWarning("Slot is out of range");
+            return false;
+        } else if (abilities[slot] == null)
+        {
+            Debug.LogWarning("Slot is already empty");
+            return false;
         }
+
+        abilities[slot] = null;
+        lockedSlots[slot] = false;
+        return true;
     }
 
     public void SetStatValue(int[] value)

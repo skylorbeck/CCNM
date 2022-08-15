@@ -9,7 +9,7 @@ public class AbilityObject : ScriptableObject
 {
 
     [field: SerializeField] public string title { get; private set; } = "ability.title";
-    [field: SerializeField] public string descriptionA { get; private set; } = "ability.description.a";
+    [field: SerializeField] public string descriptionA { get; private set; } = "ability.description.a";//todo GetDescription() where the damage is calculated based on your stats before returning
     [field: SerializeField] public string descriptionB { get; private set; } = "ability.description.b";
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public Sprite gemIcon { get; private set; }
@@ -59,21 +59,46 @@ public class AbilityGem
 {
     [field: SerializeField] public int abilityIndex { get; private set; }
     [field: SerializeField] public int gemLevel { get; private set; }
+    [field: SerializeField] public int amountOwned { get; private set; }
+
+    public AbilityGem(AbilityGem oldGem)
+    {
+        this.abilityIndex = oldGem.abilityIndex;
+        this.gemLevel = oldGem.gemLevel;
+        this.amountOwned = oldGem.amountOwned;
+    }
     public AbilityGem(int abilityIndex, int gemLevel)
     {
         this.abilityIndex = abilityIndex;
         this.gemLevel = gemLevel;
+        this.amountOwned = 0;   
     }
     
     public AbilityGem(AbilityObject ability, int gemLevel)
     {
         this.abilityIndex = GameManager.Instance.abilityRegistry.GetAbilityIndex(ability.title);
         this.gemLevel = gemLevel;
+        this.amountOwned = 0;
     }
     public void SetGem(int abilityIndex, int gemLevel)
     {
         this.abilityIndex = abilityIndex;
         this.gemLevel = gemLevel;
+    }
+    
+    public void SetLevel(int gemLevel)
+    {
+        this.gemLevel = gemLevel;
+    }
+    
+    public void SetAmountOwned(int amountOwned)
+    {
+        this.amountOwned = amountOwned;
+    }
+    
+    public void AddAmountOwned(int amount)
+    {
+        this.amountOwned += amount;
     }
     
     public AbilityObject GetAbility()

@@ -62,6 +62,11 @@ public class MMButtons : MonoBehaviour
         SoundManager.Instance.PlayUiAccept();
         GameManager.Instance.LoadSceneAdditive("Capsules","MainMenu");
     }
+    public void Gems()
+    {
+        SoundManager.Instance.PlayUiAccept();
+        GameManager.Instance.LoadSceneAdditive("Gems","MainMenu");
+    }
     private async void Start()
     {
         await Task.Delay(10);

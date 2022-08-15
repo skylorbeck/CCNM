@@ -49,6 +49,24 @@ public class ItemStatCompare : MonoBehaviour
         }
     }
 
+    public void InsertAbilityGem(AbilityGem gem)
+    {
+        if (gem!=null)
+        {
+            AbilityObject abilityObject = gem.GetAbility();
+            ItemName.text = abilityObject.title;
+            ItemStats[0].text = abilityObject.descriptionA;
+            ItemStats[1].text = abilityObject.descriptionB;
+        }
+        else
+        {
+            ItemName.text = "";
+            ItemStats[0].text = "";
+            ItemStats[1].text = "";
+        }
+  
+    }
+
     void Start()
     {
         

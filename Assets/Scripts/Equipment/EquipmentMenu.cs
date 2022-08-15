@@ -14,6 +14,7 @@ public class EquipmentMenu : MonoBehaviour
     [SerializeField] private MicroCard cardMicroPrefab;
     [SerializeField] private EquipmentCardShell cardPrefab;
     [SerializeField] private ItemStatCompare cardCompare;
+    
     [SerializeField] private Mode mode = Mode.LeftWheel;
 
     [SerializeField] private List<List<MicroCard>> menuEntries = new List<List<MicroCard>>();

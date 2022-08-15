@@ -56,6 +56,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Equipment.unity
     guid: ceca7ae9401632842b70656ab3103c5c
+  - enabled: 1
+    path: Assets/Scenes/Gems.unity
+    guid: e4d8fe79277e88341adc5996d12fd467
+  - enabled: 1
+    path: Assets/Scenes/CardTest.unity
+    guid: ddb0982bb8f42524f813b0fdce4cb9b5
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 3185ca3d38fce8645b8237c7d3fe5ec8, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: cb053fcbe17097d47bd292f7b0d20321, type: 2}
