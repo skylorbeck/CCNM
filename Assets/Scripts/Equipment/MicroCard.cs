@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 
 public class MicroCard : MonoBehaviour
@@ -12,6 +13,7 @@ public class MicroCard : MonoBehaviour
     [field: SerializeField] public SpriteRenderer highlight { get; private set; }
     [field: SerializeField] public SpriteRenderer shredMark { get; private set; }
     [field: SerializeField] public SpriteRenderer[] gemslots { get; private set; }
+    [field: SerializeField] public TextMeshPro levelText { get; private set; }
 
     public void InsertItem(EquipmentDataContainer item)
     {
@@ -20,6 +22,8 @@ public class MicroCard : MonoBehaviour
         background.color = GameManager.Instance.colors[(int)item.quality];
         highlight.gameObject.SetActive(false);
         shredMark.gameObject.SetActive(false);
+        levelText.text ="Lv."+ item.level.ToString();
+        levelText.color = GameManager.Instance.colors[(int)item.quality];
 
         for (var i = 0; i < gemslots.Length; i++)
         {

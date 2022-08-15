@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemStatCompare : MonoBehaviour
 {
     [field: SerializeField] public TextMeshProUGUI ItemName { get; private set; }
+    [field: SerializeField] public Image background { get; private set; }
     [field: SerializeField] public List<TextMeshProUGUI> ItemStats { get; private set; }
 
     public void InsertItemStats(EquipmentDataContainer EquippedItem, EquipmentDataContainer newItem)
     {
-        ItemName.text = newItem.itemCore.cardTitle;
+        ItemName.text = newItem.itemCore.cardTitle +" Lv."+ newItem.level;
         for (int i = 0; i < ItemStats.Count; i++)
         {
             if (newItem.stats[i] == EquipmentDataContainer.Stats.None)
@@ -51,18 +53,20 @@ public class ItemStatCompare : MonoBehaviour
 
     public void InsertAbilityGem(AbilityGem gem)
     {
-        if (gem!=null)
+        if (gem!=null && gem.abilityIndex!=-1)
         {
             AbilityObject abilityObject = gem.GetAbility();
             ItemName.text = abilityObject.title;
             ItemStats[0].text = abilityObject.descriptionA;
             ItemStats[1].text = abilityObject.descriptionB;
+            background.color = Color.white;
         }
         else
         {
-            ItemName.text = "";
+            ItemName.text = "Empty Socket";
             ItemStats[0].text = "";
-            ItemStats[1].text = "";
+            ItemStats[1].text = "Ready to Use";
+            background.color = Color.white;
         }
   
     }
@@ -80,5 +84,13 @@ public class ItemStatCompare : MonoBehaviour
     void FixedUpdate()
     {
         
+    }
+
+    public void Clear()
+    {
+        ItemName.text = "";
+        ItemStats[0].text = "";
+        ItemStats[1].text = "";
+        background.color = Color.clear;
     }
 }

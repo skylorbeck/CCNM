@@ -8,6 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
 using static GenericMenuV1;
+using Random = UnityEngine.Random;
 
 public class EquipmentMenu : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class EquipmentMenu : MonoBehaviour
     
     [SerializeField] private Transform cardContainer;
     [SerializeField] private Transform previewContainer;
+
+    public TMP_Dropdown sortDropdown;
 
     async void Start()
     {
@@ -74,8 +77,8 @@ public class EquipmentMenu : MonoBehaviour
             
             previews.Add(preview);
         }
-        SetSelected(GameManager.Instance.metaPlayer.equippedSlots[selectedMenu]);
         
+        sortDropdown.value = PlayerPrefs.GetInt("EquipmentSortMode",0);
     }
     
     public void AddEntry(EquipmentDataContainer entry,int menuIndex,int index)
@@ -103,18 +106,55 @@ public class EquipmentMenu : MonoBehaviour
     public void SetSelected(int selected)
     {
         this.selected = selected;
-        switch (mode)
+        yOffset = -selected*yDistance;
+
+    }
+    
+    public void SetSortMode()
+    {
+        foreach (List<MicroCard> list in menuEntries)
         {
-            default:
-            case Mode.RightWheel:
-            case Mode.LeftWheel:
-                xOffset = -selected*xDistance;//which of these goes with which?
-                break;
-            case Mode.TopWheel:
-            case Mode.BottomWheel:
-                yOffset = -selected*yDistance;//these are super confusingly labeled
-                break;
+            switch (sortDropdown.value)
+            {
+                default:
+                    list.Sort((card1, card2) => Random.Range(-1, 1));
+                    break;
+                case 1:
+                    // list.Sort((card1, card2) => card1.EquipmentData.quality.CompareTo(card2.EquipmentData.quality)*-1);
+                    //sort by quality then level
+                    list.Sort((card1, card2) =>
+                    {
+                        if (card1.EquipmentData.quality == card2.EquipmentData.quality)
+                        {
+                            return card1.EquipmentData.level.CompareTo(card2.EquipmentData.level)*-1;
+                        }
+                        return card1.EquipmentData.quality.CompareTo(card2.EquipmentData.quality)*-1;
+                    }
+                    );
+                    break;
+                case 2:
+                    list.Sort((card1, card2) =>
+                        {
+                            if (card1.EquipmentData.quality == card2.EquipmentData.quality)
+                            {
+                                return card1.EquipmentData.level.CompareTo(card2.EquipmentData.level)*-1;
+                            }
+                            return card1.EquipmentData.quality.CompareTo(card2.EquipmentData.quality);
+                        }
+                    );
+                    break;
+                case 3:
+                    list.Sort((card1, card2) => card1.EquipmentData.level.CompareTo(card2.EquipmentData.level)*-1);
+                    break;
+                case 4:
+                    list.Sort((card1, card2) => card1.EquipmentData.level.CompareTo(card2.EquipmentData.level));
+                    break;
+            }
+            
         }
+        PlayerPrefs.SetInt("EquipmentSortMode",sortDropdown.value);
+        SetSelected( menuEntries[selectedMenu].FindIndex(x => x.EquipmentData.Equals(GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu))));
+
     }
 
     public void Equip()
@@ -175,75 +215,39 @@ public class EquipmentMenu : MonoBehaviour
                 Transform entryTransform = menuEntry[index].transform;
                 Vector3 entryPosition = entryTransform.localPosition;
                 Vector3 entryScale = entryTransform.localScale;
-                switch (mode)
+               
+                float xTarget =(i * xDistance) + xOffset;
+                float yTarget =(index * yDistance) + yOffset;
+                if (i == selectedMenu)
                 {
-                    case Mode.RightWheel:
-                    case Mode.LeftWheel:
-                        entryPosition.y = (i * yDistance) + yOffset;
-                        if (i == selectedMenu)
+                    if (index == selected)
+                    {
+                        entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleUpper, Time.deltaTime * 5f);
+                        entryPosition.z = 0f;
+                    }
+                    else
+                    {
+                        xTarget -= 1.5f;
+                        if ( index == selected-1|| index == selected+1)
                         {
-                            entryPosition.x = (index * xDistance) + xOffset;
-                            // menuEntry[index].Selected = true;
-
-                            if (index == selected)
-                            {
-                                entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleUpper, Time.deltaTime * 5f);
-                                entryPosition.z = 0f;
-                            }
-                            else
-                            {
-                                entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
-                                entryPosition.z = 1f;
-                            }
+                            xTarget += 0.65f;
                         }
-                        else
-                        {
-                            entryPosition.x = Mathf.Lerp(entryPosition.x,
-                                (index * xDistance) - (xDistance * GameManager.Instance.metaPlayer.equippedSlots[i]),
-                                Time.deltaTime * 5f);
-                            entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
-                            entryPosition.z = 0;
-                            // menuEntry[index].Selected = false;
-
-                        }
-                   
-                        break;
-                    case Mode.TopWheel:
-                    case Mode.BottomWheel:
-                        float xTarget =(i * xDistance) + xOffset;
-                        float yTarget =(index * yDistance) + yOffset;
-                        if (i == selectedMenu)
-                        {
-                            if (index == selected)
-                            {
-                                entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleUpper, Time.deltaTime * 5f);
-                                entryPosition.z = 0f;
-                            }
-                            else
-                            {
-                                xTarget -= 1.5f;
-                                if ( index == selected-1|| index == selected+1)
-                                {
-                                    xTarget += 0.65f;
-                                }
-                                entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
-                                entryPosition.z = 1f;
-                            }
-                        }
-                        else
-                        {
-                            yTarget = (index * yDistance*0.75f) - (yDistance*0.75f * GameManager.Instance.metaPlayer.equippedSlots[i]);
-                            entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
-                            entryPosition.z = 0;
-                            // menuEntry[index].Selected = false;
-                            xTarget -= 1.5f;
-
-                        }
-                        entryPosition.x =Mathf.Lerp(entryPosition.x,xTarget,Time.deltaTime * 5f);   
-                        entryPosition.y =Mathf.Lerp(entryPosition.y,yTarget,Time.deltaTime * 5f);
-
-                        break;
+                        entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
+                        entryPosition.z = 1f;
+                    }
                 }
+                else
+                {
+                    yTarget = (index * yDistance*0.75f) - (yDistance*0.75f * menuEntries[i].FindIndex(x => x.EquipmentData.Equals(GameManager.Instance.metaPlayer.GetEquippedCard(i))));
+                    entryScale = Vector3.Lerp(entryScale, Vector3.one * cardScaleLower, Time.deltaTime * 5f);
+                    entryPosition.z = 0;
+                    // menuEntry[index].Selected = false;
+                    xTarget -= 1.5f;
+
+                }
+                entryPosition.x =Mathf.Lerp(entryPosition.x,xTarget,Time.deltaTime * 5f);   
+                entryPosition.y =Mathf.Lerp(entryPosition.y,yTarget,Time.deltaTime * 5f);
+
 
                 entryTransform.localPosition = entryPosition;
                 entryTransform.localScale = entryScale;
@@ -251,34 +255,12 @@ public class EquipmentMenu : MonoBehaviour
 
             Vector3 transformLocalPosition = previews[i].transform.localPosition;
             Vector3 transformLocalScale = previews[i].transform.localScale;
-            switch (mode)
-            {
-                default:
-                case Mode.RightWheel:
-                    previewContainer.transform.localPosition = new Vector3(-1.25f, 0, -1);
-                    cardContainer.transform.localPosition = new Vector3(1.25f, 0, 0);
-                    transformLocalPosition.y = (i * yDistance) + yOffset;
-                    transformLocalPosition.x = 0;
-                    break;
-                case Mode.LeftWheel:
-                    previewContainer.transform.localPosition = new Vector3(1.25f, 0, -1);
-                    cardContainer.transform.localPosition = new Vector3(-1.25f, 0, 0);
-                    transformLocalPosition.y = (i * yDistance) + yOffset;
-                    transformLocalPosition.x = 0;
-                    break;
-                case Mode.TopWheel:
-                    previewContainer.transform.localPosition = new Vector3(0,2.75f, -1);
-                    cardContainer.transform.localPosition = new Vector3(0, 0, 0);
-                    transformLocalPosition.y = 0;
-                    transformLocalPosition.x = (i * xDistance) + xOffset;
-                    break;
-                case Mode.BottomWheel:
-                    previewContainer.transform.localPosition = new Vector3(0,-2.75f, -1);
-                    cardContainer.transform.localPosition = new Vector3(0, -1.4f, 0);
-                    transformLocalPosition.y = 0;
-                    transformLocalPosition.x = (i * xDistance) + xOffset;
-                    break;
-            }
+            
+            previewContainer.transform.localPosition = new Vector3(0,-2.75f, -1);
+            cardContainer.transform.localPosition = new Vector3(0, -1.4f, 0);
+            transformLocalPosition.y = 0;
+            transformLocalPosition.x = (i * xDistance) + xOffset;
+            
             if (i == selectedMenu)
             {
                 // previews[i].Selected = true;
@@ -301,36 +283,17 @@ public class EquipmentMenu : MonoBehaviour
     {
         float target;
         int newSelected;
-        switch (mode)
+        
+        target = (float)(Math.Round(xOffset / xDistance, MidpointRounding.AwayFromZero) * xDistance);
+
+        if (sticky || !userIsHolding)
         {
-            default:
-            case Mode.LeftWheel:
-            case Mode.RightWheel:
-                target = (float)(Math.Round(yOffset / yDistance, MidpointRounding.AwayFromZero) * yDistance);
-
-                if (sticky || !userIsHolding)
-                {
-                    yOffset = Mathf.Lerp(yOffset, target, Time.deltaTime * yDistance * stickiness);
-                }
-
-                yOffset = Mathf.Clamp(yOffset, yDistance - menuEntries.Count * yDistance, 0);
-
-                newSelected = Mathf.Abs((int)Math.Round(yOffset / yDistance, MidpointRounding.AwayFromZero));
-                break;
-            case Mode.TopWheel:
-            case Mode.BottomWheel:
-                target = (float)(Math.Round(xOffset / xDistance, MidpointRounding.AwayFromZero) * xDistance);
-
-                if (sticky || !userIsHolding)
-                {
-                    xOffset = Mathf.Lerp(xOffset, target, Time.deltaTime * xDistance * stickiness);
-                }
-
-                xOffset = Mathf.Clamp(xOffset, xDistance - menuEntries.Count * xDistance, 0);
-
-                newSelected = Mathf.Abs((int)Math.Round(xOffset / xDistance, MidpointRounding.AwayFromZero));
-                break;
+            xOffset = Mathf.Lerp(xOffset, target, Time.deltaTime * xDistance * stickiness);
         }
+
+        xOffset = Mathf.Clamp(xOffset, xDistance - menuEntries.Count * xDistance, 0);
+
+        newSelected = Mathf.Abs((int)Math.Round(xOffset / xDistance, MidpointRounding.AwayFromZero));
 
         UpdateSelectedMenu(newSelected);
     }
@@ -339,36 +302,17 @@ public class EquipmentMenu : MonoBehaviour
     {
         float target;
         int newSelected;
-        switch (mode)
+        
+        target = (float)(Math.Round(yOffset / yDistance, MidpointRounding.AwayFromZero) * yDistance);
+
+        if (sticky || !userIsHolding)
         {
-            default:
-            case Mode.LeftWheel:
-            case Mode.RightWheel:
-                target = (float)(Math.Round(xOffset / xDistance, MidpointRounding.AwayFromZero) * xDistance);
-
-                if (sticky || !userIsHolding)
-                {
-                    xOffset = Mathf.Lerp(xOffset, target, Time.deltaTime * xDistance * stickiness);
-                }
-
-                xOffset = Mathf.Clamp(xOffset, xDistance - menuEntries[selectedMenu].Count * xDistance, 0);
-
-                newSelected = Mathf.Abs((int)Math.Round(xOffset / xDistance, MidpointRounding.AwayFromZero));
-                break;
-            case Mode.TopWheel:
-            case Mode.BottomWheel:
-                target = (float)(Math.Round(yOffset / yDistance, MidpointRounding.AwayFromZero) * yDistance);
-
-                if (sticky || !userIsHolding)
-                {
-                    yOffset = Mathf.Lerp(yOffset, target, Time.deltaTime * yDistance * stickiness);
-                }
-
-                yOffset = Mathf.Clamp(yOffset, yDistance - menuEntries[selectedMenu].Count * yDistance, 0);
-
-                newSelected = Mathf.Abs((int)Math.Round(yOffset / yDistance, MidpointRounding.AwayFromZero));
-                break;
+            yOffset = Mathf.Lerp(yOffset, target, Time.deltaTime * yDistance * stickiness);
         }
+
+        yOffset = Mathf.Clamp(yOffset, yDistance - menuEntries[selectedMenu].Count * yDistance, 0);
+
+        newSelected = Mathf.Abs((int)Math.Round(yOffset / yDistance, MidpointRounding.AwayFromZero));
 
         UpdateSelected(newSelected);
     }
@@ -388,7 +332,8 @@ public class EquipmentMenu : MonoBehaviour
         if (newSelected != selectedMenu)
         {
             selectedMenu = newSelected;
-            SetSelected(GameManager.Instance.metaPlayer.equippedSlots[selectedMenu]);
+           
+            SetSelected( menuEntries[selectedMenu].FindIndex(x => x.EquipmentData.Equals(GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu))));
             SoundManager.Instance.PlayUiClick();
         }
     }
@@ -400,49 +345,13 @@ public class EquipmentMenu : MonoBehaviour
         //     return;
         // }//todo fix this so it works on mobile
 
-        switch (mode)
+        if (pos.y > Screen.height * 0.4f)
         {
-            default:
-            case Mode.RightWheel:
-                if (pos.y > Screen.height * 0.35f && pos.y < Screen.height * 0.65f && pos.x > Screen.width*0.5f)
-                {
-                    dragMode = DragMode.Horizontal;
-                }
-                else
-                {
-                    dragMode = DragMode.Vertical;
-                }
-                break;
-            case Mode.LeftWheel:
-                if (pos.y > Screen.height * 0.35f && pos.y < Screen.height * 0.65f && pos.x < Screen.width*0.5f)
-                {
-                    dragMode = DragMode.Horizontal;
-                }
-                else
-                {
-                    dragMode = DragMode.Vertical;
-                }
-                break;
-            case Mode.TopWheel:
-                if (pos.y < Screen.height * 0.65f)
-                {
-                    dragMode = DragMode.Vertical;
-                }
-                else
-                {
-                    dragMode = DragMode.Horizontal;
-                }
-                break;
-            case Mode.BottomWheel:
-                if (pos.y > Screen.height * 0.4f)
-                {
-                    dragMode = DragMode.Vertical;
-                }
-                else
-                {
-                    dragMode = DragMode.Horizontal;
-                }
-                break;
+            dragMode = DragMode.Vertical;
+        }
+        else
+        {
+            dragMode = DragMode.Horizontal;
         }
 
        

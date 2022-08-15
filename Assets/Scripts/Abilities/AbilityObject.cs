@@ -63,14 +63,20 @@ public class AbilityGem
 
     public AbilityGem(AbilityGem oldGem)
     {
-        this.abilityIndex = oldGem.abilityIndex;
-        this.gemLevel = oldGem.gemLevel;
-        this.amountOwned = oldGem.amountOwned;
+            this.abilityIndex = oldGem.abilityIndex;
+            this.gemLevel = oldGem.gemLevel;
+            this.amountOwned = oldGem.amountOwned;
     }
     public AbilityGem(int abilityIndex, int gemLevel)
     {
         this.abilityIndex = abilityIndex;
         this.gemLevel = gemLevel;
+        this.amountOwned = 0;   
+    }
+    public AbilityGem(int abilityIndex)
+    {
+        this.abilityIndex = abilityIndex;
+        this.gemLevel = 0;
         this.amountOwned = 0;   
     }
     
@@ -103,6 +109,8 @@ public class AbilityGem
     
     public AbilityObject GetAbility()
     {
+        if (abilityIndex == -1)
+            return null;
         return GameManager.Instance.abilityRegistry.GetAbility(abilityIndex);
     }
 }

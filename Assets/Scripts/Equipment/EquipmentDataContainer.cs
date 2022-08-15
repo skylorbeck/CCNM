@@ -42,7 +42,7 @@ public class EquipmentDataContainer
         {
             Debug.LogWarning("Slot is locked");
             return false;
-        } else if (abilities[slot] != null)
+        } else if (abilities[slot] != null && abilities[slot].abilityIndex!=-1)
         {
             Debug.LogWarning("Slot is not empty");
             return false;
@@ -51,7 +51,12 @@ public class EquipmentDataContainer
             abilities[slot] =new AbilityGem(ability);
             abilities[slot].SetAmountOwned(1);
             lockedSlots[slot] = true;
-        } 
+        } else
+        {
+            abilities[slot] = new AbilityGem(-1);
+            lockedSlots[slot] = false;
+        }
+
         return true;
     }
 
@@ -67,7 +72,7 @@ public class EquipmentDataContainer
             return false;
         }
 
-        abilities[slot] = null;
+        abilities[slot] = new AbilityGem(-1);
         lockedSlots[slot] = false;
         return true;
     }

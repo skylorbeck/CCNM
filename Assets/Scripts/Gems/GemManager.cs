@@ -53,10 +53,12 @@ public class GemManager : MonoBehaviour
         {
             AbilityGem abilityGem = GameManager.Instance.metaPlayer.ownedGems[i];
 
-            GemShell gem = Instantiate(gemShellPrefab, cardContainer);
-            gem.InsertAbility(abilityGem);
-            menuEntries.Add(gem);
-          
+            if (abilityGem.abilityIndex!=-1)
+            {
+                GemShell gem = Instantiate(gemShellPrefab, cardContainer);
+                gem.InsertAbility(abilityGem);
+                menuEntries.Add(gem);
+            }
         }
         for (var i = 0; i < GameManager.Instance.metaPlayer.playerInventory.Length; i++)
         {
@@ -64,7 +66,6 @@ public class GemManager : MonoBehaviour
             preview.InsertItem(GameManager.Instance.metaPlayer.GetEquippedCard(i));
             preview.SetHighlighted(true);
             previews.Add(preview);
-
         }
       
         cardCompare.InsertAbilityGem(menuEntries[selected].ability);
@@ -77,6 +78,7 @@ public class GemManager : MonoBehaviour
         {
             selectedGem = -1;
             selector.transform.position = new Vector3(-1000, -1000, -1000);
+            cardCompare.Clear();
             return;
         }
         selectedGem = slot;
@@ -162,7 +164,7 @@ public class GemManager : MonoBehaviour
         }
         AbilityGem gem = card.GetAbility(selectedGem);
 
-        if (gem == null)
+        if (gem == null || gem.abilityIndex == -1)
         {
             SoundManager.Instance.PlayUiDeny();
             TextPopController.Instance.PopNegative("No Gem Socketed",Vector3.zero, false);
@@ -172,7 +174,7 @@ public class GemManager : MonoBehaviour
         int totalGems = 0;
         for (int i = 0; i < card.gemSlots; i++)
         {
-            totalGems += card.GetAbility(i) != null ? 1 : 0;
+            totalGems += card.GetAbility(i) != null && card.GetAbility(i).abilityIndex!=-1 ? 1 : 0;
         }
 
         if (totalGems <=1)
