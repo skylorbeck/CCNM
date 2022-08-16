@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -11,10 +12,11 @@ using UnityEngine.UI;
 public class CardPackManager : MonoBehaviour
 {
     [field: SerializeField] private TextMeshProUGUI packCount;
+    [field: SerializeField] private EquipmentCardShell fullCardPrefab;
+    [field: SerializeField] private EquipmentCardShell fullCard;
     [field: SerializeField] private MicroCard cardPrefab;
     [field: SerializeField] private GameObject cardPackHolder;
-    [field: SerializeField] private Transform packSprite;
-    [field: SerializeField] private List<MicroCard> cards;
+    [field: SerializeField] private SafeAnimator safeAnimator;
     [field: SerializeField] private List<MicroCard> tempCards;
     [field: SerializeField] private Vector3[] cardPositions;
     [field: SerializeField] private bool isPackOpen = false;
@@ -34,23 +36,17 @@ public class CardPackManager : MonoBehaviour
                 MicroCard card = Instantiate(cardPrefab, cardPackHolder.transform);
                 return card;
             },
-            card =>
-            {
-                card.gameObject.SetActive(true);
-            },
-            card =>
-            {
-                card.gameObject.SetActive(false);
-            },
-            card => {
-                Destroy(card);
-            },
+            card => { card.gameObject.SetActive(true); },
+            card => { card.gameObject.SetActive(false); },
+            card => { Destroy(card); },
             true, 10, 100
         );
-        
+        fullCard = Instantiate(fullCardPrefab, cardPackHolder.transform);
+        fullCard.transform.localPosition = new Vector3(0, -15, 0);
+        // fullCard.gameObject.SetActive(false);
         await Task.Delay(10);
-        GameManager.Instance.inputReader.Back+= Back;
-        
+        GameManager.Instance.inputReader.Back += Back;
+
         UpdatePackCount();
     }
 
@@ -67,13 +63,6 @@ public class CardPackManager : MonoBehaviour
 
     void Update()
     {
-        for (var i = 0; i < cards.Count; i++)
-        {
-            Transform cardTransform = cards[i].transform;
-            cardTransform.localPosition = Vector3.Lerp(cardTransform.localPosition,cardPositions[i] , Time.deltaTime * 5);
-        }
-
-            packSprite.localPosition = Vector3.Lerp(packSprite.localPosition, new Vector3(0, isPackOpen?-2.5f:0, 0), Time.deltaTime * 5);
     }
 
     void FixedUpdate()
@@ -83,28 +72,60 @@ public class CardPackManager : MonoBehaviour
     public async void OpenPack()
     {
         openButton.interactable = false;
-        isPackOpen = true;
         GameManager.Instance.metaPlayer.RemoveCardPack(1);
         UpdatePackCount();
+
+        //the small ones
         for (int i = 0; i < 5; i++)
         {
             MicroCard cardShell = cardPool.Get();
             cardShell.InsertItem(GameManager.Instance.lootManager.GetItemCard());
             Transform cardTransform = cardShell.transform;
-            cardTransform.localScale = Vector3.one * 0.75f;
-            cardTransform.localPosition = Vector3.down*3;
+            // cardTransform.localScale = Vector3.one * 0.75f;
+            cardTransform.localPosition = Vector3.down * 10;
             tempCards.Add(cardShell);
             GameManager.Instance.metaPlayer.AddCardToInventory(cardShell.EquipmentData);
         }
+
+
         GameManager.Instance.saveManager.SaveMeta();
 
-        foreach (MicroCard card in tempCards)
+
+        tempCards.Sort((card1, card2) =>
         {
-            await Task.Delay(500, cancellationTokenSource.Token);
-            cards.Add(card);
+            if (card1.EquipmentData.quality == card2.EquipmentData.quality)
+            {
+                return card1.EquipmentData.level.CompareTo(card2.EquipmentData.level);
+            }
+
+            return card1.EquipmentData.quality.CompareTo(card2.EquipmentData.quality);
+        });
+
+//the one big one
+        fullCard.InsertItem(tempCards[tempCards.Count - 1].EquipmentData);
+        cardPool.Release(tempCards[tempCards.Count - 1]);
+        tempCards.RemoveAt(tempCards.Count - 1);
+
+        Transform fullCardTransform = fullCard.transform;
+        // fullCardTransform.localScale = Vector3.one * 0.75f;
+        fullCardTransform.localPosition = Vector3.down * 10;
+
+        await safeAnimator.Open();
+
+        isPackOpen = true;
+
+        for (var i = 0; i < tempCards.Count; i++)
+        {
+            MicroCard card = tempCards[i];
+            card.transform.DOMove(cardPositions[i], 0.5f);
+            await Task.Delay((i == tempCards.Count - 1 ? 750 : 500), cancellationTokenSource.Token);
         }
 
-        openButton.interactable = true;
+        await Task.Delay(500, cancellationTokenSource.Token);
+
+        fullCard.gameObject.SetActive(true);
+        fullCard.transform.DOMove(cardPositions[4], 0.5f).OnComplete(() => { openButton.interactable = true; });
+
     }
 
     public void OpenAcceptPack()
@@ -114,33 +135,45 @@ public class CardPackManager : MonoBehaviour
             cancellationTokenSource.Cancel();
 
             isPackOpen = false;
-            
+            openButton.interactable = false;
             foreach (MicroCard card in tempCards)
             {
-                cardPool.Release(card);
+                card.transform.DOMove(Vector3.up * 10, 0.5f).OnComplete(() =>
+                {
+                    cardPool.Release(card);
+                });
+                // cardPool.Release(card);
             }
-            cards.Clear();
+
+            fullCard.transform.DOMove(Vector3.up * 10, 0.5f).OnComplete(() =>
+            {
+                fullCard.gameObject.SetActive(false);
+                openButton.interactable = true;
+            });
+            // fullCard.gameObject.SetActive(false);
+            // cards.Clear();
             tempCards.Clear();
             openButtonText.text = "Open";
             cancellationTokenSource = new CancellationTokenSource();
+            safeAnimator.Close();
         }
         else
         {
-            if (GameManager.Instance.metaPlayer.cardPacks>0)
+            if (GameManager.Instance.metaPlayer.cardPacks > 0)
             {
                 openButtonText.text = "Accept";
                 OpenPack();
             }
             else
             {
-                TextPopController.Instance.PopNegative("You don't have",new Vector3(0,0.5f,0), true);
-                TextPopController.Instance.PopNegative("any card packs!",new Vector3(0,0,0), true);
+                TextPopController.Instance.PopNegative("You don't have", new Vector3(0, 0.5f, 0), true);
+                TextPopController.Instance.PopNegative("any card packs!", new Vector3(0, 0, 0), true);
             }
         }
     }
 
     public void Back()
     {
-        GameManager.Instance.LoadSceneAdditive("MainMenu","CardPacks");
+        GameManager.Instance.LoadSceneAdditive("MainMenu", "CardPacks");
     }
 }
