@@ -12,12 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 355bc1e6863b4f342ae6d4cc39fbd056, type: 3}
   m_Name: MusicRegistry
   m_EditorClassIdentifier: 
-  musicTracks:
-  - {fileID: 8300000, guid: aba7959b04016074fa3bf2ed7d785893, type: 3}
-  - {fileID: 8300000, guid: 87c2a7860cc73864b8fd106b8a5e77d9, type: 3}
-  - {fileID: 8300000, guid: 92699a6cd783cde4084aa96233986d8e, type: 3}
-  keys:
-  - Georgian Nightwail
-  - Specular Illusion
-  - Wishful Thinking
-  values: 000000000100000002000000
+  musicTracks: []
+  keys: []
+  values: 

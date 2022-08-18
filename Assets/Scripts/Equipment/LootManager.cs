@@ -36,25 +36,25 @@ public class LootManager : MonoBehaviour
         {
             if (lootLuck==0)
             {
-                Debug.Log("Loot luck is 0");
+                // Debug.Log("Loot luck is 0");
                 break;
             }
             
-            Debug.Log("Before: "+luckyWeights[i]);
+            // Debug.Log("Before: "+luckyWeights[i]);
             
             if (luckyWeights[i]>lootLuck)
             {
-                Debug.Log(i+" Weight Higher, lowering by "+lootLuck);
+                // Debug.Log(i+" Weight Higher, lowering by "+lootLuck);
                 luckyWeights[i]-=lootLuck;
                 lootLuck = 0;
             }
             else
             {
-                Debug.Log(i+" Loot Luck is higher, lowering by "+(luckyWeights[i]-1));
+                // Debug.Log(i+" Loot Luck is higher, lowering by "+(luckyWeights[i]-1));
                 lootLuck -= (luckyWeights[i]-1);
                 luckyWeights[i] = 1;
             }
-            Debug.Log("After: "+luckyWeights[i]);
+            // Debug.Log("After: "+luckyWeights[i]);
         }
 
         for (int i = 0; i < luckyWeights.Count; i++)

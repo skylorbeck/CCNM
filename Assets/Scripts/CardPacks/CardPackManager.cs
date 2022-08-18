@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class CardPackManager : MonoBehaviour
 {
@@ -23,8 +24,11 @@ public class CardPackManager : MonoBehaviour
     [field: SerializeField] private Button openButton;
     [field: SerializeField] private TextMeshProUGUI openButtonText;
     private CancellationTokenSource cancellationTokenSource;
+    [field: SerializeField] private ParticleSystem particleSystem;
+    [field: SerializeField] private ParticleSystem bigParticleSystem;
 
     private ObjectPool<MicroCard> cardPool;
+
 
     async void Start()
     {
@@ -71,6 +75,8 @@ public class CardPackManager : MonoBehaviour
 
     public async void OpenPack()
     {
+        GameManager.Instance.inputReader.Back -= Back;
+
         openButton.interactable = false;
         GameManager.Instance.metaPlayer.RemoveCardPack(1);
         UpdatePackCount();
@@ -89,8 +95,8 @@ public class CardPackManager : MonoBehaviour
 
 
         GameManager.Instance.saveManager.SaveMeta();
-
-
+        GameManager.Instance.inputReader.Back += Back;
+        
         tempCards.Sort((card1, card2) =>
         {
             if (card1.EquipmentData.quality == card2.EquipmentData.quality)
@@ -116,15 +122,19 @@ public class CardPackManager : MonoBehaviour
 
         for (var i = 0; i < tempCards.Count; i++)
         {
+            particleSystem.Play();
             MicroCard card = tempCards[i];
             card.transform.DOMove(cardPositions[i], 0.5f);
-            await Task.Delay((i == tempCards.Count - 1 ? 750 : 500), cancellationTokenSource.Token);
+            SoundManager.Instance.PlayEffect("LootBoxOpen"+(i+1),0.75f+(i*0.05f),true);
+            await Task.Delay(500, cancellationTokenSource.Token);
         }
+        SoundManager.Instance.PlayEffect("LootSafeOpen",1f,true);
 
-        await Task.Delay(500, cancellationTokenSource.Token);
-
+        bigParticleSystem.Play();
+        await Task.Delay(250, cancellationTokenSource.Token);
         fullCard.gameObject.SetActive(true);
         fullCard.transform.DOMove(cardPositions[4], 0.5f).OnComplete(() => { openButton.interactable = true; });
+        // SoundManager.Instance.PlayEffect("LootBoxOpen5",1f,true);
 
     }
 
@@ -156,6 +166,7 @@ public class CardPackManager : MonoBehaviour
             openButtonText.text = "Open";
             cancellationTokenSource = new CancellationTokenSource();
             safeAnimator.Close();
+            // MusicManager.Instance.StopTrack();
         }
         else
         {

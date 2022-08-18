@@ -26,15 +26,16 @@ public class ShopItem : MonoBehaviour
 
         Transform shadowTransform = shadow.transform;
         iconPosition = shadowTransform.localPosition;
-        iconPosition = Vector3.Lerp(iconPosition, new Vector3(iconPosition.x, selected ? -4f : -2, iconPosition.z),
+        iconPosition = Vector3.Lerp(iconPosition, new Vector3(iconPosition.x, selected ? -1f : -0.5f, iconPosition.z),
             Time.deltaTime * 10);
         shadow.transform.localPosition = iconPosition;
 
+        //iconposition becomes shadowscale
         iconPosition = shadowTransform.localScale;
-        iconPosition = Vector3.Lerp(iconPosition, selected ? new Vector3(2, 1, 2) : new Vector3(4, 2, 4),
+        iconPosition = Vector3.Lerp(iconPosition, selected ? new Vector3(0.5f, 0.25f, 2) : new Vector3(1, 0.5f, 2),
             Time.deltaTime * 10);
         shadow.transform.localScale = iconPosition;
-        itemCountText.transform.localPosition = shadowTransform.localPosition + Vector3.up;
+        itemCountText.transform.localPosition = shadowTransform.localPosition + (Vector3.up*0.5f);
     }
 
     void FixedUpdate()

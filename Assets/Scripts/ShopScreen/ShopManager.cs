@@ -15,7 +15,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI confirmText;
     [SerializeField] private Transform consumableTable;
     [SerializeField] private Transform specialStockTable;
-    [SerializeField] private EquipmentCardShell equipmentCardShell;
+    [SerializeField] private MicroCard equipmentCardShell;
     private int currentItem = -1;
     private bool viewingSpecialStock = false;
     private bool boughtCard = false;
@@ -123,11 +123,11 @@ public class ShopManager : MonoBehaviour
 
         if (viewingSpecialStock && !boughtCard)
         {
-            itemText[0].text = equipmentCardShell.title.text;
-            // itemText[1].text = equipmentCardShell.abilityTitle.text;//todo replace with gem description
+            itemText[0].text = equipmentCardShell.EquipmentData.itemCore.cardTitle;
+            // itemText[1].text = equipmentCardShell.abilityTitle.text;//todo replace with gems? or something else?
             itemText[2].text =
                 equipmentCardShell.EquipmentData.itemCore.cardCost +
-                "C"; //todo replace with value calculated from equipmentData
+                "C"; //todo replace with value calculated from equipmentData values
         }
         
     }
@@ -145,7 +145,7 @@ public class ShopManager : MonoBehaviour
     
     public void BuyEquipmentCard()
     {
-        if (GameManager.Instance.battlefield.player.credits>equipmentCardShell.EquipmentData.itemCore.cardCost)//todo replace with value calculated from equipmentData
+        if (GameManager.Instance.battlefield.player.credits>=equipmentCardShell.EquipmentData.itemCore.cardCost)//todo replace with value calculated from equipmentData
         {
             boughtCard = true;
             GameManager.Instance.battlefield.player.AddCardToInventory(equipmentCardShell.EquipmentData);
