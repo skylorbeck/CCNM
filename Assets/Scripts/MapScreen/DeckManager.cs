@@ -9,12 +9,11 @@ public class DeckManager : MonoBehaviour
 {
     [SerializeField] private MapManager mapManager;
     [SerializeField] private float yDistance = 3f;
-    [SerializeField] private float currentY = 0f;
     [SerializeField] private float xDistance = 1.5f;
+    [SerializeField] private float currentX = 0f;
     [field:SerializeField] public int selected{ get; private set; }
     [SerializeField] private DeckRegistry deckRegistry;
     [SerializeField] private DeckPreviewer deckPrefab;
-    [SerializeField] private DeckPreviewer CurrentDeck;
     [SerializeField] private List<DeckPreviewer> decks;
 
     void Start()
@@ -42,33 +41,35 @@ public class DeckManager : MonoBehaviour
     {
         float target;
 
-        target = (float)(Math.Round(currentY / yDistance, MidpointRounding.AwayFromZero) * yDistance);
-        currentY = Mathf.Clamp(Mathf.Lerp(currentY, target, Time.deltaTime * yDistance),
-            yDistance - decks.Count * yDistance, 0);
-        int newSelected = Math.Abs((int)Math.Round(currentY / yDistance, MidpointRounding.AwayFromZero));
+        target = (float)(Math.Round(currentX / xDistance, MidpointRounding.AwayFromZero) * xDistance);
+        currentX = Mathf.Clamp(Mathf.Lerp(currentX, target, Time.deltaTime * xDistance),
+            xDistance - decks.Count * xDistance, 0);
+        int newSelected = Math.Abs((int)Math.Round(currentX / xDistance, MidpointRounding.AwayFromZero));
         if (newSelected != selected)
         {
             selected = newSelected;
-            // UpdateDecks();
+            UpdateDecks();
         }
         for (var i = 0; i < decks.Count; i++)
         {
             DeckPreviewer deck = decks[i];
             Transform deckTransform = deck.transform;
             Vector3 deckPosition = deckTransform.position;
-            deckPosition.y = (i * yDistance) + currentY;
-            deckPosition.x = Mathf.Cos(Mathf.Abs(deckPosition.y * 0.5f)) * xDistance;
-            deckTransform.localPosition = deckPosition;
-            // deckTransform.localScale = Vector3.Lerp(new Vector3(1.25f, 1.25f, 1.25f),Vector3.one, 
-            //     Mathf.Abs(deckPosition.y));
+            deckTransform.localScale = Vector3.Lerp(Vector3.one,new Vector3(.5f, .5f, .5f), 
+                Mathf.Abs(deckPosition.x*0.5f));
+            deckPosition.y = yDistance+(i==selected?0:0.5f);
+            deckPosition.x =(currentX+xDistance*i)-(i>selected+1?0.5f:0)+(i<selected-1?0.5f:0);
+            deckPosition.z = i==selected ? -1 :Math.Abs(selected-i);
+            deckTransform.localPosition = Vector3.Lerp(deckTransform.localPosition, deckPosition, Time.deltaTime * 5f);
+            
         }
         
     }
 
     private void UpdateDecks()
     {
-       CurrentDeck.InsertDeck(GetDeck());
-       mapManager.UpdateTotalCardsText(GetDeck());
+        GameManager.Instance.battlefield.InsertDeck(GetDeck());
+        mapManager.InsertDeck();
     }
 
     void FixedUpdate()
@@ -78,12 +79,11 @@ public class DeckManager : MonoBehaviour
 
     public void OnDrag(Vector2 delta)
     {
-        currentY += delta.y * Time.deltaTime*PlayerPrefs.GetFloat("TouchSensitivity",1f);
+        currentX += delta.x * Time.deltaTime*PlayerPrefs.GetFloat("TouchSensitivity",1f);
     }
 
     public void SelectDeck()
     {
-        GameManager.Instance.battlefield.InsertDeck(GetDeck());
         UpdateDecks();
     }
     
@@ -95,6 +95,6 @@ public class DeckManager : MonoBehaviour
     public void SetSelectedDeck(DeckObject battlefieldDeck)
     {
         selected = deckRegistry.GetDeckIndex(battlefieldDeck.name);
-        currentY = -selected * yDistance;
+        currentX = -selected * xDistance;
     }
 }

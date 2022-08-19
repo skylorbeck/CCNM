@@ -20,6 +20,8 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Button[] cardButtons;
     [SerializeField] private Button selectDeckButton;
     [SerializeField] private Button startButton;
+    [SerializeField] private SpriteRenderer[] curtainsBack;
+    [SerializeField] private SpriteRenderer[] curtains;
 
     async void Start()
     {
@@ -47,10 +49,12 @@ public class MapManager : MonoBehaviour
 
         if (GameManager.Instance.battlefield.runStarted)
         {
+            
             deckManager.gameObject.SetActive(false);
-            cardDealer.transform.localPosition = new Vector3(0,-1,0);
+            cardDealer.transform.localPosition = new Vector3(0,-1,-1);
             deckManager.transform.localPosition = new Vector3(-100, 0, 0);
             cardDealer.InsertDeck(GameManager.Instance.battlefield.deck);
+            InsertDeck();
             cardDealer.GenerateCards();
             selectDeckButton.gameObject.SetActive(false);
             startButton.gameObject.SetActive(false);
@@ -64,7 +68,7 @@ public class MapManager : MonoBehaviour
         {
             startButton.interactable = GameManager.Instance.battlefield.deckChosen;
             cardDealer.DisableButtons();
-            cardDealer.transform.localPosition = new Vector3(0, -100, 0);
+            cardDealer.transform.localPosition = new Vector3(0, -100, -1);
             deckManager.transform.localPosition = Vector3.zero;
             deckManager.InitalizeDecks();
             totalCardsText.text = "";
@@ -135,10 +139,17 @@ public class MapManager : MonoBehaviour
 
     public void InsertDeck()
     {
-        deckManager.SelectDeck();
-        startButton.interactable = GameManager.Instance.battlefield.deckChosen;
-        
-        DOTween.To(()=>startButton.transform.localPosition, x=>startButton.transform.localPosition = x, new Vector3(-10, -85, 0), 1f);
+        for (var i = 0; i < curtains.Length; i++)
+        {
+            curtains[i].color = GameManager.Instance.battlefield.deck.colors[0];
+        }
+        for (var i = 0; i < curtainsBack.Length; i++)
+        {
+            curtainsBack[i].color = GameManager.Instance.battlefield.deck.colors[1];
+        }
+        totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
+                              GameManager.Instance.battlefield.deck
+                                  .BossAt;
     }
 
     public async void StartGame()
@@ -149,26 +160,15 @@ public class MapManager : MonoBehaviour
         DOTween.To(() => deckManager.transform.localPosition, x => deckManager.transform.localPosition = x,
             new Vector3(-100, 0, 0), 5f);
         DOTween.To(() => cardDealer.transform.localPosition, x => cardDealer.transform.localPosition = x,
-            new Vector3(0, -1, 0), 1f);
+            new Vector3(0, -1, -1), 1f);
         cardDealer.InsertDeck(GameManager.Instance.battlefield.deck);
         GameManager.Instance.battlefield.ClearBattlefield();
-        UpdateTotalCardsText();
         GameManager.Instance.battlefield.StartRun();
         cardDealer.GenerateCards();
         await Task.Delay(1250);
         cardDealer.DealCards();
     }
-   public void UpdateTotalCardsText()
-    {
-        totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
-                              GameManager.Instance.battlefield.deck
-                                  .BossAt;
-    }
     
-   public void UpdateTotalCardsText(DeckObject deck)
-    {
-        totalCardsText.text = "0/" + deck.BossAt;
-    }
     void Update()
     {
 
