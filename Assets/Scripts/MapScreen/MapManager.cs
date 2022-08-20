@@ -53,13 +53,13 @@ public class MapManager : MonoBehaviour
             deckManager.gameObject.SetActive(false);
             cardDealer.transform.localPosition = new Vector3(0,-1,-1);
             deckManager.transform.localPosition = new Vector3(-100, 0, 0);
-            cardDealer.InsertDeck(GameManager.Instance.battlefield.deck);
+            cardDealer.InsertDeck(GameManager.Instance.deck);
             InsertDeck();
             cardDealer.GenerateCards();
             selectDeckButton.gameObject.SetActive(false);
             startButton.gameObject.SetActive(false);
             totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
-                                  GameManager.Instance.battlefield.deck
+                                  GameManager.Instance.deck
                                       .bossAt;
             await Task.Delay(1500);
             cardDealer.DealCards();
@@ -75,7 +75,7 @@ public class MapManager : MonoBehaviour
             totalCardsText.text = "";
             if (GameManager.Instance.battlefield.deckChosen)
             {
-                deckManager.SetSelectedDeck(GameManager.Instance.battlefield.deck);
+                deckManager.SetSelectedDeck(GameManager.Instance.deck);
                 InsertDeck();
             }
         }
@@ -146,7 +146,7 @@ public class MapManager : MonoBehaviour
             DOTween.To(
                 () => curtains[i1].color,
                 x => curtains[i1].color = x,
-                GameManager.Instance.battlefield.deck.colors[0],
+                GameManager.Instance.deck.colors[0],
                 0.5f);
         }
         for (var i = 0; i < curtainsBack.Length; i++)
@@ -155,11 +155,11 @@ public class MapManager : MonoBehaviour
             DOTween.To(
                 () => curtainsBack[i1].color,
                 x => curtainsBack[i1].color = x,
-                GameManager.Instance.battlefield.deck.colors[1],
+                GameManager.Instance.deck.colors[1],
                 0.5f);
         }
         totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
-                              GameManager.Instance.battlefield.deck
+                              GameManager.Instance.deck
                                   .bossAt;
     }
 
@@ -172,7 +172,7 @@ public class MapManager : MonoBehaviour
             new Vector3(-100, 0, 0), 5f);
         DOTween.To(() => cardDealer.transform.localPosition, x => cardDealer.transform.localPosition = x,
             new Vector3(0, -1, -1), 1f);
-        cardDealer.InsertDeck(GameManager.Instance.battlefield.deck);
+        cardDealer.InsertDeck(GameManager.Instance.deck);
         GameManager.Instance.battlefield.ClearBattlefield();
         GameManager.Instance.battlefield.StartRun();
         cardDealer.GenerateCards();

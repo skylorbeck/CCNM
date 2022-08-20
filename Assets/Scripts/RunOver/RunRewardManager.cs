@@ -15,23 +15,23 @@ public class RunRewardManager : MonoBehaviour
     {
         await Task.Delay(10);
         //todo penalty for death
-        GameManager.Instance.metaPlayer.CopyEgo(GameManager.Instance.battlefield.player);
-        // GameManager.Instance.metaPlayer.CopyCards(GameManager.Instance.battlefield.player);
-        GameManager.Instance.metaPlayer.CopyCredits(GameManager.Instance.battlefield.player);
-        GameManager.Instance.metaPlayer.CopyCardSouls(GameManager.Instance.battlefield.player);
-        GameManager.Instance.metaPlayer.CopyCardPacks(GameManager.Instance.battlefield.player);
-        GameManager.Instance.metaPlayer.CopyCapsules(GameManager.Instance.battlefield.player);
-        GameManager.Instance.metaPlayer.CopySuperCapsules(GameManager.Instance.battlefield.player);
-        if (GameManager.Instance.battlefield.player.currentHealth > 0)
+        GameManager.Instance.metaPlayer.CopyEgo(GameManager.Instance.runPlayer);
+        // GameManager.Instance.metaPlayer.CopyCards(GameManager.Instance.runPlayer);
+        GameManager.Instance.metaPlayer.CopyCredits(GameManager.Instance.runPlayer);
+        GameManager.Instance.metaPlayer.CopyCardSouls(GameManager.Instance.runPlayer);
+        GameManager.Instance.metaPlayer.CopyCardPacks(GameManager.Instance.runPlayer);
+        GameManager.Instance.metaPlayer.CopyCapsules(GameManager.Instance.runPlayer);
+        GameManager.Instance.metaPlayer.CopySuperCapsules(GameManager.Instance.runPlayer);
+        if (GameManager.Instance.runPlayer.currentHealth > 0)
         {
             GameManager.Instance.metaPlayer.AddCardPack(1);//todo replace with algorithm based on score
         }
         
-        for (var i = 0; i < GameManager.Instance.battlefield.player.playerInventory.Length; i++)
+        for (var i = 0; i < GameManager.Instance.runPlayer.playerInventory.Length; i++)
         {
-            for (var j = 0; j < GameManager.Instance.battlefield.player.playerInventory[i].container.Count; j++)
+            for (var j = 0; j < GameManager.Instance.runPlayer.playerInventory[i].container.Count; j++)
             {
-                EquipmentDataContainer data = GameManager.Instance.battlefield.player.playerInventory[i].container[j];
+                EquipmentDataContainer data = GameManager.Instance.runPlayer.playerInventory[i].container[j];
                 if (!data.indestructible)
                 {
                     var card = Instantiate(cardPrefab, cardContainer);

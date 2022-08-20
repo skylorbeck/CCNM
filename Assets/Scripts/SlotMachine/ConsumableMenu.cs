@@ -23,7 +23,7 @@ public class ConsumableMenu : MonoBehaviour
     {
         for (int i = 0; i < consumableButtons.Length; i++)
         {
-            consumableValues[i].text = "x"+ GameManager.Instance.battlefield.player.consumables[i];
+            consumableValues[i].text = "x"+ GameManager.Instance.runPlayer.consumables[i];
         }
     }
 
@@ -31,7 +31,7 @@ public class ConsumableMenu : MonoBehaviour
     {
         for (int i = 0; i < consumableSprites.Length; i++)
         {
-            consumableSprites[i].color = GameManager.Instance.battlefield.player.consumables[i] > 0 ? Color.white : Color.gray;
+            consumableSprites[i].color = GameManager.Instance.runPlayer.consumables[i] > 0 ? Color.white : Color.gray;
         }
     }
     
@@ -68,10 +68,10 @@ public class ConsumableMenu : MonoBehaviour
 
     public void Pie()
     {
-        if (GameManager.Instance.battlefield.player.consumables[1]>0)
+        if (GameManager.Instance.runPlayer.consumables[1]>0)
         {
             playerShell.Heal(playerShell.brain.GetHealthMax(),StatusEffect.Element.None);
-            GameManager.Instance.battlefield.player.consumables[1]--;
+            GameManager.Instance.runPlayer.consumables[1]--;
             UpdateIcons();
             UpdateTexts();
             ToggleMenu();
@@ -81,10 +81,10 @@ public class ConsumableMenu : MonoBehaviour
 
     public void Coffee()
     {
-        if (GameManager.Instance.battlefield.player.consumables[0]>0)
+        if (GameManager.Instance.runPlayer.consumables[0]>0)
         {
             playerShell.Shield(playerShell.brain.GetShieldMax(),StatusEffect.Element.None);
-            GameManager.Instance.battlefield.player.consumables[0]--;
+            GameManager.Instance.runPlayer.consumables[0]--;
             UpdateIcons();
             UpdateTexts();
             ToggleMenu();
@@ -93,12 +93,12 @@ public class ConsumableMenu : MonoBehaviour
 
     public void Tea()
     {
-        if (GameManager.Instance.battlefield.player.consumables[2]>0)
+        if (GameManager.Instance.runPlayer.consumables[2]>0)
         {
             playerShell.statusDisplayer.Clear();
             GameManager.Instance.uiStateObject.Ping("Cleared Status Effects");
             TextPopController.Instance.PopPositive("Cleansed",playerShell.transform.position,true);
-            GameManager.Instance.battlefield.player.consumables[2]--;
+            GameManager.Instance.runPlayer.consumables[2]--;
             UpdateIcons();
             UpdateTexts();
             ToggleMenu();

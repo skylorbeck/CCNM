@@ -61,7 +61,7 @@ public class FoundConsumableEvent : Event
             isDone = true;
             ToggleText(1, true);
             leaveButtonText.text = "Leave";
-            GameManager.Instance.battlefield.player.AddConsumables((int)itemType, itemAmt);
+            GameManager.Instance.runPlayer.AddConsumables((int)itemType, itemAmt);
             await Task.Delay(250);
             TextPopController.Instance.PopPositive("+" + itemAmt + " " + itemType, Vector3.down, true);
             await Task.Delay(250);

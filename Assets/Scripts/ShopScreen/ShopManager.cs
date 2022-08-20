@@ -63,7 +63,7 @@ public class ShopManager : MonoBehaviour
         {
             currentItem = -1;
             items[slot].Buy();
-            GameManager.Instance.battlefield.player.AddConsumables((int)items[slot].consumableID, 1);
+            GameManager.Instance.runPlayer.AddConsumables((int)items[slot].consumableID, 1);
         }
         else
         {
@@ -105,7 +105,7 @@ public class ShopManager : MonoBehaviour
 
     public void UpdateCreditText()
     {
-        creditText.text = "Wallet: " + GameManager.Instance.battlefield.player.credits + "C";
+        creditText.text = "Wallet: " + GameManager.Instance.runPlayer.credits + "C";
     }
 
     public void SpecialStockToggle()
@@ -145,11 +145,11 @@ public class ShopManager : MonoBehaviour
     
     public void BuyEquipmentCard()
     {
-        if (GameManager.Instance.battlefield.player.credits>=equipmentCardShell.EquipmentData.itemCore.cardCost)//todo replace with value calculated from equipmentData
+        if (GameManager.Instance.runPlayer.credits>=equipmentCardShell.EquipmentData.itemCore.cardCost)//todo replace with value calculated from equipmentData
         {
             boughtCard = true;
-            GameManager.Instance.battlefield.player.AddCardToInventory(equipmentCardShell.EquipmentData);
-            GameManager.Instance.battlefield.player.SpendCredits(equipmentCardShell.EquipmentData.itemCore.cardCost);//todo replace with value calculated from equipmentData
+            GameManager.Instance.runPlayer.AddCardToInventory(equipmentCardShell.EquipmentData);
+            GameManager.Instance.runPlayer.SpendCredits(equipmentCardShell.EquipmentData.itemCore.cardCost);//todo replace with value calculated from equipmentData
             TextPopController.Instance.PopPositive("Card Purchased", equipmentCardShell.transform.position, false);
             equipmentCardShell.gameObject.SetActive(false);
             SpecialStockToggle();

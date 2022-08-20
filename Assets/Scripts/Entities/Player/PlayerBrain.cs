@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
+using SaveSystem;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -18,8 +19,9 @@ public class PlayerBrain : Brain
     [field: SerializeField] public int cardPacks { get; private set; }
     [field: SerializeField] public int capsules { get; private set; }
     [field: SerializeField] public int superCapsules { get; private set; }
-    [field: SerializeField] public int[] cardSouls { get; private set; } = new int[3];
+    [field: SerializeField] public int[] cardSouls { get; private set; } = new int[7];
     [field: SerializeField] public int[] consumables { get; private set; } = new int[3];
+    [OptionalField] public TrackableStats trackableStats = new TrackableStats();
 
     #region precomputedStats
 
@@ -489,6 +491,7 @@ public class PlayerBrain : Brain
         SetSagacity(5);
         SetCurrentHealth(5);
         CalculateCardStats();
+        trackableStats = new TrackableStats();
     }
     public void AddAbilityGem(AbilityGem gem)
     {
@@ -544,6 +547,7 @@ public class PlayerBrain : Brain
         ego = saveFile.ego;
         credits = saveFile.credits;
         level = saveFile.level<=0?1:saveFile.level;
+        trackableStats = saveFile.trackableStats;
         SetStrength(saveFile.strength);
         SetDexterity(saveFile.dexterity);
         SetVitality(saveFile.vitality);
@@ -618,7 +622,7 @@ public class SavablePlayerBrain
     //playerbrain
     public int[] equippedSlots;
     public SavableDataContainer[][] playerInventory;
-
+    public TrackableStats trackableStats;
     public int credits;
     public int ego;
     public int level;
@@ -682,5 +686,6 @@ public class SavablePlayerBrain
         resolve = player.GetResolve();
         intelligence = player.GetIntelligence();
         charisma = player.GetCharisma();
+        trackableStats = player.trackableStats;
     }
 }

@@ -41,7 +41,7 @@ public class DiceRollEvent : Event
     public void Start()
     {
         curTargetValue.text = targetValues[targetValueIndex].ToString();
-        betValue = (int)(GameManager.Instance.battlefield.player.credits * 0.25f);
+        betValue = (int)(GameManager.Instance.runPlayer.credits * 0.25f);
         betInput.text = betValue.ToString();
         UpdateValues();
     }
@@ -80,7 +80,7 @@ public class DiceRollEvent : Event
         }
         if (total >= targetValues[targetValueIndex])
         {
-            GameManager.Instance.battlefield.player.AddCredits((betValue * (targetValueIndex+1)));
+            GameManager.Instance.runPlayer.AddCredits((betValue * (targetValueIndex+1)));
             winningText.text = (betValue * (targetValueIndex+1)).ToString()+" Credits";
             popDieText.text = total.ToString();
             prizePop.MaxScale();
@@ -88,7 +88,7 @@ public class DiceRollEvent : Event
         else
         {
             TextPopController.Instance.PopNegative("You lost "+betValue+" Credits",Vector3.zero,false);
-            GameManager.Instance.battlefield.player.SpendCredits(betValue);
+            GameManager.Instance.runPlayer.SpendCredits(betValue);
             potWinningText.text = "0";
         }
         leaveButton.gameObject.SetActive(true);
@@ -119,9 +119,9 @@ public class DiceRollEvent : Event
         if (betInput.text!="")
         {
             betValue = int.Parse(betInput.text);
-            if (betValue > GameManager.Instance.battlefield.player.credits)
+            if (betValue > GameManager.Instance.runPlayer.credits)
             {
-                betValue = GameManager.Instance.battlefield.player.credits;
+                betValue = GameManager.Instance.runPlayer.credits;
                 betInput.text = betValue.ToString();
             }
         }

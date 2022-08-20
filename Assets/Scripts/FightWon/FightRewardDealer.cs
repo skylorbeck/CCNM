@@ -118,11 +118,11 @@ public class FightRewardDealer : MonoBehaviour
         {
             if (keepState[i])
             {
-                GameManager.Instance.battlefield.player.AddCardToInventory(lootCards[i].EquipmentData);
+                GameManager.Instance.runPlayer.AddCardToInventory(lootCards[i].EquipmentData);
             }
             else
             {
-                GameManager.Instance.battlefield.player.ShredCard(lootCards[i].EquipmentData);
+                GameManager.Instance.runPlayer.ShredCard(lootCards[i].EquipmentData);
             }
         }
     }

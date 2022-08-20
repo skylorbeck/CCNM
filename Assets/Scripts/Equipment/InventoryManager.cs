@@ -53,7 +53,7 @@ public class InventoryManager : MonoBehaviour
         await Task.Delay(10);
         if (GameManager.Instance.battlefield.runStarted)
         {
-            playerObject = GameManager.Instance.battlefield.player;
+            playerObject = GameManager.Instance.runPlayer;
         } else
         {
             playerObject = GameManager.Instance.metaPlayer;

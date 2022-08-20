@@ -62,9 +62,9 @@ public class ShopItem : MonoBehaviour
     {
         if (itemCount > 0)
         {
-            if (GameManager.Instance.battlefield.player.credits >= itemPrice)
+            if (GameManager.Instance.runPlayer.credits >= itemPrice)
             {
-                GameManager.Instance.battlefield.player.SpendCredits(itemPrice);
+                GameManager.Instance.runPlayer.SpendCredits(itemPrice);
                 itemCount--;
                 UpdateVisual();
                 TextPopController.Instance.PopPositive("+1 "+itemName, transform.position, false);

@@ -34,32 +34,32 @@ public class CardDealer : MonoBehaviour
     {
         List<MapCard> mapCards = new List<MapCard>();
 
-        if (GameManager.Instance.battlefield.deck.shopAt.Contains(GameManager.Instance.battlefield.totalHands))
+        if (GameManager.Instance.deck.shopAt.Contains(GameManager.Instance.battlefield.totalHands))
         {
-            mapCards.Add(GameManager.Instance.battlefield.deck.DrawShopCard());
+            mapCards.Add(GameManager.Instance.deck.DrawShopCard());
         }
 
-        if (GameManager.Instance.battlefield.deck.eventAt.Contains(GameManager.Instance.battlefield.totalHands))
+        if (GameManager.Instance.deck.eventAt.Contains(GameManager.Instance.battlefield.totalHands))
         {
             mapCards.Add(eventCard);
         }
 
-        if (GameManager.Instance.battlefield.deck.miniBossAt.Contains(GameManager.Instance.battlefield.totalHands))
+        if (GameManager.Instance.deck.miniBossAt.Contains(GameManager.Instance.battlefield.totalHands))
         {
-            mapCards.Add(GameManager.Instance.battlefield.deck.DrawMiniBossCard());
+            mapCards.Add(GameManager.Instance.deck.DrawMiniBossCard());
         }
 
         for (int index = mapCards.Count; index < 3; index++)
         {
-            mapCards.Add(GameManager.Instance.battlefield.deck.DrawMinionCard());
+            mapCards.Add(GameManager.Instance.deck.DrawMinionCard());
         }
 
         mapCards.Sort((a, b) => Random.Range(-1, 2));
 
-        if (GameManager.Instance.battlefield.totalHands == GameManager.Instance.battlefield.deck.bossAt)
+        if (GameManager.Instance.battlefield.totalHands == GameManager.Instance.deck.bossAt)
         {
             mapCards.Clear();
-            mapCards.Add(GameManager.Instance.battlefield.deck.DrawBossCard());
+            mapCards.Add(GameManager.Instance.deck.DrawBossCard());
         }
 
         for (var i = 0; i < mapCards.Count; i++)

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using SaveSystem;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -18,6 +19,7 @@ public class Battlefield : ScriptableObject
     [field: SerializeField] public int enemyLevel { get; private set; } = 0;
     public Random.State? randomState = null;
 
+    
 
     public bool runOver => totalHands > deck.bossAt;
 
@@ -113,3 +115,4 @@ public class SavableBattlefield
         player = new SavablePlayerBrain(battlefield.player);
     }
 }
+

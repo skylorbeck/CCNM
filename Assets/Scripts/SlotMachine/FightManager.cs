@@ -31,7 +31,6 @@ public class FightManager : MonoBehaviour
     [SerializeField] private PlayerShell player;
     private Shell targetEnemy;
     private Symbol targetSymbol;
-    [SerializeField] private Battlefield battlefield;
     [SerializeField] private bool turnOver = false;
     [SerializeField] private GameObject startingSelection;
     [SerializeField] private GameObject pauseStartingSelection;
@@ -61,11 +60,11 @@ public class FightManager : MonoBehaviour
     {
         MusicManager.Instance.PlayTrack(GameManager.Instance.musicRegistry.GetMusic(0));
         GameManager.Instance.uiStateObject.Ping("Fight!");
-        // if (battlefield.randomState != null) Random.state = battlefield.randomState.Value;
+        // if (GameManager.Instance.battlefield.randomState != null) Random.state = GameManager.Instance.battlefield.randomState.Value;
         cancellationTokenSource = new CancellationTokenSource();
-        for (var i = 0; i < battlefield.enemies.Length; i++)
+        for (var i = 0; i < GameManager.Instance.battlefield.enemies.Length; i++)
         {
-            enemies[i].InsertBrain(battlefield.enemies[i]);
+            enemies[i].InsertBrain(GameManager.Instance.battlefield.enemies[i]);
         }
        
         foreach (EnemyShell enemy in enemies)
@@ -76,7 +75,7 @@ public class FightManager : MonoBehaviour
             }
         }
         
-        player.InsertBrain(battlefield.player);
+        player.InsertBrain(GameManager.Instance.battlefield.player);
         foreach (TextMeshProUGUI text in pauseText)
         {
             text.CrossFadeAlpha(0, 0,true);
@@ -238,12 +237,12 @@ public class FightManager : MonoBehaviour
                     // Debug.Log("Credits: " + credits);
                 }
             }
-            GameManager.Instance.battlefield.player.AddCredits(credits);
+            GameManager.Instance.runPlayer.AddCredits(credits);
             //todo convert this above to a method that adds credits to the player in LootManager. Make it tie into notifications. Ego too.
             
-            // battlefield.randomState = null;
-            battlefield.player.SetCurrentHealth(player.currentHealth);
-            battlefield.TotalHandsPlus();
+            // GameManager.Instance.battlefield.randomState = null;
+            GameManager.Instance.battlefield.player.SetCurrentHealth(player.currentHealth);
+            GameManager.Instance.battlefield.TotalHandsPlus();
 
             GameManager.Instance.saveManager.SaveRun();
             if (GameManager.Instance.battlefield.runOver)
