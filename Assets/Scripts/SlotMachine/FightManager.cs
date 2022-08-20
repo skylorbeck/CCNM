@@ -221,9 +221,8 @@ public class FightManager : MonoBehaviour
         {
             SetState(WheelStates.FightOver);
             // Debug.Log("Player is dead");
-            //todo replace with gameOver
             
-            GameManager.Instance.LoadSceneAdditive("RunOver","Fight");
+            GameManager.Instance.LoadSceneAdditive("GameOver","Fight");//todo
 
         // } else if (enemies.All(x => x.isDead))
         } else if (enemiesAlive == 0)
@@ -249,12 +248,12 @@ public class FightManager : MonoBehaviour
             GameManager.Instance.saveManager.SaveRun();
             if (GameManager.Instance.battlefield.runOver)
             {
-                GameManager.Instance.LoadSceneAdditive("RunOver","Fight");
+                GameManager.Instance.LoadSceneAdditive("RunOver","Fight");//todo
                 
             }
             if (enemies.Any((shell => shell.enemyBrain.isBoss)))
             {
-                GameManager.Instance.LoadSceneAdditive("RelicReward","Fight");
+                GameManager.Instance.LoadSceneAdditive("RelicReward","Fight");//todo
             }
             else
             {

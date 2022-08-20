@@ -43,10 +43,10 @@ MonoBehaviour:
   - <abilityIndex>k__BackingField: 0
     <gemLevel>k__BackingField: 0
     <amountOwned>k__BackingField: 0
-  <credits>k__BackingField: 6
+  <credits>k__BackingField: 125
   <ego>k__BackingField: 0
   <level>k__BackingField: 11
-  <currentHealth>k__BackingField: 184
+  <currentHealth>k__BackingField: 92
   <relics>k__BackingField: []
   strength: 5
   dexterity: 5

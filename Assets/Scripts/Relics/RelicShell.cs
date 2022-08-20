@@ -7,13 +7,13 @@ public class RelicShell : MonoBehaviour
 {
     [field:SerializeField] public Relic relic{get;private set;}
     
-    [field:SerializeField] public Sprite[] numbers{get;private set;}
     [field:SerializeField] public SpriteRenderer numberRenderer{get;private set;}
     [field:SerializeField] public SpriteRenderer spriteRenderer{get;private set;}
     [field:SerializeField] public SpriteRenderer outlineRenderer{get;private set;}
     [field:SerializeField] public SpriteMask spriteMask{get;private set;}
     [field:SerializeField] public TextMeshPro relicName{get;private set;}
     [field:SerializeField] public TextMeshPro relicLevelText{get;private set;}
+    [field:SerializeField] public TextMeshPro relicDescriptionText{get;private set;}
 
     void Start()
     {
@@ -39,8 +39,19 @@ public class RelicShell : MonoBehaviour
         spriteRenderer.sprite = relic.sprite;
         spriteMask.sprite = relic.sprite;
         outlineRenderer.color = GameManager.Instance.colors[(int)relic.rarity];
-        numberRenderer.sprite = numbers[relic.level];
+        Sprite[] levelSprites = Resources.LoadAll<Sprite>("IconSheet");
+        foreach (Sprite sprite in levelSprites)
+        {
+            if (sprite.name == "Roman"+relic.level)
+            {
+                numberRenderer.sprite = sprite;
+                break;
+            }
+        }
+
         numberRenderer.color = GameManager.Instance.colors[(int)relic.rarity];
+        relicDescriptionText.text = relic.description;
+        relicDescriptionText.color = GameManager.Instance.colors[(int)relic.rarity];
         relicName.text = relic.title;
         relicName.color = GameManager.Instance.colors[(int)relic.rarity];
         relicLevelText.color = GameManager.Instance.colors[(int)relic.rarity];

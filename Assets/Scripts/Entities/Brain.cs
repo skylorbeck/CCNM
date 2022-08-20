@@ -386,6 +386,10 @@ public class Brain : ScriptableObject
     
     public void AddRelic(Relic relic)
     {
+        if (relics.Contains(relic))
+        {
+            return;
+        }
         List<Relic> newRelics = new List<Relic>(relics);
         newRelics.Add(relic);
         relics = newRelics.ToArray();

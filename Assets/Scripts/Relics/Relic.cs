@@ -16,6 +16,7 @@ public class Relic : ScriptableObject
     
     public virtual void Subscribe(Shell shell)
     {
+        
     }
     
     public virtual void Unsubscribe(Shell shell)

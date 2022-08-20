@@ -16,21 +16,26 @@ MonoBehaviour:
   <colors>k__BackingField:
   - {r: 0.6603774, g: 0.58850193, b: 0.38314348, a: 1}
   - {r: 0.027628021, g: 0.38679248, b: 0, a: 1}
-  <BossAt>k__BackingField: 20
-  <MiniBossAt>k__BackingField: 0300000006000000
+  <bossAt>k__BackingField: 5
+  <miniBossAt>k__BackingField: 03000000
   <shopAt>k__BackingField: 04000000
   <eventAt>k__BackingField: 01000000020000000500000007000000
-  <BossCard>k__BackingField: {fileID: 11400000, guid: a6c2b7848cac98a4982daed8695a935d, type: 2}
-  <MiniBossCard>k__BackingField:
+  <eventNames>k__BackingField:
+  - DiceRoll
+  - FoundCoffee
+  - FoundPie
+  - FoundTea
+  <bossCard>k__BackingField: {fileID: 11400000, guid: a6c2b7848cac98a4982daed8695a935d, type: 2}
+  <miniBossCard>k__BackingField:
   - {fileID: 11400000, guid: f13c005cfebab3c47b89404d5eaacf4c, type: 2}
   - {fileID: 11400000, guid: 3e033b7bbd8987841a2d3181a5c8fbde, type: 2}
-  <MinionCards>k__BackingField:
+  <minionCards>k__BackingField:
   - {fileID: 11400000, guid: 13563d5ffcb8a984d8cb7edd2a225b7d, type: 2}
   - {fileID: 11400000, guid: 9fa23546537b5ea4bbafbd3352ed7170, type: 2}
   - {fileID: 11400000, guid: 2438b04b1ee0f95468981a91d8dad2f0, type: 2}
-  <EventCards>k__BackingField:
-  - {fileID: 11400000, guid: e697c6948548bf14c80e5d0c8eab84fd, type: 2}
-  <ShopCards>k__BackingField:
+  <shopCards>k__BackingField:
   - {fileID: 11400000, guid: a7667085ea0ee8a4fba84e59cc7cdb96, type: 2}
-  <ItemCards>k__BackingField: []
-  <ConsumableCards>k__BackingField: []
+  <itemCards>k__BackingField: []
+  <consumableCards>k__BackingField: []
+  <relics>k__BackingField:
+  - {fileID: 11400000, guid: dc98678aa1785e34aa8731a5419122af, type: 2}
