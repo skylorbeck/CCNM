@@ -47,8 +47,8 @@ public class EnemyShell : Shell
             if (enemyBrain.isBoss)
             {
                 transform.localPosition = new Vector3(0, 2.5f, 0);
-                spotLight.localPosition = new Vector3(0, -0.05f, 0);
-                shadow.localPosition = new Vector3(0, -0.33f, 0);
+                spotLight.localPosition = new Vector3(0, 0.85f, 0);
+                shadow.localPosition = new Vector3(0, 0.85f, 0);
             }
         }
         base.InsertBrain(brain);

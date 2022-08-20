@@ -16,9 +16,11 @@ MonoBehaviour:
   <description>k__BackingField: entity.description_a
   <icon>k__BackingField: {fileID: 21300000, guid: 7818c8abdda0c284abf429a8bae3b2b1, type: 3}
   <abilities>k__BackingField:
-  - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+  - <abilityIndex>k__BackingField: 0
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
   <credits>k__BackingField: 1
-  <ego>k__BackingField: 0
+  <ego>k__BackingField: 10
   <level>k__BackingField: 0
   <currentHealth>k__BackingField: -8
   <relics>k__BackingField: []
@@ -34,3 +36,4 @@ MonoBehaviour:
   charisma: 5
   sagacity: 0
   isBoss: 0
+  isBlank: 0

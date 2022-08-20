@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Obsolete("Use GameOverManager Instead")]
 public class RunRewardManager : MonoBehaviour
 {
     public EquipmentCardShell cardPrefab;
@@ -22,9 +23,10 @@ public class RunRewardManager : MonoBehaviour
         GameManager.Instance.metaPlayer.CopyCardPacks(GameManager.Instance.runPlayer);
         GameManager.Instance.metaPlayer.CopyCapsules(GameManager.Instance.runPlayer);
         GameManager.Instance.metaPlayer.CopySuperCapsules(GameManager.Instance.runPlayer);
+        GameManager.Instance.metaStats.Add(GameManager.Instance.runStats);
         if (GameManager.Instance.runPlayer.currentHealth > 0)
         {
-            GameManager.Instance.metaPlayer.AddCardPack(1);//todo replace with algorithm based on score
+            GameManager.Instance.metaPlayer.AddCardPack(1);//todo replace with algorithm based on score in GameOverManager
         }
         
         for (var i = 0; i < GameManager.Instance.runPlayer.playerInventory.Length; i++)

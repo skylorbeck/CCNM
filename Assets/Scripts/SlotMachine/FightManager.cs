@@ -216,7 +216,7 @@ public class FightManager : MonoBehaviour
 
     private void CheckForAllDead()
     {
-        if (player.isDead)
+        /*if (player.isDead)
         {
             SetState(WheelStates.FightOver);
             // Debug.Log("Player is dead");
@@ -224,31 +224,36 @@ public class FightManager : MonoBehaviour
             GameManager.Instance.LoadSceneAdditive("GameOver","Fight");//todo
 
         // } else if (enemies.All(x => x.isDead))
-        } else if (enemiesAlive == 0)
+        } else */if (enemiesAlive == 0 || player.isDead)
         {
             SetState(WheelStates.FightOver);
             // Debug.Log("Enemies are dead");
+            
+            //todo move this to Gameover Manager
             int credits = 0;
+            int ego = 0;
             foreach (var enemy in enemies)
             {
                 if (enemy.hasBrain && !enemy.enemyBrain.isBlank)
                 {
                     credits += enemy.enemyBrain.credits;
+                    ego += enemy.enemyBrain.ego;
                     // Debug.Log("Credits: " + credits);
                 }
             }
             GameManager.Instance.runPlayer.AddCredits(credits);
-            //todo convert this above to a method that adds credits to the player in LootManager. Make it tie into notifications. Ego too.
+            GameManager.Instance.runPlayer.AddEgo(ego);
+            //todo convert this above to a method that adds credits to the player in LootManager. Make it tie into notifications. Ego too. 
             
             // GameManager.Instance.battlefield.randomState = null;
             GameManager.Instance.battlefield.player.SetCurrentHealth(player.currentHealth);
             GameManager.Instance.battlefield.TotalHandsPlus();
 
             GameManager.Instance.saveManager.SaveRun();
-            if (GameManager.Instance.battlefield.runOver)
+            if (GameManager.Instance.battlefield.runOver || player.isDead)
             {
-                GameManager.Instance.LoadSceneAdditive("RunOver","Fight");//todo
-                
+                GameManager.Instance.LoadSceneAdditive("GameOver","Fight");
+                return; 
             }
             if (enemies.Any((shell => shell.enemyBrain.isBoss)))
             {

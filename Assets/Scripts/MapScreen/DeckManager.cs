@@ -18,6 +18,10 @@ public class DeckManager : MonoBehaviour
 
     void Start()
     {
+        if (GameManager.Instance.battlefield.deckChosen)
+        {
+            this.SetSelectedDeck(GameManager.Instance.deck);
+        }
     }
 
     private void OnDestroy()
@@ -45,8 +49,9 @@ public class DeckManager : MonoBehaviour
         currentX = Mathf.Clamp(Mathf.Lerp(currentX, target, Time.deltaTime * xDistance),
             xDistance - decks.Count * xDistance, 0);
         int newSelected = Math.Abs((int)Math.Round(currentX / xDistance, MidpointRounding.AwayFromZero));
-        if (newSelected != selected)
+        if (newSelected != selected && !GameManager.Instance.battlefield.runStarted)
         {
+            // Debug.Log("Selected: " + selected + "-New Selected: " + newSelected);
             selected = newSelected;
             UpdateDecks();
         }
@@ -79,6 +84,10 @@ public class DeckManager : MonoBehaviour
 
     public void OnDrag(Vector2 delta)
     {
+        if (GameManager.Instance.battlefield.runStarted)
+        {
+            return;
+        }
         currentX += delta.x * Time.deltaTime*PlayerPrefs.GetFloat("TouchSensitivity",1f);
     }
 

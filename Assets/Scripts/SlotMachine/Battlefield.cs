@@ -36,7 +36,7 @@ public class Battlefield : ScriptableObject
     {
         this.player = player;
     }
-    public void InsertDeck(DeckObject deck)//todo deck chooser system
+    public void InsertDeck(DeckObject deck)
     {
         this.deck = deck;
         deckChosen = true;

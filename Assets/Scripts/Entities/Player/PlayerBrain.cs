@@ -22,7 +22,7 @@ public class PlayerBrain : Brain
     [field: SerializeField] public int[] cardSouls { get; private set; } = new int[7];
     [field: SerializeField] public int[] consumables { get; private set; } = new int[3];
     [OptionalField] public TrackableStats trackableStats = new TrackableStats();
-
+    public bool isDead => currentHealth <= 0;
     #region precomputedStats
 
     [field: SerializeField] public int cardStrength { get; private set; }
@@ -402,6 +402,7 @@ public class PlayerBrain : Brain
 
     public void AddCardPack(int amt)
     {
+        trackableStats.safesObtained += amt;
         cardPacks += amt;
     }
 
@@ -558,7 +559,14 @@ public class PlayerBrain : Brain
         ego = saveFile.ego;
         credits = saveFile.credits;
         level = saveFile.level<=0?1:saveFile.level;
-        trackableStats = saveFile.trackableStats;
+        if (saveFile.trackableStats==null)
+        {
+            trackableStats = new TrackableStats();
+        }
+        else
+        {
+            trackableStats = saveFile.trackableStats;
+        }
         SetStrength(saveFile.strength);
         SetDexterity(saveFile.dexterity);
         SetVitality(saveFile.vitality);

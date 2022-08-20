@@ -782,6 +782,7 @@ MonoBehaviour:
   - {x: 0, y: 3.25, z: 0}
   - {x: -1.25, y: 0, z: 0}
   - {x: 1.25, y: 0, z: 0}
+  eventCard: {fileID: 11400000, guid: e697c6948548bf14c80e5d0c8eab84fd, type: 2}
 --- !u!1001 &554347607
 PrefabInstance:
   m_ObjectHideFlags: 0

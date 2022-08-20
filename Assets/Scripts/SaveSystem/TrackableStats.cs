@@ -1,30 +1,30 @@
 ﻿using System;
-using UnityEngine;
 
 namespace SaveSystem
 {
     [Serializable]
     public class TrackableStats
     {
-        public int minionsKilled = 0;
-        public int bossesKilled = 0;
-        public int wheelsSpun = 0;
-        public int safesOpened = 0;
-        public int cardsObtained = 0;
-        public int cardsDismantled = 0;
-        public int gemsObtained = 0;
-        public int gemsUpgraded = 0;
-        public int gemsSocketed = 0;
-        public int gemsUnsockted = 0;
-        public int timesDied = 0;
-        public int timesRevived = 0;
-        public int creditsEarned = 0;
-        public int creditsSpent = 0;
-        public int creditsLost = 0;
-        public int egoEarned = 0;
-        public int egoSpent = 0;
-        public int egoLost = 0;
-        public int egoGained = 0;
+        public int minionsKilled;
+        public int bossesKilled;
+        public int wheelsSpun;
+        public int safesObtained;
+        public int safesOpened;
+        public int cardsObtained;
+        public int cardsDismantled;
+        public int gemsObtained;
+        public int gemsUpgraded;
+        public int gemsSocketed;
+        public int gemsUnsockted;
+        public int timesDied;
+        public int timesRevived;
+        public int creditsEarned;
+        public int creditsSpent;
+        public int creditsLost;
+        public int egoEarned;
+        public int egoSpent;
+        public int egoLost;
+        public int egoGained;
         public int[] cardSoulsGained = new int[7]; 
         public int[] cardSoulsSpent = new int[7]; 
         
@@ -35,27 +35,58 @@ namespace SaveSystem
 
         public TrackableStats(TrackableStats old)
         {
-            this.minionsKilled = old.minionsKilled;
-            this.bossesKilled = old.bossesKilled;
-            this.wheelsSpun = old.wheelsSpun;
-            this.safesOpened = old.safesOpened;
-            this.cardsObtained = old.cardsObtained;
-            this.cardsDismantled = old.cardsDismantled;
-            this.gemsObtained = old.gemsObtained;
-            this.gemsUpgraded = old.gemsUpgraded;
-            this.gemsSocketed = old.gemsSocketed;
-            this.gemsUnsockted = old.gemsUnsockted;
-            this.timesDied = old.timesDied;
-            this.timesRevived = old.timesRevived;
-            this.creditsEarned = old.creditsEarned;
-            this.creditsSpent = old.creditsSpent;
-            this.creditsLost = old.creditsLost;
-            this.egoEarned = old.egoEarned;
-            this.egoSpent = old.egoSpent;
-            this.egoLost = old.egoLost;
-            this.egoGained = old.egoGained;
-            this.cardSoulsGained = old.cardSoulsGained;
-            this.cardSoulsSpent = old.cardSoulsSpent;
+            minionsKilled = old.minionsKilled;
+            bossesKilled = old.bossesKilled;
+            wheelsSpun = old.wheelsSpun;
+            safesOpened = old.safesOpened;
+            cardsObtained = old.cardsObtained;
+            cardsDismantled = old.cardsDismantled;
+            gemsObtained = old.gemsObtained;
+            gemsUpgraded = old.gemsUpgraded;
+            gemsSocketed = old.gemsSocketed;
+            gemsUnsockted = old.gemsUnsockted;
+            timesDied = old.timesDied;
+            timesRevived = old.timesRevived;
+            creditsEarned = old.creditsEarned;
+            creditsSpent = old.creditsSpent;
+            creditsLost = old.creditsLost;
+            egoEarned = old.egoEarned;
+            egoSpent = old.egoSpent;
+            egoLost = old.egoLost;
+            egoGained = old.egoGained;
+            cardSoulsGained = old.cardSoulsGained;
+            cardSoulsSpent = old.cardSoulsSpent;
+        }
+
+        public void Add(TrackableStats stats)
+        {
+            minionsKilled += stats.minionsKilled;
+            bossesKilled += stats.bossesKilled;
+            wheelsSpun += stats.wheelsSpun;
+            safesOpened += stats.safesOpened;
+            cardsObtained += stats.cardsObtained;
+            cardsDismantled += stats.cardsDismantled;
+            gemsObtained += stats.gemsObtained;
+            gemsUpgraded += stats.gemsUpgraded;
+            gemsSocketed += stats.gemsSocketed;
+            gemsUnsockted += stats.gemsUnsockted;
+            timesDied += stats.timesDied;
+            timesRevived += stats.timesRevived;
+            creditsEarned += stats.creditsEarned;
+            creditsSpent += stats.creditsSpent;
+            creditsLost += stats.creditsLost;
+            egoEarned += stats.egoEarned;
+            egoSpent += stats.egoSpent;
+            egoLost += stats.egoLost;
+            egoGained += stats.egoGained;
+            for (var i = 0; i < cardSoulsGained.Length; i++)
+            {
+                cardSoulsGained[i] += stats.cardSoulsGained[i];
+            }
+            for (var i = 0; i < cardSoulsSpent.Length; i++)
+            {
+                cardSoulsSpent[i] += stats.cardSoulsSpent[i];
+            }
         }
     }
 }
