@@ -93,14 +93,25 @@ public class EnemyShell : Shell
 
     public override void Kill()
     {
-        Dim();
         GameManager.Instance.uiStateObject.Ping(title + " died!");
-        base.Kill();
+        KillSilently();
     }
     
     public void KillSilently()
     {
         Dim();
         base.Kill();
+        if (enemyBrain.isBlank)
+        {
+            return;
+        }
+        if (enemyBrain.isBoss)
+        {
+            GameManager.Instance.runPlayer.trackableStats.bossesKilled++;
+        }
+        else
+        {
+            GameManager.Instance.runPlayer.trackableStats.minionsKilled++;
+        }
     }
 }

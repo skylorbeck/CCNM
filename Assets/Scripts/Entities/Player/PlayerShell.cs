@@ -59,6 +59,9 @@ public class PlayerShell : Shell
     public override void Kill()
     {
         GameManager.Instance.uiStateObject.Ping("You died");
+        GameManager.Instance.metaStats.timesDied++;
+        GameManager.Instance.metaStats.creditsLost += GameManager.Instance.runPlayer.credits;//todo move this to gameover screen
+        GameManager.Instance.metaStats.egoLost += GameManager.Instance.runPlayer.ego;//todo move this to gameover screen
         base.Kill();
     }
 

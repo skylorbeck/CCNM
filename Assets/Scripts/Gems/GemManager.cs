@@ -137,6 +137,7 @@ public class GemManager : MonoBehaviour
             SoundManager.Instance.PlayUiAccept();
             GameManager.Instance.metaPlayer.RemoveGem(selected,1);
             menuEntries[selected].InsertAbility(GameManager.Instance.metaPlayer.ownedGems[selected]);
+            GameManager.Instance.metaPlayer.trackableStats.gemsSocketed++;
             GameManager.Instance.saveManager.SaveMeta();
         }
         else
@@ -193,6 +194,7 @@ public class GemManager : MonoBehaviour
             {
                 previews[selectedMenu].InsertItem(GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu));
                 SoundManager.Instance.PlayUiAccept();
+                GameManager.Instance.metaPlayer.trackableStats.gemsUnsockted++;
                 GameManager.Instance.metaPlayer.AddAbilityGem(gem);
                 
                 for (var j = 0; j < menuEntries.Count; j++)

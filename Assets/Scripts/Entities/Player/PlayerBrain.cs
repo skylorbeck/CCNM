@@ -233,6 +233,7 @@ public class PlayerBrain : Brain
 
     public void AddCardToInventory(EquipmentDataContainer equipmentDataContainer)
     {
+        trackableStats.cardsObtained++;
         playerInventory[(int)equipmentDataContainer.itemCore.itemType].container.Add(equipmentDataContainer);
     }
 
@@ -245,6 +246,7 @@ public class PlayerBrain : Brain
         playerInventory[(int)equipmentDataContainer.itemCore.itemType].container.Remove(equipmentDataContainer);
 
     }
+    
 
     public EquipmentDataContainer GetCard(int equipmentSlot, int cardIndex)
     {
@@ -291,16 +293,19 @@ public class PlayerBrain : Brain
         if (playerInventory[(int)card.itemCore.itemType].container.Contains(card))
         {
             RemoveCardFromInventory(card);
+            trackableStats.cardsDismantled++;
         }
 
         int soulsGained = Random.Range(1, 10);
         cardSouls[(int)card.quality] += soulsGained;
+        GameManager.Instance.metaStats.cardSoulsGained[(int)card.quality] += soulsGained;
         
         for (var i = 0; i < card.abilities?.Length; i++)
         {
             if (card.abilities[i] != null && card.abilities[i].abilityIndex!= -1)
             {
                 AddAbilityGem(card.abilities[i]);
+                trackableStats.gemsObtained++;
             }
         }
         
@@ -357,22 +362,26 @@ public class PlayerBrain : Brain
     {
         amt += (int)(Math.Ceiling(amt * GetCreditBoost()));
         // Debug.Log("Credit Boost "+GetCreditBoost());
+        trackableStats.creditsEarned += amt;
         credits += amt;
     }
 
     public void SpendCredits(int amt)
     {
+        trackableStats.creditsSpent += amt;
         credits -= amt;
     }
 
     public void AddEgo(int amt)
     {
         amt = (int)(amt * GetEgoBoost());
+        trackableStats.egoGained += amt;
         ego += amt;
     }
 
     public void SpendEgo(int amt)
     {
+        trackableStats.egoSpent += amt;
         ego -= amt;
     }
     
@@ -515,6 +524,8 @@ public class PlayerBrain : Brain
         {
             newGems.Add(gem);
         }
+
+        
         ownedGems = newGems.ToArray();
     }
     public void InsertSaveFile(SavablePlayerBrain saveFile)
@@ -603,6 +614,7 @@ public class PlayerBrain : Brain
     public void SpendSouls(int cardQuality, int cardLevel)
     {
         cardSouls[cardQuality] -= cardLevel;
+        GameManager.Instance.metaStats.cardSoulsSpent[cardQuality] += cardLevel;
     }
 }
 

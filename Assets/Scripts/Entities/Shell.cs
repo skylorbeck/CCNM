@@ -140,7 +140,6 @@ public class Shell : MonoBehaviour
         spriteRenderer.sprite = null;
         statusDisplayer.Clear();
         healthBar.ManualUpdate();
-
     }
     
     public virtual void Heal(int baseHeal, StatusEffect.Element element)

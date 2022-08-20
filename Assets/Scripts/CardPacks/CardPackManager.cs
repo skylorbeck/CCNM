@@ -93,6 +93,7 @@ public class CardPackManager : MonoBehaviour
             GameManager.Instance.metaPlayer.AddCardToInventory(cardShell.EquipmentData);
         }
 
+        GameManager.Instance.metaStats.safesOpened++;
 
         GameManager.Instance.saveManager.SaveMeta();
         GameManager.Instance.inputReader.Back += Back;

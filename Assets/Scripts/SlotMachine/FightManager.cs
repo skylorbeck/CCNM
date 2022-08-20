@@ -512,6 +512,7 @@ public class FightManager : MonoBehaviour
 
     public async void SpinWheels()
     {
+        GameManager.Instance.runPlayer.trackableStats.wheelsSpun++;
         SetState(WheelStates.Spinning);
         foreach (AbilityWheel wheel in wheels)
         {
