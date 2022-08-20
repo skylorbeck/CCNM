@@ -41,12 +41,13 @@ public class PlayerShell : Shell
  
     public override Task<int> OnAttack(Shell target, int baseDamage)
     {
-        GameManager.Instance.uiStateObject.Ping("You hit " + target.name + " for " + baseDamage + " damage!");//todo make this reflect base.onattack
-        return base.OnAttack(target, baseDamage);
+        Task<int> damage = base.OnAttack(target, baseDamage);
+        GameManager.Instance.uiStateObject.Ping("You hit " + target.title + " for " + damage.Result + " damage!");
+        return damage;
     }
     public override Task<int> OnHeal(Shell target, int baseShield)
     {
-        return base.OnShield(target, baseShield);
+        return base.OnHeal(target, baseShield);
     }
 
     public override void Shield(int amount, StatusEffect.Element element)

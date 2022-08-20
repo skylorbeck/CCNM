@@ -60,6 +60,7 @@ public class FightManager : MonoBehaviour
     async void Start()
     {
         MusicManager.Instance.PlayTrack(GameManager.Instance.musicRegistry.GetMusic(0));
+        GameManager.Instance.uiStateObject.Ping("Fight!");
         // if (battlefield.randomState != null) Random.state = battlefield.randomState.Value;
         cancellationTokenSource = new CancellationTokenSource();
         for (var i = 0; i < battlefield.enemies.Length; i++)
@@ -71,7 +72,7 @@ public class FightManager : MonoBehaviour
         {
             if (enemy.enemyBrain.isBlank)
             {
-                enemy.Kill();
+                enemy.KillSilently();
             }
         }
         
@@ -235,15 +236,30 @@ public class FightManager : MonoBehaviour
                 if (enemy.hasBrain && !enemy.enemyBrain.isBlank)
                 {
                     credits += enemy.enemyBrain.credits;
+                    // Debug.Log("Credits: " + credits);
                 }
             }
             GameManager.Instance.battlefield.player.AddCredits(credits);
+            //todo convert this above to a method that adds credits to the player in LootManager. Make it tie into notifications. Ego too.
+            
             // battlefield.randomState = null;
             battlefield.player.SetCurrentHealth(player.currentHealth);
             battlefield.TotalHandsPlus();
 
             GameManager.Instance.saveManager.SaveRun();
-            GameManager.Instance.LoadSceneAdditive("FightWon",  "Fight");
+            if (GameManager.Instance.battlefield.runOver)
+            {
+                GameManager.Instance.LoadSceneAdditive("RunOver","Fight");
+                
+            }
+            if (enemies.Any((shell => shell.enemyBrain.isBoss)))
+            {
+                GameManager.Instance.LoadSceneAdditive("RelicReward","Fight");
+            }
+            else
+            {
+                GameManager.Instance.LoadSceneAdditive("MapScreen",  "Fight");
+            }
         }
     }
 

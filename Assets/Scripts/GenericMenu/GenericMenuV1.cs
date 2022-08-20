@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -193,7 +194,9 @@ public class GenericMenuV1 : MonoBehaviour
         if (newSelected != selected)
         {
             selected = newSelected;
-            buttonText.text = entries[selected].name;
+            // buttonText.text = entries[selected].name;
+            DOTween.To(() => buttonText.text, x => buttonText.text = x,  entries[selected].name, 0.5f);
+
             SoundManager.Instance.PlayUiClick();
         }
     }

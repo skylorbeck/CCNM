@@ -19,7 +19,7 @@ public class Battlefield : ScriptableObject
     public Random.State? randomState = null;
 
 
-    public bool runOver => totalHands > deck.BossAt;
+    public bool runOver => totalHands > deck.bossAt;
 
     public void TotalHandsPlus()
     {

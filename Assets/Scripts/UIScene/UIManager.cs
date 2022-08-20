@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -90,7 +91,8 @@ public class UIManager : MonoBehaviour
 
     public void SetTopBarText(string text)
     {
-        notificationText.text = text;
+        // notificationText.text = text;
+        DOTween.To(() => notificationText.text, x => notificationText.text = x, text, 0.5f);
     }
     
     public void NextSprite()

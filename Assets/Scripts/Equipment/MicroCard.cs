@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -19,11 +20,16 @@ public class MicroCard : MonoBehaviour
     {
         EquipmentData = item;
         itemSprite.sprite = item.itemCore.icon;
-        background.color = GameManager.Instance.colors[(int)item.quality];
+        // background.color = GameManager.Instance.colors[(int)item.quality];
+        DOTween.To(() => background.color, x => background.color = x,  GameManager.Instance.colors[(int)item.quality], 0.5f);
+
         highlight.gameObject.SetActive(false);
         shredMark.gameObject.SetActive(false);
-        levelText.text ="Lv."+ item.level.ToString();
-        levelText.color = GameManager.Instance.colors[(int)item.quality];
+        // levelText.text ="Lv."+ item.level.ToString();
+        DOTween.To(() => levelText.text, x => levelText.text = x, "Lv."+ item.level.ToString(), 0.5f);
+
+        // levelText.color = GameManager.Instance.colors[(int)item.quality];
+        DOTween.To(() => levelText.color, x => levelText.color = x,  GameManager.Instance.colors[(int)item.quality], 0.5f);
 
         for (var i = 0; i < gemslots.Length; i++)
         {

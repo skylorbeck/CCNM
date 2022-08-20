@@ -9,14 +9,14 @@ public class EventManager : MonoBehaviour
 {
     [SerializeField] private Event currentEvent;
 
-    [field: SerializeField] public string[] eventNames { get; private set; }
+    // [field: SerializeField] public string[] eventNames { get; private set; }
 
     void Start()
     {
         if (currentEvent == null)
         {
             Event instance = Instantiate(
-                Resources.Load<GameObject>("Events/" + eventNames[Random.Range(0, eventNames.Length)]).GetComponent<Event>(),transform);
+                Resources.Load<GameObject>("Events/" + GameManager.Instance.battlefield.deck.eventNames[Random.Range(0, GameManager.Instance.battlefield.deck.eventNames.Length)]).GetComponent<Event>(),transform);
             currentEvent = instance;
         }
 

@@ -33,7 +33,9 @@ public class CardShell : MonoBehaviour
         // TargetPosition = transform.localPosition;
         card = cardObject;
         // textAbove = above;
-        text.text = card.cardTitle;
+        // text.text = card.cardTitle;
+        DOTween.To(() => text.text, x => text.text = x, card.cardTitle, 0.5f);
+
         // text.transform.localPosition = new Vector3(0, textAbove?0.75f:-0.75f, 0);
         enemySprite.sprite = card.icon;
         switch (cardObject.mapCardType)
@@ -53,9 +55,8 @@ public class CardShell : MonoBehaviour
                 typeSprite.sprite = eventSprite;
                 break;
         }
-        cardSpriteBack.color = GameManager.Instance.battlefield.deck.colors[0];
-        cardSpriteFront.color = GameManager.Instance.battlefield.deck.colors[1];
-      
+        cardSpriteBack.color = GameManager.Instance.battlefield.deck.colors[1];
+        cardSpriteFront.color = GameManager.Instance.battlefield.deck.colors[0];
 
         transform.localPosition = new Vector3(0, -2.5f, 0);
         hasBrain = true;

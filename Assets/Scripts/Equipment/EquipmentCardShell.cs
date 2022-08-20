@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -73,22 +74,31 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
         EquipmentData = item;
         // itemSprite.sprite = item.itemCore.icon;
         microCard.InsertItem(item);
-        title.text = item.itemCore.cardTitle;
-        qualityText.text = item.quality.ToString();
-        qualityText.color = GameManager.Instance.colors[(int)item.quality];
-        levelText.text = "lv."+ item.level;
-        levelText.color = GameManager.Instance.colors[(int)item.quality];
+        // title.text = item.itemCore.cardTitle;
+        // qualityText.text = item.quality.ToString();
+        // levelText.text = "lv."+ item.level;
+        DOTween.To(() => levelText.text, x => levelText.text = x, "lv."+ item.level, 0.5f);
+        DOTween.To(() => qualityText.text, x => qualityText.text = x, item.quality.ToString(), 0.5f);
+        DOTween.To(() => title.text, x => title.text = x, item.itemCore.cardTitle, 0.5f);
+
+        DOTween.To(() => qualityText.color, x => qualityText.color = x,  GameManager.Instance.colors[(int)item.quality], 0.5f);
+        DOTween.To(() => levelText.color, x => levelText.color = x,  GameManager.Instance.colors[(int)item.quality], 0.5f);
         for (var i = 0; i < statTitleText.Length; i++)
         {
+            var i1 = i;
+
             if (i<item.stats.Length&&item.stats[i] !=EquipmentDataContainer.Stats.None)
             {
-                statValueText[i].text = item.statValue[i].ToString();
-                statTitleText[i].text = item.stats[i].ToString();
+                DOTween.To(() => statValueText[i1].text, x => statValueText[i1].text = x,item.statValue[i1].ToString(), 0.5f);
+                DOTween.To(() => statTitleText[i1].text, x => statTitleText[i1].text = x,item.stats[i1].ToString(), 0.5f);
+
+                // statValueText[i].text = item.statValue[i].ToString();
+                // statTitleText[i].text = item.stats[i].ToString();
             }
             else
             {
-                statTitleText[i].text = "";
-                statValueText[i].text = "";
+                DOTween.To(() => statValueText[i1].text, x => statValueText[i1].text = x,"", 0.5f);
+                DOTween.To(() => statTitleText[i1].text, x => statTitleText[i1].text = x,"", 0.5f);
             }
 
             /*if (i<item.itemCore.guaranteeStats.Length)
@@ -133,7 +143,7 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
             gemSlotsFront[i].gameObject.SetActive(false);
         }
 
-        cardSprite.color= GameManager.Instance.colors[(int)item.quality];
+        DOTween.To(() => cardSprite.color, x => cardSprite.color = x,  GameManager.Instance.colors[(int)item.quality], 0.5f);
         // cardBackSprite.color = GameManager.Instance.colors[(int)item.quality];
         for (var i = 0; i < cardHighlightRenderers.Length; i++)
         {

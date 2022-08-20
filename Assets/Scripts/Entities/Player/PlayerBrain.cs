@@ -353,7 +353,8 @@ public class PlayerBrain : Brain
 
     public void AddCredits(int amt)
     {
-        amt = (int)(amt * GetCreditBoost());
+        amt += (int)(Math.Ceiling(amt * GetCreditBoost()));
+        // Debug.Log("Credit Boost "+GetCreditBoost());
         credits += amt;
     }
 

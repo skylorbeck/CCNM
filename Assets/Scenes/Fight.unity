@@ -7473,7 +7473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 108, y: 192}
   m_ScreenMatchMode: 2
@@ -8983,10 +8983,6 @@ PrefabInstance:
     - target: {fileID: 1324527001775050747, guid: 7224c8088afcfec42ae4ba671bb6cb7a, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6527612945758671532, guid: 7224c8088afcfec42ae4ba671bb6cb7a, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7224c8088afcfec42ae4ba671bb6cb7a, type: 3}

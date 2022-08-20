@@ -16,66 +16,177 @@ MonoBehaviour:
   <description>k__BackingField: entity.description
   <icon>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   <abilities>k__BackingField:
-  - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
-  - {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
-  - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
-  <currentHealth>k__BackingField: 10
-  <relics>k__BackingField:
-  - {fileID: 11400000, guid: dc98678aa1785e34aa8731a5419122af, type: 2}
+  - <abilityIndex>k__BackingField: 1
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 4
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 0
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 3
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 0
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 0
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 0
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 0
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 0
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  <credits>k__BackingField: 6
+  <ego>k__BackingField: 0
+  <level>k__BackingField: 11
+  <currentHealth>k__BackingField: 184
+  <relics>k__BackingField: []
   strength: 5
   dexterity: 5
-  vitality: 5
+  vitality: 10
   speed: 5
   skill: 5
-  luck: 5
+  luck: 43
   grit: 5
   resolve: 5
   intelligence: 5
   charisma: 5
-  sagacity: 0
-  <equippedSlots>k__BackingField: ffffffffffffffffffffffff
+  sagacity: 5
+  <equippedSlots>k__BackingField: 000000000000000000000000
   <playerInventory>k__BackingField:
-  - container: []
-  - container: []
-  - container: []
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 47ac547be6b637a438087ef724dc0656, type: 2}
+      <gemSlots>k__BackingField: 3
+      <lockedSlots>k__BackingField: 010100
+      <abilities>k__BackingField:
+      - <abilityIndex>k__BackingField: 1
+        <gemLevel>k__BackingField: 0
+        <amountOwned>k__BackingField: 0
+      - <abilityIndex>k__BackingField: 4
+        <gemLevel>k__BackingField: 0
+        <amountOwned>k__BackingField: 0
+      - <abilityIndex>k__BackingField: 0
+        <gemLevel>k__BackingField: 0
+        <amountOwned>k__BackingField: 0
+      <quality>k__BackingField: 4
+      <level>k__BackingField: 8
+      <stats>k__BackingField: 0600000007000000090000000b00000004000000
+      <statValue>k__BackingField: 2d0000002d000000090000000900000009000000
+      <indestructible>k__BackingField: 1
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 7fc02d296240e5346a5539e5e50cc456, type: 2}
+      <gemSlots>k__BackingField: 3
+      <lockedSlots>k__BackingField: 010000
+      <abilities>k__BackingField:
+      - <abilityIndex>k__BackingField: 3
+        <gemLevel>k__BackingField: 0
+        <amountOwned>k__BackingField: 0
+      - <abilityIndex>k__BackingField: 0
+        <gemLevel>k__BackingField: 0
+        <amountOwned>k__BackingField: 0
+      - <abilityIndex>k__BackingField: 0
+        <gemLevel>k__BackingField: 0
+        <amountOwned>k__BackingField: 0
+      <quality>k__BackingField: 4
+      <level>k__BackingField: 12
+      <stats>k__BackingField: 0100000007000000030000000a00000009000000
+      <statValue>k__BackingField: 4300000030000000410000000e0000000e000000
+      <indestructible>k__BackingField: 1
+  - container:
+    - <itemCore>k__BackingField: {fileID: 11400000, guid: 3c126ef0be4140345993533bb585f5c5, type: 2}
+      <gemSlots>k__BackingField: 2
+      <lockedSlots>k__BackingField: 010000
+      <abilities>k__BackingField:
+      - <abilityIndex>k__BackingField: 0
+        <gemLevel>k__BackingField: 0
+        <amountOwned>k__BackingField: 0
+      - <abilityIndex>k__BackingField: 0
+        <gemLevel>k__BackingField: 0
+        <amountOwned>k__BackingField: 0
+      - <abilityIndex>k__BackingField: 0
+        <gemLevel>k__BackingField: 0
+        <amountOwned>k__BackingField: 0
+      <quality>k__BackingField: 5
+      <level>k__BackingField: 9
+      <stats>k__BackingField: 0300000008000000050000000600000002000000
+      <statValue>k__BackingField: 6d0000000b00000026000000270000000e000000
+      <indestructible>k__BackingField: 1
   <defaultEquipment>k__BackingField:
   - <itemCore>k__BackingField: {fileID: 11400000, guid: 86d281c4687b5cf4d8238642e243853e, type: 2}
-    <ability>k__BackingField: {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+    <gemSlots>k__BackingField: 1
+    <lockedSlots>k__BackingField: 010101
+    <abilities>k__BackingField:
+    - <abilityIndex>k__BackingField: 0
+      <gemLevel>k__BackingField: 0
+      <amountOwned>k__BackingField: 1
+    - <abilityIndex>k__BackingField: 0
+      <gemLevel>k__BackingField: 0
+      <amountOwned>k__BackingField: 0
+    - <abilityIndex>k__BackingField: 0
+      <gemLevel>k__BackingField: 0
+      <amountOwned>k__BackingField: 0
     <quality>k__BackingField: 0
     <level>k__BackingField: 0
-    <stats>k__BackingField: 0700000008000000
+    <stats>k__BackingField: 0600000007000000
     <statValue>k__BackingField: 0500000005000000
     <indestructible>k__BackingField: 1
   - <itemCore>k__BackingField: {fileID: 11400000, guid: e8196e61b068e0e4f9229f5c43e9b8cb, type: 2}
-    <ability>k__BackingField: {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
+    <gemSlots>k__BackingField: 1
+    <lockedSlots>k__BackingField: 010101
+    <abilities>k__BackingField:
+    - <abilityIndex>k__BackingField: 3
+      <gemLevel>k__BackingField: 0
+      <amountOwned>k__BackingField: 1
+    - <abilityIndex>k__BackingField: 0
+      <gemLevel>k__BackingField: 0
+      <amountOwned>k__BackingField: 0
+    - <abilityIndex>k__BackingField: 0
+      <gemLevel>k__BackingField: 0
+      <amountOwned>k__BackingField: 0
     <quality>k__BackingField: 0
     <level>k__BackingField: 0
     <stats>k__BackingField: 01000000
     <statValue>k__BackingField: 05000000
     <indestructible>k__BackingField: 1
   - <itemCore>k__BackingField: {fileID: 11400000, guid: ab1822eec8e6d0944b753abaed85a979, type: 2}
-    <ability>k__BackingField: {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
+    <gemSlots>k__BackingField: 1
+    <lockedSlots>k__BackingField: 010101
+    <abilities>k__BackingField:
+    - <abilityIndex>k__BackingField: 1
+      <gemLevel>k__BackingField: 0
+      <amountOwned>k__BackingField: 1
+    - <abilityIndex>k__BackingField: 0
+      <gemLevel>k__BackingField: 0
+      <amountOwned>k__BackingField: 0
+    - <abilityIndex>k__BackingField: 0
+      <gemLevel>k__BackingField: 0
+      <amountOwned>k__BackingField: 0
     <quality>k__BackingField: 0
     <level>k__BackingField: 0
     <stats>k__BackingField: 03000000
     <statValue>k__BackingField: 05000000
     <indestructible>k__BackingField: 1
-  <credits>k__BackingField: 0
-  <ego>k__BackingField: 0
-  <level>k__BackingField: 0
+  <ownedGems>k__BackingField: []
   <cardPacks>k__BackingField: 0
   <capsules>k__BackingField: 0
   <superCapsules>k__BackingField: 0
   <cardSouls>k__BackingField: 00000000000000000000000000000000000000000000000000000000
   <consumables>k__BackingField: 010000000100000001000000
-  <cardStrength>k__BackingField: 5
-  <cardDexterity>k__BackingField: 0
-  <cardVitality>k__BackingField: 5
-  <cardSpeed>k__BackingField: 0
-  <cardSkill>k__BackingField: 0
-  <cardLuck>k__BackingField: 0
-  <cardGrit>k__BackingField: 5
-  <cardResolve>k__BackingField: 5
-  <cardIntelligence>k__BackingField: 0
-  <cardCharisma>k__BackingField: 0
-  <cardSagacity>k__BackingField: 0
+  <cardStrength>k__BackingField: 67
+  <cardDexterity>k__BackingField: 9
+  <cardVitality>k__BackingField: 174
+  <cardSpeed>k__BackingField: 14
+  <cardSkill>k__BackingField: 38
+  <cardLuck>k__BackingField: 9
+  <cardGrit>k__BackingField: 84
+  <cardResolve>k__BackingField: 93
+  <cardIntelligence>k__BackingField: 23
+  <cardCharisma>k__BackingField: 14
+  <cardSagacity>k__BackingField: 11

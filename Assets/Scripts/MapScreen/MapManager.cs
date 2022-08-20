@@ -49,7 +49,7 @@ public class MapManager : MonoBehaviour
 
         if (GameManager.Instance.battlefield.runStarted)
         {
-            
+            GameManager.Instance.uiStateObject.Ping("Saved game");
             deckManager.gameObject.SetActive(false);
             cardDealer.transform.localPosition = new Vector3(0,-1,-1);
             deckManager.transform.localPosition = new Vector3(-100, 0, 0);
@@ -60,12 +60,13 @@ public class MapManager : MonoBehaviour
             startButton.gameObject.SetActive(false);
             totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
                                   GameManager.Instance.battlefield.deck
-                                      .BossAt;
+                                      .bossAt;
             await Task.Delay(1500);
             cardDealer.DealCards();
         }
         else
         {
+            GameManager.Instance.uiStateObject.Ping("Select a Deck to Play!");
             startButton.interactable = GameManager.Instance.battlefield.deckChosen;
             cardDealer.DisableButtons();
             cardDealer.transform.localPosition = new Vector3(0, -100, -1);
@@ -141,15 +142,25 @@ public class MapManager : MonoBehaviour
     {
         for (var i = 0; i < curtains.Length; i++)
         {
-            curtains[i].color = GameManager.Instance.battlefield.deck.colors[0];
+            var i1 = i;
+            DOTween.To(
+                () => curtains[i1].color,
+                x => curtains[i1].color = x,
+                GameManager.Instance.battlefield.deck.colors[0],
+                0.5f);
         }
         for (var i = 0; i < curtainsBack.Length; i++)
         {
-            curtainsBack[i].color = GameManager.Instance.battlefield.deck.colors[1];
+            var i1 = i;
+            DOTween.To(
+                () => curtainsBack[i1].color,
+                x => curtainsBack[i1].color = x,
+                GameManager.Instance.battlefield.deck.colors[1],
+                0.5f);
         }
         totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
                               GameManager.Instance.battlefield.deck
-                                  .BossAt;
+                                  .bossAt;
     }
 
     public async void StartGame()

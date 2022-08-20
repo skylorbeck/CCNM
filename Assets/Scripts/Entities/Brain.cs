@@ -247,9 +247,9 @@ public class Brain : ScriptableObject
         return GetEgoBoostUnmodified();
     }
 
-    public virtual int GetCreditBoost()
+    public virtual float GetCreditBoost()
     {
-        return GetCreditBoostUnmodified();
+        return 0.01f* GetCreditBoostUnmodified();
     }
     
     public virtual int GetStatusDamage()

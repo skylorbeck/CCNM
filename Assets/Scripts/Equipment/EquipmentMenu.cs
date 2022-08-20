@@ -47,6 +47,7 @@ public class EquipmentMenu : MonoBehaviour
         await Task.Delay(10);
         GameManager.Instance.inputReader.Back+=Back;
         Init();
+        GameManager.Instance.uiStateObject.Ping("Manage Equipment");
     }
 
     private void Init()

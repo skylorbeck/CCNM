@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class CardDealer : MonoBehaviour
     [SerializeField] private Button[] buttons;
     [SerializeField] private DeckPreviewer deckPreviewer;
     [SerializeField] private Vector3[] positions;
+    [SerializeField] private EventCard eventCard;
     async void Start()
     {
 
@@ -39,10 +41,10 @@ public class CardDealer : MonoBehaviour
 
         if (GameManager.Instance.battlefield.deck.eventAt.Contains(GameManager.Instance.battlefield.totalHands))
         {
-            mapCards.Add(GameManager.Instance.battlefield.deck.DrawEventCard());
+            mapCards.Add(eventCard);
         }
 
-        if (GameManager.Instance.battlefield.deck.MiniBossAt.Contains(GameManager.Instance.battlefield.totalHands))
+        if (GameManager.Instance.battlefield.deck.miniBossAt.Contains(GameManager.Instance.battlefield.totalHands))
         {
             mapCards.Add(GameManager.Instance.battlefield.deck.DrawMiniBossCard());
         }
@@ -54,7 +56,7 @@ public class CardDealer : MonoBehaviour
 
         mapCards.Sort((a, b) => Random.Range(-1, 2));
 
-        if (GameManager.Instance.battlefield.totalHands == GameManager.Instance.battlefield.deck.BossAt)
+        if (GameManager.Instance.battlefield.totalHands == GameManager.Instance.battlefield.deck.bossAt)
         {
             mapCards.Clear();
             mapCards.Add(GameManager.Instance.battlefield.deck.DrawBossCard());
@@ -77,6 +79,7 @@ public class CardDealer : MonoBehaviour
 
     public async void DealCards()
     {
+        GameManager.Instance.uiStateObject.Ping("Pick A Card!");
         for (var i = 0; i < shells.Length; i++)
         {
             CardShell shell = shells[i];
@@ -87,7 +90,7 @@ public class CardDealer : MonoBehaviour
                 buttons[i].interactable = true;
             }
         }
-
+        deckPreviewer.transform.DOLocalMove(new Vector3(0,-4f,0), 0.5f);
         GameManager.Instance.eventSystem.SetSelectedGameObject(buttons[0].gameObject);
 
     }
@@ -98,6 +101,8 @@ public class CardDealer : MonoBehaviour
         switch (mapCard!.mapCardType)
         {
             case MapCard.MapCardType.Shop:
+                // ShopCard shopCard = mapCard as ShopCard;
+                //todo different shop based on shop type stored in shopcard
                 GameManager.Instance.LoadSceneAdditive("ShopScreen", "MapScreen");
                 break;
             case MapCard.MapCardType.Boss:
@@ -108,7 +113,6 @@ public class CardDealer : MonoBehaviour
                 GameManager.Instance.LoadSceneAdditive("Fight", "MapScreen");
                 break;
             case MapCard.MapCardType.Event:
-                // GameManager.Instance.GameManager.Instance.battlefield.SetEvent(((EventCard)mapCard).eventObject);//todo figure out event clusters
                 GameManager.Instance.LoadSceneAdditive("EventScreen", "MapScreen");
                 break;
         }

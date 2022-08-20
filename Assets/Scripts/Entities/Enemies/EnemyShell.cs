@@ -57,8 +57,9 @@ public class EnemyShell : Shell
 
     public override Task<int> OnAttack(Shell target, int baseDamage)
     {
+        Task<int> damage = base.OnAttack(target, baseDamage);
         GameManager.Instance.uiStateObject.Ping(title+" attacked for "+baseDamage+" damage!");
-        return base.OnAttack(target, baseDamage);
+        return damage;
     }
 
     public override void Shield(int amount, StatusEffect.Element element)
@@ -94,6 +95,12 @@ public class EnemyShell : Shell
     {
         Dim();
         GameManager.Instance.uiStateObject.Ping(title + " died!");
+        base.Kill();
+    }
+    
+    public void KillSilently()
+    {
+        Dim();
         base.Kill();
     }
 }

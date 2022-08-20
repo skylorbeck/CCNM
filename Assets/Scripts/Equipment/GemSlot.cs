@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -14,8 +15,8 @@ public class GemSlot : MonoBehaviour
 
     public void SetQuality(EquipmentDataContainer.Quality quality)
     {
-        slotRenderer.color = GameManager.Instance.colors[(int)quality];
-        lockRenderer.color = GameManager.Instance.colors[(int)quality];
+        DOTween.To(() => slotRenderer.color, x => slotRenderer.color = x,  GameManager.Instance.colors[(int)quality], 0.5f);
+        DOTween.To(() => lockRenderer.color, x => lockRenderer.color = x,  GameManager.Instance.colors[(int)quality], 0.5f);
     }
     public void SetGem(AbilityGem gem)
     {
