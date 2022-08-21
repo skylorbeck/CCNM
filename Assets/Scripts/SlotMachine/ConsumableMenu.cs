@@ -66,35 +66,46 @@ public class ConsumableMenu : MonoBehaviour
         buttonRight.interactable = !buttonRight.interactable;
     }
 
-    public void Pie()
+    public void ConfirmPie()
     {
         if (GameManager.Instance.runPlayer.consumables[1]>0)
         {
-            playerShell.Heal(playerShell.brain.GetHealthMax(),StatusEffect.Element.None);
-            GameManager.Instance.runPlayer.consumables[1]--;
-            UpdateIcons();
-            UpdateTexts();
-            ToggleMenu();
+            PopUpController.Instance.ShowPopUp("Eat a slice of Pie and Heal to Max?","Yes","No",Pie);
         }
-       
     }
 
-    public void Coffee()
+    public void Pie()
+    {
+        playerShell.Heal(playerShell.brain.GetHealthMax(),StatusEffect.Element.None);
+        GameManager.Instance.runPlayer.consumables[1]--;
+        UpdateIcons();
+        UpdateTexts();
+        ToggleMenu();
+    }
+    public void ConfirmCoffee()
     {
         if (GameManager.Instance.runPlayer.consumables[0]>0)
         {
+            PopUpController.Instance.ShowPopUp("Drink a cup of Coffee and refill Shield?","Yes","No",Coffee);
+        }
+    }
+    public void Coffee()
+    {
             playerShell.Shield(playerShell.brain.GetShieldMax(),StatusEffect.Element.None);
             GameManager.Instance.runPlayer.consumables[0]--;
             UpdateIcons();
             UpdateTexts();
             ToggleMenu();
-        }
     }
-
-    public void Tea()
+    public void ConfirmTea()
     {
         if (GameManager.Instance.runPlayer.consumables[2]>0)
         {
+            PopUpController.Instance.ShowPopUp("Drink a cup of Tea and clear Status Effects?","Yes","No",Tea);
+        }
+    }
+    public void Tea()
+    {
             playerShell.statusDisplayer.Clear();
             GameManager.Instance.uiStateObject.Ping("Cleared Status Effects");
             TextPopController.Instance.PopPositive("Cleansed",playerShell.transform.position,true);
@@ -102,9 +113,5 @@ public class ConsumableMenu : MonoBehaviour
             UpdateIcons();
             UpdateTexts();
             ToggleMenu();
-        }
-        
-        
-      
     }
 }

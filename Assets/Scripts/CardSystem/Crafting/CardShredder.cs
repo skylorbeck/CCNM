@@ -192,9 +192,13 @@ public class CardShredder : MonoBehaviour
         }
     }
 
+    public void ConfirmShred()
+    {
+        PopUpController.Instance.ShowPopUp("Are you sure you want to destroy ALL marked items?","Yes","No",InitiateShred);
+    }
+    
     public void InitiateShred()
     {
-        //todo confirmation dialogue
         int totalSouls = 0;
         foreach (List<EquipmentCardShell> list in cards)
         {

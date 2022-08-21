@@ -208,7 +208,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1167340103}
         m_TargetAssemblyTypeName: ConsumableMenu, Assembly-CSharp
-        m_MethodName: Coffee
+        m_MethodName: ConfirmCoffee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3570,7 +3570,6 @@ MonoBehaviour:
   - {fileID: 396082426}
   - {fileID: 1541389397}
   player: {fileID: 935586332}
-  battlefield: {fileID: 11400000, guid: 26afe88ed600df84491cfd52077ac762, type: 2}
   turnOver: 0
   startingSelection: {fileID: 111743705}
   pauseStartingSelection: {fileID: 1462047950}
@@ -4312,7 +4311,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1167340103}
         m_TargetAssemblyTypeName: ConsumableMenu, Assembly-CSharp
-        m_MethodName: Tea
+        m_MethodName: ConfirmTea
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4675,7 +4674,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1167340103}
         m_TargetAssemblyTypeName: ConsumableMenu, Assembly-CSharp
-        m_MethodName: Pie
+        m_MethodName: ConfirmPie
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
