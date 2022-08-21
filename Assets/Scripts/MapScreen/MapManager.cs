@@ -116,7 +116,7 @@ public class MapManager : MonoBehaviour
             }
         } else
         {
-            GameManager.Instance.LoadSceneAdditive("RunSettings", "MapScreen");
+            GameManager.Instance.LoadSceneAdditive("MainMenu", "MapScreen");
         }
     }
 

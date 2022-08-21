@@ -46,4 +46,9 @@ public class SettingsManager : MonoBehaviour
     {
         GameManager.Instance.LoadSceneAdditive("MainMenu","Settings");
     }
+
+    public void NukeSave()
+    {
+        GameManager.Instance.saveManager.DeleteSave();
+    }
 }

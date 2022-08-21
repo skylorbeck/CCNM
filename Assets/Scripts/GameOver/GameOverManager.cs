@@ -109,7 +109,7 @@ public class GameOverManager : MonoBehaviour
             await Task.Delay(delay);
         }
 
-        DOTween.To(() => cardPackPercentile, x => cardPackPercentile = x, 1f+(score / 500f), 0.5f).OnUpdate(() =>
+        DOTween.To(() => cardPackPercentile, x => cardPackPercentile = x, (GameManager.Instance.runPlayer.isDead?0f:1f)+(score / 500f), 0.5f).OnUpdate(() =>
             cardPackPercentileText.text = "x" + cardPackPercentile.ToString("0.00"));
         await Task.Delay(delay);
         DOTween.To(() => creditsText.text, x => creditsText.text = x, "" + credits, 0.5f);

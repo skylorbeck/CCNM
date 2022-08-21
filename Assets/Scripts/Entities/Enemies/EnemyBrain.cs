@@ -12,17 +12,17 @@ public class EnemyBrain : Brain
     #region computedStatGetters
     public override int GetDamage()
     {
-        return (int)(base.GetDamage()* GameManager.Instance.runSettings.GetAttackMod());
+        return (int)(base.GetDamage() * GameManager.Instance.runPlayer.level * GameManager.Instance.runSettings.GetAttackMod());
     }
 
     public override int GetShieldMax()
     {
-        return (int)(base.GetShieldMax() * GameManager.Instance.runSettings.GetShieldMod());
+        return (int)(base.GetShieldMax() * GameManager.Instance.runPlayer.level * GameManager.Instance.runSettings.GetShieldMod());
     }
 
     public override int GetShieldRate()
     {
-        return (int)(base.GetShieldRate() * GameManager.Instance.runSettings.GetShieldMod());
+        return (int)(base.GetShieldRate() * GameManager.Instance.runPlayer.level * GameManager.Instance.runSettings.GetShieldMod());
     }
 
     public override int GetCritChance()
@@ -41,7 +41,7 @@ public class EnemyBrain : Brain
     }
     public override int GetHealthMax()
     {
-        return (int)(base.GetHealthMax() * GameManager.Instance.runSettings.GetHealthMod());//todo multiply by player level
+        return (int)(base.GetHealthMax() * GameManager.Instance.runPlayer.level * GameManager.Instance.runSettings.GetHealthMod());//todo multiply by player level
     }
     #endregion
     public async Task Think()

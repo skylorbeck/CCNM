@@ -59,4 +59,14 @@ public class SaveManager
             SaveRun();
         }
     }
+
+    public void DeleteSave()
+    {
+        File.Delete(Application.persistentDataPath + "/meta.dat");
+        File.Delete(Application.persistentDataPath + "/battlefield.dat");
+        GameManager.Instance.battlefield.Reset();
+        GameManager.Instance.metaPlayer.ClearPlayerObject();
+        SaveMeta();
+        SaveRun();
+    }
 }
