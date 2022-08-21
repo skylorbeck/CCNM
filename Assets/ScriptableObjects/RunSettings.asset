@@ -21,8 +21,8 @@ MonoBehaviour:
   critDamage: 0
   multiplier: 0
   healthMod: 1
-  shieldMod: 0
-  armorMod: 0
+  shieldMod: 1
+  armorMod: 1
   attackMod: 1
   dodgeMod: 0
   critChanceMod: 0
