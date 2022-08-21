@@ -49,6 +49,10 @@ public class SettingsManager : MonoBehaviour
 
     public void NukeSave()
     {
-        GameManager.Instance.saveManager.DeleteSave();
+        PopUpController.Instance.ShowPopUp("Are you sure you want to nuke your save?", "Yes", "No", () =>
+        {
+            GameManager.Instance.saveManager.DeleteSave();
+            PopUpController.Instance.ShowPopUp("Save nuked", "Ok", null, null);
+        });
     }
 }

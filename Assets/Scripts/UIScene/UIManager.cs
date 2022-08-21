@@ -66,9 +66,6 @@ public class UIManager : MonoBehaviour
         // GameManager.Instance.inputReader.ClickEventWithContext -= SetCursorPosition;
 
         GameManager.Instance.FixedSecond -= PumpCursor;
-        
-        
-        
     }
     
     public void SetCursorPosition(InputAction.CallbackContext context)
@@ -195,4 +192,6 @@ public class UIManager : MonoBehaviour
     {
         DisablePointer();
     }
+    
+    
 }
