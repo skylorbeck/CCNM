@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: RunSettings
   m_EditorClassIdentifier: 
   health: 1
-  defense: 1
+  shield: 1
+  armor: 1
   attack: 1
-  xp: 2
-  credits: 2
+  dodge: 0
+  critChance: 0
+  critDamage: 0
   multiplier: 0
   healthMod: 1
-  defenseMod: 1
+  shieldMod: 0
+  armorMod: 0
   attackMod: 1
-  xpMod: 1
-  creditsMod: 1
+  dodgeMod: 0
+  critChanceMod: 0
+  critDamageMod: 0
   finalMultiplier: 1

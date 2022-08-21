@@ -508,6 +508,7 @@ public class PlayerBrain : Brain
         SetCurrentHealth(5);
         CalculateCardStats();
         trackableStats = new TrackableStats();
+        ownedGems = new AbilityGem[0];
     }
     public void AddAbilityGem(AbilityGem gem)
     {

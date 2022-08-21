@@ -228,23 +228,24 @@ public class FightManager : MonoBehaviour
         {
             SetState(WheelStates.FightOver);
             // Debug.Log("Enemies are dead");
-            
-            //todo move this to Gameover Manager
-            int credits = 0;
-            int ego = 0;
-            foreach (var enemy in enemies)
+            if (!player.isDead)
             {
-                if (enemy.hasBrain && !enemy.enemyBrain.isBlank)
+                int credits = 0;
+                int ego = 0;
+                foreach (var enemy in enemies)
                 {
-                    credits += enemy.enemyBrain.credits;
-                    ego += enemy.enemyBrain.ego;
-                    // Debug.Log("Credits: " + credits);
+                    if (enemy.hasBrain && !enemy.enemyBrain.isBlank)
+                    {
+                        credits += enemy.enemyBrain.credits;
+                        ego += enemy.enemyBrain.ego;
+                        // Debug.Log("Credits: " + credits);
+                    }
                 }
-            }
+
             GameManager.Instance.runPlayer.AddCredits(credits);
             GameManager.Instance.runPlayer.AddEgo(ego);
-            //todo convert this above to a method that adds credits to the player in LootManager. Make it tie into notifications. Ego too. 
-            
+            }
+
             // GameManager.Instance.battlefield.randomState = null;
             GameManager.Instance.battlefield.player.SetCurrentHealth(player.currentHealth);
             GameManager.Instance.battlefield.TotalHandsPlus();
