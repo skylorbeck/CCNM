@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "893Y03N8Z",
     "m_SelectedPackage": {
-        "deviceId": "893Y03N8Z",
-        "name": "website.skylorbeck.slot",
-        "processId": 14659,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -12,12 +12,24 @@
             "deviceId": "893Y03N8Z",
             "name": "website.skylorbeck.slot",
             "processId": 9831,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "893Y03N8Z",
             "name": "website.skylorbeck.slot",
             "processId": 14659,
+            "exited": true
+        },
+        {
+            "deviceId": "893Y03N8Z",
+            "name": "com.android.settings",
+            "processId": 14112,
+            "exited": false
+        },
+        {
+            "deviceId": "893Y03N8Z",
+            "name": "com.teslacoilsw.launcher",
+            "processId": 9981,
             "exited": false
         }
     ],

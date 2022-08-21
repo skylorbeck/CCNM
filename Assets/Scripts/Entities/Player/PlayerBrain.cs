@@ -332,6 +332,10 @@ public class PlayerBrain : Brain
                 equippedSlots[index] = 0;
                 EquipmentDataContainer equippedCard = new EquipmentDataContainer(sourcePlayer.GetEquippedCard(index));
                 equippedCard.SetIndestructible(true);
+                if (equippedCard.abilities[0].abilityIndex==-1)
+                {
+                    equippedCard.abilities[0] = new AbilityGem(0);
+                }
                 AddCardToInventory(equippedCard);
             }
             else
@@ -364,6 +368,7 @@ public class PlayerBrain : Brain
         // Debug.Log("Credit Boost "+GetCreditBoost());
         trackableStats.creditsEarned += amt;
         credits += amt;
+        NotificationPopController.Instance.PopCredits("+" + amt + "C", Camera.main.ViewportToWorldPoint(new Vector3(0.6f,0.6f,0)));
     }
 
     public void SpendCredits(int amt)
@@ -377,6 +382,7 @@ public class PlayerBrain : Brain
         amt = (int)(amt * GetEgoBoost());
         trackableStats.egoGained += amt;
         ego += amt;
+        NotificationPopController.Instance.PopEgo("+" + amt + "Ego",Camera.main.ViewportToWorldPoint(new Vector3(0.6f,0.525f,0)));
     }
 
     public void SpendEgo(int amt)

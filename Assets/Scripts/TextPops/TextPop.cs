@@ -19,7 +19,7 @@ public class TextPop : MonoBehaviour
         text = GetComponentInChildren<TextMeshProUGUI>();
     }
     
-    public void Pop(string displayText,PopTypes popType,Vector3 worldPos, bool large)
+    public void Pop(string displayText,PopTypes popType,Vector3 worldPos, bool large)//todo expand this into a worldpos / localpos system
     {
         finished = false;
         if (animator==null)
@@ -31,7 +31,6 @@ public class TextPop : MonoBehaviour
         text.geometrySortingOrder++;//hope this doesn't break everything
         // transform.localPosition = Camera.main.WorldToViewportPoint(worldPos);
         transform.position = Camera.main.WorldToScreenPoint(worldPos)+new Vector3(Random.Range(-randomRange,randomRange),Random.Range(-randomRange,randomRange),0);
-        
         text.text = displayText;
         if (large)
             text.fontSize = 15;
@@ -58,6 +57,15 @@ public class TextPop : MonoBehaviour
             case PopTypes.Critical:
                 animator.SetTrigger("critical");
                 break;
+            case PopTypes.Notification:
+                animator.SetTrigger("notification");
+                break;
+            case PopTypes.GotCredits:
+                animator.SetTrigger("GotCredits");
+                break;
+            case PopTypes.GotEgo:
+                animator.SetTrigger("GotEgo");
+                break;
         }
     }
 
@@ -73,6 +81,9 @@ public class TextPop : MonoBehaviour
         Heal,
         Damage,
         Shield,
-        Critical
+        Critical,
+        Notification,
+        GotEgo,
+        GotCredits
     }
 }
