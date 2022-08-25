@@ -120,6 +120,7 @@ public class CardPackManager : MonoBehaviour
         await safeAnimator.Open();
 
         isPackOpen = true;
+        safeAnimator.transform.DOLocalMove(new Vector3(0,-4,0),0.25f).SetEase(Ease.OutSine);
 
         for (var i = 0; i < tempCards.Count; i++)
         {

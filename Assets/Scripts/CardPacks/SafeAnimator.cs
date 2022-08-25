@@ -48,6 +48,8 @@ public class SafeAnimator : MonoBehaviour
 
     public async void Close()
     {
+        safeBottom.DOLocalMove(new Vector3(0,-1,0),0.5f).SetEase(Ease.OutSine);
+
         safeDoor.DOLocalMove(Vector3.zero, 0.5f);
         SoundManager.Instance.PlayEffect("SafeOpen");
         await Task.Delay(500);
