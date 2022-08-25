@@ -141,6 +141,8 @@ public class CardPackManager : MonoBehaviour
 
     public void OpenAcceptPack()
     {
+        
+
         if (isPackOpen)
         {
             cancellationTokenSource.Cancel();
@@ -168,9 +170,19 @@ public class CardPackManager : MonoBehaviour
             cancellationTokenSource = new CancellationTokenSource();
             safeAnimator.Close();
             // MusicManager.Instance.StopTrack();
+            /*if (GameManager.Instance.metaPlayer.totalEquipment>GameManager.Instance.metaPlayer.maximumEquipmentSlots-5)
+            {
+                openButton.interactable = false;
+            }*/
         }
         else
         {
+            if (GameManager.Instance.metaPlayer.totalEquipment > GameManager.Instance.metaPlayer.maximumEquipmentSlots - 5)
+            {
+                TextPopController.Instance.PopNegative("Your inventory is full!",Vector3.zero,false);
+                return;
+            }
+            
             if (GameManager.Instance.metaPlayer.cardPacks > 0)
             {
                 openButtonText.text = "Accept";

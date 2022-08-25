@@ -23,6 +23,23 @@ public class PlayerBrain : Brain
     [field: SerializeField] public int[] consumables { get; private set; } = new int[3];
     [OptionalField] public TrackableStats trackableStats = new TrackableStats();
     public bool isDead => currentHealth <= 0;
+
+    [OptionalField] public int maximumEquipmentSlots = 100;
+    
+    public int totalEquipment
+    {
+        get
+        {
+            int total = 0;
+            for (int i = 0; i < playerInventory.Length; i++)
+            {
+                total += playerInventory[i].container.Count;
+            }
+
+            return total;
+        }
+    }
+
     #region precomputedStats
 
     [field: SerializeField] public int cardStrength { get; private set; }
@@ -509,6 +526,7 @@ public class PlayerBrain : Brain
         CalculateCardStats();
         trackableStats = new TrackableStats();
         ownedGems = new AbilityGem[0];
+        maximumEquipmentSlots = 100;
     }
     public void AddAbilityGem(AbilityGem gem)
     {
@@ -566,6 +584,7 @@ public class PlayerBrain : Brain
         ego = saveFile.ego;
         credits = saveFile.credits;
         level = saveFile.level<=0?1:saveFile.level;
+        maximumEquipmentSlots = saveFile.maximumEquipmentSlots;
         if (saveFile.trackableStats==null)
         {
             trackableStats = new TrackableStats();
@@ -668,6 +687,7 @@ public class SavablePlayerBrain
     public int resolve;
     public int intelligence;
     public int charisma;
+    public int maximumEquipmentSlots;
 
 
     public SavablePlayerBrain(PlayerBrain player)
@@ -714,5 +734,6 @@ public class SavablePlayerBrain
         intelligence = player.GetIntelligence();
         charisma = player.GetCharisma();
         trackableStats = player.trackableStats;
+        maximumEquipmentSlots = player.maximumEquipmentSlots;
     }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   <descriptionA>k__BackingField: 1x Tamage To Target
   <descriptionB>k__BackingField: Confuses Self
   <icon>k__BackingField: {fileID: 21300000, guid: dbeea2d6c7da1444dac1b424fb10061c, type: 3}
-  <gemIcon>k__BackingField: {fileID: 21300000, guid: 18c3abab06ea8b049a3bd3c88e5de4d1, type: 3}
+  <gemIcon>k__BackingField: {fileID: 21300000, guid: 6984d11a6e691df4194a7063f7ef75ed, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
   <targetDamageMultiplier>k__BackingField: 1

@@ -30,23 +30,23 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_ReferencePixelsPerUnit
-    value: 100
+    value: 32
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_ScaleFactor
-    value: 1
+    value: 10
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_ReferenceResolution.x
-    value: 108
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: m_ReferenceResolution.y
     value: 192
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_ReferenceResolution.y
+    value: 320
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_ScreenMatchMode
-    value: 0
+    value: 2
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_MatchWidthOrHeight

@@ -460,14 +460,5 @@ public class GemManager : MonoBehaviour
     {
         GameManager.Instance.saveManager.SaveRun();
         GameManager.Instance.LoadSceneAdditive("MainMenu", "Gems");
-        //todo decide if equipment can be changed mid-run or not;
-        /*if (GameManager.Instance.battlefield.runStarted || GameManager.Instance.battlefield.deckChosen)
-        {
-            GameManager.Instance.LoadSceneAdditive("MapScreen","Equipment");
-        }
-        else
-        {
-            GameManager.Instance.LoadSceneAdditive("Hotel","Equipment");
-        }*/
     }
 }

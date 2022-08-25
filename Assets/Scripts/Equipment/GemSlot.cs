@@ -15,7 +15,7 @@ public class GemSlot : MonoBehaviour
 
     public void SetQuality(EquipmentDataContainer.Quality quality)
     {
-        DOTween.To(() => slotRenderer.color, x => slotRenderer.color = x,  GameManager.Instance.colors[(int)quality], 0.5f);
+        // DOTween.To(() => slotRenderer.color, x => slotRenderer.color = x,  GameManager.Instance.colors[(int)quality], 0.5f);
         DOTween.To(() => lockRenderer.color, x => lockRenderer.color = x,  GameManager.Instance.colors[(int)quality], 0.5f);
     }
     public void SetGem(AbilityGem gem)

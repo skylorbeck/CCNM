@@ -54,8 +54,17 @@ public class MMButtons : MonoBehaviour
     }
     public void CardPacks()
     {
-        SoundManager.Instance.PlayUiAccept();
-        GameManager.Instance.LoadSceneAdditive("CardPacks","MainMenu");
+        if (GameManager.Instance.metaPlayer.totalEquipment>GameManager.Instance.metaPlayer.maximumEquipmentSlots-5)
+        {
+            SoundManager.Instance.PlayUiDeny();
+            TextPopController.Instance.PopNegative("Your inventory is full!",Vector3.zero,false);
+            button.interactable = true;
+        }
+        else
+        {
+            SoundManager.Instance.PlayUiAccept();
+            GameManager.Instance.LoadSceneAdditive("CardPacks","MainMenu");
+        }
     }
     public void Capsules()
     {
@@ -72,7 +81,7 @@ public class MMButtons : MonoBehaviour
         await Task.Delay(10);
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.uiStateObject.HideTopBar();
-        GameManager.Instance.eventSystem.SetSelectedGameObject(button.gameObject);
+        // GameManager.Instance.eventSystem.SetSelectedGameObject(button.gameObject);
         MusicManager.Instance.PlayTrack(GameManager.Instance.musicRegistry.GetMusic(2));
         await Task.Delay(90);
         if (GameManager.Instance.battlefield.runStarted)
@@ -95,7 +104,7 @@ public class MMButtons : MonoBehaviour
 
     public void EnableButtons()
     {
-        DOTween.To(()=>menu.transform.localPosition, x=>menu.transform.localPosition = x, new Vector3(0,0,0), 0.5f);
+        DOTween.To(()=>menu.transform.localPosition, x=>menu.transform.localPosition = x, new Vector3(0,-0.5f,0), 0.5f);
             button.interactable = true;
     }
 }

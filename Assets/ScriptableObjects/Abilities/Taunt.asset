@@ -16,7 +16,7 @@ MonoBehaviour:
   <descriptionA>k__BackingField: Empowers Self
   <descriptionB>k__BackingField: Empowers Target
   <icon>k__BackingField: {fileID: 21300000, guid: 35eaff2bf77e18e4d8fd988f768610aa, type: 3}
-  <gemIcon>k__BackingField: {fileID: 21300000, guid: bd5e7cbeb98911a43b0a5503ab371f32, type: 3}
+  <gemIcon>k__BackingField: {fileID: 21300000, guid: 382171c650b9e704fbd6f0db8ead0404, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 0
   <targetDamageMultiplier>k__BackingField: 1

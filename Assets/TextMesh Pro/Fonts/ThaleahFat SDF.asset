@@ -943,6 +943,20 @@ MonoBehaviour:
       m_Height: 40
     m_Scale: 1
     m_AtlasIndex: 0
+  - m_Index: 73
+    m_Metrics:
+      m_Width: 39.375
+      m_Height: 39.375
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 39.375
+      m_HorizontalAdvance: 45
+    m_GlyphRect:
+      m_X: 302
+      m_Y: 246
+      m_Width: 40
+      m_Height: 40
+    m_Scale: 1
+    m_AtlasIndex: 0
   - m_Index: 74
     m_Metrics:
       m_Width: 39.375
@@ -1223,20 +1237,6 @@ MonoBehaviour:
       m_Height: 40
     m_Scale: 1
     m_AtlasIndex: 0
-  - m_Index: 73
-    m_Metrics:
-      m_Width: 39.375
-      m_Height: 39.375
-      m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 39.375
-      m_HorizontalAdvance: 45
-    m_GlyphRect:
-      m_X: 302
-      m_Y: 246
-      m_Width: 40
-      m_Height: 40
-    m_Scale: 1
-    m_AtlasIndex: 0
   m_CharacterTable:
   - m_ElementType: 1
     m_Unicode: 32
@@ -1483,6 +1483,10 @@ MonoBehaviour:
     m_GlyphIndex: 72
     m_Scale: 1
   - m_ElementType: 1
+    m_Unicode: 102
+    m_GlyphIndex: 73
+    m_Scale: 1
+  - m_ElementType: 1
     m_Unicode: 103
     m_GlyphIndex: 74
     m_Scale: 1
@@ -1561,10 +1565,6 @@ MonoBehaviour:
   - m_ElementType: 1
     m_Unicode: 125
     m_GlyphIndex: 96
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 102
-    m_GlyphIndex: 73
     m_Scale: 1
   m_AtlasTextures:
   - {fileID: -4805265347900209750}
@@ -2155,8 +2155,8 @@ Material:
     - _FaceUVSpeedY: 0
     - _GlowInner: 0
     - _GlowOffset: 0
-    - _GlowOuter: 0.96
-    - _GlowPower: 0.75
+    - _GlowOuter: 1
+    - _GlowPower: 1
     - _GradientScale: 10
     - _LightAngle: 3.1416
     - _MaskSoftnessX: 0
@@ -2165,7 +2165,7 @@ Material:
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
     - _OutlineWidth: 0
-    - _PerspectiveFilter: 0.875
+    - _PerspectiveFilter: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Reflectivity: 10
@@ -2175,7 +2175,7 @@ Material:
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
-    - _Sharpness: 0
+    - _Sharpness: 1
     - _SpecularPower: 2
     - _Stencil: 0
     - _StencilComp: 8
@@ -2184,10 +2184,10 @@ Material:
     - _StencilWriteMask: 255
     - _TextureHeight: 1024
     - _TextureWidth: 1024
-    - _UnderlayDilate: 0
+    - _UnderlayDilate: 1
     - _UnderlayOffsetX: 0
     - _UnderlayOffsetY: 0
-    - _UnderlaySoftness: 1
+    - _UnderlaySoftness: 0
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
     - _WeightBold: 0.75
@@ -2196,11 +2196,11 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 1, g: 0.42398834, b: 0, a: 0.5}
+    - _GlowColor: {r: 0.3833332, g: 0, b: 1, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 1}
+    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5019608}
   m_BuildTextureStacks: []

@@ -13,15 +13,23 @@ MonoBehaviour:
   m_Name: ClubCard
   m_EditorClassIdentifier: 
   itemCards:
-  - {fileID: 11400000, guid: e8196e61b068e0e4f9229f5c43e9b8cb, type: 2}
+  - {fileID: 11400000, guid: 4541bbd143521ae4a88117e51d4e5893, type: 2}
+  - {fileID: 11400000, guid: 8ab9e9c450380444b9e0f72cff48223c, type: 2}
+  - {fileID: 11400000, guid: ca9c07394a985a44496d8a1574de9b03, type: 2}
+  - {fileID: 11400000, guid: 1c15c72e148625440a7d4af85e57aa1b, type: 2}
+  - {fileID: 11400000, guid: 1cbb30a67f233ea41aedf0673665ddf0, type: 2}
   - {fileID: 11400000, guid: 7fc02d296240e5346a5539e5e50cc456, type: 2}
   - {fileID: 11400000, guid: 6ed1585709cff504a919d1191e98df6b, type: 2}
   - {fileID: 11400000, guid: 073c5666b3d80a4418bcc67733fc978d, type: 2}
-  - {fileID: 11400000, guid: 1cbb30a67f233ea41aedf0673665ddf0, type: 2}
+  - {fileID: 11400000, guid: e8196e61b068e0e4f9229f5c43e9b8cb, type: 2}
   keys:
-  - Test 1
-  - Test 2
-  - Test 3
-  - Test 4
-  - Test 5
-  values: 0000000001000000020000000300000004000000
+  - Standard Card
+  - Amethyst Card
+  - Bronze Card
+  - Copper Card
+  - Emerald Card
+  - Gold Card
+  - Ruby Card
+  - Sapphire Card
+  - Silver Card
+  values: 000000000100000002000000030000000400000005000000060000000700000008000000
