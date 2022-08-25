@@ -22,6 +22,7 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private int bossesKilled;
     [SerializeField] private float cardPackPercentile;
 
+    [SerializeField] private TextMeshProUGUI runOverText;
     [SerializeField] private TextMeshProUGUI killsText;
     [SerializeField] private TextMeshProUGUI killsMultiText;
     [SerializeField] private TextMeshProUGUI bossKillsText;
@@ -34,6 +35,7 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI egoLostText;
     [SerializeField] private TextMeshProUGUI cardPackPercentileText;
     [SerializeField] private Image WinLoseImage;
+    [SerializeField] private RectTransform MasterWindow;
     [SerializeField] private Sprite WinSprite;
     
 
@@ -91,14 +93,28 @@ public class GameOverManager : MonoBehaviour
         bossKillsMultiText.text = "x" + bossRatio;
         
         GameManager.Instance.uiStateObject.Ping("Game Over");
-        
-        await Task.Delay(delay*2);
 
-        DOTween.To(() => killsText.text, x => killsText.text = x, "" + minionsKilled,
-            0.5f);
+        await Task.Delay(delay*2);
+        MasterWindow.DOAnchorPosY(0, 2f).SetEase(Ease.OutBounce);
+        // DOTween.To(()=>MasterWindow.anchoredPosition.y, x=>MasterWindow.anchoredPosition = new Vector2(0,x), 0f, 1f).SetEase(Ease.InElastic);
+        await Task.Delay(2000);
+        DOTween.To(() => runOverText.text, x => runOverText.text = x, GameManager.Instance.runPlayer.isDead?"Game Over":"You Won!", 0.5f);
+        
+        await Task.Delay(delay);
+        DOTween.To(() => creditsText.text, x => creditsText.text = x, "" + credits, 0.5f);
+        await Task.Delay(delay);
+        DOTween.To(() => creditsLostText.text, x => creditsLostText.text = x, "" + creditsLost, 0.5f);
+        await Task.Delay(delay);
+        DOTween.To(() => egoText.text, x => egoText.text = x, "" + ego, 0.5f);
+        await Task.Delay(delay);
+        DOTween.To(() => egoLostText.text, x => egoLostText.text = x, "" + egoLost, 0.5f);
+        
+        await Task.Delay(delay);
+        DOTween.To(() => killsText.text, x => killsText.text = x, "" + minionsKilled, 0.5f);
         await Task.Delay(delay);
         DOTween.To(() => bossKillsText.text, x => bossKillsText.text = x,
             "" + bossesKilled, 0.5f);
+        
         await Task.Delay(delay);
         DOTween.To(() => scoreText.text, x => scoreText.text = x, "" + score, 0.5f);
         await Task.Delay(delay);
@@ -111,14 +127,7 @@ public class GameOverManager : MonoBehaviour
 
         DOTween.To(() => cardPackPercentile, x => cardPackPercentile = x, (GameManager.Instance.runPlayer.isDead?0f:1f)+(score / 500f), 0.5f).OnUpdate(() =>
             cardPackPercentileText.text = "x" + cardPackPercentile.ToString("0.00"));
-        await Task.Delay(delay);
-        DOTween.To(() => creditsText.text, x => creditsText.text = x, "" + credits, 0.5f);
-        await Task.Delay(delay);
-        DOTween.To(() => creditsLostText.text, x => creditsLostText.text = x, "" + creditsLost, 0.5f);
-        await Task.Delay(delay);
-        DOTween.To(() => egoText.text, x => egoText.text = x, "" + ego, 0.5f);
-        await Task.Delay(delay);
-        DOTween.To(() => egoLostText.text, x => egoLostText.text = x, "" + egoLost, 0.5f);
+       
         
        
     }

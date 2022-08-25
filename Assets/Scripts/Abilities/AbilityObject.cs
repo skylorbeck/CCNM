@@ -12,7 +12,6 @@ public class AbilityObject : ScriptableObject
     [field: SerializeField] public string descriptionA { get; private set; } = "ability.description.a";//todo GetDescription() where the damage is calculated based on your stats before returning
     [field: SerializeField] public string descriptionB { get; private set; } = "ability.description.b";
     [field: SerializeField] public Sprite icon { get; private set; }
-    [field: SerializeField] public Sprite gemIcon { get; private set; }
     [field: SerializeField] public int baseCost { get; private set; } = 1;
 
     [field: Header("Damage")]

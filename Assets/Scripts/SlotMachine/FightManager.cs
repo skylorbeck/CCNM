@@ -35,6 +35,8 @@ public class FightManager : MonoBehaviour
     [SerializeField] private GameObject startingSelection;
     [SerializeField] private GameObject pauseStartingSelection;
     [SerializeField] private Button[] allButtons;
+    [SerializeField] private Button[] enemyButtons;
+    [SerializeField] private Button[] wheelButtons;
     [SerializeField] private TextMeshProUGUI[] pauseText;
     [SerializeField] private GraphicRaycaster pauseRaycaster;
     [SerializeField] private StatDisplay playerStatDisplay;
@@ -394,8 +396,8 @@ public class FightManager : MonoBehaviour
     
     public void SelectWheel(int wheel)
     {
-        
-        switch (wheel)
+     SelectWheel((Lane)wheel+1);   
+        /*switch (wheel)
         {
             case 0:
                 SelectWheel(Lane.Left);
@@ -406,7 +408,7 @@ public class FightManager : MonoBehaviour
             case 2:
                 SelectWheel(Lane.Right);
                 break;
-        }
+        }*/
     }
     
     
@@ -437,7 +439,9 @@ public class FightManager : MonoBehaviour
     
         selector.enabled = true;
         selectedWheel = wheel;
-        switch (wheel)
+        selector.rectTransform.anchoredPosition = (wheels[((int)wheel - 1)].transform.position)*32;
+
+        /*switch (wheel)
         {
             case Lane.Left:
                 selector.rectTransform.anchoredPosition = new Vector2(-35.5f, 28.5f);
@@ -448,7 +452,7 @@ public class FightManager : MonoBehaviour
             case Lane.Right:
                 selector.rectTransform.anchoredPosition = new Vector2(35.5f, 28.5f);
                 break;
-        }
+        }*/
 
         GetSelectedSymbol();
         SetPreviewText(targetSymbol);
@@ -461,7 +465,8 @@ public class FightManager : MonoBehaviour
         {
             return;
         }
-        switch (enemySlot)
+        SelectEnemy((Lane)enemySlot+1);
+        /*switch (enemySlot)
         {
             case 0:
                 SelectEnemy(Lane.Left);
@@ -472,7 +477,7 @@ public class FightManager : MonoBehaviour
             case 2:
                 SelectEnemy(Lane.Right);
                 break;
-        }
+        }*/
     }
     public void SelectEnemy(Lane enemySlot)
     {
@@ -493,18 +498,9 @@ public class FightManager : MonoBehaviour
             }
             enemySelector.enabled = true;
             selectedEnemy = enemySlot;
-            switch (enemySlot)
-            {
-                case Lane.Left:
-                    enemySelector.rectTransform.anchoredPosition = new Vector2(-33.5f,-52);
-                    break;
-                case Lane.Middle:
-                    enemySelector.rectTransform.anchoredPosition = new Vector2(0f, -52);
-                    break;
-                case Lane.Right:
-                    enemySelector.rectTransform.anchoredPosition = new Vector2(33.5f,-52);
-                    break;
-            }
+            // enemySelector.rectTransform.position =enemyButtons[((int)enemySlot - 1)].transform.position;
+            enemySelector.rectTransform.anchoredPosition = (enemies[((int)enemySlot - 1)].transform.position)*32;
+            
             GetSelectedEnemy();
             SetPreviewText(targetEnemy);
             return;
@@ -564,14 +560,14 @@ public class FightManager : MonoBehaviour
     public void SetState(WheelStates newState)
     {
         ClearSelected();
-        if (newState == WheelStates.Selecting)
+        /*if (newState == WheelStates.Selecting)
         {
             GameManager.Instance.inputReader.EnableUI();
         } else
         {
             GameManager.Instance.inputReader.DisableUI();
             GameManager.Instance.uiStateObject.DisableCursor();
-        }
+        }*/
         state = newState;
     }
 

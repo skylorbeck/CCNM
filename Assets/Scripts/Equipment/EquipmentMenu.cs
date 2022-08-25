@@ -186,6 +186,8 @@ public class EquipmentMenu : MonoBehaviour
                 }
             }
         }
+        cardCompare.InsertItemStats(GameManager.Instance.metaPlayer.EquippedCardExists(selectedMenu)?GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu):GameManager.Instance.metaPlayer.defaultEquipment[selectedMenu], menuEntries[selectedMenu][selected].EquipmentData);
+
         SoundManager.Instance.PlayUiAccept();
     }
     
@@ -333,8 +335,16 @@ public class EquipmentMenu : MonoBehaviour
         if (newSelected != selectedMenu)
         {
             selectedMenu = newSelected;
-           
-            SetSelected( menuEntries[selectedMenu].FindIndex(x => x.EquipmentData.Equals(GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu))));
+            int index = menuEntries[selectedMenu].FindIndex(x =>
+                x.EquipmentData.Equals(GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu)));
+            SetSelected(index);
+            if (index!=-1)
+            {
+                cardCompare.InsertItemStats(
+                    GameManager.Instance.metaPlayer.EquippedCardExists(newSelected)?
+                        GameManager.Instance.metaPlayer.GetEquippedCard(newSelected): GameManager.Instance.metaPlayer.defaultEquipment[newSelected],
+                    menuEntries[newSelected][index].EquipmentData);
+            }
             SoundManager.Instance.PlayUiClick();
         }
     }

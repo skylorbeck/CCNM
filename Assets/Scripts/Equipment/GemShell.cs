@@ -13,7 +13,7 @@ public class GemShell : MonoBehaviour
     public void InsertAbility(AbilityGem ability)
     {
         this.ability = ability;
-        gemRenderer.sprite = ability.GetAbility().gemIcon;
+        gemRenderer.sprite = ability.GetAbility().icon;
         Sprite[] levelSprites = Resources.LoadAll<Sprite>("IconSheet");
         foreach (Sprite sprite in levelSprites)
         {

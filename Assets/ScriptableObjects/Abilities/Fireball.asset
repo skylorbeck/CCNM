@@ -15,8 +15,7 @@ MonoBehaviour:
   <title>k__BackingField: Fireball
   <descriptionA>k__BackingField: 1x Damage To Target
   <descriptionB>k__BackingField: Burns Target
-  <icon>k__BackingField: {fileID: 21300000, guid: 6a06581026e1f2649a5c5f430f166a06, type: 3}
-  <gemIcon>k__BackingField: {fileID: 21300000, guid: b2644ba4437d90e4cb478f8d2cf5cf6d, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: b2644ba4437d90e4cb478f8d2cf5cf6d, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
   <targetDamageMultiplier>k__BackingField: 1

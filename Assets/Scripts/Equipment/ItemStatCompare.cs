@@ -14,10 +14,11 @@ public class ItemStatCompare : MonoBehaviour
 
     public void InsertItemStats(EquipmentDataContainer EquippedItem, EquipmentDataContainer newItem)
     {
-        DOTween.To(() => ItemName.text, x => ItemName.text = x,newItem.itemCore.cardTitle +" Lv."+ newItem.level, 0.5f);
+        
+        DOTween.To(() => background.color, x => background.color = x,Color.white, 0.5f);
 
         // ItemName.text = newItem.itemCore.cardTitle +" Lv."+ newItem.level;
-        
+        int totalStats = 0;
         for (int i = 0; i < ItemStats.Count; i++)
         {
             int i1 = i;
@@ -30,7 +31,7 @@ public class ItemStatCompare : MonoBehaviour
                 // ItemStats[i1].text = "";
                 continue;
             }
-
+            totalStats++;
             finalString= newItem.statValue[i1] + " " + newItem.stats[i1];
             List<EquipmentDataContainer.Stats> stats = new List<EquipmentDataContainer.Stats>(EquippedItem.stats);
             if (stats.Contains(newItem.stats[i1]))
@@ -57,12 +58,14 @@ public class ItemStatCompare : MonoBehaviour
             
             DOTween.To(() => ItemStats[i1].text, x => ItemStats[i1].text = x,finalString, 0.5f);
             DOTween.To(() => ItemStats[i1].color, x => ItemStats[i1].color = x,color, 0.5f);
-            
-            // if (EquippedItem.stats.Contains(newItem.stats[i]))
-            // {
-            //     ItemStats[i].text += " (" + (newItem.statValue[i] - EquippedItem.statValue[i]) + ")";
-            // }
         }
+        
+        DOTween.To(() => ItemName.text, x => ItemName.text = x, newItem.itemCore.cardTitle, 0.5f).OnUpdate(() =>
+        {
+            ItemName.ForceMeshUpdate();
+            background.rectTransform.sizeDelta = new Vector2(ItemName.preferredWidth + 20, 22+(totalStats * 8));
+
+        });
     }
 
     public void InsertAbilityGem(AbilityGem gem)
@@ -75,10 +78,6 @@ public class ItemStatCompare : MonoBehaviour
             DOTween.To(() => ItemStats[1].text, x => ItemStats[1].text = x,abilityObject.descriptionB, 0.5f);
             DOTween.To(() => background.color, x => background.color = x,Color.white, 0.5f);
 
-            // ItemName.text = abilityObject.title;
-            // ItemStats[0].text = abilityObject.descriptionA;
-            // ItemStats[1].text = abilityObject.descriptionB;
-            // background.color = Color.white;
         }
         else
         {
@@ -86,10 +85,6 @@ public class ItemStatCompare : MonoBehaviour
             DOTween.To(() => ItemStats[0].text, x => ItemStats[0].text = x,"", 0.5f);
             DOTween.To(() => ItemStats[1].text, x => ItemStats[1].text = x,"Ready to Use", 0.5f);
             DOTween.To(() => background.color, x => background.color = x,Color.white, 0.5f);
-            // ItemName.text = "Empty Socket";
-            // ItemStats[0].text = "";
-            // ItemStats[1].text = "Ready to Use";
-            // background.color = Color.white;
         }
   
     }
@@ -112,8 +107,11 @@ public class ItemStatCompare : MonoBehaviour
     public void Clear()
     {
         DOTween.To(() => ItemName.text, x => ItemName.text = x, "", 0.5f);
-        DOTween.To(() => ItemStats[0].text, x => ItemStats[0].text = x,"", 0.5f);
-        DOTween.To(() => ItemStats[1].text, x => ItemStats[1].text = x,"", 0.5f);
+        for (var i = 0; i < ItemStats.Count; i++)
+        {
+            var i1 = i;
+            DOTween.To(() => ItemStats[i1].text, x => ItemStats[i1].text = x,"", 0.5f);
+        }
         DOTween.To(() => background.color, x => background.color = x,Color.clear, 0.5f);
     }
 }
