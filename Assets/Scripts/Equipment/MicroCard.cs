@@ -85,6 +85,7 @@ public class MicroCard : MonoBehaviour
     public void SetHighlighted(bool value)
     {
         highlight.gameObject.SetActive(value);
+        highlight.color = GameManager.Instance.colors[(int)this.EquipmentData.quality];
     }
 
     public void SetShredMark(bool value)

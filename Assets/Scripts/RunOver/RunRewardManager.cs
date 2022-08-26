@@ -88,7 +88,7 @@ public class RunRewardManager : MonoBehaviour
         {
             if (card.MarkedForShred)
             {
-                soulsGained+= GameManager.Instance.metaPlayer.ShredCard(card.EquipmentData);
+                // soulsGained+= GameManager.Instance.metaPlayer.ShredCard(card.EquipmentData);
             } else
             {
                 GameManager.Instance.metaPlayer.AddCardToInventory(card.EquipmentData);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using SaveSystem;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -305,7 +306,7 @@ public class PlayerBrain : Brain
     }
     
 
-    public int ShredCard(EquipmentDataContainer card)
+    public int2 ShredCard(EquipmentDataContainer card)
     {
         if (playerInventory[(int)card.itemCore.itemType].container.Contains(card))
         {
@@ -325,8 +326,8 @@ public class PlayerBrain : Brain
                 trackableStats.gemsObtained++;
             }
         }
-        
-        return soulsGained;
+
+        return new int2(soulsGained, (int)card.quality);
     }
 
     public void CopyCards(PlayerBrain source)

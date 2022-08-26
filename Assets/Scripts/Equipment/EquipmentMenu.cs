@@ -16,8 +16,6 @@ public class EquipmentMenu : MonoBehaviour
     [SerializeField] private EquipmentCardShell cardPrefab;
     [SerializeField] private ItemStatCompare cardCompare;
     
-    [SerializeField] private Mode mode = Mode.LeftWheel;
-
     [SerializeField] private List<List<MicroCard>> menuEntries = new List<List<MicroCard>>();
     [SerializeField] private List<EquipmentCardShell> previews  = new List<EquipmentCardShell>();
 
@@ -48,6 +46,11 @@ public class EquipmentMenu : MonoBehaviour
         GameManager.Instance.inputReader.Back+=Back;
         Init();
         GameManager.Instance.uiStateObject.Ping("Manage Equipment");
+        await Task.Delay(10);
+        cardCompare.InsertItemStats(
+            GameManager.Instance.metaPlayer.EquippedCardExists(0)?
+                GameManager.Instance.metaPlayer.GetEquippedCard(0):GameManager.Instance.metaPlayer.defaultEquipment[0], 
+            menuEntries[0][selected].EquipmentData);
     }
 
     private void Init()
@@ -78,7 +81,7 @@ public class EquipmentMenu : MonoBehaviour
             
             previews.Add(preview);
         }
-        
+
         sortDropdown.value = PlayerPrefs.GetInt("EquipmentSortMode",0);
     }
     
@@ -121,19 +124,24 @@ public class EquipmentMenu : MonoBehaviour
                     list.Sort((card1, card2) => Random.Range(-1, 1));
                     break;
                 case 1:
-                    // list.Sort((card1, card2) => card1.EquipmentData.quality.CompareTo(card2.EquipmentData.quality)*-1);
                     //sort by quality then level
                     list.Sort((card1, card2) =>
-                    {
-                        if (card1.EquipmentData.quality == card2.EquipmentData.quality)
                         {
-                            return card1.EquipmentData.level.CompareTo(card2.EquipmentData.level)*-1;
+                            if (card1.EquipmentData.quality == card2.EquipmentData.quality)
+                            {
+                                return card1.EquipmentData.level.CompareTo(card2.EquipmentData.level)*-1;
+                            }
+                            return card1.EquipmentData.quality.CompareTo(card2.EquipmentData.quality)*-1;
                         }
-                        return card1.EquipmentData.quality.CompareTo(card2.EquipmentData.quality)*-1;
-                    }
                     );
                     break;
                 case 2:
+                    list.Sort((card1, card2) => card1.EquipmentData.level.CompareTo(card2.EquipmentData.level)*-1);
+                    break;
+                case 3:
+                    list.Sort((card1, card2) => card1.EquipmentData.gemSlots.CompareTo(card2.EquipmentData.gemSlots)*-1);
+                    break;
+                case 4:
                     list.Sort((card1, card2) =>
                         {
                             if (card1.EquipmentData.quality == card2.EquipmentData.quality)
@@ -144,11 +152,11 @@ public class EquipmentMenu : MonoBehaviour
                         }
                     );
                     break;
-                case 3:
-                    list.Sort((card1, card2) => card1.EquipmentData.level.CompareTo(card2.EquipmentData.level)*-1);
-                    break;
-                case 4:
+                case 5:
                     list.Sort((card1, card2) => card1.EquipmentData.level.CompareTo(card2.EquipmentData.level));
+                    break;
+                case 6:
+                    list.Sort((card1, card2) => card1.EquipmentData.gemSlots.CompareTo(card2.EquipmentData.gemSlots));
                     break;
             }
             

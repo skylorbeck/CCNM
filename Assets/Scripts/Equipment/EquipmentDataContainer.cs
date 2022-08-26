@@ -289,7 +289,7 @@ public class EquipmentDataContainer
             // abilities[i] = Random.Range(0, 3) != 0 ? null: GameManager.Instance.abilityRegistry.GetRandomAbility();
             if (Random.Range(0, 3) != 0)
             {
-                abilities[i] = null;
+                abilities[i] = new AbilityGem(-1);
                 lockedSlots[i] = false;
             }
             else
