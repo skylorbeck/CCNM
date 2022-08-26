@@ -1030,6 +1030,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Music
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c500225607603534ebffb3ab1b340c3c
+      internalID: -455606309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effects
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee20b6520b39df4592caaa4afcd6520
+      internalID: -169849745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1052,6 +1094,7 @@ TextureImporter:
       Roman07: -387707300
       Hourglass: 1244756037
       Coin: -1137045171
+      Music: -455606309
       Roman4: 1931497558
       Target: 2085358512
       Star: -1786423953
@@ -1062,6 +1105,7 @@ TextureImporter:
       Point_Left: -1133371309
       Fist: 1602985703
       Roman0: 701994007
+      Effects: -169849745
       Point_Right_Up: 1399898116
       Point_Down_Left: -589126174
       Roman1: -1811170093

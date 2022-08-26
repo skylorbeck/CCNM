@@ -49,7 +49,7 @@ public class RelicShell : MonoBehaviour
             }
         }
 
-        numberRenderer.color = GameManager.Instance.colors[(int)relic.rarity];
+        // numberRenderer.color = GameManager.Instance.colors[(int)relic.rarity];
         relicDescriptionText.text = relic.description;
         relicDescriptionText.color = GameManager.Instance.colors[(int)relic.rarity];
         relicName.text = relic.title;

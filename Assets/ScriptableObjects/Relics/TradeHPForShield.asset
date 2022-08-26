@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 57933f20b362d074d9835cdc647c3fb4, type: 3}
   title: Turtle Shell
-  description: Hp -50%, Shield+=Hp Lost
+  description: Health -50% Shield +Hp Lost
   cost: 10
   level: 0
   rarity: 1

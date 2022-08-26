@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 3d7a898c3d7219649a985827d3ffee52
   - enabled: 1
-    path: Assets/Scenes/RunSettings.unity
+    path: Assets/Scenes/Scrapped/RunSettings.unity
     guid: 3506e537d650ed548b4ec28063cb78e4
   - enabled: 1
     path: Assets/Scenes/Fight.unity
@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Settings.unity
     guid: 5b665f9a43758cc4a820a6a774c28372
   - enabled: 1
-    path: Assets/Scenes/Hotel.unity
+    path: Assets/Scenes/Scrapped/Hotel.unity
     guid: aee575bbb278bc14e8b898dd92e7654c
   - enabled: 1
     path: Assets/Scenes/Scrapped/FightWon.unity
