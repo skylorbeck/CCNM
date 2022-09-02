@@ -166,61 +166,120 @@ public class PlayerBrain : Brain
 
     #endregion
 
+    #region StatGettersNoCard
+
+    public int GetUnmodifiedDamageNoCard(int temp =0)
+    {
+        return base.GetUnmodifiedDamage(temp);
+    }
+
+    public int GetShieldMaxUnmodifiedNoCard(int temp = 0)
+    {
+        return base.GetShieldMaxUnmodified(temp);
+    }
+
+    public int GetHealthMaxUnmodifiedNoCard(int temp = 0)
+    {
+        return base.GetHealthMaxUnmodified(temp);
+    }
+
+    public int GetShieldRateUnmodifiedNoCard(int temp = 0)
+    {
+        return base.GetShieldRateUnmodified(temp);
+    }
+
+    public float GetCritChanceUnmodifiedNoCard(int temp = 0)
+    {
+        return base.GetCritChanceUnmodified(temp);
+    }
+
+    public float GetCritDamageUnmodifiedNoCard(int temp = 0)
+    {
+        return base.GetCritDamageUnmodified(temp);
+    }
+
+    public float GetDodgeChanceUnmodifiedNoCard(int temp = 0)
+    {
+        return base.GetDodgeChanceUnmodified(temp);
+    }
+
+    public int GetLootLuckUnmodifiedNoCard(int temp = 0)
+    {
+        return base.GetLootLuckUnmodified(temp);
+    }
+
+    public int GetEgoBoostUnmodifiedNoCard(int temp = 0)
+    {
+        return base.GetEgoBoostUnmodified(temp);
+    }
+
+    public int GetCreditBoostUnmodifiedNoCard(int temp = 0)
+    {
+        return base.GetCreditBoostUnmodified(temp);
+    }
+
+    public int GetStatusDamageUnmodifiedNoCard(int temp = 0)
+    {
+        return base.GetStatusDamageUnmodified(temp);
+    }
+
+    #endregion
+
     #region unModifiedStatGetters
 
-    public override int GetUnmodifiedDamage()
+    public override int GetUnmodifiedDamage(int temp=0)
     {
-        return base.GetUnmodifiedDamage() + cardStrength;
+        return base.GetUnmodifiedDamage(temp) + cardStrength*5;
     }
 
-    public override int GetShieldMaxUnmodified()
+    public override int GetShieldMaxUnmodified(int temp=0)
     {
-        return base.GetShieldMaxUnmodified() + cardGrit;
+        return base.GetShieldMaxUnmodified(temp) + cardGrit*5;
     }
 
-    public override int GetHealthMaxUnmodified()
+    public override int GetHealthMaxUnmodified(int temp=0)
     {
-        return base.GetHealthMaxUnmodified() + cardVitality;
+        return base.GetHealthMaxUnmodified(temp) + cardVitality*5;
     }
 
-    public override int GetShieldRateUnmodified()
+    public override int GetShieldRateUnmodified(int temp=0)
     {
-        return base.GetShieldRateUnmodified() + cardResolve;
+        return base.GetShieldRateUnmodified(temp) + cardResolve*5;
     }
 
-    public override int GetCritChanceUnmodified()
+    public override float GetCritChanceUnmodified(int temp=0)
     {
-        return base.GetCritChanceUnmodified() + cardSpeed;
+        return base.GetCritChanceUnmodified(temp) + (cardSpeed*0.05f);
     }
 
-    public override int GetCritDamageUnmodified()
+    public override float GetCritDamageUnmodified(int temp=0)
     {
-        return base.GetCritDamageUnmodified() + cardSkill;
+        return base.GetCritDamageUnmodified(temp) + cardSkill*0.05f;
     }
 
-    public override int GetDodgeChanceUnmodified()
+    public override float GetDodgeChanceUnmodified(int temp=0)
     {
-        return base.GetDodgeChanceUnmodified() + cardDexterity;
+        return base.GetDodgeChanceUnmodified(temp) + cardDexterity*0.01f;
     }
 
-    public override int GetLootLuckUnmodified()
+    public override int GetLootLuckUnmodified(int temp=0)
     {
-        return base.GetLootLuckUnmodified() + cardLuck;
+        return base.GetLootLuckUnmodified(temp) + cardLuck;
     }
 
-    public override int GetEgoBoostUnmodified()
+    public override int GetEgoBoostUnmodified(int temp=0)
     {
-        return base.GetEgoBoostUnmodified() + cardIntelligence;
+        return base.GetEgoBoostUnmodified(temp) + cardIntelligence;
     }
 
-    public override int GetCreditBoostUnmodified()
+    public override int GetCreditBoostUnmodified(int temp=0)
     {
-        return base.GetCreditBoostUnmodified() + cardCharisma;
+        return base.GetCreditBoostUnmodified(temp) + cardCharisma;
     }
 
-    public override int GetStatusDamageUnmodified()
+    public override int GetStatusDamageUnmodified(int temp=0)
     {
-        return base.GetStatusDamageUnmodified() + cardSagacity;
+        return base.GetStatusDamageUnmodified(temp) + cardSagacity*5;
     }
 
     #endregion

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,67 +15,68 @@ public class StatControllerV2 : MonoBehaviour
     [field: SerializeField] public TextMeshProUGUI translatedValueText { get; private set; }
     [field: SerializeField] public int initialValue { get; private set; }
     [field: SerializeField] public int currentValue { get; private set; }
+    [field: SerializeField] public bool highlighted { get; private set; }
+
 
     public LevelingManagerV2 parent;
     async void Start()
     {
         await Task.Delay(10);
         PlayerBrain player = GameManager.Instance.metaPlayer;
-        statText.text = stat+":";   
-        statValueText.text = player.GetUnmodifiedStatValue(stat).ToString();
+        initialValue = player.GetUnmodifiedStatValue(stat);
+        currentValue = initialValue;
+        statText.text = stat+":";
+        statValueText.text = currentValue.ToString();
         string translatedStat = "";
         string translatedValue = "";
-
         switch (stat)
         {
             case EquipmentDataContainer.Stats.None:
                 break;
             case EquipmentDataContainer.Stats.Str:
                 translatedStat = "Attack";
-                translatedValue = player.GetDamage().ToString();
+                translatedValue = player.GetUnmodifiedDamageNoCard().ToString();
                 break;
             case EquipmentDataContainer.Stats.Spd:
                 translatedStat = "Dodge";
-                translatedValue = player.GetDodgeChance()+"%";
+                translatedValue = player.GetDodgeChanceUnmodifiedNoCard().ToString("0.##") + "%";
                 break;
             case EquipmentDataContainer.Stats.Vit:
                 translatedStat = "Health";
-                translatedValue = player.GetHealthMax().ToString();
+                translatedValue = player.GetHealthMaxUnmodifiedNoCard().ToString();
                 break;
             case EquipmentDataContainer.Stats.Dex:
                 translatedStat = "Crit Chance";
-                translatedValue = player.GetCritChance()+"%";
+                translatedValue = player.GetCritChanceUnmodifiedNoCard().ToString("0.##") + "%";
                 break;
             case EquipmentDataContainer.Stats.Skl:
                 translatedStat = "Crit Damage";
-                translatedValue = player.GetCritDamage()+"%";
+                translatedValue = player.GetCritDamageUnmodifiedNoCard().ToString("0.##") + "%";
                 break;
             case EquipmentDataContainer.Stats.Cap:
                 translatedStat = "Shield";
-                translatedValue = player.GetShieldMax().ToString();
+                translatedValue = player.GetShieldMaxUnmodifiedNoCard().ToString();
                 break;
             case EquipmentDataContainer.Stats.Chg:
                 translatedStat = "Recharge";
-                translatedValue = player.GetCharge().ToString();
+                translatedValue = player.GetShieldRateUnmodifiedNoCard().ToString();
                 break;
             case EquipmentDataContainer.Stats.Wis:
-                translatedStat = "Wisdom";
-                translatedValue = player.GetWisdom().ToString();
+                translatedStat = "Status Damage";
+                translatedValue = player.GetStatusDamageUnmodifiedNoCard().ToString();
                 break;
             case EquipmentDataContainer.Stats.Int:
                 translatedStat = "Ego Boost";
-                translatedValue = player.GetEgoBoost() + "%";
+                translatedValue = player.GetEgoBoostUnmodifiedNoCard().ToString("0.##") + "%";
                 break;
             case EquipmentDataContainer.Stats.Cha:
                 translatedStat = "Credit Boost";
-                translatedValue = player.GetCreditBoost() + "%";
+                translatedValue = player.GetCreditBoostUnmodifiedNoCard().ToString("0.##") + "%";
                 break;
             case EquipmentDataContainer.Stats.Lck:
                 translatedStat = "Luck";
-                translatedValue = player.GetLuck().ToString();
+                translatedValue = player.GetLootLuckUnmodifiedNoCard().ToString();
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
         
         translatedStatText.text = translatedStat+":";
@@ -90,21 +92,33 @@ public class StatControllerV2 : MonoBehaviour
     {
 
     }
-
-    public void SetStat(EquipmentDataContainer.Stats desiredStat)
+    
+    public void SetSelected(bool selected)
     {
-        stat = desiredStat;
-        initialValue = GameManager.Instance.metaPlayer.GetUnmodifiedStatValue(stat);
-        currentValue = initialValue;
-        statText.text = stat.ToString();
-        statValueText.text = currentValue.ToString();
-        UpdateButtons();
+        highlighted = selected;
+        TweenColors(selected);
     }
 
-    public void UpdateButtons()
+    private void TweenColors(bool selected)
     {
-        // left.interactable = currentValue > initialValue;
-        // right.interactable = GameManager.Instance.metaPlayer.ego >= parent.egoCostNext;
+        if (currentValue == initialValue)
+        {
+            DOTween.To(() => statText.color, x => statText.color = x, selected ? Color.white : Color.gray, 0.1f);
+            DOTween.To(() => statValueText.color, x => statValueText.color = x, selected ? Color.white : Color.gray, 0.1f);
+            DOTween.To(() => translatedStatText.color, x => translatedStatText.color = x,
+                selected ? Color.white : Color.gray, 0.1f);
+            DOTween.To(() => translatedValueText.color, x => translatedValueText.color = x,
+                selected ? Color.white : Color.gray, 0.1f);
+        }
+        else
+        {
+            DOTween.To(() => statText.color, x => statText.color = x, selected ? Color.yellow  : Color.green, 0.1f);
+            DOTween.To(() => statValueText.color, x => statValueText.color = x, selected ? Color.yellow  : Color.green, 0.1f);
+            DOTween.To(() => translatedStatText.color, x => translatedStatText.color = x, selected ? Color.yellow  : Color.green,
+                0.1f);
+            DOTween.To(() => translatedValueText.color, x => translatedValueText.color = x, selected ? Color.yellow  : Color.green,
+                0.1f);
+        }
     }
 
     public int GetLevelDifference()
@@ -115,20 +129,80 @@ public class StatControllerV2 : MonoBehaviour
     public void IncreaseStat()
     {
         currentValue++;
-        statValueText.text = currentValue.ToString();
-        parent.UpdateEgoCost();
+        if (currentValue>99)
+        {
+            currentValue = 99;
+        }
+        DoTweens();
+        TweenColors(highlighted);
+        parent!.UpdateEgoCost();
     }
 
     public void DecreaseStat()
     {
         currentValue--;
-        statValueText.text = currentValue.ToString();
-        parent.UpdateEgoCost();
+        if (currentValue < initialValue)
+        {
+            currentValue = initialValue;
+        }
+        DoTweens();
+        TweenColors(highlighted);
+        parent!.UpdateEgoCost();
+    }
+
+    private void DoTweens()
+    {
+        DOTween.To(() => statValueText.text, x => statValueText.text = x, currentValue.ToString(), 0.25f);
+        PlayerBrain player = GameManager.Instance.metaPlayer;
+        string translatedValue = "";
+        int value = currentValue - initialValue;
+        switch (stat)
+        {
+            case EquipmentDataContainer.Stats.None:
+                break;
+            case EquipmentDataContainer.Stats.Str:
+                translatedValue = player.GetUnmodifiedDamageNoCard(value).ToString();
+                break;
+            case EquipmentDataContainer.Stats.Spd:
+                translatedValue = player.GetDodgeChanceUnmodifiedNoCard(value).ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Vit:
+                translatedValue = player.GetHealthMaxUnmodifiedNoCard(value).ToString();
+                break;
+            case EquipmentDataContainer.Stats.Dex:
+                translatedValue = player.GetCritChanceUnmodifiedNoCard(value).ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Skl:
+                translatedValue = player.GetCritDamageUnmodifiedNoCard(value).ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Cap:
+                translatedValue = player.GetShieldMaxUnmodifiedNoCard(value).ToString();
+                break;
+            case EquipmentDataContainer.Stats.Chg:
+                translatedValue = player.GetShieldRateUnmodifiedNoCard(value).ToString();
+                break;
+            case EquipmentDataContainer.Stats.Wis:
+                translatedValue = player.GetStatusDamageUnmodifiedNoCard(value).ToString();
+                break;
+            case EquipmentDataContainer.Stats.Int:
+                translatedValue = player.GetEgoBoostUnmodifiedNoCard(value).ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Cha:
+                translatedValue = player.GetCreditBoostUnmodifiedNoCard(value).ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Lck:
+                translatedValue = player.GetLootLuckUnmodifiedNoCard(value).ToString();
+                break;
+       
+        }
+
+        DOTween.To(() => translatedValueText.text, x => translatedValueText.text = x, translatedValue, 0.25f);
     }
 
     public void ResetInitial()
     {
         initialValue = GameManager.Instance.metaPlayer.GetUnmodifiedStatValue(stat);
         currentValue = initialValue;
+        TweenColors(highlighted);
     }
 }

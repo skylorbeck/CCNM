@@ -334,13 +334,14 @@ public class EquipmentDataContainer
         None,
         //combat
         Str,//damage
-        Spd,//dodge chance
-        Vit,//health
         Dex,//crit chance
         Skl,//crit damage
+        Wis,//status damage
+        Vit,//health
+        Spd,//dodge chance
         Cap,//shield capacity
         Chg,//shield recharge rate
-        Wis,//status damage
+
         //meta
         Int,//ego boost
         Cha,//credit boost

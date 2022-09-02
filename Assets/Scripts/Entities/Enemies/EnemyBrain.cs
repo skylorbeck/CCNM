@@ -25,17 +25,17 @@ public class EnemyBrain : Brain
         return (int)(base.GetShieldRate() * GameManager.Instance.runPlayer.level * GameManager.Instance.runSettings.GetShieldMod());
     }
 
-    public override int GetCritChance()
+    public override float GetCritChance()
     {
         return (int)(base.GetCritChance() * GameManager.Instance.runSettings.GetCritChanceMod());
     }
 
-    public override int GetCritDamage()
+    public override float GetCritDamage()
     {
         return (int)(base.GetCritDamage() * GameManager.Instance.runSettings.GetCritDamageMod());
     }
 
-    public override int GetDodgeChance()
+    public override float GetDodgeChance()
     {
         return (int)(base.GetDodgeChance() * GameManager.Instance.runSettings.GetDodgeMod());
     }

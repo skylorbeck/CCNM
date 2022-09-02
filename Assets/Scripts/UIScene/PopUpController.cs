@@ -20,6 +20,7 @@ public class PopUpController : MonoBehaviour
     [SerializeField]private TextMeshProUGUI text;
     [SerializeField]private TextMeshProUGUI acceptButtonText;
     [SerializeField]private TextMeshProUGUI declineButtonText;
+    [SerializeField] private Image raycastBlocker;
     void Start()
     {
         if (Instance == null)
@@ -54,12 +55,16 @@ public class PopUpController : MonoBehaviour
     
     public void Cancel()
     {
-        transform.DOScale(Vector3.zero, 0.25f);
+        transform.DOScale(0, 0.25f);
+        raycastBlocker.raycastTarget = false;
+        DOTween.To(()=> raycastBlocker.color.a, x=> raycastBlocker.color = new Color(raycastBlocker.color.r, raycastBlocker.color.g, raycastBlocker.color.b, x), 0, 0.25f);
         // Debug.Log("Cancelled");
     }
 
     public void ShowPopUp(string message, string yes, string no, VoidDelegate action)
     {
+        raycastBlocker.raycastTarget = true;
+        DOTween.To(()=> raycastBlocker.color.a, x=> raycastBlocker.color = new Color(raycastBlocker.color.r, raycastBlocker.color.g, raycastBlocker.color.b, x), 0.5f, 0.25f);
         transform.DOKill(true);
         acceptButtonText.text = yes;
         if (no == null||no.Equals(""))
@@ -71,7 +76,7 @@ public class PopUpController : MonoBehaviour
             declineButtonText.text = no;
             declineButton.gameObject.SetActive(true);
         }
-        transform.DOScale(Vector3.one, 0.25f);
+        transform.DOScale(1, 0.25f);
         voidDelegate = action;
         text.text = message;
         text.ForceMeshUpdate();

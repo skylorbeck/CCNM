@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -131,57 +132,57 @@ public class Brain : ScriptableObject
     #endregion
 
     #region unModifiedStatGetters
-
-    public virtual int GetUnmodifiedDamage()
+    public virtual int GetUnmodifiedDamage(int temp =0)
     {
-        return GetStrength();
+        return (GetStrength()+temp)*5;
     }
-    public virtual int GetShieldMaxUnmodified()
+    public virtual int GetShieldMaxUnmodified(int temp =0)
     {
-        return GetCap();
+        return (GetCap()+temp)*5;
     }
-    public virtual int GetHealthMaxUnmodified()
+    public virtual int GetHealthMaxUnmodified(int temp =0)
     {
-        return GetVitality();
+        return (GetVitality()+temp)*5;
     }
-    public virtual int GetShieldRateUnmodified()
+    public virtual int GetShieldRateUnmodified(int temp =0)
     {
-        return GetCharge();
+        return (GetCharge()+temp)*5;
     }
-    public virtual int GetCritChanceUnmodified()
+    public virtual float GetCritChanceUnmodified(int temp =0)
     {
-        return GetSpeed();
-    }
-
-    public virtual int GetCritDamageUnmodified()
-    {
-        return GetSkill();
+        return (GetSpeed()+temp)*0.05f;
     }
 
-    public virtual int GetDodgeChanceUnmodified()
+    public virtual float GetCritDamageUnmodified(int temp =0)
     {
-        return GetDexterity();
+        return (GetSkill()+temp)*0.05f;
+    }
+
+    public virtual float GetDodgeChanceUnmodified(int temp =0)
+    {
+        return (GetDexterity()+temp)*0.01f;
     }
     
-    public virtual int GetLootLuckUnmodified()
+    public virtual int GetLootLuckUnmodified(int temp =0)
     {
-        return GetLuck();
+        return (GetLuck()+temp);
     }
 
-    public virtual int GetEgoBoostUnmodified()
+    public virtual int GetEgoBoostUnmodified(int temp =0)
     {
-        return GetIntelligence();
+        return (GetIntelligence()+temp);
     }
 
-    public virtual int GetCreditBoostUnmodified()
+    public virtual int GetCreditBoostUnmodified(int temp =0)
     {
-        return GetCharisma();
+        return (GetCharisma()+temp);
     }
     
-    public virtual int GetStatusDamageUnmodified()
+    public virtual int GetStatusDamageUnmodified(int temp =0)
     {
-        return GetWisdom();
+        return (GetWisdom()+temp)*5;
     }
+    
     #endregion
     
     #region computedStatGetters
@@ -190,6 +191,7 @@ public class Brain : ScriptableObject
         return GetUnmodifiedDamage();
     }
 
+   
     public virtual int GetShieldMax()
     {
         int shieldMax = GetShieldMaxUnmodified();
@@ -209,17 +211,17 @@ public class Brain : ScriptableObject
         return GetShieldRateUnmodified();
     }
 
-    public virtual int GetCritChance()
+    public virtual float GetCritChance()
     {
         return GetCritChanceUnmodified();
     }
 
-    public virtual int GetCritDamage()
+    public virtual float GetCritDamage()
     {
         return GetCritDamageUnmodified();
     }
 
-    public virtual int GetDodgeChance()
+    public virtual float GetDodgeChance()
     {
         return GetDodgeChanceUnmodified();
     }

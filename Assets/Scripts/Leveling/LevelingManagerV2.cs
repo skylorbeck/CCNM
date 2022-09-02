@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,19 +17,82 @@ public class LevelingManagerV2 : MonoBehaviour
     [field: SerializeField] public TextMeshProUGUI egoCostText { get; private set; }
     [field: SerializeField] public TextMeshProUGUI egoCurrentText { get; private set; }
     [field: SerializeField] public TextMeshProUGUI egoRemainingText { get; private set; }
+    [field: SerializeField] public TextMeshProUGUI selectedStatText { get; private set; }
     [field: SerializeField] public Button levelUpButton { get; private set; }
     [field: SerializeField] public List<EquipmentDataContainer.Stats> stats { get; private set; }
+    [field: SerializeField] public StatControllerV2[] statControllerV2s { get; private set; }
+    [field: SerializeField] public int statSelected { get; private set; }
+    [field: SerializeField] public Image lowlight { get; private set; }
+
     async void Start()
     {
         await Task.Delay(10);
-        stats = new List<EquipmentDataContainer.Stats>((Enum.GetValues(typeof(EquipmentDataContainer.Stats)) as EquipmentDataContainer.Stats[])!);
-        stats.Remove(EquipmentDataContainer.Stats.None);
         initialValue = GameManager.Instance.metaPlayer.level;
         currentValue = initialValue;
         UpdateEgoCost();
         egoCurrentText.text = GameManager.Instance.metaPlayer.ego.ToString();
-
         GameManager.Instance.inputReader.Back += Back;
+        await Task.Delay(10);
+        UpdateSelectedStatText();
+    }
+
+    private void UpdateSelectedStatText()
+    {
+        foreach (StatControllerV2 statControllerV2 in statControllerV2s)
+        {
+            statControllerV2.SetSelected(false);
+        }
+        DOTween.To(()=>selectedStatText.text, x => selectedStatText.text = x, stats[statSelected].ToString(), 0.25f);
+        statControllerV2s[statSelected].SetSelected(true);  
+        lowlight.rectTransform.DOSizeDelta(statControllerV2s[statSelected].GetComponent<RectTransform>().sizeDelta, 0.25f);
+        lowlight.rectTransform.DOAnchorPos(statControllerV2s[statSelected].GetComponent<RectTransform>().anchoredPosition, 0.25f);
+    }
+    
+    public void IncreaseSelectedStat()
+    {
+        statControllerV2s[statSelected].IncreaseStat();
+        UpdateEgoCost();
+    }
+    
+    public void DecreaseSelectedStat()
+    {
+        statControllerV2s[statSelected].DecreaseStat();
+        UpdateEgoCost();
+    }
+    
+    public void SelectedStatButtonRight()
+    {
+        
+        statSelected++;
+        if (statSelected >= stats.Count)
+        {
+            statSelected = 0;
+        }
+        UpdateSelectedStatText();
+    }
+    
+    public void SelectedStatButtonLeft()
+    {
+        statSelected--;
+        if (statSelected < 0)
+        {
+            statSelected = stats.Count - 1;
+        }
+        UpdateSelectedStatText();
+    }
+    
+    public void UpdateSelectedStat(int value)
+    {
+        statSelected = value;
+        if (statSelected < 0)
+        {
+            statSelected = stats.Count - 1;
+        }
+        else if (statSelected >= stats.Count)
+        {
+            statSelected = 0;
+        }
+        UpdateSelectedStatText();
     }
 
     void Update()
@@ -44,10 +108,10 @@ public class LevelingManagerV2 : MonoBehaviour
     public void UpdateEgoCost()
     {
         int totalLevels = 0;
-        // foreach (StatController controller in statControllers)
-        // {
-        //     totalLevels += controller.GetLevelDifference();
-        // }
+        foreach (StatControllerV2 controller in statControllerV2s)
+        {
+            totalLevels += controller.GetLevelDifference();
+        }
         
         currentValue = initialValue + totalLevels;
 
@@ -92,11 +156,11 @@ public class LevelingManagerV2 : MonoBehaviour
     public void ConfirmLevelUp()
     {
         GameManager.Instance.metaPlayer.SpendEgo(egoCost);
-        // foreach (StatController controller in statControllers)
-        // {
-            // GameManager.Instance.metaPlayer.LevelUpStat(controller.stat, controller.GetLevelDifference());
-            // controller.ResetInitial();
-        // }
+        foreach (StatControllerV2 controller in statControllerV2s)
+        {
+            GameManager.Instance.metaPlayer.LevelUpStat(controller.stat, controller.GetLevelDifference());
+            controller.ResetInitial();
+        }
         egoCurrentText.text = GameManager.Instance.metaPlayer.ego.ToString();
         initialValue = GameManager.Instance.metaPlayer.level;
         currentValue = initialValue;

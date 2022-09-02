@@ -44,12 +44,12 @@ MonoBehaviour:
     <gemLevel>k__BackingField: 0
     <amountOwned>k__BackingField: 0
   <credits>k__BackingField: 0
-  <ego>k__BackingField: 3258
-  <level>k__BackingField: 1
+  <ego>k__BackingField: 46300
+  <level>k__BackingField: 5
   <currentHealth>k__BackingField: 5
   <relics>k__BackingField: []
-  strength: 5
-  dexterity: 5
+  strength: 7
+  dexterity: 7
   vitality: 5
   speed: 5
   skill: 5
@@ -1880,7 +1880,7 @@ MonoBehaviour:
       <amountOwned>k__BackingField: 0
     <quality>k__BackingField: 0
     <level>k__BackingField: 0
-    <stats>k__BackingField: 0600000007000000
+    <stats>k__BackingField: 0700000008000000
     <statValue>k__BackingField: 0500000005000000
     <indestructible>k__BackingField: 1
   - <itemCore>k__BackingField: {fileID: 11400000, guid: 4541bbd143521ae4a88117e51d4e5893, type: 2}
@@ -1916,7 +1916,7 @@ MonoBehaviour:
       <amountOwned>k__BackingField: 0
     <quality>k__BackingField: 0
     <level>k__BackingField: 0
-    <stats>k__BackingField: 03000000
+    <stats>k__BackingField: 05000000
     <statValue>k__BackingField: 05000000
     <indestructible>k__BackingField: 1
   <ownedGems>k__BackingField: []
@@ -1943,20 +1943,20 @@ MonoBehaviour:
     creditsSpent: 0
     creditsLost: 0
     egoEarned: 0
-    egoSpent: 0
+    egoSpent: 2795
     egoLost: 0
     egoGained: 0
     cardSoulsGained: 00000000000000000000000000000000000000000000000000000000
     cardSoulsSpent: 00000000000000000000000000000000000000000000000000000000
   maximumEquipmentSlots: 100
   <cardStrength>k__BackingField: 5
-  <cardDexterity>k__BackingField: 11
-  <cardVitality>k__BackingField: 30
-  <cardSpeed>k__BackingField: 1
-  <cardSkill>k__BackingField: 18
+  <cardDexterity>k__BackingField: 1
+  <cardVitality>k__BackingField: 18
+  <cardSpeed>k__BackingField: 17
+  <cardSkill>k__BackingField: 30
   <cardLuck>k__BackingField: 0
-  <cardGrit>k__BackingField: 17
-  <cardResolve>k__BackingField: 25
+  <cardGrit>k__BackingField: 25
+  <cardResolve>k__BackingField: 0
   <cardIntelligence>k__BackingField: 3
   <cardCharisma>k__BackingField: 1
-  <cardSagacity>k__BackingField: 0
+  <cardSagacity>k__BackingField: 11
