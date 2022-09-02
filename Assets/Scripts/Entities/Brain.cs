@@ -50,50 +50,50 @@ public class Brain : ScriptableObject
     #endregion
 
     #region statGetters
-    public virtual int GetStrength()
+    public virtual int GetStrength()//damage
     {
         return strength;
     }
-    public virtual int GetDexterity()
+    public virtual int GetDexterity()//dodge chance
     {
         return dexterity;
     }
-    public virtual int GetVitality()
+    public virtual int GetVitality()//health max
     {
         return vitality;
     }
-    public virtual int GetSpeed()
+    public virtual int GetSpeed()//crit chance
     {
         return speed;
     }
-    public virtual int GetSkill()
+    public virtual int GetSkill()//crit damage
     {
         return skill;
     }
-    public virtual int GetLuck()
+    public virtual int GetLuck()//loot luck
     {
         return luck;
     }
-    public virtual int GetGrit()
+    public virtual int GetCap()//shield max
     {
         return grit;
     }
-    public virtual int GetResolve()
+    public virtual int GetCharge()//shield rate (amt per recharge)
     {
         return resolve;
     }
     
-    public virtual int GetIntelligence()
+    public virtual int GetIntelligence()//ego boost
     {
         return intelligence;
     }
     
-    public virtual int GetCharisma()
+    public virtual int GetCharisma()//credit boost
     {
         return charisma;
     }
     
-    public virtual int GetSagacity()
+    public virtual int GetWisdom()//status damage
     {
         return sagacity;
     }
@@ -117,15 +117,15 @@ public class Brain : ScriptableObject
             case EquipmentDataContainer.Stats.Lck:
                 return GetLuck();
             case EquipmentDataContainer.Stats.Cap:
-                return GetGrit();
+                return GetCap();
             case EquipmentDataContainer.Stats.Chg:
-                return GetResolve();
+                return GetCharge();
             case EquipmentDataContainer.Stats.Int:
                 return GetIntelligence();
             case EquipmentDataContainer.Stats.Cha:
                 return GetCharisma();
             case EquipmentDataContainer.Stats.Wis:
-                return GetSagacity();
+                return GetWisdom();
         }
     }
     #endregion
@@ -138,7 +138,7 @@ public class Brain : ScriptableObject
     }
     public virtual int GetShieldMaxUnmodified()
     {
-        return GetGrit();
+        return GetCap();
     }
     public virtual int GetHealthMaxUnmodified()
     {
@@ -146,7 +146,7 @@ public class Brain : ScriptableObject
     }
     public virtual int GetShieldRateUnmodified()
     {
-        return GetResolve();
+        return GetCharge();
     }
     public virtual int GetCritChanceUnmodified()
     {
@@ -180,7 +180,7 @@ public class Brain : ScriptableObject
     
     public virtual int GetStatusDamageUnmodified()
     {
-        return GetSagacity();
+        return GetWisdom();
     }
     #endregion
     
@@ -331,10 +331,10 @@ public class Brain : ScriptableObject
                 SetLuck(GetLuck() + levelDifference);
                 break;
             case EquipmentDataContainer.Stats.Cap:
-                SetGrit(GetGrit() + levelDifference);
+                SetGrit(GetCap() + levelDifference);
                 break;
             case EquipmentDataContainer.Stats.Chg:
-                SetResolve(GetResolve() + levelDifference);
+                SetResolve(GetCharge() + levelDifference);
                 break;
             case EquipmentDataContainer.Stats.Int:
                 SetIntelligence(GetIntelligence() + levelDifference);
@@ -343,7 +343,7 @@ public class Brain : ScriptableObject
                 SetCharisma(GetCharisma() + levelDifference);
                 break;
             case EquipmentDataContainer.Stats.Wis:
-                SetSagacity(GetSagacity() + levelDifference);
+                SetSagacity(GetWisdom() + levelDifference);
                 break;
         }
         level += levelDifference;

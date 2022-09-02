@@ -11,7 +11,7 @@ public class ItemStatCompare : MonoBehaviour
     [field: SerializeField] public TextMeshProUGUI ItemName { get; private set; }
     [field: SerializeField] public Image background { get; private set; }
     [field: SerializeField] public List<TextMeshProUGUI> ItemStats { get; private set; }
-
+    [field: SerializeField] public bool autosize { get; private set; } = false;
     public void InsertItemStats(EquipmentDataContainer EquippedItem, EquipmentDataContainer newItem)
     {
         
@@ -62,9 +62,11 @@ public class ItemStatCompare : MonoBehaviour
         
         DOTween.To(() => ItemName.text, x => ItemName.text = x, newItem.itemCore.cardTitle, 0.5f).OnUpdate(() =>
         {
-            ItemName.ForceMeshUpdate();
-            background.rectTransform.sizeDelta = new Vector2(ItemName.preferredWidth + 20, 22+(totalStats * 8));
-
+            if (autosize)
+            {
+                ItemName.ForceMeshUpdate();
+                background.rectTransform.sizeDelta = new Vector2(background.rectTransform.sizeDelta.x, ItemName.fontSize+(totalStats * ItemStats[0].fontSize*0.6f ));
+            }
         });
     }
 
@@ -73,11 +75,17 @@ public class ItemStatCompare : MonoBehaviour
         if (gem!=null && gem.abilityIndex!=-1)
         {
             AbilityObject abilityObject = gem.GetAbility();
-            DOTween.To(() => ItemName.text, x => ItemName.text = x,abilityObject.title, 0.5f);
+            DOTween.To(() => ItemName.text, x => ItemName.text = x, abilityObject.title+" "+(gem.gemLevel+1), 0.5f).OnUpdate(() =>
+            {
+                if (autosize)
+                {
+                    ItemName.ForceMeshUpdate();
+                    background.rectTransform.sizeDelta = new Vector2(ItemName.preferredWidth + 20, 40);
+                }
+            });
             DOTween.To(() => ItemStats[0].text, x => ItemStats[0].text = x,abilityObject.descriptionA, 0.5f);
             DOTween.To(() => ItemStats[1].text, x => ItemStats[1].text = x,abilityObject.descriptionB, 0.5f);
             DOTween.To(() => background.color, x => background.color = x,Color.white, 0.5f);
-
         }
         else
         {

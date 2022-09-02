@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: DeckRegistry
   m_EditorClassIdentifier: 
   deckObjects:
-  - {fileID: 11400000, guid: a721d7203651bfd48bcad82cdf586d59, type: 2}
   - {fileID: 11400000, guid: f26770483d4052b47993ba2f829f8312, type: 2}
+  - {fileID: 11400000, guid: b6a79df836eb308499a4cb8f262fde3a, type: 2}
   keys:
-  - World1
-  - World2
+  - Ancient
+  - Spooky
   values: 0000000001000000

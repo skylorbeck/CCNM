@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+[Obsolete("Use V2 Instead")]
 public class StatController : MonoBehaviour
 {
     [field: SerializeField] public EquipmentDataContainer.Stats stat  { get; private set; } = EquipmentDataContainer.Stats.None;

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+[Obsolete("Use V2 instead")]
 public class LevelingManager : MonoBehaviour
 {
     [field:SerializeField] public StatController statControllerPrefab{ get;private set; }

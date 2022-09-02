@@ -25,14 +25,14 @@ MonoBehaviour:
   - FoundCoffee
   - FoundPie
   - FoundTea
-  <bossCard>k__BackingField: {fileID: 11400000, guid: a6c2b7848cac98a4982daed8695a935d, type: 2}
+  <bossCard>k__BackingField: {fileID: 11400000, guid: d2efee8087952fe4ebe8f676bb202e4b, type: 2}
   <miniBossCard>k__BackingField:
-  - {fileID: 11400000, guid: f13c005cfebab3c47b89404d5eaacf4c, type: 2}
-  - {fileID: 11400000, guid: 3e033b7bbd8987841a2d3181a5c8fbde, type: 2}
+  - {fileID: 11400000, guid: 77a6e7922b1c00049a706dbe1a3ed24b, type: 2}
+  - {fileID: 11400000, guid: 77a6e7922b1c00049a706dbe1a3ed24b, type: 2}
   <minionCards>k__BackingField:
-  - {fileID: 11400000, guid: 13563d5ffcb8a984d8cb7edd2a225b7d, type: 2}
-  - {fileID: 11400000, guid: 9fa23546537b5ea4bbafbd3352ed7170, type: 2}
-  - {fileID: 11400000, guid: 2438b04b1ee0f95468981a91d8dad2f0, type: 2}
+  - {fileID: 11400000, guid: bfcacc1786732b34ca429a25bd40b50e, type: 2}
+  - {fileID: 11400000, guid: 40bd015c59952a640bccdbe97e703c87, type: 2}
+  - {fileID: 11400000, guid: 491fd9157c6ad6b40acc24537d64d4d5, type: 2}
   <shopCards>k__BackingField:
   - {fileID: 11400000, guid: a7667085ea0ee8a4fba84e59cc7cdb96, type: 2}
   <itemCards>k__BackingField: []

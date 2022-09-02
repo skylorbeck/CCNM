@@ -332,6 +332,7 @@ public class EquipmentDataContainer
     public enum Stats
     {
         None,
+        //combat
         Str,//damage
         Spd,//dodge chance
         Vit,//health
@@ -340,7 +341,7 @@ public class EquipmentDataContainer
         Cap,//shield capacity
         Chg,//shield recharge rate
         Wis,//status damage
-
+        //meta
         Int,//ego boost
         Cha,//credit boost
         Lck,//loot quality

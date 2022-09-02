@@ -370,11 +370,11 @@ public class PlayerBrain : Brain
         SetSpeed(sourcePlayer.GetSpeed());
         SetSkill(sourcePlayer.GetSkill());
         SetLuck(sourcePlayer.GetLuck());
-        SetGrit(sourcePlayer.GetGrit());
-        SetResolve(sourcePlayer.GetResolve());
+        SetGrit(sourcePlayer.GetCap());
+        SetResolve(sourcePlayer.GetCharge());
         SetIntelligence(sourcePlayer.GetIntelligence());
         SetCharisma(sourcePlayer.GetCharisma());
-        SetSagacity(sourcePlayer.GetSagacity());
+        SetSagacity(sourcePlayer.GetWisdom());
 
         SetCurrentHealth(sourcePlayer.GetHealthMax());
         CalculateCardStats();
@@ -730,8 +730,8 @@ public class SavablePlayerBrain
         speed = player.GetSpeed();
         skill = player.GetSkill();
         luck = player.GetLuck();
-        grit = player.GetGrit();
-        resolve = player.GetResolve();
+        grit = player.GetCap();
+        resolve = player.GetCharge();
         intelligence = player.GetIntelligence();
         charisma = player.GetCharisma();
         trackableStats = player.trackableStats;

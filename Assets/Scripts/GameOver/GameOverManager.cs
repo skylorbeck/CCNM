@@ -86,6 +86,7 @@ public class GameOverManager : MonoBehaviour
         cardPacks += score / 500;
         GameManager.Instance.metaPlayer.AddCardPack(cardPacks);
         GameManager.Instance.saveManager.SaveMeta();
+        bool tempIsDead = GameManager.Instance.runPlayer.isDead;
         GameManager.Instance.battlefield.Reset();
         GameManager.Instance.saveManager.SaveRun();
 
@@ -98,7 +99,7 @@ public class GameOverManager : MonoBehaviour
         MasterWindow.DOAnchorPosY(0, 2f).SetEase(Ease.OutBounce);
         // DOTween.To(()=>MasterWindow.anchoredPosition.y, x=>MasterWindow.anchoredPosition = new Vector2(0,x), 0f, 1f).SetEase(Ease.InElastic);
         await Task.Delay(2000);
-        DOTween.To(() => runOverText.text, x => runOverText.text = x, GameManager.Instance.runPlayer.isDead?"Game Over":"You Won!", 0.5f);
+        DOTween.To(() => runOverText.text, x => runOverText.text = x, tempIsDead?"Game Over":"You Won!", 0.5f);
         
         await Task.Delay(delay);
         DOTween.To(() => creditsText.text, x => creditsText.text = x, "" + credits, 0.5f);

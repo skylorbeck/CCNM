@@ -10,36 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b027d360112a34ea7fc3fd846dc632, type: 3}
-  m_Name: MiniBoss
+  m_Name: TestEnemyC
   m_EditorClassIdentifier: 
-  <title>k__BackingField: miniboss
-  <description>k__BackingField: boss.description
-  <icon>k__BackingField: {fileID: 21300000, guid: 48f1bf28ad0b8af4b98c583f010c9c87, type: 3}
+  <title>k__BackingField: Blue Slime
+  <description>k__BackingField: entity.description_c
+  <icon>k__BackingField: {fileID: 21300000, guid: 2f96a90482709c04a82e30328c07564b, type: 3}
   <abilities>k__BackingField:
-  - <abilityIndex>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 2
     <gemLevel>k__BackingField: 0
     <amountOwned>k__BackingField: 0
-  - <abilityIndex>k__BackingField: 0
-    <gemLevel>k__BackingField: 0
-    <amountOwned>k__BackingField: 0
-  - <abilityIndex>k__BackingField: 0
-    <gemLevel>k__BackingField: 0
-    <amountOwned>k__BackingField: 0
-  <credits>k__BackingField: 100
-  <ego>k__BackingField: 100
+  <credits>k__BackingField: 1
+  <ego>k__BackingField: 50
   <level>k__BackingField: 0
   <currentHealth>k__BackingField: 5
   <relics>k__BackingField: []
   strength: 5
   dexterity: 5
-  vitality: 10
+  vitality: 5
   speed: 5
   skill: 5
   luck: 5
-  grit: 5
+  grit: 10
   resolve: 5
   intelligence: 5
   charisma: 5
   sagacity: 0
-  isBoss: 1
+  isBoss: 0
   isBlank: 0
