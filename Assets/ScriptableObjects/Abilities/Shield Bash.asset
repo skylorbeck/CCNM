@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield Bash
   m_EditorClassIdentifier: 
   <title>k__BackingField: Shield Bash
-  <descriptionA>k__BackingField: 1x Damage Target
+  <descriptionA>k__BackingField: '{damage} Damage To Target'
   <descriptionB>k__BackingField: 
   <icon>k__BackingField: {fileID: 21300000, guid: 29b4a15e7bbc2d047a89374bc71b8635, type: 3}
   <baseCost>k__BackingField: 1

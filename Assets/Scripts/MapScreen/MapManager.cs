@@ -140,7 +140,8 @@ public class MapManager : MonoBehaviour
 
     public void InsertDeck()
     {
-        for (var i = 0; i < curtains.Length; i++)
+        //todo replace with sprite from deck
+        /*for (var i = 0; i < curtains.Length; i++)
         {
             var i1 = i;
             DOTween.To(
@@ -157,7 +158,7 @@ public class MapManager : MonoBehaviour
                 x => curtainsBack[i1].color = x,
                 GameManager.Instance.deck.colors[1],
                 0.5f);
-        }
+        }*/
         totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
                               GameManager.Instance.deck
                                   .bossAt;

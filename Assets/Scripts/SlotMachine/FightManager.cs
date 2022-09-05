@@ -42,6 +42,10 @@ public class FightManager : MonoBehaviour
     [SerializeField] private StatDisplay playerStatDisplay;
     private CancellationTokenSource cancellationTokenSource;
     [SerializeField] private ConsumableMenu consumableMenu;
+    [SerializeField] private SpriteRenderer consumableWall;
+    [SerializeField] private SpriteRenderer wall;
+    [SerializeField] private SpriteRenderer floor;
+    [SerializeField] private SpriteRenderer[] wheelCover;
     private int enemiesAlive
     {
         get
@@ -64,6 +68,15 @@ public class FightManager : MonoBehaviour
         GameManager.Instance.uiStateObject.Ping("Fight!");
         // if (GameManager.Instance.battlefield.randomState != null) Random.state = GameManager.Instance.battlefield.randomState.Value;
         cancellationTokenSource = new CancellationTokenSource();
+
+        consumableWall.sprite = GameManager.Instance.battlefield.deck.consumableWall;
+        wall.sprite = GameManager.Instance.battlefield.deck.wall;
+        floor.sprite = GameManager.Instance.battlefield.deck.floor;
+        foreach (SpriteRenderer spriteRenderer in wheelCover)
+        {
+            spriteRenderer.sprite = GameManager.Instance.battlefield.deck.wheelCover;
+        }
+        
         for (var i = 0; i < GameManager.Instance.battlefield.enemies.Length; i++)
         {
             enemies[i].InsertBrain(GameManager.Instance.battlefield.enemies[i]);
@@ -585,7 +598,7 @@ public class FightManager : MonoBehaviour
     public void SetPreviewText(Symbol symbol)
     {
         player.statusDisplayer.DisableVisuals();
-        previewText.SetText(symbol!.ability.title, symbol!.ability.descriptionA, symbol!.ability.descriptionB);
+        previewText.SetText(symbol!.ability.title, symbol!.ability.GetTranslatedDescriptionA(player), symbol!.ability.GetTranslatedDescriptionB(player));
     }
     
     public void SetPreviewText(Shell shell)

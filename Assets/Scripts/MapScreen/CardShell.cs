@@ -55,8 +55,8 @@ public class CardShell : MonoBehaviour
                 typeSprite.sprite = eventSprite;
                 break;
         }
-        cardSpriteBack.color = GameManager.Instance.deck.colors[1];
-        cardSpriteFront.color = GameManager.Instance.deck.colors[0];
+        // cardSpriteBack.color = GameManager.Instance.deck.colors[1];//todo replace with sprite from deck
+        // cardSpriteFront.color = GameManager.Instance.deck.colors[0];
 
         transform.localPosition = new Vector3(0, -2.5f, 0);
         hasBrain = true;

@@ -143,6 +143,10 @@ public class Brain : ScriptableObject
     public virtual int GetHealthMaxUnmodified(int temp =0)
     {
         return (GetVitality()+temp)*5;
+    } 
+    public virtual int GetHealUnmodified(int temp =0)
+    {
+        return (GetVitality()+temp);
     }
     public virtual int GetShieldRateUnmodified(int temp =0)
     {
@@ -237,6 +241,10 @@ public class Brain : ScriptableObject
         }
 
         return healthMax;
+    }
+    public virtual int GetHeal()
+    {
+        return GetHealUnmodified();
     } 
   
     public virtual int GetLootLuck()

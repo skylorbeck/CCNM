@@ -52,6 +52,71 @@ public class AbilityObject : ScriptableObject
     [field: SerializeField] public AttackAnimator.AttackType attackAnimation { get; private set; } = AttackAnimator.AttackType.None;
 
     [field: SerializeField] public AudioClip soundEffect { get; private set; }
+    
+    
+    public string GetTranslatedDescriptionA(PlayerShell playerShell)
+    {
+        string description = descriptionA;
+        if (damageTarget)
+        {
+            int baseDamage = playerShell.brain.GetDamage();
+            description = description.Replace("{damage}", (baseDamage * targetDamageMultiplier).ToString());
+        }
+
+        if (healTarget)
+        {
+            int baseHeal = playerShell.brain.GetHeal();
+            description = description.Replace("{heal}", (baseHeal * targetHealMultiplier).ToString());
+        }
+
+        /*if (armorTarget)
+        {
+            int baseArmor = playerShell.brain.GetShieldRate();
+            description = description.Replace("{armor}", (baseArmor * targetArmorMultiplier).ToString());
+        }*/
+
+        if (statusTarget)
+        { 
+            description = description.Replace("{status}", targetStatus.title);
+            description = description.Replace("{damage}", playerShell.brain.GetStatusDamage().ToString());
+            description = description.Replace("{heal}", (playerShell.brain.GetHeal()).ToString());
+
+        }
+        
+        return description;
+    }
+    public string GetTranslatedDescriptionB(PlayerShell playerShell)
+    {
+        string description = descriptionB;
+        if (damageUser)
+        {
+            int baseDamage = playerShell.brain.GetDamage();
+            description = description.Replace("{damage}", (baseDamage * userDamageMultiplier).ToString());
+        }
+        
+        if (healUser)
+        {
+            int baseHeal = playerShell.brain.GetHeal();
+            description = description.Replace("{heal}", (baseHeal * userHealMultiplier).ToString());
+        }
+        
+        /*if (armorUser)
+        {
+            int baseArmor = playerShell.brain.GetShieldRate();
+            description = description.Replace("{armor}", (baseArmor * userArmorMultiplier).ToString());
+        }*/
+        
+        if (statusSelf)
+        {
+            description = description.Replace("{status}", userStatus.title);
+            description = description.Replace("{damage}", playerShell.brain.GetStatusDamage().ToString());
+            description = description.Replace("{heal}", (playerShell.brain.GetHeal()).ToString());
+
+        }
+
+        return description;
+    }
+    
 }
 [Serializable]
 public class AbilityGem
@@ -112,4 +177,5 @@ public class AbilityGem
             return null;
         return GameManager.Instance.abilityRegistry.GetAbility(abilityIndex);
     }
+    
 }

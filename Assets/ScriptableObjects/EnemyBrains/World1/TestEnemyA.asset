@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b027d360112a34ea7fc3fd846dc632, type: 3}
   m_Name: TestEnemyA
   m_EditorClassIdentifier: 
-  <title>k__BackingField: Redfox
-  <description>k__BackingField: entity.description_a
-  <icon>k__BackingField: {fileID: 21300000, guid: 3cbb981026052fe4d87f55b4e26600ba, type: 3}
+  <title>k__BackingField: Berry Slime
+  <description>k__BackingField: Tastes like purple
+  <icon>k__BackingField: {fileID: 21300000, guid: 69c9a50fb8d8a4644a3c87bc3257837e, type: 3}
   <abilities>k__BackingField:
   - <abilityIndex>k__BackingField: 3
     <gemLevel>k__BackingField: 0

@@ -3596,6 +3596,13 @@ MonoBehaviour:
   pauseRaycaster: {fileID: 1781211948}
   playerStatDisplay: {fileID: 391453861}
   consumableMenu: {fileID: 1167340103}
+  consumableWall: {fileID: 2135825595}
+  wall: {fileID: 721444573}
+  floor: {fileID: 1411012413}
+  wheelCover:
+  - {fileID: 1738109149}
+  - {fileID: 1720330309}
+  - {fileID: 1351189896}
 --- !u!4 &949850993
 Transform:
   m_ObjectHideFlags: 0
