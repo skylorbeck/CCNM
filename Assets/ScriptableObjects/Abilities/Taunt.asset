@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Taunt
   m_EditorClassIdentifier: 
   <title>k__BackingField: Taunt
-  <descriptionA>k__BackingField: '{status} Target'
-  <descriptionB>k__BackingField: '{status} Self'
+  <descriptionA>k__BackingField: Wastes a Turn
+  <descriptionB>k__BackingField: 
   <icon>k__BackingField: {fileID: 21300000, guid: 382171c650b9e704fbd6f0db8ead0404, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 0
@@ -30,9 +30,9 @@ MonoBehaviour:
   <armorUser>k__BackingField: 0
   <userArmorMultiplier>k__BackingField: 1
   <targetStatus>k__BackingField: {fileID: 11400000, guid: c48dca9d4614ddc4d9d66bb0d3c44a09, type: 2}
-  <statusTarget>k__BackingField: 1
+  <statusTarget>k__BackingField: 0
   <userStatus>k__BackingField: {fileID: 11400000, guid: c48dca9d4614ddc4d9d66bb0d3c44a09, type: 2}
-  <statusSelf>k__BackingField: 1
+  <statusSelf>k__BackingField: 0
   <slotType>k__BackingField: 2
   <element>k__BackingField: 0
   <attackAnimation>k__BackingField: 1

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <title>k__BackingField: Slash
   <descriptionA>k__BackingField: '{damage} Damage To Target'
-  <descriptionB>k__BackingField: '{damage} Damage To User'
-  <icon>k__BackingField: {fileID: 21300000, guid: a24a82ae438282148a14931ae4065da8, type: 3}
+  <descriptionB>k__BackingField: 
+  <icon>k__BackingField: {fileID: 21300000, guid: 2e65fbe0c2b143441a77954b766f87a6, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
   <targetDamageMultiplier>k__BackingField: 2
-  <damageUser>k__BackingField: 1
+  <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
   <healTarget>k__BackingField: 0
   <targetHealMultiplier>k__BackingField: 1

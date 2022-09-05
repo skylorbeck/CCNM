@@ -16,15 +16,15 @@ MonoBehaviour:
   shield: 1
   armor: 1
   attack: 1
-  dodge: 0
-  critChance: 0
-  critDamage: 0
-  multiplier: 0
+  dodge: 1
+  critChance: 1
+  critDamage: 1
+  multiplier: 1
   healthMod: 1
   shieldMod: 1
   armorMod: 1
   attackMod: 1
-  dodgeMod: 0
-  critChanceMod: 0
-  critDamageMod: 0
+  dodgeMod: 1
+  critChanceMod: 1
+  critDamageMod: 1
   finalMultiplier: 1

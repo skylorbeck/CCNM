@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class Symbol : MonoBehaviour
 {
-    [field:SerializeField] public AbilityObject ability { get; private set; }//todo replace with AbilityGem
+    [field:SerializeField] public AbilityObject ability { get; private set; }//todo replace with AbilityGem?
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private SpriteRenderer userStatusSprite;
     [SerializeField] private SpriteRenderer userStatusShadow;
@@ -76,65 +76,7 @@ public class Symbol : MonoBehaviour
     public async Task Consume(Shell target,Shell user)
     {
         consumed = true;
-
-        /*if (ability.armorTarget)
-        {
-            int shield = await target.OnShield(target,user.brain.baseShield);
-            shield = (int)Math.Ceiling(shield * ability.targetArmorMultiplier);
-            target.Shield(shield, ability.element);
-        }
-        if (ability.armorUser)
-        {
-            int shield = await user.OnShield(user,user.brain.baseShield);
-            shield = (int)Math.Ceiling(shield * ability.userArmorMultiplier);
-            user.Shield(shield, ability.element);
-        }*/
-        if (ability.statusTarget)
-        {
-            target.AddStatusEffect(ability.targetStatus);
-        }
-        if (ability.statusSelf)
-        {
-            user.AddStatusEffect(ability.userStatus);
-        }
-        if (ability.healTarget)
-        {
-            int heal = await target.OnHeal(target,(int)(user.brain.GetHealthMax()*0.25f));
-            heal = (int)Math.Ceiling(heal * ability.targetHealMultiplier);
-            target.Heal(heal, ability.element);
-        }
-        if (ability.healUser)
-        {
-            int heal = await user.OnHeal(user,(int)(user.brain.GetHealthMax()*0.25f));
-            heal = (int)Math.Ceiling(heal * ability.userHealMultiplier);
-            user.Heal(heal, ability.element);
-        }
-        if (ability.damageTarget)
-        {
-            int damage = await user.OnAttack(target,user.brain.GetDamage());//process status influences
-            damage = (int)(damage * ability.targetDamageMultiplier);//process ability multiplier
-            if (Random.Range(0,100)<user.brain.GetCritChance())
-            {
-               damage +=  (int)(damage * user.brain.GetCritDamage());
-               //todo crit notification
-            }
-            DamageAnimator.Instance.TriggerAttack(target, ability.attackAnimation);//play the animation
-            await target.Damage(user, damage, ability.element);//damage the target
-            // target.TestDeath(); handled in target.damage
-        }
-        if (ability.damageUser)
-        {
-            int damage = await user.OnAttack(user,user.brain.GetDamage());
-            damage = (int)(damage * ability.userDamageMultiplier);
-            if (Random.Range(0,100)<user.brain.GetCritChance())
-            {
-                damage +=  (int)(damage * user.brain.GetCritDamage());
-                //todo crit notification
-            }
-            DamageAnimator.Instance.TriggerAttack(user, ability.attackAnimation);
-            await user.Damage(user,damage,ability.element);
-            // user.TestDeath();
-        }
+        ability.Execute(user,target);
         SoundManager.Instance.PlaySound(ability.soundEffect);
     }
 }

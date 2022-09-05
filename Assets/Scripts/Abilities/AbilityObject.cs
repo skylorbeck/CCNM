@@ -2,15 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-[CreateAssetMenu(fileName = "Ability", menuName = "Combat/Ability")]
+[CreateAssetMenu(fileName = "Ability", menuName = "Combat/Ability/Base")]
 [Serializable]
 public class AbilityObject : ScriptableObject
 {
 
-    [field: SerializeField] public string title { get; private set; } = "ability.title";
-    [field: SerializeField] public string descriptionA { get; private set; } = "ability.description.a";//todo GetDescription() where the damage is calculated based on your stats before returning
-    [field: SerializeField] public string descriptionB { get; private set; } = "ability.description.b";
+    [field: SerializeField] public string title { get; private set; } = "title";
+    [field: SerializeField] public string descriptionA { get; private set; } = "description.a";
+    [field: SerializeField] public string descriptionB { get; private set; } = "description.b";
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public int baseCost { get; private set; } = 1;
 
@@ -52,67 +53,110 @@ public class AbilityObject : ScriptableObject
     [field: SerializeField] public AttackAnimator.AttackType attackAnimation { get; private set; } = AttackAnimator.AttackType.None;
 
     [field: SerializeField] public AudioClip soundEffect { get; private set; }
-    
-    
+
+    public virtual async void Execute(Shell user, Shell target)
+    {
+          /*if (armorTarget)
+        {
+            int shield = await target.OnShield(target,user.brain.baseShield);
+            shield = (int)Math.Ceiling(shield * targetArmorMultiplier);
+            target.Shield(shield, element);
+        }
+        if (armorUser)
+        {
+            int shield = await user.OnShield(user,user.brain.baseShield);
+            shield = (int)Math.Ceiling(shield * userArmorMultiplier);
+            user.Shield(shield, element);
+        }*/
+        if (statusTarget)
+        {
+            target.AddStatusEffect(targetStatus);
+        }
+        if (statusSelf)
+        {
+            user.AddStatusEffect(userStatus);
+        }
+        if (healTarget)
+        {
+            int heal = await target.OnHeal(target,(int)(user.brain.GetHealthMax()*0.25f));
+            heal = (int)Math.Ceiling(heal * targetHealMultiplier);
+            target.Heal(heal, element);
+        }
+        if (healUser)
+        {
+            int heal = await user.OnHeal(user,(int)(user.brain.GetHealthMax()*0.25f));
+            heal = (int)Math.Ceiling(heal * userHealMultiplier);
+            user.Heal(heal, element);
+        }
+        if (damageTarget)
+        {
+            int damage = await user.OnAttack(target,user.brain.GetDamage());//process status influences
+            damage = (int)(damage * targetDamageMultiplier);//process ability multiplier
+            if (Random.Range(0,100)<user.brain.GetCritChance())
+            {
+               damage +=  (int)(damage * user.brain.GetCritDamage());
+               //todo crit notification
+            }
+            DamageAnimator.Instance.TriggerAttack(target, attackAnimation);//play the animation
+            await target.Damage(user, damage, element);//damage the target
+            // target.TestDeath(); handled in target.damage
+        }
+        if (damageUser)
+        {
+            int damage = await user.OnAttack(user,user.brain.GetDamage());
+            damage = (int)(damage * userDamageMultiplier);
+            if (Random.Range(0,100)<user.brain.GetCritChance())
+            {
+                damage +=  (int)(damage * user.brain.GetCritDamage());
+                //todo crit notification
+            }
+            DamageAnimator.Instance.TriggerAttack(user, attackAnimation);
+            await user.Damage(user,damage,element);
+            // user.TestDeath();
+        }
+    }
     public string GetTranslatedDescriptionA(PlayerShell playerShell)
     {
         string description = descriptionA;
-        if (damageTarget)
-        {
             int baseDamage = playerShell.brain.GetDamage();
             description = description.Replace("{damage}", (baseDamage * targetDamageMultiplier).ToString());
-        }
-
-        if (healTarget)
-        {
             int baseHeal = playerShell.brain.GetHeal();
             description = description.Replace("{heal}", (baseHeal * targetHealMultiplier).ToString());
-        }
-
-        /*if (armorTarget)
-        {
             int baseArmor = playerShell.brain.GetShieldRate();
             description = description.Replace("{armor}", (baseArmor * targetArmorMultiplier).ToString());
-        }*/
 
-        if (statusTarget)
-        { 
-            description = description.Replace("{status}", targetStatus.title);
-            description = description.Replace("{damage}", playerShell.brain.GetStatusDamage().ToString());
-            description = description.Replace("{heal}", (playerShell.brain.GetHeal()).ToString());
+            if (targetStatus!=null)
+            {
+                description = description.Replace("{status}", targetStatus.title);
+            } else if (userStatus!=null)
+            {
+                description = description.Replace("{status}", userStatus.title);
+            }
+            description = description.Replace("{statusdamage}", ((int)(playerShell.brain.GetStatusDamage()*targetDamageMultiplier)).ToString());
+            description = description.Replace("{statusheal}",((int)(playerShell.brain.GetHeal()*targetHealMultiplier)).ToString());
 
-        }
         
         return description;
     }
     public string GetTranslatedDescriptionB(PlayerShell playerShell)
     {
         string description = descriptionB;
-        if (damageUser)
-        {
             int baseDamage = playerShell.brain.GetDamage();
             description = description.Replace("{damage}", (baseDamage * userDamageMultiplier).ToString());
-        }
-        
-        if (healUser)
-        {
             int baseHeal = playerShell.brain.GetHeal();
             description = description.Replace("{heal}", (baseHeal * userHealMultiplier).ToString());
-        }
-        
-        /*if (armorUser)
-        {
             int baseArmor = playerShell.brain.GetShieldRate();
             description = description.Replace("{armor}", (baseArmor * userArmorMultiplier).ToString());
-        }*/
-        
-        if (statusSelf)
-        {
-            description = description.Replace("{status}", userStatus.title);
-            description = description.Replace("{damage}", playerShell.brain.GetStatusDamage().ToString());
-            description = description.Replace("{heal}", (playerShell.brain.GetHeal()).ToString());
-
-        }
+            if (userStatus!=null)
+            {
+                description = description.Replace("{status}", userStatus.title);
+            }
+            else if (targetStatus!=null)
+            {
+                description = description.Replace("{status}", targetStatus.title);
+            }
+            description = description.Replace("{statusdamage}", ((int)(playerShell.brain.GetStatusDamage()*userDamageMultiplier)).ToString());
+            description = description.Replace("{statusheal}", ((int)(playerShell.brain.GetHeal()*userHealMultiplier)).ToString());
 
         return description;
     }

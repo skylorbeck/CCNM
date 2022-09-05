@@ -117,6 +117,21 @@ public class StatusDisplayer : MonoBehaviour
         SetStatusLocation();
     }
 
+    public void RemoveStatus(Type type)
+    {
+        foreach (EffectInstance instance in statusList)
+        {
+            if (instance.statusEffect.GetType() == type)
+            {
+                instance.Expire();
+                Destroy(instance.gameObject);
+                statusList.Remove(instance);
+                break;
+            }
+        }
+        SetStatusLocation();
+    }
+    
     public void RemoveStatus(StatusEffect statusEffect)
     {
         for (int i = 0; i < statusList.Count; i++)
@@ -143,7 +158,52 @@ public class StatusDisplayer : MonoBehaviour
 
         statusList.Clear();
     }
+    
+    public int GetStatusCount()
+    {
+        return statusList.Count;
+    }
+    
+    public int GetStatusDuration(Type statusType)
+    {
+        int count = 0;
+        foreach (EffectInstance instance in statusList)
+        {
+            if (instance.statusEffect.GetType() == statusType)
+            {
+                count+=instance.duration;
+            }
+        }
 
+        return count;
+    }
+
+    public bool HasStatus(Type statusType)
+    {
+        foreach (EffectInstance instance in statusList)
+        {
+            if (instance.statusEffect.GetType() == statusType)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    public bool HasStatus(StatusEffect statusEffect)
+    {
+        foreach (EffectInstance instance in statusList)
+        {
+            if (instance.statusEffect == statusEffect)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
     public bool HasStatus(string statusEffect)
     {
         foreach (EffectInstance instance in statusList)

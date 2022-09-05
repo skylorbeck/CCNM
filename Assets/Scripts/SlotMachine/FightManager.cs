@@ -273,7 +273,7 @@ public class FightManager : MonoBehaviour
             }
             if (enemies.Any((shell => shell.enemyBrain.isBoss)))
             {
-                GameManager.Instance.LoadSceneAdditive("RelicReward","Fight");//todo
+                GameManager.Instance.LoadSceneAdditive("RelicReward","Fight");
             }
             else
             {
@@ -573,6 +573,7 @@ public class FightManager : MonoBehaviour
     public void SetState(WheelStates newState)
     {
         ClearSelected();
+        //previously used to only allow pausing during player turn
         /*if (newState == WheelStates.Selecting)
         {
             GameManager.Instance.inputReader.EnableUI();

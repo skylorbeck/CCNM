@@ -16,6 +16,7 @@ public class MMButtons : MonoBehaviour
     {
         SoundManager.Instance.PlayUiAccept();
         GameManager.Instance.battlefield.Reset();
+        GameManager.Instance.runSettings.Reset();
         // GameManager.Instance.LoadSceneAdditive("RunSettings","MainMenu");//todo put this back in when the run settings are done
         GameManager.Instance.LoadSceneAdditive("MapScreen", "MainMenu");
     }

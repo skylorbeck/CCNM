@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RunSettings", menuName = "Global/RunSettings")]
-public class RunSettings : ScriptableObject
+public class RunSettings : ScriptableObject//todo make this save
 {
     public float health;
     public float shield;
@@ -53,5 +53,24 @@ public class RunSettings : ScriptableObject
     public float GetCritDamageMod()
     {
         return (float)(critDamageMod * Math.Pow(10,multiplier));
+    }
+
+    public void Reset()
+    {
+        armorMod = 1;
+        attackMod = 1;
+        healthMod = 1;
+        shieldMod = 1;
+        dodgeMod = 1;
+        critChanceMod = 1;
+        critDamageMod = 1;
+        health = 1;
+        shield = 1;
+        armor = 1;
+        attack = 1;
+        dodge = 1;
+        critChance = 1;
+        critDamage = 1;
+        multiplier = 0;
     }
 }

@@ -22,6 +22,14 @@ public class Battlefield : ScriptableObject
     
 
     public bool runOver => totalHands > deck.bossAt;
+    public float difficultyMulti
+    {
+        get
+        {
+            // Debug.Log(1 + (((float)totalHands - 1) / deck.bossAt));
+            return 1 + ((float)totalHands - 1) / deck.bossAt;
+        }
+    }
 
     public void TotalHandsPlus()
     {

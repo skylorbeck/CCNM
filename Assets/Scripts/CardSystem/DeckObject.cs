@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "Deck", menuName = "Cards/Deck")]
 public class DeckObject : ScriptableObject
 {
+    [field: SerializeField] public int level { get; private set; } = 1;
+
     [field:Header("Icons")]
     [field:SerializeField] public Sprite icon { get;private set; }
     [field:SerializeField] public Sprite deckBack { get;private set; }

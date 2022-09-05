@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
-  m_Name: Headbutt
+  m_Name: Fireball
   m_EditorClassIdentifier: 
-  <title>k__BackingField: Headbutt
-  <descriptionA>k__BackingField: '{damage} Damage To Target'
-  <descriptionB>k__BackingField: '{status} Self'
-  <icon>k__BackingField: {fileID: 21300000, guid: ff069be2dbf370f41b3ac0fc2c6243e7, type: 3}
+  <title>k__BackingField: Fireball
+  <descriptionA>k__BackingField: Hit for {damage}
+  <descriptionB>k__BackingField: '{status} for {statusdamage}/turn'
+  <icon>k__BackingField: {fileID: 21300000, guid: b664e3a40e280164ca1b86067e604618, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
-  <targetDamageMultiplier>k__BackingField: 2
+  <targetDamageMultiplier>k__BackingField: 0.5
   <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
   <healTarget>k__BackingField: 0
@@ -29,11 +29,11 @@ MonoBehaviour:
   <targetArmorMultiplier>k__BackingField: 1
   <armorUser>k__BackingField: 0
   <userArmorMultiplier>k__BackingField: 1
-  <targetStatus>k__BackingField: {fileID: 0}
-  <statusTarget>k__BackingField: 0
-  <userStatus>k__BackingField: {fileID: 11400000, guid: c4bbedab102d1724b8328f6cd496029a, type: 2}
-  <statusSelf>k__BackingField: 1
+  <targetStatus>k__BackingField: {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}
+  <statusTarget>k__BackingField: 1
+  <userStatus>k__BackingField: {fileID: 0}
+  <statusSelf>k__BackingField: 0
   <slotType>k__BackingField: 0
-  <element>k__BackingField: 0
+  <element>k__BackingField: 1
   <attackAnimation>k__BackingField: 1
-  <soundEffect>k__BackingField: {fileID: 8300000, guid: 857f9f363379b0b4ba389dd1744af8b1, type: 3}
+  <soundEffect>k__BackingField: {fileID: 8300000, guid: 8481ef0752967644196fb12ad0f322e6, type: 3}
