@@ -9,10 +9,11 @@ public class BurnEffect : StatusEffect
     [field: SerializeField] public int damage { get; private set; } = 1;
     
 
-    public override async Task Tick(Shell target)
+    public override void Tick(Shell target)
     {
-        await target.Damage(null,(int)(damage* (target.isPlayer?GameManager.Instance.runSettings.GetAttackMod():GameManager.Instance.runPlayer.GetStatusDamage())),element);
+        //todo replace GetAttackMod with scaling damage from enemy
+        target.Damage(null,(int)(damage* (target.isPlayer?GameManager.Instance.runSettings.GetAttackMod():GameManager.Instance.runPlayer.GetStatusDamage())),element);
         TextPopController.Instance.PopNegative("Burned", target.transform.position,target.isPlayer);
-        await base.Tick(target);
+        base.Tick(target);
     }
 }

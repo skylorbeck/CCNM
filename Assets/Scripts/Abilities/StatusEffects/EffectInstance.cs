@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
@@ -20,29 +16,29 @@ public class EffectInstance : MonoBehaviour
         durationText = GetComponentInChildren<TextMeshPro>();
     }
 
-    public async Task<int> OnAttack(Shell target, Shell attacker, int baseDamage)
+    public int OnAttack(Shell target, Shell attacker, int baseDamage)
     {
-        return await statusEffect.OnAttack(target, attacker, baseDamage);
+        return  statusEffect.OnAttack(target, attacker, baseDamage);
     }
 
-    public async Task<int> OnDamage([CanBeNull] Shell attacker, Shell defender, int baseDamage)
+    public int OnDamage([CanBeNull] Shell attacker, Shell defender, int baseDamage)
     {
-        return await statusEffect.OnDamage(attacker, defender, baseDamage);
+        return  statusEffect.OnDamage(attacker, defender, baseDamage);
     }
-    public async Task<int> OnDodge([CanBeNull] Shell attacker, Shell defender, int baseDamage)
+    public int OnDodge([CanBeNull] Shell attacker, Shell defender, int baseDamage)
     {
-        return await statusEffect.OnDodge(attacker, defender, baseDamage);
+        return  statusEffect.OnDodge(attacker, defender, baseDamage);
     }
-    public async Task<int> OnHeal([CanBeNull] Shell healer, Shell target, int baseHeal)
+    public int OnHeal([CanBeNull] Shell healer, Shell target, int baseHeal)
     {
-        return await statusEffect.OnHeal(healer, target, baseHeal);
+        return  statusEffect.OnHeal(healer, target, baseHeal);
     }
-    public async Task<int> OnShield([CanBeNull] Shell shielder, Shell target, int baseShield)
+    public int OnShield([CanBeNull] Shell shielder, Shell target, int baseShield)
     {
-        return await statusEffect.OnShield(shielder, target, baseShield);
+        return  statusEffect.OnShield(shielder, target, baseShield);
     }
 
-    public async Task Tick()
+    public void Tick()
     {
         if (!statusEffect.isPersistent)
         {
@@ -51,7 +47,7 @@ public class EffectInstance : MonoBehaviour
 
         UpdateDurationText();
 
-        await statusEffect.Tick(target);
+         statusEffect.Tick(target);
 
         if (duration <= 0 || statusEffect.alwaysExpires)
         {

@@ -21,8 +21,8 @@ MonoBehaviour:
   <wheelCover>k__BackingField: {fileID: 21300000, guid: b159dd3d950303d4d988f8a10d6e8c08, type: 3}
   <bossAt>k__BackingField: 5
   <miniBossAt>k__BackingField: 03000000
-  <shopAt>k__BackingField: 04000000
-  <eventAt>k__BackingField: 01000000020000000500000007000000
+  <shopAt>k__BackingField: 02000000
+  <eventAt>k__BackingField: 0200000004000000
   <eventNames>k__BackingField:
   - DiceRoll
   - FoundCoffee
@@ -31,11 +31,11 @@ MonoBehaviour:
   <bossCard>k__BackingField: {fileID: 11400000, guid: d2efee8087952fe4ebe8f676bb202e4b, type: 2}
   <miniBossCard>k__BackingField:
   - {fileID: 11400000, guid: 77a6e7922b1c00049a706dbe1a3ed24b, type: 2}
-  - {fileID: 11400000, guid: 77a6e7922b1c00049a706dbe1a3ed24b, type: 2}
   <minionCards>k__BackingField:
   - {fileID: 11400000, guid: bfcacc1786732b34ca429a25bd40b50e, type: 2}
   - {fileID: 11400000, guid: 40bd015c59952a640bccdbe97e703c87, type: 2}
   - {fileID: 11400000, guid: 491fd9157c6ad6b40acc24537d64d4d5, type: 2}
+  - {fileID: 11400000, guid: 8d8b54a469917c146b7df31c23003e22, type: 2}
   <shopCards>k__BackingField:
   - {fileID: 11400000, guid: a7667085ea0ee8a4fba84e59cc7cdb96, type: 2}
   <itemCards>k__BackingField: []

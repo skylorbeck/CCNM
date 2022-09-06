@@ -73,7 +73,7 @@ public class Symbol : MonoBehaviour
         
     }
 
-    public async Task Consume(Shell target,Shell user)
+    public void Consume(Shell target,Shell user)
     {
         consumed = true;
         ability.Execute(user,target);

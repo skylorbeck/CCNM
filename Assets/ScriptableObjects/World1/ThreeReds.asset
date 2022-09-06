@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d19377d97672a6244804d8165e686385, type: 3}
-  m_Name: FightTestB
+  m_Name: ThreeReds
   m_EditorClassIdentifier: 
   <icon>k__BackingField: {fileID: 21300000, guid: 7dbfbaceb94a44248b1a846881586d31, type: 3}
   <cardTitle>k__BackingField: slime
@@ -19,6 +19,6 @@ MonoBehaviour:
   <cardType>k__BackingField: 2
   <mapCardType>k__BackingField: 3
   <enemies>k__BackingField:
-  - {fileID: 11400000, guid: c2187b79e92a4964f9206daeb4e27c98, type: 2}
-  - {fileID: 11400000, guid: 4b571889415f16f408d9ec0369202551, type: 2}
+  - {fileID: 11400000, guid: f4dcfff919d7f41419c06d7ce54b4118, type: 2}
+  - {fileID: 11400000, guid: f4dcfff919d7f41419c06d7ce54b4118, type: 2}
   - {fileID: 11400000, guid: f4dcfff919d7f41419c06d7ce54b4118, type: 2}

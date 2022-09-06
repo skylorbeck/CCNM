@@ -55,9 +55,9 @@ public class EnemyShell : Shell
         SetCurrentHealth(brain.GetHealthMax());
     }
 
-    public override Task<int> OnAttack(Shell target, int baseDamage)
+    public override int OnAttack(Shell target, int baseDamage)
     {
-        Task<int> damage = base.OnAttack(target, baseDamage);
+        int damage = base.OnAttack(target, baseDamage);
         GameManager.Instance.uiStateObject.Ping(title+" attacked for "+baseDamage+" damage!");
         return damage;
     }
@@ -74,11 +74,11 @@ public class EnemyShell : Shell
         base.Heal( baseHeal, element);
     }
     
-    public override async Task Attack(Shell target, Symbol symbol)
+    public override async void Attack(Shell target, Symbol symbol)
     {
         Light();
         await Task.Delay(250);
-        await base.Attack(target, symbol);
+        base.Attack(target, symbol);
     }
 
     public void Dim()

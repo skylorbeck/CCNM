@@ -81,35 +81,35 @@ public class Shell : MonoBehaviour
     
     #endregion
    
-    public virtual async Task Attack(Shell target,Symbol attack)
+    public virtual void Attack(Shell target,Symbol attack)
     {
         Attacked.Invoke(target,attack);
-        await attack.Consume(target,this);
+        attack.Consume(target,this);
     }
 
-    public virtual async Task<int> OnAttack(Shell target,int baseDamage)
+    public virtual int OnAttack(Shell target,int baseDamage)
     {
-        return await statusDisplayer.OnAttack(target,this,baseDamage);
+        return statusDisplayer.OnAttack(target,this,baseDamage);
     }
     
-    public virtual async Task<int> OnShield(Shell target,int baseShield)
+    public virtual int OnShield(Shell target,int baseShield)
     {
-        return await statusDisplayer.OnShield(target,this,baseShield);
+        return statusDisplayer.OnShield(target,this,baseShield);
     }
-    public virtual async Task<int> OnHeal(Shell target,int baseHeal)
+    public virtual int OnHeal(Shell target,int baseHeal)
     {
-        return await statusDisplayer.OnHeal(target,this,baseHeal);
+        return statusDisplayer.OnHeal(target,this,baseHeal);
     }
     
-    public async Task Damage([CanBeNull] Shell source,int baseDamage, StatusEffect.Element element)
+    public void Damage([CanBeNull] Shell source,int baseDamage, StatusEffect.Element element)
     {
         if (Random.Range(0,100) < brain.GetDodgeChance())
         {
-            await statusDisplayer.OnDodge(source,this,baseDamage);
+            statusDisplayer.OnDodge(source,this,baseDamage);
             TextPopController.Instance.PopPositive("Dodged",transform.position,true);
             return;
         }
-        int damage = await statusDisplayer.OnDamage(source,this,baseDamage);
+        int damage = statusDisplayer.OnDamage(source,this,baseDamage);
         TextPopController.Instance.PopDamage(damage,transform.position);
         Damaged.Invoke(source,damage);
         if (shield > 0)

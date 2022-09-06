@@ -13,17 +13,19 @@ MonoBehaviour:
   m_Name: Ability
   m_EditorClassIdentifier: 
   abilityObjects:
+  - {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+  - {fileID: 11400000, guid: e693c1f16bea4e44ca57ccb7b6b3b191, type: 2}
   - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
   - {fileID: 11400000, guid: 9a2f9cdda8ad6024bb157cb21ec45bf8, type: 2}
-  - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
-  - {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
   - {fileID: 11400000, guid: 524fae1f0f055d04aaa0fbc96094a182, type: 2}
-  - {fileID: 11400000, guid: 203a6b2644e72b94cb7ab6f1ca1c2ea8, type: 2}
+  - {fileID: 11400000, guid: 072b4c82ff2d7c1489f57d5d11465977, type: 2}
+  - {fileID: 11400000, guid: 650345e5532fb094bb7f7fe37ab1bdc0, type: 2}
   keys:
+  - Taunt
+  - Lick
   - Fireball
   - Immolate
-  - Headbutt
-  - Shield Bash
   - Slash
-  - Taunt
-  values: 000000000100000002000000030000000400000005000000
+  - Shield Bash
+  - Headbutt
+  values: 00000000010000000200000003000000040000000500000006000000

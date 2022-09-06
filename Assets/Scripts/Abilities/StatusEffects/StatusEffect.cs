@@ -23,36 +23,36 @@ public class StatusEffect : ScriptableObject
 
 
     //called before onDamage and returns modified damage done
-    public virtual async Task<int> OnAttack(Shell target, Shell attacker, int baseDamage)
+    public virtual int OnAttack(Shell target, Shell attacker, int baseDamage)
     {
         //do something
         return baseDamage;
     }
     
     //called after OnAttack and returns modified damage taken
-    public virtual async Task<int> OnDamage([CanBeNull] Shell attacker, Shell defender, int baseDamage)
+    public virtual int OnDamage([CanBeNull] Shell attacker, Shell defender, int baseDamage)
     {
         //do something
         return baseDamage;
     }
-    public virtual async Task<int> OnDodge([CanBeNull] Shell attacker, Shell defender, int baseDamage)
+    public virtual int OnDodge([CanBeNull] Shell attacker, Shell defender, int baseDamage)
     {
         //do something
         return baseDamage;
     }
-    public virtual async Task<int> OnHeal([CanBeNull] Shell healer, Shell target, int baseHeal)
+    public virtual int OnHeal([CanBeNull] Shell healer, Shell target, int baseHeal)
     {
         //do something
         return baseHeal;
     }
-    public virtual async Task<int> OnShield([CanBeNull] Shell shielder, Shell target, int baseShield)
+    public virtual int OnShield([CanBeNull] Shell shielder, Shell target, int baseShield)
     {
         //do something
         return baseShield;
     }
     
     //called when status effect is applied to a shell
-    public virtual async void OnApply(Shell target)
+    public virtual void OnApply(Shell target)
     {
         if (isHidden)
         {
@@ -69,7 +69,7 @@ public class StatusEffect : ScriptableObject
     }
     
     //called when status effect is removed from a shell
-    public virtual async void OnRemove(Shell target)
+    public virtual void OnRemove(Shell target)
     {
         /*if (!isDebuff)
         {
@@ -82,7 +82,7 @@ public class StatusEffect : ScriptableObject
     }
     
     //called at the end of the users turn
-    public virtual async Task Tick(Shell target)
+    public virtual void Tick(Shell target)
     {
         //todo animation call
         //do something to the shell

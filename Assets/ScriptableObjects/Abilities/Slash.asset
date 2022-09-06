@@ -18,7 +18,7 @@ MonoBehaviour:
   <icon>k__BackingField: {fileID: 21300000, guid: 2e65fbe0c2b143441a77954b766f87a6, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
-  <targetDamageMultiplier>k__BackingField: 2
+  <targetDamageMultiplier>k__BackingField: 1
   <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
   <healTarget>k__BackingField: 0

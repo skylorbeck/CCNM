@@ -239,7 +239,8 @@ public class FightManager : MonoBehaviour
             GameManager.Instance.LoadSceneAdditive("GameOver","Fight");//todo
 
         // } else if (enemies.All(x => x.isDead))
-        } else */if (enemiesAlive == 0 || player.isDead)
+        } else */
+        if (enemiesAlive == 0 || player.isDead)
         {
             SetState(WheelStates.FightOver);
             // Debug.Log("Enemies are dead");
@@ -367,11 +368,14 @@ public class FightManager : MonoBehaviour
             if (!enemy.isDead)
             {
                 // enemyWheels[i].GetWinner().Consume(player, enemy);//todo clean up
-                await enemy.Attack(player, enemyWheels[i].GetWinner());
+                enemy.Attack(player, enemyWheels[i].GetWinner());
                 await Task.Delay(250);
                 await enemy.TickStatusEffects();
                 await Task.Delay(500);
-                enemy.Dim();
+                if (!enemy.gameObject.IsDestroyed())
+                {
+                    enemy.Dim();
+                }
                 await Task.Delay(250);
 
             }

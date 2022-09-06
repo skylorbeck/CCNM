@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2abf7ef1933b8224d8a3f7e9cebb0122, type: 3}
-  m_Name: MiniBossA
+  m_Name: Nebula Elite
   m_EditorClassIdentifier: 
   <icon>k__BackingField: {fileID: 21300000, guid: 48f1bf28ad0b8af4b98c583f010c9c87, type: 3}
   <cardTitle>k__BackingField: minibossA
@@ -20,5 +20,5 @@ MonoBehaviour:
   <mapCardType>k__BackingField: 2
   <enemies>k__BackingField:
   - {fileID: 11400000, guid: ae3a5c91ab84f9a4ebce9c7c0c80d971, type: 2}
-  - {fileID: 11400000, guid: d4fab5bdca3850c43bb3795eac3ce269, type: 2}
+  - {fileID: 11400000, guid: d1db8719d2f337d4c8ce229916aa7ad3, type: 2}
   - {fileID: 11400000, guid: ae3a5c91ab84f9a4ebce9c7c0c80d971, type: 2}

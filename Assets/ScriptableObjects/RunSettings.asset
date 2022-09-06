@@ -19,7 +19,7 @@ MonoBehaviour:
   dodge: 1
   critChance: 1
   critDamage: 1
-  multiplier: 1
+  multiplier: 0
   healthMod: 1
   shieldMod: 1
   armorMod: 1

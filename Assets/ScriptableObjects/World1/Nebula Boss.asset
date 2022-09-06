@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad1ca038f0c3474d8e7d675058e9cab, type: 3}
-  m_Name: BossCard
+  m_Name: Nebula Boss
   m_EditorClassIdentifier: 
-  <icon>k__BackingField: {fileID: 21300000, guid: be5adec3dbad3a24ea692ca2cbddd2f3, type: 3}
-  <cardTitle>k__BackingField: slimeBoss
+  <icon>k__BackingField: {fileID: 21300000, guid: 4caeff228f7d4ab4d81e1a2149f1295e, type: 3}
+  <cardTitle>k__BackingField: Slime
   <cardDescription>k__BackingField: slimeBoss.description
   <cardCost>k__BackingField: 0
   <cardType>k__BackingField: 2
   <mapCardType>k__BackingField: 1
   <enemies>k__BackingField:
-  - {fileID: 11400000, guid: f868d5253aa36bb439ce5e5ac12e6b68, type: 2}
+  - {fileID: 11400000, guid: f4dcfff919d7f41419c06d7ce54b4118, type: 2}
   - {fileID: 11400000, guid: 4e92d671ef2fad049aad14dca41a33a8, type: 2}
-  - {fileID: 11400000, guid: 00642a671b7aed14da8f6d531375b1d4, type: 2}
+  - {fileID: 11400000, guid: 619db05a708dfdd4b8c9eab7a2bbe8d5, type: 2}

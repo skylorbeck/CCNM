@@ -54,7 +54,7 @@ public class AbilityObject : ScriptableObject
 
     [field: SerializeField] public AudioClip soundEffect { get; private set; }
 
-    public virtual async void Execute(Shell user, Shell target)
+    public virtual void Execute(Shell user, Shell target)
     {
           /*if (armorTarget)
         {
@@ -78,19 +78,19 @@ public class AbilityObject : ScriptableObject
         }
         if (healTarget)
         {
-            int heal = await target.OnHeal(target,(int)(user.brain.GetHealthMax()*0.25f));
+            int heal = target.OnHeal(target,(int)(user.brain.GetHealthMax()*0.25f));
             heal = (int)Math.Ceiling(heal * targetHealMultiplier);
             target.Heal(heal, element);
         }
         if (healUser)
         {
-            int heal = await user.OnHeal(user,(int)(user.brain.GetHealthMax()*0.25f));
+            int heal = user.OnHeal(user,(int)(user.brain.GetHealthMax()*0.25f));
             heal = (int)Math.Ceiling(heal * userHealMultiplier);
             user.Heal(heal, element);
         }
         if (damageTarget)
         {
-            int damage = await user.OnAttack(target,user.brain.GetDamage());//process status influences
+            int damage = user.OnAttack(target,user.brain.GetDamage());//process status influences
             damage = (int)(damage * targetDamageMultiplier);//process ability multiplier
             if (Random.Range(0,100)<user.brain.GetCritChance())
             {
@@ -98,12 +98,12 @@ public class AbilityObject : ScriptableObject
                //todo crit notification
             }
             DamageAnimator.Instance.TriggerAttack(target, attackAnimation);//play the animation
-            await target.Damage(user, damage, element);//damage the target
+            target.Damage(user, damage, element);//damage the target
             // target.TestDeath(); handled in target.damage
         }
         if (damageUser)
         {
-            int damage = await user.OnAttack(user,user.brain.GetDamage());
+            int damage = user.OnAttack(user,user.brain.GetDamage());
             damage = (int)(damage * userDamageMultiplier);
             if (Random.Range(0,100)<user.brain.GetCritChance())
             {
@@ -111,7 +111,7 @@ public class AbilityObject : ScriptableObject
                 //todo crit notification
             }
             DamageAnimator.Instance.TriggerAttack(user, attackAnimation);
-            await user.Damage(user,damage,element);
+            user.Damage(user,damage,element);
             // user.TestDeath();
         }
     }

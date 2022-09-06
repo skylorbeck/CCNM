@@ -39,13 +39,13 @@ public class PlayerShell : Shell
         SetCurrentHealth(brain.currentHealth);
     }
  
-    public override Task<int> OnAttack(Shell target, int baseDamage)
+    public override int OnAttack(Shell target, int baseDamage)
     {
-        Task<int> damage = base.OnAttack(target, baseDamage);
-        GameManager.Instance.uiStateObject.Ping("You hit " + target.title + " for " + damage.Result + " damage!");
+        int damage = base.OnAttack(target, baseDamage);
+        GameManager.Instance.uiStateObject.Ping("You hit " + target.title + " for " + damage + " damage!");
         return damage;
     }
-    public override Task<int> OnHeal(Shell target, int baseShield)
+    public override int OnHeal(Shell target, int baseShield)
     {
         return base.OnHeal(target, baseShield);
     }

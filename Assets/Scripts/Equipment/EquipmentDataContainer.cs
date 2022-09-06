@@ -169,8 +169,10 @@ public class EquipmentDataContainer
         stats = pickedStats.ToArray();
         for (var i = 0; i < stats.Length; i++)
         {
-            int statMulti = 1;
-            switch (stats[i])
+            //we used to multiply every stat by their own balance numbers, but that hurts my brain and makes it hard to balance.
+            //Now you get a stat value between your level and 2x your level.
+            int statMulti = 2;
+            /*switch (stats[i])
             {
                 case Stats.Str:
                     statMulti = 5;
@@ -199,7 +201,7 @@ public class EquipmentDataContainer
                 case Stats.Chg:
                     statMulti = 5;
                     break;
-            }
+            }*/
 
             float qualityMulti = 0;
             switch (quality)

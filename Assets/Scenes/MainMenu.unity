@@ -1773,34 +1773,34 @@ PrefabInstance:
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[1].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 31ba36f3c82a9594f83d023a3bd46cca, type: 3}
+      objectReference: {fileID: 21300000, guid: 9b00102d78b71e94da0e713c188ed9a9, type: 3}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[1].name
-      value: Get Loot
+      value: Spend Ego
       objectReference: {fileID: 0}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[2].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 1c2037262ab31394fb2ceae72223d96a, type: 3}
+      objectReference: {fileID: 21300000, guid: 31ba36f3c82a9594f83d023a3bd46cca, type: 3}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[2].name
-      value: Salvage
+      value: Get Loot
       objectReference: {fileID: 0}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[3].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 9b00102d78b71e94da0e713c188ed9a9, type: 3}
+      objectReference: {fileID: 21300000, guid: a937e5ba60c5c664d88ec39ca8e762a1, type: 3}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[3].name
-      value: Spend Ego
+      value: Lockers
       objectReference: {fileID: 0}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[4].icon
       value: 
-      objectReference: {fileID: 21300000, guid: a937e5ba60c5c664d88ec39ca8e762a1, type: 3}
+      objectReference: {fileID: 21300000, guid: 1c2037262ab31394fb2ceae72223d96a, type: 3}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[4].name
-      value: Lockers
+      value: Salvage
       objectReference: {fileID: 0}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[5].icon
@@ -1864,19 +1864,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[1].description
-      value: Loot Safes
-      objectReference: {fileID: 0}
-    - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
-      propertyPath: entries.Array.data[2].description
-      value: Break Items
-      objectReference: {fileID: 0}
-    - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
-      propertyPath: entries.Array.data[3].description
       value: Level Up
       objectReference: {fileID: 0}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
-      propertyPath: entries.Array.data[4].description
+      propertyPath: entries.Array.data[2].description
+      value: Loot Safes
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
+      propertyPath: entries.Array.data[3].description
       value: Equipment
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
+      propertyPath: entries.Array.data[4].description
+      value: Break Items
       objectReference: {fileID: 0}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[5].description
@@ -2072,19 +2072,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[1].method.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CardPacks
-      objectReference: {fileID: 0}
-    - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
-      propertyPath: entries.Array.data[2].method.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Shredding
-      objectReference: {fileID: 0}
-    - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
-      propertyPath: entries.Array.data[3].method.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Leveling
       objectReference: {fileID: 0}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
-      propertyPath: entries.Array.data[4].method.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      propertyPath: entries.Array.data[2].method.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CardPacks
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
+      propertyPath: entries.Array.data[3].method.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Equipment
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
+      propertyPath: entries.Array.data[4].method.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Shredding
       objectReference: {fileID: 0}
     - target: {fileID: 5532661777123748480, guid: 52c67817a8d57924db2f8a5b814fffdc, type: 3}
       propertyPath: entries.Array.data[5].method.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName

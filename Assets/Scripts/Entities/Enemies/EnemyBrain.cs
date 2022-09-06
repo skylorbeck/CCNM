@@ -13,7 +13,7 @@ public class EnemyBrain : Brain
     
     public override int GetDamage()
     {
-        return (int)(base.GetDamage() * GameManager.Instance.battlefield.deck.level *GameManager.Instance.battlefield.difficultyMulti * GameManager.Instance.runSettings.GetAttackMod());
+        return (int)(base.GetDamage() /* * GameManager.Instance.battlefield.deck.level *GameManager.Instance.battlefield.difficultyMulti */* GameManager.Instance.runSettings.GetAttackMod());
     }
 
     public override int GetShieldMax()

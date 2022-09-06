@@ -229,12 +229,12 @@ public class PlayerBrain : Brain
 
     public override int GetUnmodifiedDamage(int temp=0)
     {
-        return base.GetUnmodifiedDamage(temp) + cardStrength*5;
+        return base.GetUnmodifiedDamage(temp) + (cardStrength*5);
     }
 
     public override int GetShieldMaxUnmodified(int temp=0)
     {
-        return base.GetShieldMaxUnmodified(temp) + cardGrit*5;
+        return base.GetShieldMaxUnmodified(temp) + (cardGrit*5);
     }
 
     public override int GetHealthMaxUnmodified(int temp=0)
@@ -395,6 +395,10 @@ public class PlayerBrain : Brain
         {
             for (var j = 0; j < source.playerInventory[i].container.Count; j++)
             {
+                if (source.playerInventory[i].container[j].indestructible)
+                {
+                    continue;
+                }
                 AddCardToInventory(source.playerInventory[i].container[j]);
             }
         }
@@ -571,22 +575,22 @@ public class PlayerBrain : Brain
         ego = 0;
         credits = 0;
         level = 1;
-        SetStrength(5);
-        SetDexterity(5);
-        SetVitality(5);
-        SetSpeed(5);
-        SetSkill(5);
-        SetLuck(5);
-        SetGrit(5);
-        SetResolve(5);
-        SetIntelligence(5);
-        SetCharisma(5);
-        SetSagacity(5);
-        SetCurrentHealth(5);
+        SetStrength(1);
+        SetDexterity(1);
+        SetVitality(1);
+        SetSpeed(1);
+        SetSkill(1);
+        SetLuck(1);
+        SetGrit(1);
+        SetResolve(1);
+        SetIntelligence(1);
+        SetCharisma(1);
+        SetSagacity(1);
+        SetCurrentHealth(1);
         CalculateCardStats();
         trackableStats = new TrackableStats();
         ownedGems = new AbilityGem[0];
-        maximumEquipmentSlots = 100;
+        maximumEquipmentSlots = 25;
     }
     public void AddAbilityGem(AbilityGem gem)
     {
@@ -681,7 +685,7 @@ public class PlayerBrain : Brain
         defaultEquipment[0].SetAbilities(new AbilityGem[3]);
         defaultEquipment[0].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Fireball"),0),0);
         defaultEquipment[0].SetIndestructible(true);
-        defaultEquipment[0].SetStatValue(new int[] { 5, 5 });
+        defaultEquipment[0].SetStatValue(new int[] { 2, 2 });
         defaultEquipment[0].SetStats(new EquipmentDataContainer.Stats[]
             { EquipmentDataContainer.Stats.Cap, EquipmentDataContainer.Stats.Chg });
 
@@ -691,16 +695,16 @@ public class PlayerBrain : Brain
         defaultEquipment[1].SetAbilities(new AbilityGem[3]);
         defaultEquipment[1].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Slash"),0),0);
         defaultEquipment[1].SetIndestructible(true);
-        defaultEquipment[1].SetStatValue(new int[] { 5 });
+        defaultEquipment[1].SetStatValue(new int[] { 2 });
         defaultEquipment[1].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Str });
 
         defaultEquipment[2].InsertItem(GameManager.Instance.equipmentRegistries[2].GetCard(0));
         defaultEquipment[2].SetGemSlots(1);
         defaultEquipment[2].SetLockedSlots(new bool[] { false, true, true });
         defaultEquipment[2].SetAbilities(new AbilityGem[3]);
-        defaultEquipment[2].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Headbutt"),0),0);
+        defaultEquipment[2].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Fireball"),0),0);
         defaultEquipment[2].SetIndestructible(true);
-        defaultEquipment[2].SetStatValue(new int[] { 5 });
+        defaultEquipment[2].SetStatValue(new int[] { 2 });
         defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vit });
     }
 
