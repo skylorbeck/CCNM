@@ -20,8 +20,7 @@ public class ConsumerAbility : AbilityObject
             int stacks = target.statusDisplayer.GetStatusDuration(t);
             if (stacks > 0)
             {
-                target.Damage(user,
-                    (int)(user.brain.GetStatusDamage() * stacks*targetDamageMultiplier),
+                target.Damage(user,(int)(user.brain.GetDamage()*0.1f)+ (int)(user.brain.GetStatusDamage() * stacks*targetDamageMultiplier),
                     element);
                 target.statusDisplayer.RemoveStatus(t);
             }
@@ -32,8 +31,7 @@ public class ConsumerAbility : AbilityObject
             int stacks = user.statusDisplayer.GetStatusDuration(t);
             if (stacks > 0)
             {
-                user.Damage(user,
-                    (int)(user.brain.GetStatusDamage() * stacks*userDamageMultiplier),
+                user.Damage(user, (int)(user.brain.GetDamage()*0.1f)+ (int)(user.brain.GetStatusDamage() * stacks*userDamageMultiplier),
                     element);
                 user.statusDisplayer.RemoveStatus(t);
 
