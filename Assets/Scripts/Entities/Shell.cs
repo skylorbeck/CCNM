@@ -112,9 +112,10 @@ public class Shell : MonoBehaviour
         int damage = statusDisplayer.OnDamage(source,this,baseDamage);
         TextPopController.Instance.PopDamage(damage,transform.position);
         Damaged.Invoke(source,damage);
+        shieldDelayCurrent = 1;
+
         if (shield > 0)
         {
-            shieldDelayCurrent = 1;
             shield -= damage;
             if (shield < 0)
             {

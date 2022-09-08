@@ -367,7 +367,8 @@ public class FightManager : MonoBehaviour
             EnemyShell enemy = enemies[i];
             if (!enemy.isDead)
             {
-                // enemyWheels[i].GetWinner().Consume(player, enemy);//todo clean up
+                await Task.Delay(250);
+                NotificationPopController.Instance.PopNotification(enemyWheels[i].GetWinner().ability.title,enemy.transform.position+new Vector3(0f,-1.5f,0f));
                 enemy.Attack(player, enemyWheels[i].GetWinner());
                 await Task.Delay(250);
                 await enemy.TickStatusEffects();
