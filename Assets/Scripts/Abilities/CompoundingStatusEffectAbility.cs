@@ -7,10 +7,11 @@ public class CompoundingStatusEffectAbility : AbilityObject
 {
     [field: SerializeField] public StatusEffect ifhave { get; private set; }
     public int duration;
+    public bool invert;
 
     public override void Execute(Shell user, Shell target)
     {
-        if (target.statusDisplayer.HasStatus(ifhave))
+        if (invert?!target.statusDisplayer.HasStatus(ifhave):target.statusDisplayer.HasStatus(ifhave))
         {
             target.statusDisplayer.AddStatus(targetStatus, target, user, duration);
         }

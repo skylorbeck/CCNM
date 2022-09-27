@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Smoulder
   m_EditorClassIdentifier: 
   <title>k__BackingField: Smoulder
-  <descriptionA>k__BackingField: description.a
-  <descriptionB>k__BackingField: description.b
+  <descriptionA>k__BackingField: Hit for {damage}
+  <descriptionB>k__BackingField: Apply {status} if not Burning
   <icon>k__BackingField: {fileID: 21300000, guid: a7ff41184d2793b499040c8731285a30, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
@@ -41,3 +41,4 @@ MonoBehaviour:
   <soundEffect>k__BackingField: {fileID: 0}
   <ifhave>k__BackingField: {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}
   duration: 1
+  invert: 0

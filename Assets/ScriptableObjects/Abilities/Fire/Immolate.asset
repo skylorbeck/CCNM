@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Immolate
   m_EditorClassIdentifier: 
   <title>k__BackingField: Immolate
-  <descriptionA>k__BackingField: description.a
-  <descriptionB>k__BackingField: description.b
+  <descriptionA>k__BackingField: Hit for {damage}
+  <descriptionB>k__BackingField: '{statusdamage} damage {status} for {statusduration}'
   <icon>k__BackingField: {fileID: 21300000, guid: b664e3a40e280164ca1b86067e604618, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1

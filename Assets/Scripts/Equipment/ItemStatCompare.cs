@@ -83,8 +83,8 @@ public class ItemStatCompare : MonoBehaviour
                     background.rectTransform.sizeDelta = new Vector2(ItemName.preferredWidth + 20, 40);
                 }
             });
-            DOTween.To(() => ItemStats[0].text, x => ItemStats[0].text = x,abilityObject.descriptionA, 0.5f);
-            DOTween.To(() => ItemStats[1].text, x => ItemStats[1].text = x,abilityObject.descriptionB, 0.5f);
+            DOTween.To(() => ItemStats[0].text, x => ItemStats[0].text = x,abilityObject.GetTranslatedDescriptionA(GameManager.Instance.metaPlayer), 0.5f);
+            DOTween.To(() => ItemStats[1].text, x => ItemStats[1].text = x,abilityObject.GetTranslatedDescriptionB(GameManager.Instance.metaPlayer), 0.5f);
             DOTween.To(() => background.color, x => background.color = x,Color.white, 0.5f);
         }
         else

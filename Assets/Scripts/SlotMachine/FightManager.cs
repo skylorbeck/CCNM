@@ -603,7 +603,7 @@ public class FightManager : MonoBehaviour
     public void SetPreviewText(Symbol symbol)
     {
         player.statusDisplayer.DisableVisuals();
-        previewText.SetText(symbol!.ability.title, symbol!.ability.GetTranslatedDescriptionA(player), symbol!.ability.GetTranslatedDescriptionB(player));
+        previewText.SetText(symbol!.ability.title, symbol!.ability.GetTranslatedDescriptionA(player.playerBrain), symbol!.ability.GetTranslatedDescriptionB(player.playerBrain));
     }
     
     public void SetPreviewText(Shell shell)

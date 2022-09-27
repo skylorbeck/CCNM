@@ -126,14 +126,14 @@ public class AbilityObject : ScriptableObject
             // user.TestDeath();
         }
     }
-    public string GetTranslatedDescriptionA(PlayerShell playerShell)
+    public string GetTranslatedDescriptionA(PlayerBrain playerBrain)
     {
         string description = descriptionA;
-            int baseDamage = playerShell.brain.GetDamage();
+            int baseDamage = playerBrain.GetDamage();
             description = description.Replace("{damage}", (baseDamage * targetDamageMultiplier).ToString());
-            int baseHeal = playerShell.brain.GetHeal();
+            int baseHeal = playerBrain.GetHeal();
             description = description.Replace("{heal}", (baseHeal * targetHealMultiplier).ToString());
-            int baseArmor = playerShell.brain.GetShieldRate();
+            int baseArmor = playerBrain.GetShieldRate();
             description = description.Replace("{armor}", (baseArmor * targetArmorMultiplier).ToString());
 
             if (targetStatus!=null)
@@ -143,20 +143,20 @@ public class AbilityObject : ScriptableObject
             {
                 description = description.Replace("{status}", userStatus.title);
             }
-            description = description.Replace("{statusdamage}", ((int)(playerShell.brain.GetStatusDamage()*targetDamageMultiplier)).ToString());
-            description = description.Replace("{statusheal}",((int)(playerShell.brain.GetHeal()*targetHealMultiplier)).ToString());
+            description = description.Replace("{statusdamage}", ((int)(playerBrain.GetStatusDamage()*targetDamageMultiplier)).ToString());
+            description = description.Replace("{statusheal}",((int)(playerBrain.GetHeal()*targetHealMultiplier)).ToString());
 
         
         return description;
     }
-    public string GetTranslatedDescriptionB(PlayerShell playerShell)
+    public string GetTranslatedDescriptionB(PlayerBrain playerBrain)
     {//todo clean these up
         string description = descriptionB;
-            int baseDamage = playerShell.brain.GetDamage();
+            int baseDamage = playerBrain.GetDamage();
             description = description.Replace("{damage}", (baseDamage * userDamageMultiplier).ToString());
-            int baseHeal = playerShell.brain.GetHeal();
+            int baseHeal = playerBrain.GetHeal();
             description = description.Replace("{heal}", (baseHeal * userHealMultiplier).ToString());
-            int baseArmor = playerShell.brain.GetShieldRate();
+            int baseArmor = playerBrain.GetShieldRate();
             description = description.Replace("{armor}", (baseArmor * userArmorMultiplier).ToString());
             if (userStatus!=null)
             {
@@ -166,8 +166,8 @@ public class AbilityObject : ScriptableObject
             {
                 description = description.Replace("{status}", targetStatus.title);
             }
-            description = description.Replace("{statusdamage}", ((int)(playerShell.brain.GetStatusDamage()*userDamageMultiplier)).ToString());
-            description = description.Replace("{statusheal}", ((int)(playerShell.brain.GetHeal()*userHealMultiplier)).ToString());
+            description = description.Replace("{statusdamage}", ((int)(playerBrain.GetStatusDamage()*userDamageMultiplier)).ToString());
+            description = description.Replace("{statusheal}", ((int)(playerBrain.GetHeal()*userHealMultiplier)).ToString());
             description = description.Replace("{statusduration}", targetStatusDuration.ToString());
             
         return description;

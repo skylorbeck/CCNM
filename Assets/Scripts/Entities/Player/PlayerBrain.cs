@@ -316,9 +316,9 @@ public class PlayerBrain : Brain
 
     public void RemoveCardFromInventory(EquipmentDataContainer equipmentDataContainer)
     {
-        if ( equippedSlots[(int)equipmentDataContainer.itemCore.itemType] == playerInventory[(int)equipmentDataContainer.itemCore.itemType].container.IndexOf(equipmentDataContainer))
+        if ( equipmentDataContainer.guid.Equals(GetEquippedCard((int)equipmentDataContainer.itemCore.itemType).guid))
         {
-            equippedSlots[(int)equipmentDataContainer.itemCore.itemType] = -1;
+            Unequip((int)equipmentDataContainer.itemCore.itemType);
         }
         playerInventory[(int)equipmentDataContainer.itemCore.itemType].container.Remove(equipmentDataContainer);
 
@@ -370,9 +370,8 @@ public class PlayerBrain : Brain
         if (playerInventory[(int)card.itemCore.itemType].container.Contains(card))
         {
             RemoveCardFromInventory(card);
-            trackableStats.cardsDismantled++;
         }
-
+        trackableStats.cardsDismantled++;
         int soulsGained = Random.Range(1, 10);
         cardSouls[(int)card.quality] += soulsGained;
         GameManager.Instance.metaStats.cardSoulsGained[(int)card.quality] += soulsGained;

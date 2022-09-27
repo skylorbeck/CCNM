@@ -156,6 +156,10 @@ public class EquipmentCardShell : MonoBehaviour, IPointerClickHandler
         Highlighted = highlighted;
         for (var i = 0; i < cardHighlightRenderers.Length; i++)
         {
+            int color = (int)EquipmentData.quality;
+            var i1 = i;
+            DOTween.To(() => cardHighlightRenderers[i1].color, x => cardHighlightRenderers[i1].color = x,  GameManager.Instance.colors[color], 0.5f);
+
             cardHighlightRenderers[i].gameObject.SetActive(highlighted);
         }
     }

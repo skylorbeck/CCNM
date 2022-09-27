@@ -147,6 +147,14 @@ public class CardShredder : MonoBehaviour
             EquipmentCardShell card = cardPool.Get();
             card.transform.SetParent(cardHands[i].transform);
             card.InsertItem(container);
+            if (GameManager.Instance.metaPlayer.GetEquippedCard(i).guid == container.guid)
+            {
+                card.SetHighlighted(true);
+            }
+            else
+            {
+                card.SetHighlighted(false);
+            }
             cards[i].Add(card);
         }
     }

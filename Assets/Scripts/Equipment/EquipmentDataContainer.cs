@@ -34,7 +34,8 @@ public class EquipmentDataContainer
         stats = old.stats;
         statValue = old.statValue;
         indestructible = old.indestructible;
-        guid = Guid.NewGuid();//do we want a new GUID? This would allow for the same item to be duplicated.
+        guid = old.guid;
+        // guid = Guid.NewGuid();//do we want a new GUID? This would allow for the same item to be duplicated.
     }
     
     public void SetIndestructible(bool value)
