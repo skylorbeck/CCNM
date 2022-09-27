@@ -70,6 +70,25 @@ public class AbilityObject : ScriptableObject
             shield = (int)Math.Ceiling(shield * userArmorMultiplier);
             user.Shield(shield, element);
         }*/
+          if (healTarget)
+          {
+              int heal = target.OnHeal(target,(int)(user.brain.GetHealthMax()*0.25f));
+              heal = (int)Math.Ceiling(heal * targetHealMultiplier);
+              target.Heal(heal, element);
+          }
+          if (healUser)
+          {
+              int heal = user.OnHeal(user,(int)(user.brain.GetHealthMax()*0.25f));
+              heal = (int)Math.Ceiling(heal * userHealMultiplier);
+              user.Heal(heal, element);
+          }
+          bool blind = user.statusDisplayer.HasStatus(typeof(BlindEffect));
+          if (blind)
+          {
+              user.statusDisplayer.RemoveStatus(typeof(BlindEffect));
+              TextPopController.Instance.PopNegative("Blind", user.transform.position,target.isPlayer);
+              return;
+          }
         if (statusTarget)
         {
             target.AddStatusEffect(targetStatus,user, targetStatusDuration);
@@ -78,42 +97,32 @@ public class AbilityObject : ScriptableObject
         {
             user.AddStatusEffect(userStatus,user, userStatusDuration);
         }
-        if (healTarget)
-        {
-            int heal = target.OnHeal(target,(int)(user.brain.GetHealthMax()*0.25f));
-            heal = (int)Math.Ceiling(heal * targetHealMultiplier);
-            target.Heal(heal, element);
-        }
-        if (healUser)
-        {
-            int heal = user.OnHeal(user,(int)(user.brain.GetHealthMax()*0.25f));
-            heal = (int)Math.Ceiling(heal * userHealMultiplier);
-            user.Heal(heal, element);
-        }
+
+        bool crit = Random.Range(0, 100) < user.brain.GetCritChance();
         if (damageTarget)
         {
             int damage = user.OnAttack(target,user.brain.GetDamage());//process status influences
             damage = (int)(damage * targetDamageMultiplier);//process ability multiplier
-            if (Random.Range(0,100)<user.brain.GetCritChance())
+            if (crit)
             {
-               damage +=  (int)(damage * user.brain.GetCritDamage());
-               //todo crit notification
+                int critbonus = (int)(damage * user.brain.GetCritDamage());
+                damage += critbonus;
             }
             DamageAnimator.Instance.TriggerAttack(target, attackAnimation);//play the animation
-            target.Damage(user, damage, element);//damage the target
+            target.Damage(user, damage, element,crit);//damage the target
             // target.TestDeath(); handled in target.damage
         }
         if (damageUser)
         {
             int damage = user.OnAttack(user,user.brain.GetDamage());
             damage = (int)(damage * userDamageMultiplier);
-            if (Random.Range(0,100)<user.brain.GetCritChance())
+            if (crit)
             {
-                damage +=  (int)(damage * user.brain.GetCritDamage());
-                //todo crit notification
+                int critbonus = (int)(damage * user.brain.GetCritDamage());
+                damage += critbonus;
             }
             DamageAnimator.Instance.TriggerAttack(user, attackAnimation);
-            user.Damage(user,damage,element);
+            user.Damage(user,damage,element,crit);
             // user.TestDeath();
         }
     }
@@ -165,6 +174,7 @@ public class AbilityObject : ScriptableObject
     }
     
 }
+
 [Serializable]
 public class AbilityGem
 {
@@ -174,55 +184,58 @@ public class AbilityGem
 
     public AbilityGem(AbilityGem oldGem)
     {
-            this.abilityIndex = oldGem.abilityIndex;
-            this.gemLevel = oldGem.gemLevel;
-            this.amountOwned = oldGem.amountOwned;
+        this.abilityIndex = oldGem.abilityIndex;
+        this.gemLevel = oldGem.gemLevel;
+        this.amountOwned = oldGem.amountOwned;
     }
+
     public AbilityGem(int abilityIndex, int gemLevel)
     {
         this.abilityIndex = abilityIndex;
         this.gemLevel = gemLevel;
-        this.amountOwned = 0;   
+        this.amountOwned = 0;
     }
+
     public AbilityGem(int abilityIndex)
     {
         this.abilityIndex = abilityIndex;
         this.gemLevel = 0;
-        this.amountOwned = 0;   
+        this.amountOwned = 0;
     }
-    
+
     public AbilityGem(AbilityObject ability, int gemLevel)
     {
         this.abilityIndex = GameManager.Instance.abilityRegistry.GetAbilityIndex(ability.title);
         this.gemLevel = gemLevel;
         this.amountOwned = 0;
     }
+
     public void SetGem(int abilityIndex, int gemLevel)
     {
         this.abilityIndex = abilityIndex;
         this.gemLevel = gemLevel;
     }
-    
+
     public void SetLevel(int gemLevel)
     {
         this.gemLevel = gemLevel;
     }
-    
+
     public void SetAmountOwned(int amountOwned)
     {
         this.amountOwned = amountOwned;
     }
-    
+
     public void AddAmountOwned(int amount)
     {
         this.amountOwned += amount;
     }
-    
+
     public AbilityObject GetAbility()
     {
         if (abilityIndex == -1)
             return null;
         return GameManager.Instance.abilityRegistry.GetAbility(abilityIndex);
     }
-    
+
 }

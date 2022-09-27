@@ -49,7 +49,7 @@ public class EffectInstance : MonoBehaviour
 
         UpdateDurationText();
 
-         statusEffect.Tick(target,source,duration,power);
+        statusEffect.Tick(target,source,duration,power);
 
         if (duration <= 0 || statusEffect.alwaysExpires)
         {

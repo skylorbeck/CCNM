@@ -43,4 +43,4 @@ MonoBehaviour:
   <cDamageUser>k__BackingField: 0
   <cHealTarget>k__BackingField: 0
   <cHealUser>k__BackingField: 0
-  <type>k__BackingField: BurnEffect
+  <type>k__BackingField: {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}

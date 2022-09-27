@@ -65,7 +65,7 @@ public class TextPopController : MonoBehaviour
     
     public async void PopCritical(int crit,Vector3 worldPos)
     {
-        await CreatePop("-"+worldPos+"!",TextPop.PopTypes.Critical,worldPos,true);
+        await CreatePop("-"+crit+"!",TextPop.PopTypes.Critical,worldPos,true);
     }
     
     public async void PopShield(int shield,Vector3 worldPos)

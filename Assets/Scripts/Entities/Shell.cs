@@ -101,7 +101,7 @@ public class Shell : MonoBehaviour
         return statusDisplayer.OnHeal(target,this,baseHeal);
     }
     
-    public void Damage([CanBeNull] Shell source,int baseDamage, StatusEffect.Element element)
+    public void Damage([CanBeNull] Shell source,int baseDamage, StatusEffect.Element element,bool crit)
     {
         if (Random.Range(0,100) < brain.GetDodgeChance())
         {
@@ -110,7 +110,14 @@ public class Shell : MonoBehaviour
             return;
         }
         int damage = statusDisplayer.OnDamage(source,this,baseDamage);
-        TextPopController.Instance.PopDamage(damage,transform.position);
+        if (crit)
+        {
+            TextPopController.Instance.PopCritical(damage,transform.position);
+        }
+        else
+        {
+            TextPopController.Instance.PopDamage(damage,transform.position);
+        }
         Damaged.Invoke(source,damage);
         shieldDelayCurrent = 1;
 

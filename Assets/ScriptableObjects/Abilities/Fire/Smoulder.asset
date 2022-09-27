@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d6c931f99d458b4c9766d2ce675483b, type: 3}
   m_Name: Smoulder
   m_EditorClassIdentifier: 
   <title>k__BackingField: Smoulder
@@ -29,13 +29,15 @@ MonoBehaviour:
   <targetArmorMultiplier>k__BackingField: 1
   <armorUser>k__BackingField: 0
   <userArmorMultiplier>k__BackingField: 1
-  <targetStatus>k__BackingField: {fileID: 0}
+  <targetStatus>k__BackingField: {fileID: 11400000, guid: 59623d203333b474ba5f7ef4755ac3f1, type: 2}
   <statusTarget>k__BackingField: 0
-  <targetStatusDuration>k__BackingField: 3
+  <targetStatusDuration>k__BackingField: 1
   <userStatus>k__BackingField: {fileID: 0}
   <statusUser>k__BackingField: 0
   <userStatusDuration>k__BackingField: 1
   <slotType>k__BackingField: 0
-  <element>k__BackingField: 1
-  <attackAnimation>k__BackingField: 0
+  <element>k__BackingField: 0
+  <attackAnimation>k__BackingField: 2
   <soundEffect>k__BackingField: {fileID: 0}
+  <ifhave>k__BackingField: {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}
+  duration: 1

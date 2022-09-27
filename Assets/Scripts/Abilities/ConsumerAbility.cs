@@ -10,18 +10,18 @@ public class ConsumerAbility : AbilityObject
     [field: SerializeField] public bool cHealTarget { get; private set; } = false;
     [field: SerializeField] public bool cHealUser { get; private set; } = false;
 
-    [field: SerializeField] public string type { get; private set; } = "None";
+    [field: SerializeField] public StatusEffect type { get; private set; }
 
     public override void Execute(Shell user, Shell target)
     {
-        Type t = Type.GetType(type);
+        Type t = type.GetType();
         if (cDamageTarget)
         {
             int stacks = target.statusDisplayer.GetStatusDuration(t);
             if (stacks > 0)
             {
                 target.Damage(user,(int)(user.brain.GetDamage()*0.1f)+ (int)(user.brain.GetStatusDamage() * stacks*targetDamageMultiplier),
-                    element);
+                    element,false);
                 target.statusDisplayer.RemoveStatus(t);
             }
         }
@@ -32,7 +32,7 @@ public class ConsumerAbility : AbilityObject
             if (stacks > 0)
             {
                 user.Damage(user, (int)(user.brain.GetDamage()*0.1f)+ (int)(user.brain.GetStatusDamage() * stacks*userDamageMultiplier),
-                    element);
+                    element,false);
                 user.statusDisplayer.RemoveStatus(t);
 
             }

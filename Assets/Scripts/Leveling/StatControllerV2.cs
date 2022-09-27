@@ -37,7 +37,7 @@ public class StatControllerV2 : MonoBehaviour
                 translatedStat = "Attack";
                 translatedValue = player.GetUnmodifiedDamageNoCard().ToString();
                 break;
-            case EquipmentDataContainer.Stats.Spd:
+            case EquipmentDataContainer.Stats.Dex:
                 translatedStat = "Dodge";
                 translatedValue = player.GetDodgeChanceUnmodifiedNoCard().ToString("0.##") + "%";
                 break;
@@ -45,7 +45,7 @@ public class StatControllerV2 : MonoBehaviour
                 translatedStat = "Health";
                 translatedValue = player.GetHealthMaxUnmodifiedNoCard().ToString();
                 break;
-            case EquipmentDataContainer.Stats.Dex:
+            case EquipmentDataContainer.Stats.Spd:
                 translatedStat = "Crit Chance";
                 translatedValue = player.GetCritChanceUnmodifiedNoCard().ToString("0.##") + "%";
                 break;
@@ -129,9 +129,9 @@ public class StatControllerV2 : MonoBehaviour
     public void IncreaseStat()
     {
         currentValue++;
-        if (currentValue>99)
+        if (currentValue>999)
         {
-            currentValue = 99;
+            currentValue = 999;
         }
         DoTweens();
         TweenColors(highlighted);
@@ -155,7 +155,7 @@ public class StatControllerV2 : MonoBehaviour
         DOTween.To(() => statValueText.text, x => statValueText.text = x, currentValue.ToString(), 0.25f);
         PlayerBrain player = GameManager.Instance.metaPlayer;
         string translatedValue = "";
-        int value = currentValue - initialValue;
+        int value = GetLevelDifference();
         switch (stat)
         {
             case EquipmentDataContainer.Stats.None:
@@ -163,13 +163,13 @@ public class StatControllerV2 : MonoBehaviour
             case EquipmentDataContainer.Stats.Str:
                 translatedValue = player.GetUnmodifiedDamageNoCard(value).ToString();
                 break;
-            case EquipmentDataContainer.Stats.Spd:
+            case EquipmentDataContainer.Stats.Dex:
                 translatedValue = player.GetDodgeChanceUnmodifiedNoCard(value).ToString("0.##") + "%";
                 break;
             case EquipmentDataContainer.Stats.Vit:
                 translatedValue = player.GetHealthMaxUnmodifiedNoCard(value).ToString();
                 break;
-            case EquipmentDataContainer.Stats.Dex:
+            case EquipmentDataContainer.Stats.Spd:
                 translatedValue = player.GetCritChanceUnmodifiedNoCard(value).ToString("0.##") + "%";
                 break;
             case EquipmentDataContainer.Stats.Skl:
