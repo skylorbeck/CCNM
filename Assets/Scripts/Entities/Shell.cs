@@ -101,7 +101,7 @@ public class Shell : MonoBehaviour
         return statusDisplayer.OnHeal(target,this,baseHeal);
     }
     
-    public void Damage([CanBeNull] Shell source,int baseDamage, StatusEffect.Element element,bool crit)
+    public void Damage([CanBeNull] Shell source,int baseDamage,bool crit)
     {
         if (Random.Range(0,100) < brain.GetDodgeChance())
         {
@@ -150,7 +150,7 @@ public class Shell : MonoBehaviour
         healthBar.ManualUpdate();
     }
     
-    public virtual void Heal(int baseHeal, StatusEffect.Element element)
+    public virtual void Heal(int baseHeal)
     {
         Healed.Invoke(baseHeal);
         TextPopController.Instance.PopHeal(baseHeal,transform.position);
@@ -160,7 +160,7 @@ public class Shell : MonoBehaviour
         healthBar.ManualUpdate();
     }
     
-    public virtual void Shield(int amount, StatusEffect.Element element)
+    public virtual void Shield(int amount)
     {
         if (shield +amount> brain.GetShieldMax())
         {
@@ -197,7 +197,7 @@ public class Shell : MonoBehaviour
         {
             // shieldDelayCurrent = 0;
             ShieldRegen.Invoke();
-            Shield((int)brain.GetShieldRate(), StatusEffect.Element.None);
+            Shield((int)brain.GetShieldRate());
         }
     }
 

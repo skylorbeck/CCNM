@@ -75,7 +75,7 @@ public class ItemStatCompare : MonoBehaviour
         if (gem!=null && gem.abilityIndex!=-1)
         {
             AbilityObject abilityObject = gem.GetAbility();
-            DOTween.To(() => ItemName.text, x => ItemName.text = x, abilityObject.title+" "+(gem.gemLevel+1), 0.5f).OnUpdate(() =>
+            DOTween.To(() => ItemName.text, x => ItemName.text = x, abilityObject.name+" "+(gem.gemLevel+1), 0.5f).OnUpdate(() =>
             {
                 if (autosize)
                 {

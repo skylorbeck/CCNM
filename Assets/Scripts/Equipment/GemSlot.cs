@@ -25,7 +25,7 @@ public class GemSlot : MonoBehaviour
         {
             return;
         }
-        text.text = gem.GetAbility().title;
+        text.text = gem.GetAbility().name;
     }
 
     public void ClearGem()

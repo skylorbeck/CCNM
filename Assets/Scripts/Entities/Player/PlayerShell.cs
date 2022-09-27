@@ -50,10 +50,10 @@ public class PlayerShell : Shell
         return base.OnHeal(target, baseShield);
     }
 
-    public override void Shield(int amount, StatusEffect.Element element)
+    public override void Shield(int amount)
     {
         GameManager.Instance.uiStateObject.Ping("You gained " + amount + " shield!");
-        base.Shield(amount, element);
+        base.Shield(amount);
     }
 
     public override void Kill()
@@ -65,9 +65,9 @@ public class PlayerShell : Shell
         base.Kill();
     }
 
-    public override void Heal(int baseHeal, StatusEffect.Element element)
+    public override void Heal(int baseHeal)
     {
         GameManager.Instance.uiStateObject.Ping("You healed for " + baseHeal + "!");
-        base.Heal(baseHeal, element);
+        base.Heal(baseHeal);
     }
 }

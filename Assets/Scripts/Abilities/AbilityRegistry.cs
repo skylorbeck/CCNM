@@ -18,7 +18,7 @@ public class AbilityRegistry : ScriptableObject,  ISerializationCallbackReceiver
         for (var index = 0; index < abilityObjects.Length; index++)
         {
             values.Add(index);
-            keys.Add(abilityObjects[index].title);
+            keys.Add(abilityObjects[index].name);
         }
     }
 

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b033cb348fe1f84d8b89adf0c6cfdd8, type: 3}
-  m_Name: BlindEffect
+  m_Name: Blind
   m_EditorClassIdentifier: 
   <title>k__BackingField: Blind
   <description>k__BackingField: unset.description

@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class AbilityObject : ScriptableObject
 {
 
-    [field: SerializeField] public string title { get; private set; } = "title";
     [field: SerializeField] public string descriptionA { get; private set; } = "description.a";
     [field: SerializeField] public string descriptionB { get; private set; } = "description.b";
     [field: SerializeField] public Sprite icon { get; private set; }
@@ -50,7 +49,6 @@ public class AbilityObject : ScriptableObject
     [field: Header("Other")]
     [field: SerializeField]
     public EquipmentDataContainer.SlotType slotType { get; private set; } = EquipmentDataContainer.SlotType.Offense;
-    [field: SerializeField] public StatusEffect.Element element { get; private set; } = StatusEffect.Element.None;
 
     [field: SerializeField] public AttackAnimator.AttackType attackAnimation { get; private set; } = AttackAnimator.AttackType.None;
 
@@ -74,13 +72,13 @@ public class AbilityObject : ScriptableObject
           {
               int heal = target.OnHeal(target,(int)(user.brain.GetHealthMax()*0.25f));
               heal = (int)Math.Ceiling(heal * targetHealMultiplier);
-              target.Heal(heal, element);
+              target.Heal(heal);
           }
           if (healUser)
           {
               int heal = user.OnHeal(user,(int)(user.brain.GetHealthMax()*0.25f));
               heal = (int)Math.Ceiling(heal * userHealMultiplier);
-              user.Heal(heal, element);
+              user.Heal(heal);
           }
           bool blind = user.statusDisplayer.HasStatus(typeof(BlindEffect));
           if (blind)
@@ -109,7 +107,7 @@ public class AbilityObject : ScriptableObject
                 damage += critbonus;
             }
             DamageAnimator.Instance.TriggerAttack(target, attackAnimation);//play the animation
-            target.Damage(user, damage, element,crit);//damage the target
+            target.Damage(user, damage,crit);//damage the target
             // target.TestDeath(); handled in target.damage
         }
         if (damageUser)
@@ -122,7 +120,7 @@ public class AbilityObject : ScriptableObject
                 damage += critbonus;
             }
             DamageAnimator.Instance.TriggerAttack(user, attackAnimation);
-            user.Damage(user,damage,element,crit);
+            user.Damage(user,damage,crit);
             // user.TestDeath();
         }
     }
@@ -138,10 +136,10 @@ public class AbilityObject : ScriptableObject
 
             if (targetStatus!=null)
             {
-                description = description.Replace("{status}", targetStatus.title);
+                description = description.Replace("{status}", targetStatus.name);
             } else if (userStatus!=null)
             {
-                description = description.Replace("{status}", userStatus.title);
+                description = description.Replace("{status}", userStatus.name);
             }
             description = description.Replace("{statusdamage}", ((int)(playerBrain.GetStatusDamage()*targetDamageMultiplier)).ToString());
             description = description.Replace("{statusheal}",((int)(playerBrain.GetHeal()*targetHealMultiplier)).ToString());
@@ -160,11 +158,11 @@ public class AbilityObject : ScriptableObject
             description = description.Replace("{armor}", (baseArmor * userArmorMultiplier).ToString());
             if (userStatus!=null)
             {
-                description = description.Replace("{status}", userStatus.title);
+                description = description.Replace("{status}", userStatus.name);
             }
             else if (targetStatus!=null)
             {
-                description = description.Replace("{status}", targetStatus.title);
+                description = description.Replace("{status}", targetStatus.name);
             }
             description = description.Replace("{statusdamage}", ((int)(playerBrain.GetStatusDamage()*userDamageMultiplier)).ToString());
             description = description.Replace("{statusheal}", ((int)(playerBrain.GetHeal()*userHealMultiplier)).ToString());
@@ -205,7 +203,7 @@ public class AbilityGem
 
     public AbilityGem(AbilityObject ability, int gemLevel)
     {
-        this.abilityIndex = GameManager.Instance.abilityRegistry.GetAbilityIndex(ability.title);
+        this.abilityIndex = GameManager.Instance.abilityRegistry.GetAbilityIndex(ability.name);
         this.gemLevel = gemLevel;
         this.amountOwned = 0;
     }

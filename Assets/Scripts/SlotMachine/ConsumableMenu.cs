@@ -76,7 +76,7 @@ public class ConsumableMenu : MonoBehaviour
 
     public void Pie()
     {
-        playerShell.Heal(playerShell.brain.GetHealthMax(),StatusEffect.Element.None);
+        playerShell.Heal(playerShell.brain.GetHealthMax());
         GameManager.Instance.runPlayer.consumables[1]--;
         UpdateIcons();
         UpdateTexts();
@@ -91,7 +91,7 @@ public class ConsumableMenu : MonoBehaviour
     }
     public void Coffee()
     {
-            playerShell.Shield(playerShell.brain.GetShieldMax(),StatusEffect.Element.None);
+            playerShell.Shield(playerShell.brain.GetShieldMax());
             GameManager.Instance.runPlayer.consumables[0]--;
             UpdateIcons();
             UpdateTexts();

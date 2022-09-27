@@ -62,16 +62,16 @@ public class EnemyShell : Shell
         return damage;
     }
 
-    public override void Shield(int amount, StatusEffect.Element element)
+    public override void Shield(int amount)
     {
         GameManager.Instance.uiStateObject.Ping( title+" gained " + amount + " shield!");
-        base.Shield(amount,element);
+        base.Shield(amount);
     }
 
-    public override void Heal(int baseHeal, StatusEffect.Element element)
+    public override void Heal(int baseHeal)
     {
         GameManager.Instance.uiStateObject.Ping(title+" healed for " + baseHeal + "!");
-        base.Heal( baseHeal, element);
+        base.Heal( baseHeal);
     }
     
     public override async void Attack(Shell target, Symbol symbol)

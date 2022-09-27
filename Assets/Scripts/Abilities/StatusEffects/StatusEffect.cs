@@ -7,7 +7,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StatusEffect", menuName = "Combat/StatusEffect/Blank")]
 public class StatusEffect : ScriptableObject
 {
-    [field: SerializeField] public string title { get; private set; } = "unset";
     [field: SerializeField] public string description { get; private set; } = "unset.description";
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public int maxStacks { get; private set; } = 0;
@@ -16,9 +15,7 @@ public class StatusEffect : ScriptableObject
     [field: SerializeField] public bool isDebuff { get; private set; } = false;
     [field: SerializeField] public bool isHidden { get; private set; } = false;
     [field: SerializeField] public bool alwaysExpires { get; private set; } = false;
-    [field: SerializeField] public Element element { get; private set; } = Element.None;
 
-    public bool isElemental => element != Element.None;
 
 
     //called before onDamage and returns modified damage done
@@ -59,10 +56,10 @@ public class StatusEffect : ScriptableObject
         }
         if (isDebuff)
         {
-            TextPopController.Instance.PopNegative("+"+title, target.transform.position,target.isPlayer);
+            TextPopController.Instance.PopNegative("+"+name, target.transform.position,target.isPlayer);
         } else
         {
-            TextPopController.Instance.PopPositive("+"+title, target.transform.position,target.isPlayer);
+            TextPopController.Instance.PopPositive("+"+name, target.transform.position,target.isPlayer);
         }
         //do something to the shell
     }
@@ -85,14 +82,5 @@ public class StatusEffect : ScriptableObject
     {
         //todo animation call
         //do something to the shell
-    }
-    
-    public enum Element
-    {
-        None,
-        Fire,
-        Water,
-        Earth,
-        Air,
     }
 }

@@ -367,7 +367,7 @@ public class FightManager : MonoBehaviour
             if (!enemy.isDead)
             {
                 await Task.Delay(250);
-                NotificationPopController.Instance.PopNotification(enemyWheels[i].GetWinner().ability.title,enemy.transform.position+new Vector3(0f,-1.5f,0f));
+                NotificationPopController.Instance.PopNotification(enemyWheels[i].GetWinner().ability.name,enemy.transform.position+new Vector3(0f,-1.5f,0f));
                 enemy.Attack(player, enemyWheels[i].GetWinner());
                 await Task.Delay(250);
                 await enemy.TickStatusEffects();
@@ -603,7 +603,7 @@ public class FightManager : MonoBehaviour
     public void SetPreviewText(Symbol symbol)
     {
         player.statusDisplayer.DisableVisuals();
-        previewText.SetText(symbol!.ability.title, symbol!.ability.GetTranslatedDescriptionA(player.playerBrain), symbol!.ability.GetTranslatedDescriptionB(player.playerBrain));
+        previewText.SetText(symbol!.ability.name, symbol!.ability.GetTranslatedDescriptionA(player.playerBrain), symbol!.ability.GetTranslatedDescriptionB(player.playerBrain));
     }
     
     public void SetPreviewText(Shell shell)

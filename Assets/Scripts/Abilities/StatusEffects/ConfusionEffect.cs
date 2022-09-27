@@ -10,7 +10,7 @@ public class ConfusionEffect : StatusEffect
     {
         if (Random.value < 0.25f)
         {
-            attacker.Damage(attacker, baseDamage ,Element.None,false);
+            attacker.Damage(attacker, baseDamage ,false);
             TextPopController.Instance.PopNegative("Confused", attacker.transform.position,attacker.isPlayer);
         }
         

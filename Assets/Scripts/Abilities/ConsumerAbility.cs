@@ -20,8 +20,7 @@ public class ConsumerAbility : AbilityObject
             int stacks = target.statusDisplayer.GetStatusDuration(t);
             if (stacks > 0)
             {
-                target.Damage(user,(int)(user.brain.GetDamage()*0.1f)+ (int)(user.brain.GetStatusDamage() * stacks*targetDamageMultiplier),
-                    element,false);
+                target.Damage(user,(int)(user.brain.GetDamage()*0.1f)+ (int)(user.brain.GetStatusDamage() * stacks*targetDamageMultiplier),false);
                 target.statusDisplayer.RemoveStatus(t);
             }
         }
@@ -31,8 +30,7 @@ public class ConsumerAbility : AbilityObject
             int stacks = user.statusDisplayer.GetStatusDuration(t);
             if (stacks > 0)
             {
-                user.Damage(user, (int)(user.brain.GetDamage()*0.1f)+ (int)(user.brain.GetStatusDamage() * stacks*userDamageMultiplier),
-                    element,false);
+                user.Damage(user, (int)(user.brain.GetDamage()*0.1f)+ (int)(user.brain.GetStatusDamage() * stacks*userDamageMultiplier), false);
                 user.statusDisplayer.RemoveStatus(t);
 
             }
@@ -43,7 +41,7 @@ public class ConsumerAbility : AbilityObject
             int stacks = target.statusDisplayer.GetStatusDuration(t);
             if (stacks > 0)
             {
-                target.Heal((int)(user.brain.GetStatusDamage() * stacks*targetHealMultiplier), element);
+                target.Heal((int)(user.brain.GetStatusDamage() * stacks*targetHealMultiplier));
                 target.statusDisplayer.RemoveStatus(t);
             }
         }
@@ -53,7 +51,7 @@ public class ConsumerAbility : AbilityObject
             int stacks = user.statusDisplayer.GetStatusDuration(t);
             if (stacks > 0)
             {
-                user.Heal((int)(user.brain.GetStatusDamage() * stacks*userHealMultiplier), element);
+                user.Heal((int)(user.brain.GetStatusDamage() * stacks*userHealMultiplier));
                 user.statusDisplayer.RemoveStatus(t);
             }
 

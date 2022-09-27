@@ -10,7 +10,7 @@ public class BurnEffect : StatusEffect
 
     public override void Tick(Shell target, Shell source, int duration, int power)
     {
-        target.Damage(source,damageRatio* (power),element,false);
+        target.Damage(source,damageRatio* (power),false);
         TextPopController.Instance.PopNegative("Burned", target.transform.position,target.isPlayer);
         base.Tick(target, source, duration, power);
     }
