@@ -17,8 +17,10 @@ public class AbilityObject : ScriptableObject
     [field: Header("Damage")]
     [field: SerializeField] public bool damageTarget { get; private set; } = false;
     [field: SerializeField] public float targetDamageMultiplier { get; private set; } = 1;
+    [field: SerializeField] public int targetHitCount { get; private set; } = 1;
     [field: SerializeField] public bool damageUser { get; private set; } = false;
     [field: SerializeField] public float userDamageMultiplier { get; private set; } = 1;
+    [field: SerializeField] public int userHitCount { get; private set; } = 1;
 
 
     [field: Header("Healing")]
@@ -57,74 +59,90 @@ public class AbilityObject : ScriptableObject
 
     public virtual void Execute(Shell user, Shell target)
     {
-          /*if (armorTarget)
+        bool crit = Random.Range(0, 100) < user.brain.GetCritChance();
+        bool blind = user.statusDisplayer.HasStatus(typeof(BlindEffect));
+        /*if (armorTarget)
+      {
+          int shield = await target.OnShield(target,user.brain.baseShield);
+          shield = (int)Math.Ceiling(shield * targetArmorMultiplier);
+          target.Shield(shield, element);
+      }
+      if (armorUser)
+      {
+          int shield = await user.OnShield(user,user.brain.baseShield);
+          shield = (int)Math.Ceiling(shield * userArmorMultiplier);
+          user.Shield(shield, element);
+      }*/
+       
+
+        if (healUser)
         {
-            int shield = await target.OnShield(target,user.brain.baseShield);
-            shield = (int)Math.Ceiling(shield * targetArmorMultiplier);
-            target.Shield(shield, element);
-        }
-        if (armorUser)
-        {
-            int shield = await user.OnShield(user,user.brain.baseShield);
-            shield = (int)Math.Ceiling(shield * userArmorMultiplier);
-            user.Shield(shield, element);
-        }*/
-          if (healTarget)
-          {
-              int heal = target.OnHeal(target,(int)(user.brain.GetHealthMax()*0.25f));
-              heal = (int)Math.Ceiling(heal * targetHealMultiplier);
-              target.Heal(heal);
-          }
-          if (healUser)
-          {
-              int heal = user.OnHeal(user,(int)(user.brain.GetHealthMax()*0.25f));
-              heal = (int)Math.Ceiling(heal * userHealMultiplier);
-              user.Heal(heal);
-          }
-          bool blind = user.statusDisplayer.HasStatus(typeof(BlindEffect));
-          if (blind)
-          {
-              user.statusDisplayer.RemoveStatus(typeof(BlindEffect));
-              TextPopController.Instance.PopNegative("Blind", user.transform.position,target.isPlayer);
-              return;
-          }
-        if (statusTarget)
-        {
-            target.AddStatusEffect(targetStatus,user, targetStatusDuration);
+            int heal = user.OnHeal(user, (int)(user.brain.GetHealthMax() * 0.25f));
+            heal = (int)Math.Ceiling(heal * userHealMultiplier);
+            user.Heal(heal);
         }
         if (statusUser)
         {
-            user.AddStatusEffect(userStatus,user, userStatusDuration);
-        }
-
-        bool crit = Random.Range(0, 100) < user.brain.GetCritChance();
-        if (damageTarget)
-        {
-            int damage = user.OnAttack(target,user.brain.GetDamage());//process status influences
-            damage = (int)(damage * targetDamageMultiplier);//process ability multiplier
-            if (crit)
-            {
-                int critbonus = (int)(damage * user.brain.GetCritDamage());
-                damage += critbonus;
-            }
-            DamageAnimator.Instance.TriggerAttack(target, attackAnimation);//play the animation
-            target.Damage(user, damage,crit);//damage the target
-            // target.TestDeath(); handled in target.damage
+            user.AddStatusEffect(userStatus, user, userStatusDuration);
         }
         if (damageUser)
         {
-            int damage = user.OnAttack(user,user.brain.GetDamage());
-            damage = (int)(damage * userDamageMultiplier);
-            if (crit)
+            for (int i = 0; i < userHitCount; i++)
             {
-                int critbonus = (int)(damage * user.brain.GetCritDamage());
-                damage += critbonus;
+
+                int damage = user.OnAttack(user, user.brain.GetDamage());
+                damage = (int)(damage * userDamageMultiplier);
+                if (crit)
+                {
+                    int critbonus = (int)(damage * user.brain.GetCritDamage());
+                    damage += critbonus;
+                }
+
+                DamageAnimator.Instance.TriggerAttack(user, attackAnimation);
+                user.Damage(user, damage, crit);
+                // user.TestDeath();
             }
-            DamageAnimator.Instance.TriggerAttack(user, attackAnimation);
-            user.Damage(user,damage,crit);
-            // user.TestDeath();
         }
+
+        if (blind)
+        {
+            user.statusDisplayer.RemoveStatus(typeof(BlindEffect));
+            TextPopController.Instance.PopNegative("Blind", user.transform.position, target.isPlayer);
+            return;
+        }
+        if (healTarget)
+        {
+            int heal = target.OnHeal(target, (int)(user.brain.GetHealthMax() * 0.25f));
+            heal = (int)Math.Ceiling(heal * targetHealMultiplier);
+            target.Heal(heal);
+        }
+        if (statusTarget)
+        {
+            target.AddStatusEffect(targetStatus, user, targetStatusDuration);
+        }
+
+        
+
+        if (damageTarget)
+        {
+            for (int i = 0; i < targetHitCount; i++)
+            {
+                int damage = user.OnAttack(target, user.brain.GetDamage()); //process status influences
+                damage = (int)(damage * targetDamageMultiplier); //process ability multiplier
+                if (crit)
+                {
+                    int critbonus = (int)(damage * user.brain.GetCritDamage());
+                    damage += critbonus;
+                }
+
+                DamageAnimator.Instance.TriggerAttack(target, attackAnimation); //play the animation
+                target.Damage(user, damage, crit); //damage the target
+            }
+        }
+
+       
     }
+
     public string GetTranslatedDescriptionA(PlayerBrain playerBrain)
     {
         string description = descriptionA;

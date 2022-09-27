@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
-  m_Name: Cold Snap
+  m_Script: {fileID: 11500000, guid: e5a28799333c4c33930783a8c679820a, type: 3}
+  m_Name: Discharge
   m_EditorClassIdentifier: 
   <descriptionA>k__BackingField: description.a
   <descriptionB>k__BackingField: description.b
-  <icon>k__BackingField: {fileID: 21300000, guid: a24a82ae438282148a14931ae4065da8, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: 6d0a679df00a3c042a89ccd61c63d908, type: 3}
   <baseCost>k__BackingField: 1
-  <damageTarget>k__BackingField: 1
-  <targetDamageMultiplier>k__BackingField: 0.1
+  <damageTarget>k__BackingField: 0
+  <targetDamageMultiplier>k__BackingField: 1
   <targetHitCount>k__BackingField: 1
   <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
@@ -30,9 +30,9 @@ MonoBehaviour:
   <targetArmorMultiplier>k__BackingField: 1
   <armorUser>k__BackingField: 0
   <userArmorMultiplier>k__BackingField: 1
-  <targetStatus>k__BackingField: {fileID: 11400000, guid: ea6533bf21709964484f48338fae58f1, type: 2}
-  <statusTarget>k__BackingField: 1
-  <targetStatusDuration>k__BackingField: 8
+  <targetStatus>k__BackingField: {fileID: 0}
+  <statusTarget>k__BackingField: 0
+  <targetStatusDuration>k__BackingField: 1
   <userStatus>k__BackingField: {fileID: 0}
   <statusUser>k__BackingField: 0
   <userStatusDuration>k__BackingField: 1
@@ -40,3 +40,19 @@ MonoBehaviour:
   <slotType>k__BackingField: 0
   <attackAnimation>k__BackingField: 2
   <soundEffect>k__BackingField: {fileID: 0}
+  <amountToConsume>k__BackingField: 3
+  <strict>k__BackingField: 0
+  <cTargetDamageMultiplier>k__BackingField: 1
+  <cMinTargetDamageMultiplier>k__BackingField: 1
+  <cDamageTarget>k__BackingField: 0
+  <cMultiplyByStacks>k__BackingField: 0
+  <cDamageUser>k__BackingField: 0
+  <cUserDamageMultiplier>k__BackingField: 1
+  <cMinUserDamageMultiplier>k__BackingField: 1
+  <cHealTarget>k__BackingField: 0
+  <cHealUser>k__BackingField: 0
+  <cShieldTarget>k__BackingField: 0
+  <cTargetShieldMultiplier>k__BackingField: 1
+  <cShieldUser>k__BackingField: 1
+  <cUserShieldMultiplier>k__BackingField: 0.1
+  <type>k__BackingField: {fileID: 11400000, guid: b17998de986ed8c4c9160d0eead20618, type: 2}

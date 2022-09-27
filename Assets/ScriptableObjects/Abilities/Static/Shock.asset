@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
-  m_Name: Cold Snap
+  m_Script: {fileID: 11500000, guid: 41ce3394d97e049479178fb8a00bdf18, type: 3}
+  m_Name: Shock
   m_EditorClassIdentifier: 
   <descriptionA>k__BackingField: description.a
   <descriptionB>k__BackingField: description.b
-  <icon>k__BackingField: {fileID: 21300000, guid: a24a82ae438282148a14931ae4065da8, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: 9d5300e127908d84e8e9385c6e1b5761, type: 3}
   <baseCost>k__BackingField: 1
-  <damageTarget>k__BackingField: 1
-  <targetDamageMultiplier>k__BackingField: 0.1
+  <damageTarget>k__BackingField: 0
+  <targetDamageMultiplier>k__BackingField: 1
   <targetHitCount>k__BackingField: 1
   <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
@@ -30,13 +30,16 @@ MonoBehaviour:
   <targetArmorMultiplier>k__BackingField: 1
   <armorUser>k__BackingField: 0
   <userArmorMultiplier>k__BackingField: 1
-  <targetStatus>k__BackingField: {fileID: 11400000, guid: ea6533bf21709964484f48338fae58f1, type: 2}
-  <statusTarget>k__BackingField: 1
-  <targetStatusDuration>k__BackingField: 8
-  <userStatus>k__BackingField: {fileID: 0}
-  <statusUser>k__BackingField: 0
+  <targetStatus>k__BackingField: {fileID: 0}
+  <statusTarget>k__BackingField: 0
+  <targetStatusDuration>k__BackingField: 1
+  <userStatus>k__BackingField: {fileID: 11400000, guid: b17998de986ed8c4c9160d0eead20618, type: 2}
+  <statusUser>k__BackingField: 1
   <userStatusDuration>k__BackingField: 1
   <wideRange>k__BackingField: 0
   <slotType>k__BackingField: 0
   <attackAnimation>k__BackingField: 2
   <soundEffect>k__BackingField: {fileID: 0}
+  <ifhave>k__BackingField: {fileID: 11400000, guid: b17998de986ed8c4c9160d0eead20618, type: 2}
+  <scaleWithUser>k__BackingField: 1
+  <ifhavevalue>k__BackingField: 0.25

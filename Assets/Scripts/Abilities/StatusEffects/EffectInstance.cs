@@ -115,4 +115,10 @@ public class EffectInstance : MonoBehaviour
         spriteRenderer.color = new Color(1, 1, 1, 0);
         durationText.renderer.enabled = false;
     }
+
+    public void RemoveStacks(int amount)
+    {
+        duration -= amount;
+        UpdateDurationText();
+    }
 }

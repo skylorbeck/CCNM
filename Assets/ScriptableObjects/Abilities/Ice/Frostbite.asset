@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <descriptionA>k__BackingField: description.a
   <descriptionB>k__BackingField: description.b
-  <icon>k__BackingField: {fileID: 0}
+  <icon>k__BackingField: {fileID: 21300000, guid: c858cc2f9c219d84baa6f8f976d87ee1, type: 3}
   <baseCost>k__BackingField: 1
-  <damageTarget>k__BackingField: 0
-  <targetDamageMultiplier>k__BackingField: 1
+  <damageTarget>k__BackingField: 1
+  <targetDamageMultiplier>k__BackingField: 0.5
+  <targetHitCount>k__BackingField: 1
   <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
+  <userHitCount>k__BackingField: 1
   <healTarget>k__BackingField: 0
   <targetHealMultiplier>k__BackingField: 1
   <healUser>k__BackingField: 0
@@ -28,13 +30,13 @@ MonoBehaviour:
   <targetArmorMultiplier>k__BackingField: 1
   <armorUser>k__BackingField: 0
   <userArmorMultiplier>k__BackingField: 1
-  <targetStatus>k__BackingField: {fileID: 0}
-  <statusTarget>k__BackingField: 0
+  <targetStatus>k__BackingField: {fileID: 11400000, guid: ea6533bf21709964484f48338fae58f1, type: 2}
+  <statusTarget>k__BackingField: 1
   <targetStatusDuration>k__BackingField: 1
   <userStatus>k__BackingField: {fileID: 0}
   <statusUser>k__BackingField: 0
   <userStatusDuration>k__BackingField: 1
-  <wideRange>k__BackingField: 0
+  <wideRange>k__BackingField: 1
   <slotType>k__BackingField: 0
   <attackAnimation>k__BackingField: 2
   <soundEffect>k__BackingField: {fileID: 0}

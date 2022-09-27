@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
   m_Name: Ice Spear
   m_EditorClassIdentifier: 
-  <title>k__BackingField: title
   <descriptionA>k__BackingField: description.a
   <descriptionB>k__BackingField: description.b
-  <icon>k__BackingField: {fileID: 0}
+  <icon>k__BackingField: {fileID: 21300000, guid: 2e65fbe0c2b143441a77954b766f87a6, type: 3}
   <baseCost>k__BackingField: 1
-  <damageTarget>k__BackingField: 0
-  <targetDamageMultiplier>k__BackingField: 1
+  <damageTarget>k__BackingField: 1
+  <targetDamageMultiplier>k__BackingField: 0.75
+  <targetHitCount>k__BackingField: 1
   <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
+  <userHitCount>k__BackingField: 1
   <healTarget>k__BackingField: 0
   <targetHealMultiplier>k__BackingField: 1
   <healUser>k__BackingField: 0
@@ -29,13 +30,13 @@ MonoBehaviour:
   <targetArmorMultiplier>k__BackingField: 1
   <armorUser>k__BackingField: 0
   <userArmorMultiplier>k__BackingField: 1
-  <targetStatus>k__BackingField: {fileID: 0}
-  <statusTarget>k__BackingField: 0
-  <targetStatusDuration>k__BackingField: 1
+  <targetStatus>k__BackingField: {fileID: 11400000, guid: ea6533bf21709964484f48338fae58f1, type: 2}
+  <statusTarget>k__BackingField: 1
+  <targetStatusDuration>k__BackingField: 4
   <userStatus>k__BackingField: {fileID: 0}
   <statusUser>k__BackingField: 0
   <userStatusDuration>k__BackingField: 1
+  <wideRange>k__BackingField: 0
   <slotType>k__BackingField: 0
-  <element>k__BackingField: 0
   <attackAnimation>k__BackingField: 2
   <soundEffect>k__BackingField: {fileID: 0}

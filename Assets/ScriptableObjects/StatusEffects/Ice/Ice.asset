@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Ice
   m_EditorClassIdentifier: 
   <description>k__BackingField: unset.description
-  <icon>k__BackingField: {fileID: 0}
-  <maxStacks>k__BackingField: 0
+  <icon>k__BackingField: {fileID: 21300000, guid: 277ff41c830a7b74fab104d8353d871f, type: 3}
+  <maxStacks>k__BackingField: 10
   <isPersistent>k__BackingField: 0
-  <isStackable>k__BackingField: 0
-  <isDebuff>k__BackingField: 0
+  <isStackable>k__BackingField: 1
+  <isDebuff>k__BackingField: 1
   <isHidden>k__BackingField: 0
   <alwaysExpires>k__BackingField: 0
-  FreezeEffect: {fileID: 0}
-  IceCap: 10
+  FreezeEffect: {fileID: 11400000, guid: 50a9151e62cc884459d34548119eba94, type: 2}

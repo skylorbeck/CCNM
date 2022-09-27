@@ -19,8 +19,8 @@ MonoBehaviour:
   <cardType>k__BackingField: 0
   <itemType>k__BackingField: 0
   <possibleAbilities>k__BackingField:
-  - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
-  - {fileID: 11400000, guid: 9a2f9cdda8ad6024bb157cb21ec45bf8, type: 2}
-  - {fileID: 11400000, guid: 68f7128a70355c6439d968018035766f, type: 2}
-  - {fileID: 11400000, guid: b884f662893fc3b4da5b5cff792830dc, type: 2}
+  - {fileID: 11400000, guid: 5c0ea9740fa78eb469def8ce5165bf36, type: 2}
+  - {fileID: 11400000, guid: 18dfa91f7c24da74898357507842fd6a, type: 2}
+  - {fileID: 11400000, guid: fec37934f8c8e074aa992d1d3f9e3977, type: 2}
+  - {fileID: 11400000, guid: 4406309a1fd2f36488a29ad900569187, type: 2}
   <guaranteeStats>k__BackingField: 0600000007000000

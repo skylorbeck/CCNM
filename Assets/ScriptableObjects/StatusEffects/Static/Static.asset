@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdbf9f6aad3664940a82fe1c2d5e64c7, type: 3}
-  m_Name: Frozen
+  m_Script: {fileID: 11500000, guid: 0677c73ec2d754442ad2e3ed154909dd, type: 3}
+  m_Name: Static
   m_EditorClassIdentifier: 
   <description>k__BackingField: unset.description
   <icon>k__BackingField: {fileID: 21300000, guid: 277ff41c830a7b74fab104d8353d871f, type: 3}
-  <maxStacks>k__BackingField: 1
-  <isPersistent>k__BackingField: 0
+  <maxStacks>k__BackingField: 0
+  <isPersistent>k__BackingField: 1
   <isStackable>k__BackingField: 1
-  <isDebuff>k__BackingField: 1
+  <isDebuff>k__BackingField: 0
   <isHidden>k__BackingField: 0
   <alwaysExpires>k__BackingField: 0

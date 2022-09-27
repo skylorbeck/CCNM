@@ -15,7 +15,6 @@ public class CompoundingStatusEffectAbility : AbilityObject
         {
             target.statusDisplayer.AddStatus(targetStatus, target, user, duration);
         }
-
         base.Execute(user, target);
     }
 

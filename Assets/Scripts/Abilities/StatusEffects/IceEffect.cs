@@ -11,7 +11,7 @@ public class IceEffect : StatusEffect
     {
         if (target.statusDisplayer.HasStatus(GetType()) && target.statusDisplayer.GetStatusDuration(GetType())>=maxStacks)
         {
-            target.statusDisplayer.RemoveStatus(GetType());
+            target.statusDisplayer.RemoveStacks(GetType(),maxStacks);
             target.statusDisplayer.AddStatus(FreezeEffect,target,attacker,1);
         }
         else
