@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3b290c7df044b890b15a199d96beb4, type: 3}
+  m_Name: Buried
+  m_EditorClassIdentifier: 
+  <description>k__BackingField: unset.description
+  <icon>k__BackingField: {fileID: 0}
+  <maxStacks>k__BackingField: 0
+  <isPersistent>k__BackingField: 0
+  <isStackable>k__BackingField: 0
+  <isDebuff>k__BackingField: 0
+  <isHidden>k__BackingField: 0
+  <alwaysExpires>k__BackingField: 0

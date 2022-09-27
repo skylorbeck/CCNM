@@ -41,6 +41,7 @@ public class AbilityObject : ScriptableObject
 
     [field: Header("Status Effects")]
     [field: SerializeField] public StatusEffect targetStatus { get; private set; }
+    [field: SerializeField] public StatusEffect targetStatus2 { get; private set; }
 
     [field: SerializeField] public bool statusTarget { get; private set; } = false;
     [field: SerializeField] public int targetStatusDuration { get; private set; } = 1;
@@ -119,6 +120,10 @@ public class AbilityObject : ScriptableObject
         if (statusTarget)
         {
             target.AddStatusEffect(targetStatus, user, targetStatusDuration);
+            if (targetStatus2 != null)
+            {
+                target.AddStatusEffect(targetStatus2, user, targetStatusDuration);
+            }
         }
 
         
