@@ -48,7 +48,7 @@ public class StatusEffect : ScriptableObject
     }
     
     //called when status effect is applied to a shell
-    public virtual void OnApply(Shell target)
+    public virtual void OnApply(Shell target, Shell attacker,int duration,int power)
     {
         if (isHidden)
         {

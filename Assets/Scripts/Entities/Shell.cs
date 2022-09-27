@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -110,16 +111,19 @@ public class Shell : MonoBehaviour
             return;
         }
         int damage = statusDisplayer.OnDamage(source,this,baseDamage);
-        if (crit)
+        if (damage > 0)
         {
-            TextPopController.Instance.PopCritical(damage,transform.position);
+            if (crit)
+            {
+                TextPopController.Instance.PopCritical(damage, transform.position);
+            }
+            else
+            {
+                TextPopController.Instance.PopDamage(damage, transform.position);
+            }
+            Damaged.Invoke(source, damage);
+            shieldDelayCurrent = 1;
         }
-        else
-        {
-            TextPopController.Instance.PopDamage(damage,transform.position);
-        }
-        Damaged.Invoke(source,damage);
-        shieldDelayCurrent = 1;
 
         if (shield > 0)
         {

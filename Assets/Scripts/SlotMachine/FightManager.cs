@@ -337,6 +337,11 @@ public class FightManager : MonoBehaviour
             if (!enemy.isDead && !enemy.enemyBrain.isBlank)
             {
                // tasks.Add(enemyWheels[i].Spin());
+               if (enemy.statusDisplayer.HasStatus(typeof(FrozenEffect)))
+               {
+                   TextPopController.Instance.PopNegative("Frozen", enemy.transform.position,true);
+                   continue;
+               }
                enemyWheels[i].Spin();
             }
         }
@@ -366,10 +371,13 @@ public class FightManager : MonoBehaviour
             EnemyShell enemy = enemies[i];
             if (!enemy.isDead)
             {
-                await Task.Delay(250);
-                NotificationPopController.Instance.PopNotification(enemyWheels[i].GetWinner().ability.name,enemy.transform.position+new Vector3(0f,-1.5f,0f));
-                enemy.Attack(player, enemyWheels[i].GetWinner());
-                await Task.Delay(250);
+                if (!enemy.statusDisplayer.HasStatus(typeof(FrozenEffect)))
+                {
+                    await Task.Delay(250);
+                    NotificationPopController.Instance.PopNotification(enemyWheels[i].GetWinner().ability.name,enemy.transform.position+new Vector3(0f,-1.5f,0f));
+                    enemy.Attack(player, enemyWheels[i].GetWinner());
+                    await Task.Delay(250);
+                }
                 await enemy.TickStatusEffects();
                 await Task.Delay(500);
                 if (!enemy.gameObject.IsDestroyed())
@@ -654,7 +662,21 @@ public class FightManager : MonoBehaviour
 
     public void PlayerAttack()
     {
-        player.Attack(targetEnemy,targetSymbol);
+        if (targetSymbol.ability.wideRange)
+        {
+            foreach (EnemyShell enemy in enemies)
+            {
+                if (enemy.isDead)
+                {
+                    continue;
+                }
+                player.Attack(enemy,targetSymbol);
+            }
+        }
+        else
+        {
+            player.Attack(targetEnemy,targetSymbol);
+        }
         CheckForBothSelected();
         ClearSelected();
         ClearPreviewText();

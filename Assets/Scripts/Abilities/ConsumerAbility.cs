@@ -4,9 +4,17 @@
 public class ConsumerAbility : AbilityObject
 {
     [field: Header("Consumer")]
+    [field: SerializeField] public float cTargetDamageMultiplier { get; private set; } = 1;
+
+
+    [field: SerializeField] public float cMinTargetDamageMultiplier { get; private set; } = 1;
+
     [field: SerializeField] public bool cDamageTarget { get; private set; } = false;
+    [field: SerializeField] public bool cMultiplyByStacks { get; private set; } = false;
 
     [field: SerializeField] public bool cDamageUser { get; private set; } = false;
+    [field: SerializeField] public float cUserDamageMultiplier { get; private set; } = 1;
+    [field: SerializeField] public float cMinUserDamageMultiplier { get; private set; } = 1;
     [field: SerializeField] public bool cHealTarget { get; private set; } = false;
     [field: SerializeField] public bool cHealUser { get; private set; } = false;
 
@@ -20,8 +28,12 @@ public class ConsumerAbility : AbilityObject
             int stacks = target.statusDisplayer.GetStatusDuration(t);
             if (stacks > 0)
             {
-                target.Damage(user,(int)(user.brain.GetDamage()*0.1f)+ (int)(user.brain.GetStatusDamage() * stacks*targetDamageMultiplier),false);
+                target.Damage(user,(int)(user.brain.GetStatusDamage() * (cMultiplyByStacks?stacks:1)*cTargetDamageMultiplier),false);
                 target.statusDisplayer.RemoveStatus(t);
+            }
+            else
+            {
+                target.Damage(user,(int)(user.brain.GetDamage()*cMinTargetDamageMultiplier),false);
             }
         }
 
@@ -30,9 +42,11 @@ public class ConsumerAbility : AbilityObject
             int stacks = user.statusDisplayer.GetStatusDuration(t);
             if (stacks > 0)
             {
-                user.Damage(user, (int)(user.brain.GetDamage()*0.1f)+ (int)(user.brain.GetStatusDamage() * stacks*userDamageMultiplier), false);
+                user.Damage(user, (int)(user.brain.GetStatusDamage() * (cMultiplyByStacks?stacks:1)*cUserDamageMultiplier), false);
                 user.statusDisplayer.RemoveStatus(t);
-
+            } else
+            {
+                user.Damage(user,(int)(user.brain.GetDamage()*cMinUserDamageMultiplier),false);
             }
         }
 

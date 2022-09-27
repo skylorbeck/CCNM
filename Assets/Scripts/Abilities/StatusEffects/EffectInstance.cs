@@ -88,7 +88,7 @@ public class EffectInstance : MonoBehaviour
         else
             this.duration = Mathf.Min(this.duration + duration, statusEffect.maxStacks);
 
-        statusEffect.OnApply(target);
+        statusEffect.OnApply(target,source,duration,power);
         UpdateDurationText();
     }
 

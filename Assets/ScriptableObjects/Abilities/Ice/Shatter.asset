@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a28799333c4c33930783a8c679820a, type: 3}
+  m_Name: Shatter
+  m_EditorClassIdentifier: 
+  <descriptionA>k__BackingField: description.a
+  <descriptionB>k__BackingField: description.b
+  <icon>k__BackingField: {fileID: 0}
+  <baseCost>k__BackingField: 1
+  <damageTarget>k__BackingField: 0
+  <targetDamageMultiplier>k__BackingField: 1
+  <damageUser>k__BackingField: 0
+  <userDamageMultiplier>k__BackingField: 1
+  <healTarget>k__BackingField: 0
+  <targetHealMultiplier>k__BackingField: 1
+  <healUser>k__BackingField: 0
+  <userHealMultiplier>k__BackingField: 1
+  <armorTarget>k__BackingField: 0
+  <targetArmorMultiplier>k__BackingField: 1
+  <armorUser>k__BackingField: 0
+  <userArmorMultiplier>k__BackingField: 1
+  <targetStatus>k__BackingField: {fileID: 0}
+  <statusTarget>k__BackingField: 0
+  <targetStatusDuration>k__BackingField: 1
+  <userStatus>k__BackingField: {fileID: 0}
+  <statusUser>k__BackingField: 0
+  <userStatusDuration>k__BackingField: 1
+  <slotType>k__BackingField: 0
+  <attackAnimation>k__BackingField: 2
+  <soundEffect>k__BackingField: {fileID: 0}
+  <cDamageTarget>k__BackingField: 0
+  <cDamageUser>k__BackingField: 0
+  <cHealTarget>k__BackingField: 0
+  <cHealUser>k__BackingField: 0
+  <type>k__BackingField: {fileID: 0}

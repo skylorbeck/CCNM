@@ -48,7 +48,8 @@ public class AbilityObject : ScriptableObject
 
     [field: Header("Other")]
     [field: SerializeField]
-    public EquipmentDataContainer.SlotType slotType { get; private set; } = EquipmentDataContainer.SlotType.Offense;
+    public bool wideRange { get; private set; } = false;
+    [field: SerializeField] public EquipmentDataContainer.SlotType slotType { get; private set; } = EquipmentDataContainer.SlotType.Offense;
 
     [field: SerializeField] public AttackAnimator.AttackType attackAnimation { get; private set; } = AttackAnimator.AttackType.None;
 

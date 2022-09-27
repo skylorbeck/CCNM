@@ -200,6 +200,34 @@ public class StatusDisplayer : MonoBehaviour
         return false;
     }
     
+    public int GetStatusCount(Type statusType)
+    {
+        int count = 0;
+        foreach (EffectInstance instance in statusList)
+        {
+            if (instance.statusEffect.GetType() == statusType)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+    
+    public int GetStatusDuration(StatusEffect statusEffect)
+    {
+        int count = 0;
+        foreach (EffectInstance instance in statusList)
+        {
+            if (instance.statusEffect == statusEffect)
+            {
+                count+=instance.duration;
+            }
+        }
+
+        return count;
+    }
+    
     public bool HasStatus(StatusEffect statusEffect)
     {
         foreach (EffectInstance instance in statusList)
