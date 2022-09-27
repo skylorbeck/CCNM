@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cbfb4afc0bea34596d3f2c05d16ce4, type: 3}
+  m_Name: Simple Sword
+  m_EditorClassIdentifier: 
+  <icon>k__BackingField: {fileID: 21300000, guid: 85f383ee023a3a847a5524d5e0b3e910, type: 3}
+  <cardTitle>k__BackingField: Simple Sword
+  <cardDescription>k__BackingField: ClubCard Description
+  <cardCost>k__BackingField: 10
+  <cardType>k__BackingField: 0
+  <itemType>k__BackingField: 1
+  <possibleAbilities>k__BackingField:
+  - {fileID: 11400000, guid: 10f2f40e0b5f0a542ae3b9c3383ea8fe, type: 2}
+  - {fileID: 11400000, guid: 68f7128a70355c6439d968018035766f, type: 2}
+  - {fileID: 11400000, guid: 9a2f9cdda8ad6024bb157cb21ec45bf8, type: 2}
+  - {fileID: 11400000, guid: 291f1f1fae5e58d4db21103fb7a10039, type: 2}
+  <guaranteeStats>k__BackingField: 01000000

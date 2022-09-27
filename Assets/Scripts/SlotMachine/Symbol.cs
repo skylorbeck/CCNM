@@ -54,7 +54,7 @@ public class Symbol : MonoBehaviour
     {
         ability = newAbility;
         spriteRenderer.sprite = ability.icon;
-        if (ability.statusSelf)
+        if (ability.statusUser)
         {
             userStatusSprite.sprite = ability.userStatus.icon;
             userStatusShadow.sprite = ability.userStatus.icon;

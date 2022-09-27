@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cbfb4afc0bea34596d3f2c05d16ce4, type: 3}
   m_Name: DefaultAccessory
   m_EditorClassIdentifier: 
-  <icon>k__BackingField: {fileID: 21300000, guid: d224fb9562b555e4d84c98a3aa9dcc20, type: 3}
-  <cardTitle>k__BackingField: Sunglasses
-  <cardDescription>k__BackingField: Doesn't keep you cool, but does make you look
-    cool.
+  <icon>k__BackingField: {fileID: 21300000, guid: 7ac0c3413c65f3048b02333d446c1092, type: 3}
+  <cardTitle>k__BackingField: Simple ring
+  <cardDescription>k__BackingField: A Cold Metal Loop.
   <cardCost>k__BackingField: 0
   <cardType>k__BackingField: 0
   <itemType>k__BackingField: 2

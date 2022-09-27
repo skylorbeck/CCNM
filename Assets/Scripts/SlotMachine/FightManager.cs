@@ -104,7 +104,6 @@ public class FightManager : MonoBehaviour
         GameManager.Instance.eventSystem.SetSelectedGameObject(startingSelection);
 
         GameManager.Instance.inputReader.Back+=Back;
-
     }
 
     public void Back()

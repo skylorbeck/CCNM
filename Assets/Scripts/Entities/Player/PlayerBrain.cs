@@ -693,7 +693,7 @@ public class PlayerBrain : Brain
         defaultEquipment[1].SetGemSlots(1);
         defaultEquipment[1].SetLockedSlots(new bool[] { false, true, true });
         defaultEquipment[1].SetAbilities(new AbilityGem[3]);
-        defaultEquipment[1].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Slash"),0),0);
+        defaultEquipment[1].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Immolate"),0),0);
         defaultEquipment[1].SetIndestructible(true);
         defaultEquipment[1].SetStatValue(new int[] { 2 });
         defaultEquipment[1].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Str });
@@ -702,7 +702,7 @@ public class PlayerBrain : Brain
         defaultEquipment[2].SetGemSlots(1);
         defaultEquipment[2].SetLockedSlots(new bool[] { false, true, true });
         defaultEquipment[2].SetAbilities(new AbilityGem[3]);
-        defaultEquipment[2].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Fireball"),0),0);
+        defaultEquipment[2].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Combust"),0),0);
         defaultEquipment[2].SetIndestructible(true);
         defaultEquipment[2].SetStatValue(new int[] { 2 });
         defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vit });

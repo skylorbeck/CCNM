@@ -13,6 +13,7 @@ public class StatusDisplayer : MonoBehaviour
     private bool isDisplaying = true;
     public List<EffectInstance> statusList { get; private set; } = new List<EffectInstance>();
     private CancellationTokenSource cts = new CancellationTokenSource();
+    
 
     public int OnAttack(Shell target, Shell attacker, int baseDamage)
     {
@@ -69,19 +70,20 @@ public class StatusDisplayer : MonoBehaviour
         return shield;
     }
 
-    public void AddStatus(StatusEffect statusEffect, Shell target)
+    public void AddStatus(StatusEffect statusEffect, Shell target, Shell source,int duration)
     {
         foreach (EffectInstance instance in statusList)
         {
             if (instance.statusEffect == statusEffect && statusEffect.isStackable)
             {
-                instance.AddDuration(statusEffect.duration);
+                instance.AddDuration(duration);
+                instance.MoreOrEqualPower(source.brain.GetStatusDamage());
                 return;
             }
         }
 
         EffectInstance status = Instantiate(statusPrefab, transform);
-        status.SetStatusEffect(statusEffect, target);
+        status.SetStatusEffect(statusEffect, target,source,duration,source.brain.GetStatusDamage());
         if (!isDisplaying || statusEffect.isHidden)
         {
             status.DisableVisuals();

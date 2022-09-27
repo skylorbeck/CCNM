@@ -10,7 +10,6 @@ public class StatusEffect : ScriptableObject
     [field: SerializeField] public string title { get; private set; } = "unset";
     [field: SerializeField] public string description { get; private set; } = "unset.description";
     [field: SerializeField] public Sprite icon { get; private set; }
-    [field: SerializeField] public int duration { get; private set; } = 1;
     [field: SerializeField] public int maxStacks { get; private set; } = 0;
     [field: SerializeField] public bool isPersistent { get; private set; } = false;
     [field: SerializeField] public bool isStackable { get; private set; } = false;
@@ -82,7 +81,7 @@ public class StatusEffect : ScriptableObject
     }
     
     //called at the end of the users turn
-    public virtual void Tick(Shell target)
+    public virtual void Tick(Shell target, Shell source, int duration, int power)
     {
         //todo animation call
         //do something to the shell
@@ -96,6 +95,4 @@ public class StatusEffect : ScriptableObject
         Earth,
         Air,
     }
-
-    
 }

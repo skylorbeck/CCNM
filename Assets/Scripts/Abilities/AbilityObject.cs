@@ -42,8 +42,10 @@ public class AbilityObject : ScriptableObject
     [field: SerializeField] public StatusEffect targetStatus { get; private set; }
 
     [field: SerializeField] public bool statusTarget { get; private set; } = false;
+    [field: SerializeField] public int targetStatusDuration { get; private set; } = 1;
     [field: SerializeField] public StatusEffect userStatus { get; private set; }
-    [field: SerializeField] public bool statusSelf { get; private set; } = false;
+    [field: SerializeField] public bool statusUser { get; private set; } = false;
+    [field: SerializeField] public int userStatusDuration { get; private set; } = 1;
 
     [field: Header("Other")]
     [field: SerializeField]
@@ -70,11 +72,11 @@ public class AbilityObject : ScriptableObject
         }*/
         if (statusTarget)
         {
-            target.AddStatusEffect(targetStatus);
+            target.AddStatusEffect(targetStatus,user, targetStatusDuration);
         }
-        if (statusSelf)
+        if (statusUser)
         {
-            user.AddStatusEffect(userStatus);
+            user.AddStatusEffect(userStatus,user, userStatusDuration);
         }
         if (healTarget)
         {
@@ -139,7 +141,7 @@ public class AbilityObject : ScriptableObject
         return description;
     }
     public string GetTranslatedDescriptionB(PlayerShell playerShell)
-    {
+    {//todo clean these up
         string description = descriptionB;
             int baseDamage = playerShell.brain.GetDamage();
             description = description.Replace("{damage}", (baseDamage * userDamageMultiplier).ToString());
@@ -157,7 +159,8 @@ public class AbilityObject : ScriptableObject
             }
             description = description.Replace("{statusdamage}", ((int)(playerShell.brain.GetStatusDamage()*userDamageMultiplier)).ToString());
             description = description.Replace("{statusheal}", ((int)(playerShell.brain.GetHeal()*userHealMultiplier)).ToString());
-
+            description = description.Replace("{statusduration}", targetStatusDuration.ToString());
+            
         return description;
     }
     

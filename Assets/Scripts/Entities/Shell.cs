@@ -168,9 +168,9 @@ public class Shell : MonoBehaviour
 
     }
     
-    public void AddStatusEffect(StatusEffect statusEffect)
+    public void AddStatusEffect(StatusEffect statusEffect,Shell source,int duration)
     {
-        statusDisplayer.AddStatus(statusEffect,this);
+        statusDisplayer.AddStatus(statusEffect,this,source, duration);
     }
     
     public void RemoveStatusEffect(StatusEffect statusEffect)

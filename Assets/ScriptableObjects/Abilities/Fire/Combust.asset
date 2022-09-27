@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a28799333c4c33930783a8c679820a, type: 3}
   m_Name: Combust
   m_EditorClassIdentifier: 
-  <title>k__BackingField: Immolate
+  <title>k__BackingField: Combust
   <descriptionA>k__BackingField: '{statusdamage} x Burn Stacks'
   <descriptionB>k__BackingField: Consumes all Burn Stacks
   <icon>k__BackingField: {fileID: 21300000, guid: 55a8307c6a898ee4a95eca1ba22d0d7c, type: 3}
@@ -31,8 +31,10 @@ MonoBehaviour:
   <userArmorMultiplier>k__BackingField: 1
   <targetStatus>k__BackingField: {fileID: 0}
   <statusTarget>k__BackingField: 0
+  <targetStatusDuration>k__BackingField: 1
   <userStatus>k__BackingField: {fileID: 0}
-  <statusSelf>k__BackingField: 0
+  <statusUser>k__BackingField: 0
+  <userStatusDuration>k__BackingField: 1
   <slotType>k__BackingField: 0
   <element>k__BackingField: 1
   <attackAnimation>k__BackingField: 0

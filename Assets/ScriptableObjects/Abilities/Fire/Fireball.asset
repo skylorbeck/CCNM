@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <title>k__BackingField: Fireball
   <descriptionA>k__BackingField: Hit for {damage}
-  <descriptionB>k__BackingField: '{status} for {statusdamage}/turn'
-  <icon>k__BackingField: {fileID: 21300000, guid: b664e3a40e280164ca1b86067e604618, type: 3}
+  <descriptionB>k__BackingField: '{statusdamage} damage {status} for {statusduration}'
+  <icon>k__BackingField: {fileID: 21300000, guid: b2644ba4437d90e4cb478f8d2cf5cf6d, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
-  <targetDamageMultiplier>k__BackingField: 0.5
+  <targetDamageMultiplier>k__BackingField: 1
   <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
   <healTarget>k__BackingField: 0
@@ -31,8 +31,10 @@ MonoBehaviour:
   <userArmorMultiplier>k__BackingField: 1
   <targetStatus>k__BackingField: {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}
   <statusTarget>k__BackingField: 1
+  <targetStatusDuration>k__BackingField: 1
   <userStatus>k__BackingField: {fileID: 0}
-  <statusSelf>k__BackingField: 0
+  <statusUser>k__BackingField: 0
+  <userStatusDuration>k__BackingField: 1
   <slotType>k__BackingField: 0
   <element>k__BackingField: 1
   <attackAnimation>k__BackingField: 1

@@ -6,8 +6,10 @@ public class EffectInstance : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Shell target;
+    [SerializeField] private Shell source;
     [field: SerializeField] public StatusEffect statusEffect { get; private set; }
     [field: SerializeField] public int duration { get; private set; }
+    [field: SerializeField] public int power { get; private set; }
     public bool isActive { get; private set; } = true;
     private TextMeshPro durationText;
 
@@ -47,7 +49,7 @@ public class EffectInstance : MonoBehaviour
 
         UpdateDurationText();
 
-         statusEffect.Tick(target);
+         statusEffect.Tick(target,source,duration,power);
 
         if (duration <= 0 || statusEffect.alwaysExpires)
         {
@@ -66,12 +68,14 @@ public class EffectInstance : MonoBehaviour
         isActive = false;
     }
 
-    public void SetStatusEffect(StatusEffect statusEffect, Shell shell)
+    public void SetStatusEffect(StatusEffect statusEffect, Shell target, Shell source,int duration,int power)
     {
-        target = shell;
+        this.target = target;
+        this.source = source;
         this.statusEffect = statusEffect;
+        this.power = power;
         durationText = GetComponentInChildren<TextMeshPro>();
-        AddDuration(statusEffect.duration);
+        AddDuration(duration);
         UpdateDurationText();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = statusEffect.icon;
@@ -86,6 +90,14 @@ public class EffectInstance : MonoBehaviour
 
         statusEffect.OnApply(target);
         UpdateDurationText();
+    }
+
+    public void MoreOrEqualPower(int power)
+    {
+        if (power > this.power)
+        {
+            this.power = power;
+        }
     }
 
     public void UpdateDurationText()

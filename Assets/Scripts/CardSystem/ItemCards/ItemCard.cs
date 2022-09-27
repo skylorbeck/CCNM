@@ -19,8 +19,8 @@ public class ItemCard : CardObject
    
     public enum ItemType
     {
-        Wallet, //defensive
-        PlayerCard, //offensive
+        Armor, //defensive
+        Weapon, //offensive
         Accessory,
     }
 }

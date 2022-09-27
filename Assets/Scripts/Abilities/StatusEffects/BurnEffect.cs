@@ -6,14 +6,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BurnEffect", menuName = "Combat/StatusEffect/BurnEffect")]
 public class BurnEffect : StatusEffect
 {
-    [field: SerializeField] public int damage { get; private set; } = 1;
+    [field: SerializeField] public int damageRatio { get; private set; } = 1;
     
 
-    public override void Tick(Shell target)
+    public override void Tick(Shell target, Shell source, int duration, int power)
     {
-        //todo replace GetAttackMod with scaling damage from enemy
-        target.Damage(null,(int)(damage* (target.isPlayer?GameManager.Instance.runSettings.GetAttackMod():GameManager.Instance.runPlayer.GetStatusDamage())),element);
+        target.Damage(source,damageRatio* (power),element);
         TextPopController.Instance.PopNegative("Burned", target.transform.position,target.isPlayer);
-        base.Tick(target);
+        base.Tick(target, source, duration, power);
     }
 }
