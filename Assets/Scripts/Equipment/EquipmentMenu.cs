@@ -15,6 +15,7 @@ public class EquipmentMenu : MonoBehaviour
     [SerializeField] private MicroCard cardMicroPrefab;
     [SerializeField] private EquipmentCardShell cardPrefab;
     [SerializeField] private ItemStatCompare cardCompare;
+    [SerializeField] private PlayerEquipmentPreviewer playerCompare;
     
     [SerializeField] private List<List<MicroCard>> menuEntries = new List<List<MicroCard>>();
     [SerializeField] private List<EquipmentCardShell> previews  = new List<EquipmentCardShell>();
@@ -51,6 +52,7 @@ public class EquipmentMenu : MonoBehaviour
             GameManager.Instance.metaPlayer.EquippedCardExists(0)?
                 GameManager.Instance.metaPlayer.GetEquippedCard(0):GameManager.Instance.metaPlayer.defaultEquipment[0], 
             menuEntries[0][selected].EquipmentData);
+        playerCompare.InsertCard(menuEntries[0][selected].EquipmentData,0);
     }
 
     private void Init()
@@ -195,7 +197,7 @@ public class EquipmentMenu : MonoBehaviour
             }
         }
         cardCompare.InsertItemStats(GameManager.Instance.metaPlayer.EquippedCardExists(selectedMenu)?GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu):GameManager.Instance.metaPlayer.defaultEquipment[selectedMenu], menuEntries[selectedMenu][selected].EquipmentData);
-
+        playerCompare.UpdatePlayerStats();
         SoundManager.Instance.PlayUiAccept();
     }
     
@@ -227,7 +229,7 @@ public class EquipmentMenu : MonoBehaviour
                 Vector3 entryPosition = entryTransform.localPosition;
                 Vector3 entryScale = entryTransform.localScale;
                
-                float xTarget =(i * xDistance) + xOffset;
+                float xTarget =(i * xDistance) + xOffset-0.75f;
                 float yTarget =(index * yDistance) + yOffset;
                 if (i == selectedMenu)
                 {
@@ -333,6 +335,7 @@ public class EquipmentMenu : MonoBehaviour
         if (newSelected != selected)
         {
             cardCompare.InsertItemStats(GameManager.Instance.metaPlayer.EquippedCardExists(selectedMenu)?GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu):GameManager.Instance.metaPlayer.defaultEquipment[selectedMenu], menuEntries[selectedMenu][newSelected].EquipmentData);
+            playerCompare.InsertCard(menuEntries[selectedMenu][newSelected].EquipmentData,selectedMenu);
             selected = newSelected;
             SoundManager.Instance.PlayUiClick();
         }
@@ -352,6 +355,7 @@ public class EquipmentMenu : MonoBehaviour
                     GameManager.Instance.metaPlayer.EquippedCardExists(newSelected)?
                         GameManager.Instance.metaPlayer.GetEquippedCard(newSelected): GameManager.Instance.metaPlayer.defaultEquipment[newSelected],
                     menuEntries[newSelected][index].EquipmentData);
+                playerCompare.InsertCard(menuEntries[newSelected][index].EquipmentData, newSelected);
             }
             SoundManager.Instance.PlayUiClick();
         }

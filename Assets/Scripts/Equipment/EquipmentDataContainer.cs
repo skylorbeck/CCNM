@@ -384,6 +384,19 @@ public class EquipmentDataContainer
         statValue = savableDataContainer.statValue;
         indestructible = savableDataContainer.indestructible;
     }
+
+    public int GetStatValue(Stats stat)
+    {
+        for (int i = 0; i < stats.Length; i++)
+        {
+            if (stats[i] == stat)
+            {
+                return statValue[i];
+            }
+        }
+
+        return 0;
+    }
 }
 
 [Serializable]

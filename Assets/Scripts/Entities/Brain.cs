@@ -131,7 +131,7 @@ public class Brain : ScriptableObject
     }
     #endregion
 
-    #region unModifiedStatGetters
+    #region unModifiedComputedStatGetters
     public virtual int GetUnmodifiedDamage(int temp =0)
     {
         return (GetStrength()+temp)*5;

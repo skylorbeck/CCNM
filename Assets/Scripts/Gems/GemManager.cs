@@ -41,6 +41,8 @@ public class GemManager : MonoBehaviour
         sticky = PlayerPrefs.GetInt("StickyMenu", 0) == 1;
         await Task.Delay(10);
         GameManager.Instance.inputReader.Back += Back;
+        GameManager.Instance.uiStateObject.ShowTopBar();
+        GameManager.Instance.uiStateObject.Ping("You have "+GameManager.Instance.metaPlayer.credits + " Credits.");
         Init();
     }
 
@@ -83,6 +85,7 @@ public class GemManager : MonoBehaviour
             selectedGem = -1;
             selector.transform.position = new Vector3(-1000, -1000, -1000);
             cardCompare.Clear();
+            GameManager.Instance.uiStateObject.Ping("You have "+GameManager.Instance.metaPlayer.credits + " Credits.");
             return;
         }
 
@@ -90,7 +93,7 @@ public class GemManager : MonoBehaviour
         selector.transform.position = new Vector3(1.4f, 1.425f - (slot * 1.325f), 0);
         cardCompare.InsertAbilityGem(GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu)
             .GetAbility(selectedGem));
-
+        GameManager.Instance.uiStateObject.Ping("You have "+GameManager.Instance.metaPlayer.credits + " Credits. "+previews[selectedMenu].EquipmentData.level*(int)previews[selectedMenu].EquipmentData.quality+" Credits to Unsocket.");
     }
 
     public void AddEntry(AbilityGem entry, int index)
@@ -204,9 +207,9 @@ public class GemManager : MonoBehaviour
             TextPopController.Instance.PopNegative("The Last Gem", new Vector3(0, -0.5f, 0), false);
             return;
         }
-
-
-        if (GameManager.Instance.metaPlayer.cardSouls[(int)card.quality] >= card.level)
+        
+        //soul requirement to remove gems
+        /*if (GameManager.Instance.metaPlayer.cardSouls[(int)card.quality] >= card.level)
         {
             bool success = card.RemoveAbility(selectedGem);
             if (success)
@@ -234,8 +237,37 @@ public class GemManager : MonoBehaviour
         {
             SoundManager.Instance.PlayUiDeny();
             TextPopController.Instance.PopNegative("Not Enough " + card.quality + " Souls", Vector3.zero, false);
-        }
+        }*/
+        //credit requirement to remove gems
+        if (GameManager.Instance.metaPlayer.credits >= card.level*(int)card.quality)
+        {
+            bool success = card.RemoveAbility(selectedGem);
+            if (success)
+            {
+                previews[selectedMenu].InsertItem(GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu));
+                SoundManager.Instance.PlayUiAccept();
+                GameManager.Instance.metaPlayer.trackableStats.gemsUnsockted++;
+                GameManager.Instance.metaPlayer.AddAbilityGem(gem);
 
+                for (var j = 0; j < menuEntries.Count; j++)
+                {
+                    if (menuEntries[j].ability.abilityIndex == gem.abilityIndex &&
+                        menuEntries[j].ability.gemLevel == gem.gemLevel)
+                    {
+                        menuEntries[j].InsertAbility(GameManager.Instance.metaPlayer.ownedGems[j]);
+                        break;
+                    }
+                }
+
+                GameManager.Instance.metaPlayer.SpendCredits(card.level*(int)card.quality);
+                GameManager.Instance.saveManager.SaveMeta();
+            }
+        }
+        else
+        {
+            SoundManager.Instance.PlayUiDeny();
+            TextPopController.Instance.PopNegative("Not Enough Credits", Vector3.zero, false);
+        }
 
     }
 
@@ -390,6 +422,7 @@ public class GemManager : MonoBehaviour
         {
             selectedMenu = newSelected;
             SelectGemSlot(-1);
+            GameManager.Instance.uiStateObject.Ping("You have "+GameManager.Instance.metaPlayer.credits + " Credits.");
             SoundManager.Instance.PlayUiClick();
         }
     }

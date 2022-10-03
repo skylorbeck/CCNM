@@ -65,7 +65,7 @@ public class ItemStatCompare : MonoBehaviour
             if (autosize)
             {
                 ItemName.ForceMeshUpdate();
-                background.rectTransform.sizeDelta = new Vector2(background.rectTransform.sizeDelta.x, ItemName.fontSize+(totalStats * ItemStats[0].fontSize*0.6f ));
+                background.rectTransform.sizeDelta = new Vector2(background.rectTransform.sizeDelta.x, 16+(totalStats * 12*0.6f ));
             }
         });
     }

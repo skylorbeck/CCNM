@@ -166,6 +166,38 @@ public class PlayerBrain : Brain
 
     #endregion
 
+    public int GetUnmodifiedStatValueWithCard(EquipmentDataContainer.Stats desiredStat)
+    {
+        switch (desiredStat)
+        {
+            default:
+            case EquipmentDataContainer.Stats.None:
+                return 0;
+            case EquipmentDataContainer.Stats.Str:
+                return GetStrength()+cardStrength;
+            case EquipmentDataContainer.Stats.Spd:
+                return GetSpeed()+cardSpeed;
+            case EquipmentDataContainer.Stats.Vit:
+                return GetVitality()+cardVitality;
+            case EquipmentDataContainer.Stats.Dex:
+                return GetDexterity()+cardDexterity;
+            case EquipmentDataContainer.Stats.Skl:
+                return GetSkill()+cardSkill;
+            case EquipmentDataContainer.Stats.Lck:
+                return GetLuck()+cardLuck;
+            case EquipmentDataContainer.Stats.Cap:
+                return GetCap()+cardGrit;
+            case EquipmentDataContainer.Stats.Chg:
+                return GetCharge()+cardResolve;
+            case EquipmentDataContainer.Stats.Int:
+                return GetIntelligence()+cardIntelligence;
+            case EquipmentDataContainer.Stats.Cha:
+                return GetCharisma()+cardCharisma;
+            case EquipmentDataContainer.Stats.Wis:
+                return GetWisdom()+cardSagacity;
+        }
+    }
+    
     #region StatGettersNoCard
 
     public int GetUnmodifiedDamageNoCard(int temp =0)
