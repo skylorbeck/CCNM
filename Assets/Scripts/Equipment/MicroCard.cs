@@ -42,7 +42,15 @@ public class MicroCard : MonoBehaviour
             Color color = Color.clear;
             if (ability != null)
             {
-                switch (ability.slotType)
+                if (item.lockedSlots[i])
+                {
+                    color = Color.white;
+                }
+                else
+                {
+                    color = Color.gray;
+                }
+                /*switch (ability.slotType)
                     {
                         case EquipmentDataContainer.SlotType.Offense:
                             color = Color.red;
@@ -54,26 +62,19 @@ public class MicroCard : MonoBehaviour
                             color = Color.yellow;
                             break;
                         default:
-                            if (item.lockedSlots[i])
-                            {
-                                color = Color.gray;
-                            }
-                            else
-                            {
-                                color = Color.white;
-                            }
+                           
                             break;
-                    }
+                    }*/
             }
             else
             {
                 if (item.lockedSlots[i])
                 {
-                    color = Color.gray;
+                    color = Color.white;
                 }
                 else
                 {
-                    color = Color.white;
+                    color = Color.gray;
                 }
             }
             

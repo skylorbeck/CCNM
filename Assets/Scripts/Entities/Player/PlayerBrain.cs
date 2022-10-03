@@ -542,21 +542,17 @@ public class PlayerBrain : Brain
 
     public void RemoveGem(int gemIndex, int amt)
     {
-        List<AbilityGem> newList = new List<AbilityGem>();
         for (var i = 0; i < ownedGems.Length; i++)
         {
-            if (i != gemIndex)
+            if (i == gemIndex)
             {
-                newList.Add(ownedGems[i]);
-                continue;
-            }
-            ownedGems[i].AddAmountOwned(-amt);
-            if (ownedGems[i].amountOwned > 0)
-            {
-                newList.Add(ownedGems[i]);
+                ownedGems[i].AddAmountOwned(-amt);
+                if (ownedGems[i].amountOwned < 0)
+                {
+                    ownedGems[i].SetAmountOwned(0);
+                }
             }
         }
-        ownedGems = newList.ToArray();
         
     }
 
@@ -588,7 +584,12 @@ public class PlayerBrain : Brain
         SetCurrentHealth(1);
         CalculateCardStats();
         trackableStats = new TrackableStats();
-        ownedGems = new AbilityGem[0];
+        List<AbilityGem> abilityGems = new List<AbilityGem>();
+        GameManager.Instance.abilityRegistry.values.ForEach(abilityObject =>
+        {
+            abilityGems.Add(new AbilityGem(abilityObject));
+        });
+        ownedGems = abilityGems.ToArray();
         maximumEquipmentSlots = 25;
     }
     public void AddAbilityGem(AbilityGem gem)
@@ -602,7 +603,7 @@ public class PlayerBrain : Brain
         bool found = false;
         for (var j = 0; j < newGems.Count; j++)
         {
-            if (newGems[j].abilityIndex == gem.abilityIndex && newGems[j].gemLevel == gem.gemLevel)
+            if (newGems[j].abilityIndex == gem.abilityIndex && newGems[j].gemLevel == gem.gemLevel)//this will break when I implement gem levels because the iterator is not adding blank ones for ever level
             {
                 newGems[j].AddAmountOwned(1);
                 found = true;
@@ -636,8 +637,23 @@ public class PlayerBrain : Brain
         {
             AddRelic(GameManager.Instance.relicRegistry.GetRelic(i));
         }
-        
-        ownedGems = saveFile.ownedGems;
+        List<AbilityGem> abilityGems = new List<AbilityGem>();
+        GameManager.Instance.abilityRegistry.values.ForEach(abilityObject =>
+        {
+            abilityGems.Add(new AbilityGem(abilityObject));
+        });
+        ownedGems = abilityGems.ToArray();
+        foreach (AbilityGem saveFileOwnedGem in saveFile.ownedGems)//this should convert old save files into the new format
+        {
+            for (var i = 0; i < ownedGems.Length; i++)
+            {
+                if (ownedGems[i].abilityIndex == saveFileOwnedGem.abilityIndex)
+                {
+                    ownedGems[i].AddAmountOwned(saveFileOwnedGem.amountOwned);
+                    break;
+                }
+            }
+        }
         
         cardSouls = saveFile.cardSouls;
         consumables = saveFile.consumables;
@@ -682,7 +698,9 @@ public class PlayerBrain : Brain
         defaultEquipment[0].SetGemSlots(1);
         defaultEquipment[0].SetLockedSlots(new bool[] { false, true, true });
         defaultEquipment[0].SetAbilities(new AbilityGem[3]);
-        defaultEquipment[0].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Fireball"),0),0);
+        AbilityGem defaultAbility = new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Fireball"),0);
+        defaultAbility.SetAmountOwned(1);
+        defaultEquipment[0].InsertAbility(defaultAbility,0);
         defaultEquipment[0].SetIndestructible(true);
         defaultEquipment[0].SetStatValue(new int[] { 2, 2 });
         defaultEquipment[0].SetStats(new EquipmentDataContainer.Stats[]
@@ -692,7 +710,9 @@ public class PlayerBrain : Brain
         defaultEquipment[1].SetGemSlots(1);
         defaultEquipment[1].SetLockedSlots(new bool[] { false, true, true });
         defaultEquipment[1].SetAbilities(new AbilityGem[3]);
-        defaultEquipment[1].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Immolate"),0),0);
+        defaultAbility = new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Immolate"),0);
+        defaultAbility.SetAmountOwned(1);
+        defaultEquipment[1].InsertAbility(defaultAbility,0);
         defaultEquipment[1].SetIndestructible(true);
         defaultEquipment[1].SetStatValue(new int[] { 2 });
         defaultEquipment[1].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Str });
@@ -701,7 +721,9 @@ public class PlayerBrain : Brain
         defaultEquipment[2].SetGemSlots(1);
         defaultEquipment[2].SetLockedSlots(new bool[] { false, true, true });
         defaultEquipment[2].SetAbilities(new AbilityGem[3]);
-        defaultEquipment[2].InsertAbility(new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Combust"),0),0);
+        defaultAbility = new AbilityGem(GameManager.Instance.abilityRegistry.GetAbility("Combust"),0);
+        defaultAbility.SetAmountOwned(1);
+        defaultEquipment[2].InsertAbility(defaultAbility,0);
         defaultEquipment[2].SetIndestructible(true);
         defaultEquipment[2].SetStatValue(new int[] { 2 });
         defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vit });

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Buried
   m_EditorClassIdentifier: 
   <description>k__BackingField: unset.description
-  <icon>k__BackingField: {fileID: 0}
+  <icon>k__BackingField: {fileID: 21300000, guid: ab56cfdf038c85a469bc1e39a0c84f88, type: 3}
   <maxStacks>k__BackingField: 0
   <isPersistent>k__BackingField: 0
-  <isStackable>k__BackingField: 0
-  <isDebuff>k__BackingField: 0
+  <isStackable>k__BackingField: 1
+  <isDebuff>k__BackingField: 1
   <isHidden>k__BackingField: 0
   <alwaysExpires>k__BackingField: 0

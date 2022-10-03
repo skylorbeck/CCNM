@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b033cb348fe1f84d8b89adf0c6cfdd8, type: 3}
   m_Name: Blind
   m_EditorClassIdentifier: 
-  <title>k__BackingField: Blind
   <description>k__BackingField: unset.description
-  <icon>k__BackingField: {fileID: 21300000, guid: 277ff41c830a7b74fab104d8353d871f, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: a04ad104ce5805b43aa5c2f6177d34b8, type: 3}
   <maxStacks>k__BackingField: 1
   <isPersistent>k__BackingField: 1
   <isStackable>k__BackingField: 1
   <isDebuff>k__BackingField: 1
   <isHidden>k__BackingField: 0
   <alwaysExpires>k__BackingField: 0
-  <element>k__BackingField: 0

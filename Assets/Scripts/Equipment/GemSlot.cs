@@ -21,6 +21,7 @@ public class GemSlot : MonoBehaviour
     public void SetGem(AbilityGem gem)
     {
         gemShell.InsertAbility(gem);
+        gemShell.SetShowNumber(false);
         if (isFront)
         {
             return;

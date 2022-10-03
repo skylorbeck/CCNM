@@ -12,15 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 606ad8cb55a6eb747b721f45db725ed9, type: 3}
   m_Name: Burn
   m_EditorClassIdentifier: 
-  <title>k__BackingField: Burn
   <description>k__BackingField: unset.description
-  <icon>k__BackingField: {fileID: 21300000, guid: 751e8337ca065374d8eca0ab224a1e7f, type: 3}
-  <duration>k__BackingField: 1
+  <icon>k__BackingField: {fileID: 21300000, guid: c3b38689b9a06ee48b00be13e0d95841, type: 3}
   <maxStacks>k__BackingField: 0
   <isPersistent>k__BackingField: 0
   <isStackable>k__BackingField: 1
   <isDebuff>k__BackingField: 1
   <isHidden>k__BackingField: 0
   <alwaysExpires>k__BackingField: 0
-  <element>k__BackingField: 1
-  <damage>k__BackingField: 1
+  <damageRatio>k__BackingField: 1

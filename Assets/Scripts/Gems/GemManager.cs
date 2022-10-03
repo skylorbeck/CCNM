@@ -139,6 +139,13 @@ public class GemManager : MonoBehaviour
             return;
         }
 
+        if (menuEntries[selected].ability.amountOwned <= 0)
+        {
+            SoundManager.Instance.PlayUiDeny();
+            TextPopController.Instance.PopNegative("You don't have any!", Vector3.zero, false);
+            return;
+        }
+
         bool success = GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu)
             .InsertAbility(menuEntries[selected].ability, selectedGem);
         if (success)
@@ -146,7 +153,7 @@ public class GemManager : MonoBehaviour
             previews[selectedMenu].InsertItem(GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu));
             SoundManager.Instance.PlayUiAccept();
             GameManager.Instance.metaPlayer.RemoveGem(selected, 1);
-            menuEntries[selected].InsertAbility(GameManager.Instance.metaPlayer.ownedGems[selected]);
+            menuEntries[selected].InsertAbility(GameManager.Instance.metaPlayer.ownedGems[selected]);//todo
             GameManager.Instance.metaPlayer.trackableStats.gemsSocketed++;
             GameManager.Instance.saveManager.SaveMeta();
         }

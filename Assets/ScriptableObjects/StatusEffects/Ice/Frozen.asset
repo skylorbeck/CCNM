@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Frozen
   m_EditorClassIdentifier: 
   <description>k__BackingField: unset.description
-  <icon>k__BackingField: {fileID: 21300000, guid: 277ff41c830a7b74fab104d8353d871f, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: 7f702cc57a94763419d652b4af6baada, type: 3}
   <maxStacks>k__BackingField: 1
   <isPersistent>k__BackingField: 0
   <isStackable>k__BackingField: 1

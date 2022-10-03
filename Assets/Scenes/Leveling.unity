@@ -4304,11 +4304,11 @@ MonoBehaviour:
   <stats>k__BackingField: 0100000002000000030000000400000005000000060000000700000008000000
   <statControllerV2s>k__BackingField:
   - {fileID: 303340954639102831}
-  - {fileID: 1389598628}
+  - {fileID: 387774597}
   - {fileID: 1838237111}
+  - {fileID: 1389598628}
   - {fileID: 399232801}
   - {fileID: 1724820986}
-  - {fileID: 387774597}
   - {fileID: 2138167881}
   - {fileID: 1563331098}
   <statSelected>k__BackingField: 0

@@ -286,6 +286,7 @@ public class EquipmentDataContainer
         }
 
         abilities[0] = new AbilityGem(itemCore.GetRandomAbility(), 0);
+        abilities[0].SetAmountOwned(1);
         lockedSlots[0] = true;
         for (int i = 1; i < gemSlots; i++)
         {
@@ -298,6 +299,7 @@ public class EquipmentDataContainer
             else
             {
                 abilities[i] = new AbilityGem(itemCore.GetRandomAbility(), 0);
+                abilities[i].SetAmountOwned(1);
                 lockedSlots[i] = true;
             }
         }

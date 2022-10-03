@@ -125,9 +125,7 @@ public class AbilityObject : ScriptableObject
                 target.AddStatusEffect(targetStatus2, user, targetStatusDuration);
             }
         }
-
         
-
         if (damageTarget)
         {
             for (int i = 0; i < targetHitCount; i++)
@@ -148,7 +146,7 @@ public class AbilityObject : ScriptableObject
        
     }
 
-    public string GetTranslatedDescriptionA(PlayerBrain playerBrain)
+    public string GetTranslatedDescriptionA(PlayerBrain playerBrain)//todo 
     {
         string description = descriptionA;
             int baseDamage = playerBrain.GetDamage();

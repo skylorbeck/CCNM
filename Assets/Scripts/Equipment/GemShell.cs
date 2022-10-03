@@ -9,6 +9,7 @@ public class GemShell : MonoBehaviour
     [field:SerializeField] public SpriteRenderer gemRenderer { get; private set; }
     [field:SerializeField] public SpriteRenderer levelRenderer { get; private set; }
     [field:SerializeField] public TextMeshPro amountOwned { get; private set; }
+    [field: SerializeField] public bool showNumber { get; private set; } = true;
     
     public void InsertAbility(AbilityGem ability)
     {
@@ -29,13 +30,37 @@ public class GemShell : MonoBehaviour
 
     private void UpdateAmountOwned(AbilityGem ability)
     {
-        if (ability.amountOwned > 1)
+        amountOwned.text = "x" + ability.amountOwned.ToString();
+        if (ability.amountOwned == 0)
+        {
+            gemRenderer.color = Color.gray;
+            amountOwned.color = Color.gray;
+        }
+        else
+        {
+            gemRenderer.color = Color.white;
+            amountOwned.color = Color.white;
+        }
+        /*if (ability.amountOwned > 1)
         {
             amountOwned.text = "x" + ability.amountOwned.ToString();
         }
         else
         {
             amountOwned.text = "";
+        }*/
+    }
+    
+    public void SetShowNumber(bool showNumber)
+    {
+        this.showNumber = showNumber;
+        if (showNumber)
+        {
+            amountOwned.gameObject.SetActive(true);
+        }
+        else
+        {
+            amountOwned.gameObject.SetActive(false);
         }
     }
 

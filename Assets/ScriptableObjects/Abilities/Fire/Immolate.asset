@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b67874a8b00234480259f478ff3e0d, type: 3}
   m_Name: Immolate
   m_EditorClassIdentifier: 
-  <title>k__BackingField: Immolate
   <descriptionA>k__BackingField: Hit for {damage}
   <descriptionB>k__BackingField: '{statusdamage} damage {status} for {statusduration}'
-  <icon>k__BackingField: {fileID: 21300000, guid: b664e3a40e280164ca1b86067e604618, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: 5feeb289b0dbcc14ca4d998fdc1786ea, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
   <targetDamageMultiplier>k__BackingField: 0.5
+  <targetHitCount>k__BackingField: 1
   <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
+  <userHitCount>k__BackingField: 1
   <healTarget>k__BackingField: 0
   <targetHealMultiplier>k__BackingField: 1
   <healUser>k__BackingField: 0
@@ -30,12 +31,13 @@ MonoBehaviour:
   <armorUser>k__BackingField: 0
   <userArmorMultiplier>k__BackingField: 1
   <targetStatus>k__BackingField: {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}
+  <targetStatus2>k__BackingField: {fileID: 0}
   <statusTarget>k__BackingField: 1
   <targetStatusDuration>k__BackingField: 3
   <userStatus>k__BackingField: {fileID: 0}
   <statusUser>k__BackingField: 0
   <userStatusDuration>k__BackingField: 1
+  <wideRange>k__BackingField: 0
   <slotType>k__BackingField: 0
-  <element>k__BackingField: 1
   <attackAnimation>k__BackingField: 0
   <soundEffect>k__BackingField: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <descriptionA>k__BackingField: description.a
   <descriptionB>k__BackingField: description.b
-  <icon>k__BackingField: {fileID: 0}
+  <icon>k__BackingField: {fileID: 21300000, guid: c17620113aed10d46ad1b67f845c6da1, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 0
   <targetDamageMultiplier>k__BackingField: 1
@@ -31,15 +31,16 @@ MonoBehaviour:
   <armorUser>k__BackingField: 0
   <userArmorMultiplier>k__BackingField: 1
   <targetStatus>k__BackingField: {fileID: 0}
+  <targetStatus2>k__BackingField: {fileID: 0}
   <statusTarget>k__BackingField: 0
   <targetStatusDuration>k__BackingField: 1
   <userStatus>k__BackingField: {fileID: 0}
   <statusUser>k__BackingField: 0
   <userStatusDuration>k__BackingField: 1
-  <wideRange>k__BackingField: 0
+  <wideRange>k__BackingField: 1
   <slotType>k__BackingField: 0
   <attackAnimation>k__BackingField: 2
   <soundEffect>k__BackingField: {fileID: 0}
-  <ifhave>k__BackingField: {fileID: 0}
+  <ifhave>k__BackingField: {fileID: 11400000, guid: a330126b3564cd74080ae22c70554b58, type: 2}
   <scaleWithUser>k__BackingField: 0
-  <ifhavevalue>k__BackingField: 1
+  <ifhavevalue>k__BackingField: 0.1

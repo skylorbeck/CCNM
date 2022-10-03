@@ -77,7 +77,7 @@ public class EffectInstance : MonoBehaviour
         durationText = GetComponentInChildren<TextMeshPro>();
         AddDuration(duration);
         UpdateDurationText();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.sprite = statusEffect.icon;
     }
 
