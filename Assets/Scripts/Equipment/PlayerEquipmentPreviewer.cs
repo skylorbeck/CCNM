@@ -37,7 +37,6 @@ public class PlayerEquipmentPreviewer : MonoBehaviour
             int statValue = GameManager.Instance.metaPlayer.GetUnmodifiedStatValueWithCard(stat);
             int statValueNewCard = GameManager.Instance.metaPlayer.GetUnmodifiedStatValue(stat) +
                                    previewedCard.GetStatValue(stat);
-            //todo make this count every card but the one being previewed
             int otherCards = 0;
             for (int i = 0; i < GameManager.Instance.metaPlayer.equippedSlots.Length; i++)
             {
@@ -48,16 +47,20 @@ public class PlayerEquipmentPreviewer : MonoBehaviour
             statValueNewCard+= otherCards;
             int difference = statValueNewCard-statValue;
             var index1 = index;
-            DOTween.To(() => ItemStats[index1].text, x => ItemStats[index1].text = x, statValueNewCard + " " + stat.ToString()+" (" + (difference > 0 ? "+":"") + difference + ")", 0.5f);
+            string finalText = statValueNewCard + " " + stat.ToString();
             Color color = Color.white;
             if (difference>0)
             {
+                finalText += " (+"+difference+")";
                 color = Color.green;
             }
             else if (difference<0)
             {
+                finalText += " ("+difference+")";
                 color = Color.red;
             }
+
+            DOTween.To(() => ItemStats[index1].text, x => ItemStats[index1].text = x, finalText, 0.5f);
             DOTween.To(() => ItemStats[index1].color, x => ItemStats[index1].color = x,color, 0.5f);
         }
     }

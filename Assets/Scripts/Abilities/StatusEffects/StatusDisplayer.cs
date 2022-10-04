@@ -216,7 +216,7 @@ public class StatusDisplayer : MonoBehaviour
                 count++;
             }
         }
-
+        // Debug.Log(count + " " + statusType);
         return count;
     }
     
@@ -230,7 +230,7 @@ public class StatusDisplayer : MonoBehaviour
                 count+=instance.duration;
             }
         }
-
+        // Debug.Log(count + " " + statusEffect);
         return count;
     }
     public int GetStatusDuration(Type statusType)
@@ -243,7 +243,7 @@ public class StatusDisplayer : MonoBehaviour
                 count+=instance.duration;
             }
         }
-
+        // Debug.Log(count + " " + statusType);
         return count;
     }
     public bool HasStatus(StatusEffect statusEffect)
@@ -252,6 +252,19 @@ public class StatusDisplayer : MonoBehaviour
         {
             if (instance.statusEffect == statusEffect)
             {
+                // Debug.Log("==");
+                return true;
+            } else if (instance.statusEffect.GetType()==statusEffect.GetType())
+            {
+                // Debug.Log("type ==");
+                return true;
+            } else if (instance.statusEffect.Equals(statusEffect))
+            {
+                // Debug.Log("equals");
+                return true;
+            } else if (instance.statusEffect.GetType().Equals(statusEffect.GetType()))
+            {
+                // Debug.Log("type equals");
                 return true;
             }
         }

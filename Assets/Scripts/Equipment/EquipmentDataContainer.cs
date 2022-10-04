@@ -82,12 +82,7 @@ public class EquipmentDataContainer
         {
             Debug.LogWarning("Slot is out of range");
             return false;
-        } else if (abilities[slot] == null)
-        {
-            Debug.LogWarning("Slot is already empty");
-            return false;
         }
-
         abilities[slot] = new AbilityGem(-1);
         lockedSlots[slot] = false;
         return true;
@@ -121,12 +116,6 @@ public class EquipmentDataContainer
         return GameManager.Instance.equipmentRegistries[(int)itemCore.itemType].GetCardIndex(itemCore.name);
     }
     
-    [Obsolete ("Use GetAbilityIndex(int) instead")]
-    public int GetAbilityIndex()
-    {
-        return 0;
-        // return GameManager.Instance.abilityRegistry.GetAbilityIndex(ability.title);
-    }
     public int GetAbilityIndex(int abilityIndex)
     {
         return abilities[abilityIndex].abilityIndex;
@@ -230,6 +219,10 @@ public class EquipmentDataContainer
             lockedSlots[i] = true;
         }*/
         abilities = new AbilityGem[lockedSlots.Length];
+        for (int i = 0; i < abilities.Length; i++)
+        {
+            abilities[i] = new AbilityGem(-1);
+        }
         gemSlots = 0;
         
         switch (quality)
@@ -293,7 +286,7 @@ public class EquipmentDataContainer
             // abilities[i] = Random.Range(0, 3) != 0 ? null: GameManager.Instance.abilityRegistry.GetRandomAbility();
             if (Random.Range(0, 3) != 0)
             {
-                abilities[i] = new AbilityGem(-1);
+                abilities[i] = new AbilityGem(-1);//redundant but I refuse to remove it
                 lockedSlots[i] = false;
             }
             else

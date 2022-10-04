@@ -444,10 +444,12 @@ public class PlayerBrain : Brain
                 equippedSlots[index] = 0;
                 EquipmentDataContainer equippedCard = new EquipmentDataContainer(sourcePlayer.GetEquippedCard(index));
                 equippedCard.SetIndestructible(true);
-                if (equippedCard.abilities[0].abilityIndex==-1)
+                //this sets a default ability if the card has none
+                //but we actually don't want that
+                /*if (equippedCard.abilities[0].abilityIndex==-1)
                 {
                     equippedCard.abilities[0] = new AbilityGem(0);
-                }
+                }*/
                 AddCardToInventory(equippedCard);
             }
             else

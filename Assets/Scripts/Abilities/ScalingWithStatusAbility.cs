@@ -12,16 +12,18 @@ public class ScalingWithStatusAbility : AbilityObject
     public override void Execute(Shell user, Shell target)
     {
         base.Execute(user, target);
-        int stacks = user.statusDisplayer.GetStatusCount(ifhave.GetType());
+        int stacks= 0;
         if (scaleWithUser)
         {
+            stacks = user.statusDisplayer.GetStatusDuration(ifhave.GetType());
             if (user.statusDisplayer.HasStatus(ifhave))
             {
-                target.Damage(user,(int)(user.brain.GetStatusDamage()*ifhavevalue*stacks),false);
+                target.Damage(user,Mathf.RoundToInt(user.brain.GetStatusDamage()*ifhavevalue*stacks),false);
             }
         } else if (target.statusDisplayer.HasStatus(ifhave))
         {
-            target.Damage(user,(int)(user.brain.GetStatusDamage()*ifhavevalue*stacks),false);
+            stacks = target.statusDisplayer.GetStatusDuration(ifhave.GetType());
+            target.Damage(user,Mathf.RoundToInt(user.brain.GetStatusDamage()*ifhavevalue*stacks),false);
         }
     }
 }
