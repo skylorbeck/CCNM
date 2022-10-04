@@ -15,6 +15,7 @@ public class DeckManager : MonoBehaviour
     [SerializeField] private DeckRegistry deckRegistry;
     [SerializeField] private DeckPreviewer deckPrefab;
     [SerializeField] private List<DeckPreviewer> decks;
+    [field: SerializeField] public DragMode dragMode { get; private set; }
 
     void Start()
     {
@@ -27,11 +28,13 @@ public class DeckManager : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.Instance.inputReader.Drag -= OnDrag;
+        GameManager.Instance.inputReader.Point -= OnPoint;
     }
 
     public void InitalizeDecks()
     {
         GameManager.Instance.inputReader.Drag += OnDrag;
+        GameManager.Instance.inputReader.Point += OnPoint;
 
         for (int i = 0; i < deckRegistry.deckCount; i++)
         {
@@ -81,10 +84,31 @@ public class DeckManager : MonoBehaviour
     {
 
     }
+    public void OnPoint(Vector2 pos)
+    {
+        // if (userIsHolding)
+        // {
+        //     return;
+        // }//todo fix this so it works on mobile
+
+        if (pos.y > Screen.height * 0.6f || pos.y < Screen.height * 0.3f)
+        {
+            dragMode = DragMode.Allowed;
+        }
+        else
+        {
+            dragMode = DragMode.None;
+        }
+    }
+    public enum DragMode
+    {
+        None,
+        Allowed,
+    }
 
     public void OnDrag(Vector2 delta)
     {
-        if (GameManager.Instance.battlefield.runStarted)
+        if (GameManager.Instance.battlefield.runStarted || dragMode == DragMode.None)
         {
             return;
         }

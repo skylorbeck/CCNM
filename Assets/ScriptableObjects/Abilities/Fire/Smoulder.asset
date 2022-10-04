@@ -43,4 +43,4 @@ MonoBehaviour:
   <soundEffect>k__BackingField: {fileID: 0}
   <ifhave>k__BackingField: {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}
   duration: 1
-  invert: 0
+  invert: 1

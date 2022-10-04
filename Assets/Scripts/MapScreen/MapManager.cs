@@ -12,6 +12,9 @@ public class MapManager : MonoBehaviour
 {
     [SerializeField] private CardDealer cardDealer;
     [SerializeField] private DeckManager deckManager;
+    [SerializeField] private NewRunManager newRunManager;
+    [SerializeField] private GameObject buttonGroup;
+    [SerializeField] private GameObject sliderGroup;
 
     [SerializeField] TextMeshProUGUI totalCardsText;
     [SerializeField] private TextMeshProUGUI[] pauseText;
@@ -53,6 +56,8 @@ public class MapManager : MonoBehaviour
             deckManager.gameObject.SetActive(false);
             cardDealer.transform.localPosition = new Vector3(0,-1,-1);
             deckManager.transform.localPosition = new Vector3(-100, 0, 0);
+            sliderGroup.transform.localPosition = new Vector3(-300, 0, 0);
+            buttonGroup.transform.localPosition = new Vector3(0, 0, 0);
             cardDealer.InsertDeck(GameManager.Instance.deck);
             InsertDeck();
             cardDealer.GenerateCards();
@@ -70,7 +75,9 @@ public class MapManager : MonoBehaviour
             startButton.interactable = GameManager.Instance.battlefield.deckChosen;
             cardDealer.DisableButtons();
             cardDealer.transform.localPosition = new Vector3(0, -100, -1);
+            buttonGroup.transform.localPosition = new Vector3(0, -300, -1);
             deckManager.transform.localPosition = Vector3.zero;
+            sliderGroup.transform.localPosition = Vector3.zero;
             deckManager.InitalizeDecks();
             totalCardsText.text = "";
             if (GameManager.Instance.battlefield.deckChosen)
@@ -171,7 +178,11 @@ public class MapManager : MonoBehaviour
 
         DOTween.To(() => deckManager.transform.localPosition, x => deckManager.transform.localPosition = x,
             new Vector3(-100, 0, 0), 5f);
+        DOTween.To(() => sliderGroup.transform.localPosition, x => sliderGroup.transform.localPosition = x,
+            new Vector3(-300, 0, 0), 1f);
         DOTween.To(() => cardDealer.transform.localPosition, x => cardDealer.transform.localPosition = x,
+            new Vector3(0, -1, -1), 1f);
+        DOTween.To(() => buttonGroup.transform.localPosition, x => buttonGroup.transform.localPosition = x,
             new Vector3(0, -1, -1), 1f);
         cardDealer.InsertDeck(GameManager.Instance.deck);
         GameManager.Instance.battlefield.ClearBattlefield();

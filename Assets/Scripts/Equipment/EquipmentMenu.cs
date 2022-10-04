@@ -376,8 +376,6 @@ public class EquipmentMenu : MonoBehaviour
         {
             dragMode = DragMode.Horizontal;
         }
-
-       
     }
 
     public void OnClick(InputAction.CallbackContext context)

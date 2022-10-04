@@ -10,20 +10,27 @@ public class EnemyBrain : Brain
     public bool isBlank;
 
     #region computedStatGetters
-    
+
     public override int GetDamage()
     {
-        return (int)(base.GetDamage() /* * GameManager.Instance.battlefield.deck.level *GameManager.Instance.battlefield.difficultyMulti */* GameManager.Instance.runSettings.GetAttackMod());
+        return (int)(base.GetDamage() *
+                     GameManager.Instance.battlefield.deck.level
+                     //*GameManager.Instance.battlefield.difficultyMulti  
+                     * GameManager.Instance.runSettings.GetAttackMod());
     }
 
     public override int GetShieldMax()
     {
-        return (int)(base.GetShieldMax() * GameManager.Instance.battlefield.deck.level*GameManager.Instance.battlefield.difficultyMulti * GameManager.Instance.runSettings.GetShieldMod());
+        return (int)(base.GetShieldMax() * GameManager.Instance.battlefield.deck.level *
+                     GameManager.Instance.battlefield.difficultyMulti *
+                     GameManager.Instance.runSettings.GetShieldMod());
     }
 
     public override int GetShieldRate()
     {
-        return (int)(base.GetShieldRate() * GameManager.Instance.battlefield.deck.level*GameManager.Instance.battlefield.difficultyMulti * GameManager.Instance.runSettings.GetShieldMod());
+        return (int)(base.GetShieldRate() * GameManager.Instance.battlefield.deck.level *
+                     GameManager.Instance.battlefield.difficultyMulti *
+                     GameManager.Instance.runSettings.GetShieldMod());
     }
 
     public override float GetCritChance()
@@ -40,15 +47,14 @@ public class EnemyBrain : Brain
     {
         return (int)(base.GetDodgeChance() * GameManager.Instance.runSettings.GetDodgeMod());
     }
+
     public override int GetHealthMax()
     {
-        return (int)(base.GetHealthMax() * GameManager.Instance.battlefield.deck.level *GameManager.Instance.battlefield.difficultyMulti* GameManager.Instance.runSettings.GetHealthMod());
+        return (int)(base.GetHealthMax() * GameManager.Instance.battlefield.deck.level *
+                     GameManager.Instance.battlefield.difficultyMulti *
+                     GameManager.Instance.runSettings.GetHealthMod());
     }
+
     #endregion
-    public async Task Think()
-    {
-        
-        //todo enemy turn logic
-        await Task.Delay(1000);
-    }
+
 }

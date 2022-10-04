@@ -16,13 +16,16 @@ MonoBehaviour:
   <description>k__BackingField: What could this even be?
   <icon>k__BackingField: {fileID: 21300000, guid: 7818c8abdda0c284abf429a8bae3b2b1, type: 3}
   <abilities>k__BackingField:
-  - <abilityIndex>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 8
     <gemLevel>k__BackingField: 0
     <amountOwned>k__BackingField: 0
-  - <abilityIndex>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 9
     <gemLevel>k__BackingField: 0
     <amountOwned>k__BackingField: 0
-  - <abilityIndex>k__BackingField: 1
+  - <abilityIndex>k__BackingField: 10
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 11
     <gemLevel>k__BackingField: 0
     <amountOwned>k__BackingField: 0
   <credits>k__BackingField: 5

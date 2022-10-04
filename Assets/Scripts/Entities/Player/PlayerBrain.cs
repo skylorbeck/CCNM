@@ -606,11 +606,11 @@ public class PlayerBrain : Brain
         level = 1;
         SetStrength(1);
         SetDexterity(1);
-        SetVitality(1);
+        SetVitality(5);
         SetSpeed(1);
         SetSkill(1);
         SetLuck(1);
-        SetGrit(1);
+        SetGrit(5);
         SetResolve(1);
         SetIntelligence(1);
         SetCharisma(1);

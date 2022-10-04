@@ -541,9 +541,16 @@ public class FightManager : MonoBehaviour
     {
         GameManager.Instance.runPlayer.trackableStats.wheelsSpun++;
         SetState(WheelStates.Spinning);
+        
+        if (player.statusDisplayer.HasStatus(typeof(FrozenEffect)))
+        {
+            TextPopController.Instance.PopNegative("Frozen", player.transform.position,true);
+            SetState(WheelStates.Selecting);
+            return;
+        }
         foreach (AbilityWheel wheel in wheels)
         {
-            wheel.Spin();
+                wheel.Spin();
         }
         do
         {

@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class NewRunManager : MonoBehaviour
 {
-    [SerializeField] private UIStateObject uiState;
     [SerializeField] private RunSettings runSettings;
 
     [SerializeField] private SpriteSwitcher healthSwitcher;
@@ -40,7 +39,6 @@ public class NewRunManager : MonoBehaviour
 
     async void Start()
     {
-        uiState.ShowTopBar();
         healthSlider.value = runSettings.health;
         defenseSlider.value = runSettings.shield;
         attackSlider.value = runSettings.attack;
@@ -49,20 +47,9 @@ public class NewRunManager : MonoBehaviour
         UpdateHealth();
         UpdateDefense();
         UpdateAttack();
-        GameManager.Instance.inputReader.Back+=Back;
-        GameManager.Instance.eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
-
     }
 
-    private void OnDestroy()
-    {
-        GameManager.Instance.inputReader.Back -= Back;
-    }
 
-    public void Back()
-    {
-        GameManager.Instance.LoadSceneAdditive("MainMenu","RunSettings");
-    }
     public void UpdateHealth()
     {
         runSettings.health = healthSlider.value;

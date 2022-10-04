@@ -19,18 +19,6 @@ MonoBehaviour:
   - <abilityIndex>k__BackingField: 0
     <gemLevel>k__BackingField: 0
     <amountOwned>k__BackingField: 0
-  - <abilityIndex>k__BackingField: 1
-    <gemLevel>k__BackingField: 0
-    <amountOwned>k__BackingField: 0
-  - <abilityIndex>k__BackingField: 2
-    <gemLevel>k__BackingField: 0
-    <amountOwned>k__BackingField: 0
-  - <abilityIndex>k__BackingField: 3
-    <gemLevel>k__BackingField: 0
-    <amountOwned>k__BackingField: 0
-  - <abilityIndex>k__BackingField: 3
-    <gemLevel>k__BackingField: 0
-    <amountOwned>k__BackingField: 0
   <credits>k__BackingField: 50
   <ego>k__BackingField: 100
   <level>k__BackingField: 0
