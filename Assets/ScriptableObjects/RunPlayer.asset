@@ -25,18 +25,19 @@ MonoBehaviour:
   - <abilityIndex>k__BackingField: 2
     <gemLevel>k__BackingField: 0
     <amountOwned>k__BackingField: 1
-  <credits>k__BackingField: 0
-  <ego>k__BackingField: 0
-  <level>k__BackingField: 35
-  <currentHealth>k__BackingField: 15
-  <relics>k__BackingField: []
+  <credits>k__BackingField: 76
+  <ego>k__BackingField: 175
+  <level>k__BackingField: 1
+  <currentHealth>k__BackingField: 35
+  <relics>k__BackingField:
+  - {fileID: 11400000, guid: 853ee382bc3eaa44895c8d12b2a979ad, type: 2}
   strength: 1
-  dexterity: 98
-  vitality: 1
+  dexterity: 1
+  vitality: 5
   speed: 1
   skill: 1
   luck: 1
-  grit: 1
+  grit: 5
   resolve: 1
   intelligence: 1
   charisma: 1
@@ -101,16 +102,64 @@ MonoBehaviour:
     <stats>k__BackingField: 05000000
     <statValue>k__BackingField: 02000000
     <indestructible>k__BackingField: 1
-  <ownedGems>k__BackingField: []
+  <ownedGems>k__BackingField:
+  - <abilityIndex>k__BackingField: 0
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 1
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 2
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 3
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 4
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 5
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 6
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 7
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 8
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 9
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 10
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 11
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 12
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 13
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 14
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 15
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
   <cardPacks>k__BackingField: 0
   <capsules>k__BackingField: 0
   <superCapsules>k__BackingField: 0
   <cardSouls>k__BackingField: 00000000000000000000000000000000000000000000000000000000
   <consumables>k__BackingField: 010000000100000001000000
   trackableStats:
-    minionsKilled: 0
-    bossesKilled: 0
-    wheelsSpun: 0
+    minionsKilled: 3
+    bossesKilled: 1
+    wheelsSpun: 6
     safesObtained: 0
     safesOpened: 0
     cardsObtained: 0
@@ -121,13 +170,13 @@ MonoBehaviour:
     gemsUnsockted: 0
     timesDied: 0
     timesRevived: 0
-    creditsEarned: 0
+    creditsEarned: 76
     creditsSpent: 0
     creditsLost: 0
     egoEarned: 0
     egoSpent: 0
     egoLost: 0
-    egoGained: 0
+    egoGained: 175
     cardSoulsGained: 00000000000000000000000000000000000000000000000000000000
     cardSoulsSpent: 00000000000000000000000000000000000000000000000000000000
   maximumEquipmentSlots: 25

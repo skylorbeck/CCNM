@@ -9,11 +9,10 @@ public class RelicRewarder : MonoBehaviour
     [SerializeField] private RelicShell relicShell;
     void Start()
     {
-        Relic relic = GameManager.Instance.deck.relics[Random.Range(0, GameManager.Instance.deck.relics.Length)];
+        Relic relic = GameManager.Instance.relicRegistry.GetRandomRelicWithoutDuplicates(GameManager.Instance.runPlayer.relics);
         relicShell.InsertRelic(relic);
         GameManager.Instance.runPlayer.AddRelic(relic);
         relicText.text = "You found a Relic!";
-        
     }
 
     public void MoveOn()

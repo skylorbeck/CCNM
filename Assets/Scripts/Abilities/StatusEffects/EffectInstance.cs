@@ -42,7 +42,28 @@ public class EffectInstance : MonoBehaviour
 
     public void Tick()
     {
-        if (!statusEffect.isPersistent)
+        bool relicStop = false;
+        foreach (Relic brainRelic in target.brain.relics)
+        {
+            if (brainRelic.userDecayStops)
+            {
+                if (brainRelic.statusTicking.GetType().Equals(statusEffect.GetType()))
+                {
+                    relicStop = true;
+                }
+            }
+        }
+        foreach (Relic brainRelic in source.brain.relics)
+        {
+            if (brainRelic.enemyDecayStops)
+            {
+                if (brainRelic.statusTicking.GetType().Equals(statusEffect.GetType()))
+                {
+                    relicStop = true;
+                }
+            }
+        }
+        if (!statusEffect.isPersistent || !relicStop)
         {
             duration--;
         }

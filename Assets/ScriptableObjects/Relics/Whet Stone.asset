@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5cb8006a0fb134c9fe18a5f92259f7, type: 3}
+  m_Name: Whet Stone
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: eea30a09f72430c45b7b2b91a5982f9f, type: 3}
+  description: Attack Damage +25%
+  cost: 0
+  level: 0
+  rarity: 1
+  <healCrit>k__BackingField: 0
+  <healCritPercent>k__BackingField: 0
+  <shieldCrit>k__BackingField: 0
+  <shieldCritPercent>k__BackingField: 0
+  <statusCrit>k__BackingField: 0
+  <critStatus>k__BackingField: {fileID: 0}
+  <critStatusDuration>k__BackingField: 1
+  <hitChance>k__BackingField: 0
+  <healHit>k__BackingField: 0
+  <healHitPercent>k__BackingField: 0
+  <shieldHit>k__BackingField: 0
+  <shieldHitPercent>k__BackingField: 0
+  <statusHit>k__BackingField: 0
+  <hitStatus>k__BackingField: {fileID: 0}
+  <hitStatusDuration>k__BackingField: 0
+  <healDodge>k__BackingField: 0
+  <healDodgePercent>k__BackingField: 0
+  <shieldDodge>k__BackingField: 0
+  <shieldDodgePercent>k__BackingField: 0
+  <statusDodge>k__BackingField: 0
+  <dodgeStatus>k__BackingField: {fileID: 0}
+  <dodgeStatusDuration>k__BackingField: 0
+  <healKill>k__BackingField: 0
+  <healKillPercent>k__BackingField: 0
+  <shieldKill>k__BackingField: 0
+  <shieldKillPercent>k__BackingField: 0
+  <playerStart>k__BackingField: 0
+  <playerStartStatus>k__BackingField: {fileID: 0}
+  <playerStartAmount>k__BackingField: 1
+  <enemyStart>k__BackingField: 0
+  <enemyStartStatus>k__BackingField: {fileID: 0}
+  <enemyStartAmount>k__BackingField: 1
+  <reflect>k__BackingField: 0
+  <reflectPercent>k__BackingField: 0
+  <modifyHealth>k__BackingField: 0
+  <modifyHealthPercent>k__BackingField: 1
+  <modifyShield>k__BackingField: 0
+  <modifyShieldPercent>k__BackingField: 1
+  <modifyShieldRegen>k__BackingField: 0
+  <modifyShieldRegenPercent>k__BackingField: 1
+  <modifyShieldDelay>k__BackingField: 0
+  <modifyShieldDelayPercent>k__BackingField: 1
+  <modifyCritChance>k__BackingField: 0
+  <modifyCritChancePercent>k__BackingField: 1
+  <modifyCritDamage>k__BackingField: 0
+  <modifyCritDamagePercent>k__BackingField: 1
+  <modifyDodgeChance>k__BackingField: 0
+  <modifyDodgeChancePercent>k__BackingField: 1
+  <modifyStatusDamage>k__BackingField: 0
+  <modifyStatusDamagePercent>k__BackingField: 1
+  <modifyDamage>k__BackingField: 1
+  <modifyDamagePercent>k__BackingField: 1.25
+  <statusGiven>k__BackingField: {fileID: 0}
+  <doubleStatus>k__BackingField: 0
+  <addStatusEffectDuration>k__BackingField: 0
+  <addStatusEffectDurationAmount>k__BackingField: 1
+  <statusTaken>k__BackingField: {fileID: 0}
+  <immuneToStatus>k__BackingField: 0
+  <statusTicking>k__BackingField: {fileID: 0}
+  <userDecayStops>k__BackingField: 0
+  <enemyDecayStops>k__BackingField: 0

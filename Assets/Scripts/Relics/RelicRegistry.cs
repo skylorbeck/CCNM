@@ -47,6 +47,38 @@ public class RelicRegistry : ScriptableObject,  ISerializationCallbackReceiver
     {
             return relics[relicIndex];
     }
+
+    public Relic GetRandomRelicWithoutDuplicates(Relic[] ownedRelics)
+    {
+        List<Relic> availableRelics = new List<Relic>();
+       
+        //compare the name of each owned relic to the list of all relics and remove any matches
+        for (int i = 0; i < relics.Length; i++)
+        {
+            bool isOwned = false;
+            for (int j = 0; j < ownedRelics.Length; j++)
+            {
+                if (relics[i].name == ownedRelics[j].name)
+                {
+                    isOwned = true;
+                }
+            }
+            if (!isOwned)
+            {
+                availableRelics.Add(relics[i]);
+            }
+        }
+        
+        if (availableRelics.Count > 0)
+        {
+            return availableRelics[UnityEngine.Random.Range(0, availableRelics.Count)];
+        }
+        else
+        {
+            Debug.LogError("No available relics");
+            return null;
+        }
+    }
     
     public Relic GetRandomRelic()
     {

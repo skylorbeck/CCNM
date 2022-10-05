@@ -99,6 +99,10 @@ public class StatusDisplayer : MonoBehaviour
 
         for (int i = 0; i < statusList.Count; i++)
         {
+            if (i ==0)
+            {
+                await Task.Delay(500);
+            }
             statusList[i].Tick();
             await Task.Delay(500);
             if (cts.IsCancellationRequested)

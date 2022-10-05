@@ -192,7 +192,16 @@ public class Brain : ScriptableObject
     #region computedStatGetters
     public virtual int GetDamage()
     {
-        return GetUnmodifiedDamage();
+        int dam = GetUnmodifiedDamage();
+        foreach (Relic relic in relics)
+        {
+            if (relic.modifyDamage)
+            {
+                dam = Mathf.RoundToInt(dam * relic.modifyDamagePercent);
+            }
+        }
+
+        return dam;
     }
 
    
@@ -201,9 +210,9 @@ public class Brain : ScriptableObject
         int shieldMax = GetShieldMaxUnmodified();
         foreach (Relic relic in relics)
         {
-            if (relic is RelicTradeHpForShield trade)
+            if (relic.modifyShield)
             {
-                shieldMax += trade.GetShieldBonus(GetHealthMaxUnmodified());
+                shieldMax = Mathf.RoundToInt(shieldMax * relic.modifyShieldPercent);
             }
         }
 
@@ -212,31 +221,63 @@ public class Brain : ScriptableObject
 
     public virtual int GetShieldRate()
     {
-        return GetShieldRateUnmodified();
+        int shieldRate = GetShieldRateUnmodified();
+        foreach (Relic relic in relics)
+        {
+            if (relic.modifyShieldRegen)
+            {
+                shieldRate = Mathf.RoundToInt(shieldRate * relic.modifyShieldRegenPercent);
+            }
+        }
+        return shieldRate;
     }
 
     public virtual float GetCritChance()
     {
-        return GetCritChanceUnmodified();
+        float critChance = GetCritChanceUnmodified();
+        foreach (Relic relic in relics)
+        {
+            if (relic.modifyCritChance)
+            {
+                critChance = critChance * relic.modifyCritChancePercent;
+            }
+        }
+        return critChance;
     }
 
     public virtual float GetCritDamage()
     {
-        return GetCritDamageUnmodified();
+        float critDamage = GetCritDamageUnmodified();
+        foreach (Relic relic in relics)
+        {
+            if (relic.modifyCritDamage)
+            {
+                critDamage = critDamage * relic.modifyCritDamagePercent;
+            }
+        }
+        return critDamage;
     }
 
     public virtual float GetDodgeChance()
     {
-        return GetDodgeChanceUnmodified();
+        float dodgeChance = GetDodgeChanceUnmodified();
+        foreach (Relic relic in relics)
+        {
+            if (relic.modifyDodgeChance)
+            {
+                dodgeChance = dodgeChance * relic.modifyDodgeChancePercent;
+            }
+        }
+        return dodgeChance;
     }
     public virtual int GetHealthMax()
     {
         int healthMax = GetHealthMaxUnmodified();
         foreach (Relic relic in relics)
         {
-            if (relic is RelicTradeHpForShield trade)
+            if (relic.modifyHealth)
             {
-                healthMax -= trade.GetHpPenalty(GetHealthMaxUnmodified());
+                healthMax =Mathf.RoundToInt(healthMax * relic.modifyHealthPercent);
             }
         }
 
@@ -264,7 +305,16 @@ public class Brain : ScriptableObject
     
     public virtual int GetStatusDamage()
     {
-        return GetStatusDamageUnmodified();
+        int statusDamage = GetStatusDamageUnmodified();
+        foreach (Relic relic in relics)
+        {
+            if (relic.modifyStatusDamage)
+            {
+                statusDamage =Mathf.RoundToInt(statusDamage * relic.modifyStatusDamagePercent);
+            }
+        }
+
+        return statusDamage;
     }
     #endregion
     
@@ -393,15 +443,19 @@ public class Brain : ScriptableObject
     {
         relics = new Relic[0];
     }
-    
-    public void AddRelic(Relic relic)
+
+    public void AddRelic(Relic newRelic)
     {
-        if (relics.Contains(relic))
+        foreach (Relic relic in relics)
         {
-            return;
+            if (relic.name.Equals(newRelic.name))
+            {
+                return;
+            }
         }
+        
         List<Relic> newRelics = new List<Relic>(relics);
-        newRelics.Add(relic);
+        newRelics.Add(newRelic);
         relics = newRelics.ToArray();
     }
 }

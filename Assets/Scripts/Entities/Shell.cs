@@ -102,14 +102,8 @@ public class Shell : MonoBehaviour
         return statusDisplayer.OnHeal(target,this,baseHeal);
     }
     
-    public void Damage([CanBeNull] Shell source,int baseDamage,bool crit)
+    public void Damage(Shell source,int baseDamage,bool crit)
     {
-        if (Random.Range(0,100) < brain.GetDodgeChance())
-        {
-            statusDisplayer.OnDodge(source,this,baseDamage);
-            TextPopController.Instance.PopPositive("Dodged",transform.position,true);
-            return;
-        }
         int damage = statusDisplayer.OnDamage(source,this,baseDamage);
         if (damage > 0)
         {
@@ -123,6 +117,22 @@ public class Shell : MonoBehaviour
             }
             Damaged.Invoke(source, damage);
             shieldDelayCurrent = 1;
+            foreach (Relic brainRelic in brain.relics)
+            {
+                if (brainRelic.modifyShieldDelay)
+                {
+                    shieldDelayCurrent += Mathf.RoundToInt(shieldDelayCurrent*brainRelic.modifyShieldDelayPercent);
+                }
+
+                if (brainRelic.reflect)
+                {
+                    if (source != this)
+                    {
+                        source.Damage(this, Mathf.RoundToInt(damage*brainRelic.reflectPercent), false);
+                    }
+                }
+            }
+            
         }
 
         if (shield > 0)
@@ -178,12 +188,42 @@ public class Shell : MonoBehaviour
         healthBar.ManualUpdate();
 
     }
-    
-    public void AddStatusEffect(StatusEffect statusEffect,Shell source,int duration)
+
+    public void AddStatusEffect(StatusEffect statusEffect, Shell source, int duration)
     {
-        statusDisplayer.AddStatus(statusEffect,this,source, duration);
+        foreach (Relic brainRelic in brain.relics)
+        {
+            if (brainRelic.immuneToStatus)
+            {
+                if (statusEffect.GetType().Equals(brainRelic.statusTaken.GetType()))
+                {
+                    return;
+                }
+            }
+        }
+
+        foreach (Relic brainRelic in source.brain.relics)
+        {
+            if (brainRelic.addStatusEffectDuration)
+            {
+                if (brainRelic.statusGiven.GetType().Equals(statusEffect.GetType()))
+                {
+                    duration += brainRelic.addStatusEffectDurationAmount;
+                }
+            }
+
+            if (brainRelic.doubleStatus)
+            {
+                if (brainRelic.statusGiven.GetType().Equals(statusEffect.GetType()))
+                {
+                    duration *= 2;
+                }
+            }
+        }
+
+        statusDisplayer.AddStatus(statusEffect, this, source, duration);
     }
-    
+
     public void RemoveStatusEffect(StatusEffect statusEffect)
     {
         statusDisplayer.RemoveStatus(statusEffect);

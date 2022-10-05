@@ -17,7 +17,7 @@ public class RelicShell : MonoBehaviour
 
     void Start()
     {
-        InsertRelic(relic);
+        // InsertRelic(relic);
     }
 
     void Update()
@@ -52,7 +52,7 @@ public class RelicShell : MonoBehaviour
         // numberRenderer.color = GameManager.Instance.colors[(int)relic.rarity];
         relicDescriptionText.text = relic.description;
         relicDescriptionText.color = GameManager.Instance.colors[(int)relic.rarity];
-        relicName.text = relic.title;
+        relicName.text = relic.name;
         relicName.color = GameManager.Instance.colors[(int)relic.rarity];
         relicLevelText.color = GameManager.Instance.colors[(int)relic.rarity];
     }
