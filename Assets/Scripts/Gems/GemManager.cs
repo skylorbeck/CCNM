@@ -15,6 +15,7 @@ public class GemManager : MonoBehaviour
     [SerializeField] private List<GemShell> menuEntries = new List<GemShell>();
     [SerializeField] private List<EquipmentCardShell> previews = new List<EquipmentCardShell>();
     [SerializeField] private ItemStatCompare cardCompare;
+    [SerializeField] private ItemStatCompare gemCompare;
 
     [SerializeField] private float yDistance = 3f;
     [SerializeField] private float xDistance = 1.5f;
@@ -73,7 +74,8 @@ public class GemManager : MonoBehaviour
 
         if (menuEntries.Count > 0)
         {
-            cardCompare.InsertAbilityGem(menuEntries[selected].ability);
+            gemCompare.InsertAbilityGem(menuEntries[selected].ability);
+            cardCompare.Clear();
         }
 
     }
@@ -131,21 +133,21 @@ public class GemManager : MonoBehaviour
         if (menuEntries.Count <= 0)
         {
             SoundManager.Instance.PlayUiDeny();
-            TextPopController.Instance.PopNegative("No Gems", Vector3.zero, false);
+            TextPopController.Instance.PopNegative("No Gems", Vector3.zero, true);
             return;
         }
 
         if (selectedGem == -1)
         {
             SoundManager.Instance.PlayUiDeny();
-            TextPopController.Instance.PopNegative("No Slot Selected", Vector3.zero, false);
+            TextPopController.Instance.PopNegative("No Slot Selected", Vector3.zero, true);
             return;
         }
 
         if (menuEntries[selected].ability.amountOwned <= 0)
         {
             SoundManager.Instance.PlayUiDeny();
-            TextPopController.Instance.PopNegative("You don't have any!", Vector3.zero, false);
+            TextPopController.Instance.PopNegative("You don't have any!", Vector3.zero, true);
             return;
         }
 
@@ -167,12 +169,17 @@ public class GemManager : MonoBehaviour
         }
     }
 
+    public void ConfirmUnsocket()
+    {
+        PopUpController.Instance.ShowPopUp("Unsocket Gem? This will cost " + (previews[selectedMenu].EquipmentData.level * (int)previews[selectedMenu].EquipmentData.quality) + " Credits.", "Yes", "No", Unsocket);
+    }
+
     public void Unsocket()
     {
         if (selectedGem == -1)
         {
             SoundManager.Instance.PlayUiDeny();
-            TextPopController.Instance.PopNegative("No Slot Selected", Vector3.zero, false);
+            TextPopController.Instance.PopNegative("No Slot Selected", Vector3.zero, true);
             return;
         }
 
@@ -181,7 +188,7 @@ public class GemManager : MonoBehaviour
         if (card.indestructible)
         {
             SoundManager.Instance.PlayUiDeny();
-            TextPopController.Instance.PopNegative("It's Stuck", Vector3.zero, false);
+            TextPopController.Instance.PopNegative("It's Stuck", Vector3.zero, true);
             return;
         }
 
@@ -190,7 +197,7 @@ public class GemManager : MonoBehaviour
         if (gem == null || gem.abilityIndex == -1)
         {
             SoundManager.Instance.PlayUiDeny();
-            TextPopController.Instance.PopNegative("No Gem Socketed", Vector3.zero, false);
+            TextPopController.Instance.PopNegative("No Gem Socketed", Vector3.zero, true);
             return;
         }
 
@@ -203,8 +210,8 @@ public class GemManager : MonoBehaviour
         if (totalGems <= 1)
         {
             SoundManager.Instance.PlayUiDeny();
-            TextPopController.Instance.PopNegative("You Cannot Remove", Vector3.zero, false);
-            TextPopController.Instance.PopNegative("The Last Gem", new Vector3(0, -0.5f, 0), false);
+            TextPopController.Instance.PopNegative("You Cannot Remove", Vector3.zero, true);
+            TextPopController.Instance.PopNegative("The Last Gem", new Vector3(0, -0.5f, 0), true);
             return;
         }
         
@@ -266,9 +273,9 @@ public class GemManager : MonoBehaviour
         else
         {
             SoundManager.Instance.PlayUiDeny();
-            TextPopController.Instance.PopNegative("Not Enough Credits", Vector3.zero, false);
+            TextPopController.Instance.PopNegative("Not Enough Credits", Vector3.zero, true);
         }
-
+        GameManager.Instance.uiStateObject.Ping("You have "+GameManager.Instance.metaPlayer.credits + " Credits.");
     }
 
     void Update()
@@ -411,7 +418,7 @@ public class GemManager : MonoBehaviour
         if (newSelected != selected)
         {
             selected = newSelected;
-            cardCompare.InsertAbilityGem(menuEntries[selected].ability);
+            gemCompare.InsertAbilityGem(menuEntries[selected].ability);
             SoundManager.Instance.PlayUiClick();
         }
     }
