@@ -713,7 +713,10 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Legacy Analytics: 1
+    Purchasing: 1
+    Unity Ads: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -727,11 +730,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 1
-  cloudProjectId: 
+  cloudProjectId: eaa470b1-d707-48b0-ae05-d85a399dadb4
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: 'Combat Casino: New Management'
+  organizationId: skylortrexler
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

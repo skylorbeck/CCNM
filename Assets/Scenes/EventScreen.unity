@@ -168,8 +168,76 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentEvent: {fileID: 0}
-  <eventNames>k__BackingField:
-  - FoundCoffee
-  - FoundTea
-  - FoundPie
-  - DiceRoll
+--- !u!1001 &1046512592
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 690729384879755977, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354860091400328832, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354860091400328832, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354860091400328832, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1874330349
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733225, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733225, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733225, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733225, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733225, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733225, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733225, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733225, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733225, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733225, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733225, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707317479932733226, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
+      propertyPath: m_Name
+      value: Curtains
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7307a8576e46a454888f4e535c3031f2, type: 3}
