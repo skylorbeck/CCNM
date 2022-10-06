@@ -59,13 +59,11 @@ public class MapManager : MonoBehaviour
             sliderGroup.transform.localPosition = new Vector3(-300, 0, 0);
             buttonGroup.transform.localPosition = new Vector3(0, 0, 0);
             cardDealer.InsertDeck(GameManager.Instance.deck);
-            InsertDeck();
             cardDealer.GenerateCards();
             selectDeckButton.gameObject.SetActive(false);
             startButton.gameObject.SetActive(false);
             totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
-                                  GameManager.Instance.deck
-                                      .bossAt;
+                                  GameManager.Instance.battlefield.maximumHands;
             await Task.Delay(1500);
             cardDealer.DealCards();
         }
@@ -83,7 +81,6 @@ public class MapManager : MonoBehaviour
             if (GameManager.Instance.battlefield.deckChosen)
             {
                 deckManager.SetSelectedDeck(GameManager.Instance.deck);
-                InsertDeck();
             }
         }
 
@@ -145,31 +142,6 @@ public class MapManager : MonoBehaviour
         GameManager.Instance.inputReader.Back -= Back;
     }
 
-    public void InsertDeck()
-    {
-        //todo replace with sprite from deck
-        /*for (var i = 0; i < curtains.Length; i++)
-        {
-            var i1 = i;
-            DOTween.To(
-                () => curtains[i1].color,
-                x => curtains[i1].color = x,
-                GameManager.Instance.deck.colors[0],
-                0.5f);
-        }
-        for (var i = 0; i < curtainsBack.Length; i++)
-        {
-            var i1 = i;
-            DOTween.To(
-                () => curtainsBack[i1].color,
-                x => curtainsBack[i1].color = x,
-                GameManager.Instance.deck.colors[1],
-                0.5f);
-        }*/
-        totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
-                              GameManager.Instance.deck
-                                  .bossAt;
-    }
 
     public async void StartGame()
     {
@@ -187,9 +159,12 @@ public class MapManager : MonoBehaviour
         cardDealer.InsertDeck(GameManager.Instance.deck);
         GameManager.Instance.battlefield.ClearBattlefield();
         GameManager.Instance.battlefield.StartRun();
+        totalCardsText.text = GameManager.Instance.battlefield.totalHands + "/" +
+                              GameManager.Instance.battlefield.maximumHands;
         cardDealer.GenerateCards();
         await Task.Delay(1250);
         cardDealer.DealCards();
+        
     }
     
     void Update()

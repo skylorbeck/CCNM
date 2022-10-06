@@ -47,7 +47,7 @@ public class EffectInstance : MonoBehaviour
         {
             if (brainRelic.userDecayStops)
             {
-                if (brainRelic.statusTicking.GetType().Equals(statusEffect.GetType()))
+                if (brainRelic.statusTicking.GetType() ==statusEffect.GetType())
                 {
                     relicStop = true;
                 }
@@ -57,13 +57,13 @@ public class EffectInstance : MonoBehaviour
         {
             if (brainRelic.enemyDecayStops)
             {
-                if (brainRelic.statusTicking.GetType().Equals(statusEffect.GetType()))
+                if (brainRelic.statusTicking.GetType()==statusEffect.GetType())
                 {
                     relicStop = true;
                 }
             }
         }
-        if (!statusEffect.isPersistent || !relicStop)
+        if (!statusEffect.isPersistent && !relicStop)
         {
             duration--;
         }

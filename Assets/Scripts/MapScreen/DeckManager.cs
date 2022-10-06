@@ -77,7 +77,6 @@ public class DeckManager : MonoBehaviour
     private void UpdateDecks()
     {
         GameManager.Instance.battlefield.InsertDeck(GetDeck());
-        mapManager.InsertDeck();
     }
 
     void FixedUpdate()
