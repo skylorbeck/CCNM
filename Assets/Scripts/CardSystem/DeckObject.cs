@@ -17,10 +17,9 @@ public class DeckObject : ScriptableObject
     [field:SerializeField] public Sprite wall { get;private set; }
     [field:SerializeField] public Sprite wheelCover { get;private set; }
     [field:Header("cardAt")]
-    [field: SerializeField] public int bossAt { get; private set; } =  5;
-    [field: SerializeField] public int[] miniBossAt { get; private set; } = new[] { 3 };
-    [field: SerializeField] public int[] shopAt { get; private set; } = new[] { 4 };
-    [field: SerializeField] public int[] eventAt { get; private set; } = new[] { 1,2 };
+    [field: SerializeField] public int miniBossEvery { get; private set; } = 3;
+    [field: SerializeField] public int shopEvery { get; private set; } = 4;
+    [field: SerializeField] public int eventEvery { get; private set; }= 2;
     [field: SerializeField] public string[] eventNames { get; private set; }
     [field:Header("EnemyRefs")]
 

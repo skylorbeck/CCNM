@@ -35,6 +35,10 @@ public class NewRunManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI multiplierText;
     [SerializeField] private Slider multiplierSlider;
 
+    [SerializeField] private Slider lengthSlider;
+    [SerializeField] private TextMeshProUGUI lengthText;
+    [SerializeField] private TextMeshProUGUI lengthNumberText;
+
     [SerializeField] private TextMeshProUGUI finalMultiplierText;
 
     async void Start()
@@ -43,6 +47,7 @@ public class NewRunManager : MonoBehaviour
         defenseSlider.value = runSettings.shield;
         attackSlider.value = runSettings.attack;
         multiplierSlider.SetValueWithoutNotify(runSettings.multiplier);
+        lengthSlider.SetValueWithoutNotify(GameManager.Instance.battlefield.maximumHands);
         UpdateMultiplier();
         UpdateHealth();
         UpdateDefense();
@@ -76,6 +81,23 @@ public class NewRunManager : MonoBehaviour
         attackSwitcher.SwapSprite((int)runSettings.attack-1);
         UpdateFinalMultiplier();
     }
+
+    public void UpdateLength()
+    {
+        int length = (int)lengthSlider.value;
+        lengthNumberText.text = length.ToString() + " Hands";
+        if (length>=5 && length<10)
+        {
+            lengthText.text = "Short (5-15m)";
+        } else if (length>=10 && length<=15)
+        {
+            lengthText.text = "Medium (10-20m)";
+        } else if (length>15)
+        {
+            lengthText.text = "Long (20-30m)";
+        }
+        GameManager.Instance.battlefield.SetLength((int)lengthSlider.value);
+    }
     
 
     
@@ -99,17 +121,13 @@ public class NewRunManager : MonoBehaviour
     {
         runSettings.finalMultiplier =(Math.Round((Math.Max(0,Math.Pow(10,runSettings.multiplier)*(runSettings.health + runSettings.shield + runSettings.attack-3)/3) + Math.Pow(10,runSettings.multiplier))));
         finalMultiplierText.text = "Enemy Lv. "+runSettings.finalMultiplier;
+        GameManager.Instance.battlefield.SetLevel((int)runSettings.finalMultiplier);
     }
     
-    public void StartRun()
-    {
-        GameManager.Instance.battlefield.Reset();
-        GameManager.Instance.battlefield.SetLevel((int)runSettings.finalMultiplier);
-        GameManager.Instance.LoadSceneAdditive("MapScreen", "RunSettings");
-    }
     
     public enum Difficulty
     {
+        Beginner,
         Casual,
         Easy,
         Medium,

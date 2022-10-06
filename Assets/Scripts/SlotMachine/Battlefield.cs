@@ -16,20 +16,14 @@ public class Battlefield : ScriptableObject
     [field:SerializeField] public bool deckChosen{ get;private set; }= false;
     [field:SerializeField] public bool runStarted{ get;private set; }= false;
     [field: SerializeField] public int totalHands { get; private set; } = 0;
+    [field: SerializeField] public int maximumHands { get; private set; } = 0;
     [field: SerializeField] public int enemyLevel { get; private set; } = 0;
     public Random.State? randomState = null;
 
     
 
-    public bool runOver => totalHands > deck.bossAt;
-    public float difficultyMulti
-    {
-        get
-        {
-            // Debug.Log(1 + (((float)totalHands - 1) / deck.bossAt));
-            return 1 + ((float)totalHands - 1) / deck.bossAt;
-        }
-    }
+    public bool runOver => totalHands > maximumHands;
+    public float difficultyMulti => 1 + ((float)totalHands - 1) / maximumHands;
 
     public void TotalHandsPlus()
     {
@@ -71,6 +65,7 @@ public class Battlefield : ScriptableObject
         deckChosen = savableBattlefield.deckChosen;
         runStarted = savableBattlefield.runStarted;
         totalHands = savableBattlefield.totalHands;
+        maximumHands = savableBattlefield.maximumHands;
         if (savableBattlefield.deckIndex != -1)
         {
             deck = GameManager.Instance.deckRegistry.GetDeck(savableBattlefield.deckIndex);
@@ -90,6 +85,11 @@ public class Battlefield : ScriptableObject
     {
         runStarted = true;
     }
+
+    public void SetLength(int length)
+    {
+        maximumHands = length;
+    }
 }
 [Serializable]
 public class SavableBattlefield
@@ -98,6 +98,7 @@ public class SavableBattlefield
     public bool runStarted;
     public int deckIndex;
     public int totalHands;
+    public int maximumHands;
     public Random.State randomState;
     public SavablePlayerBrain player;
     
@@ -110,7 +111,10 @@ public class SavableBattlefield
             deckIndex = GameManager.Instance.deckRegistry.GetDeckIndex(battlefield.deck.name);
         }
         else deckIndex = -1;
+
         totalHands = battlefield.totalHands;
+        maximumHands = battlefield.maximumHands;
+        
         if (battlefield.randomState != null)
         {
             randomState = battlefield.randomState.Value;
