@@ -941,6 +941,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3406611912460091364, guid: b4da3046f8dcd88409c87f1583f6ff5f, type: 3}
   m_PrefabInstance: {fileID: 1693794214}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1547343724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1547343726}
+  - component: {fileID: 1547343725}
+  - component: {fileID: 1547343727}
+  - component: {fileID: 1547343728}
+  m_Layer: 0
+  m_Name: AdManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1547343725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547343724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e76d68a6ce75cb46b898cc06922246a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidGameId: 4957482
+  iOSGameId: 4957483
+  testMode: 1
+  bannerAd: {fileID: 1547343727}
+--- !u!4 &1547343726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547343724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1547343727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547343724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d10dac7236b97a45b299c60ffcd9a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bannerPosition: 0
+  androidAdUnitId: Banner_Android
+  iOSAdUnitId: Banner_iOS
+--- !u!114 &1547343728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547343724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0cd7d8c5630d7449bfd663ecc4cb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1580031077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1352,7 @@ MonoBehaviour:
   relicRegistry: {fileID: 11400000, guid: af620037e4a4d76479ca62ae808ddee9, type: 2}
   musicRegistry: {fileID: 11400000, guid: 617b74035ba585c4b8e56f7937b08b58, type: 2}
   lootManager: {fileID: 1825388446}
+  adManager: {fileID: 1547343725}
   cursorTexture: {fileID: 2800000, guid: 46240bf1a48113746809d1af6b73f683, type: 3}
   lastScenesUnloaded: []
   TapToContinue: {fileID: 804887784}

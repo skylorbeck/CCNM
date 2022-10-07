@@ -15,7 +15,6 @@ public class CardShell : MonoBehaviour
     [field: SerializeField] public CardObject card { get; private set; }
     [SerializeField] private TextMeshPro text;
     [field: SerializeField] public SpriteRenderer cardSpriteBack { get; private set; }
-    [field: SerializeField] public SpriteRenderer cardSpriteFront { get; private set; }
     [field: SerializeField] public SpriteRenderer enemySprite { get; private set; }
     [field: SerializeField] public SpriteRenderer typeSprite { get; private set; }
 
@@ -55,7 +54,7 @@ public class CardShell : MonoBehaviour
                 typeSprite.sprite = eventSprite;
                 break;
         }
-        // cardSpriteBack.color = GameManager.Instance.deck.colors[1];//todo replace with sprite from deck
+        cardSpriteBack.sprite = GameManager.Instance.deck.deckBack;
         // cardSpriteFront.color = GameManager.Instance.deck.colors[0];
 
         transform.localPosition = new Vector3(0, -2.5f, 0);

@@ -230,15 +230,6 @@ public class FightManager : MonoBehaviour
 
     private void CheckForAllDead()
     {
-        /*if (player.isDead)
-        {
-            SetState(WheelStates.FightOver);
-            // Debug.Log("Player is dead");
-            
-            GameManager.Instance.LoadSceneAdditive("GameOver","Fight");//todo
-
-        // } else if (enemies.All(x => x.isDead))
-        } else */
         if (enemiesAlive == 0 || player.isDead)
         {
             SetState(WheelStates.FightOver);

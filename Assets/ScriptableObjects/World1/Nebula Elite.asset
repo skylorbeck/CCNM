@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abf7ef1933b8224d8a3f7e9cebb0122, type: 3}
   m_Name: Nebula Elite
   m_EditorClassIdentifier: 
-  <icon>k__BackingField: {fileID: 21300000, guid: 48f1bf28ad0b8af4b98c583f010c9c87, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: 4caeff228f7d4ab4d81e1a2149f1295e, type: 3}
   <cardTitle>k__BackingField: minibossA
   <cardDescription>k__BackingField: minibossA.description
   <cardCost>k__BackingField: 0

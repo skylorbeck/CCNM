@@ -51,12 +51,28 @@ public class AbilityObject : ScriptableObject
     [field: Header("Other")]
     [field: SerializeField]
     public bool wideRange { get; private set; } = false;
-    [field: SerializeField] public EquipmentDataContainer.SlotType slotType { get; private set; } = EquipmentDataContainer.SlotType.Offense;
+    // [field: SerializeField] public GemShape gemShape { get; private set; } = GemShape.Square;
+    // [field: SerializeField] public AbilityType abilityType { get; private set; } = AbilityType.Fire;
 
     [field: SerializeField] public AttackAnimator.AttackType attackAnimation { get; private set; } = AttackAnimator.AttackType.None;
 
     [field: SerializeField] public AudioClip soundEffect { get; private set; }
 
+    public enum AbilityType
+    {
+        Ice,
+        Fire,
+        Shock,
+        Rock,
+    }
+    public enum GemShape
+    {
+        Square,
+        Circle,
+        Plumbob,
+        Diamond
+    }
+    
     public virtual void Execute(Shell user, Shell target)
     {
         
@@ -108,7 +124,7 @@ public class AbilityObject : ScriptableObject
         if (blind)
         {
             user.statusDisplayer.RemoveStatus(typeof(BlindEffect));
-            TextPopController.Instance.PopNegative("Blind", user.transform.position, target.isPlayer);
+            TextPopController.Instance.PopNegative("Blind", user.transform.position, true);
             return;
         }
         

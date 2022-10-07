@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public MusicRegistry musicRegistry;
     public SaveManager saveManager;
     public LootManager lootManager;
+    public AdManager adManager;
     bool playerAccepted = false;
     private float target = 0;
     public Texture2D cursorTexture;
@@ -65,7 +66,6 @@ public class GameManager : MonoBehaviour
         Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         
         saveManager.Load();
-
         if (SceneManager.sceneCount!=1)
         {
             mainMenuLoaded = true;

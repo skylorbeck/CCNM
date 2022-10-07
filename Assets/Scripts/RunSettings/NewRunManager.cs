@@ -41,13 +41,13 @@ public class NewRunManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI finalMultiplierText;
 
-    async void Start()
+    void Start()
     {
         healthSlider.value = runSettings.health;
         defenseSlider.value = runSettings.shield;
         attackSlider.value = runSettings.attack;
         multiplierSlider.SetValueWithoutNotify(runSettings.multiplier);
-        lengthSlider.SetValueWithoutNotify(GameManager.Instance.battlefield.maximumHands);
+        lengthSlider.value=(GameManager.Instance.battlefield.maximumHands);
         UpdateMultiplier();
         UpdateHealth();
         UpdateDefense();

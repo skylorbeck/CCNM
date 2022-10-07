@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <title>k__BackingField: Elite Slime
   <description>k__BackingField: Elite.Description
-  <icon>k__BackingField: {fileID: 21300000, guid: 48f1bf28ad0b8af4b98c583f010c9c87, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: 4caeff228f7d4ab4d81e1a2149f1295e, type: 3}
   <abilities>k__BackingField:
   - <abilityIndex>k__BackingField: 0
     <gemLevel>k__BackingField: 0
@@ -23,6 +23,12 @@ MonoBehaviour:
     <gemLevel>k__BackingField: 0
     <amountOwned>k__BackingField: 0
   - <abilityIndex>k__BackingField: 6
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 0
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 0
     <gemLevel>k__BackingField: 0
     <amountOwned>k__BackingField: 0
   <credits>k__BackingField: 50

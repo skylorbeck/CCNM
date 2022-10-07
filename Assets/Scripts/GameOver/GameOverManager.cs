@@ -33,13 +33,12 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI creditsLostText;
     [SerializeField] private TextMeshProUGUI egoText;
     [SerializeField] private TextMeshProUGUI egoLostText;
+    [SerializeField] private TextMeshProUGUI egoDoublerText;
     [SerializeField] private TextMeshProUGUI cardPackPercentileText;
     [SerializeField] private Image WinLoseImage;
     [SerializeField] private RectTransform MasterWindow;
     [SerializeField] private Sprite WinSprite;
     
-
-
     [SerializeField] private int delay = 250;
     [SerializeField] private int minionRatio = 10;
     [SerializeField] private int bossRatio = 100;
@@ -81,6 +80,14 @@ public class GameOverManager : MonoBehaviour
         if (!GameManager.Instance.runPlayer.isDead)
         {
             cardPacks++;
+        }
+
+      
+        if (GameManager.Instance.metaPlayer.doublerActive)
+        {
+            ego *= 2;
+            egoDoublerText.text = "Doubler Active";
+            egoDoublerText.color = egoText.color;
         }
 
         cardPacks += score / 500;

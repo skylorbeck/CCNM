@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <title>k__BackingField: Giant Slime
   <description>k__BackingField: Where's the Janitor?
-  <icon>k__BackingField: {fileID: 21300000, guid: 4caeff228f7d4ab4d81e1a2149f1295e, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: 48f1bf28ad0b8af4b98c583f010c9c87, type: 3}
   <abilities>k__BackingField:
   - <abilityIndex>k__BackingField: 5
     <gemLevel>k__BackingField: 0

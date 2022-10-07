@@ -26,6 +26,8 @@ public class PlayerBrain : Brain
     public bool isDead => currentHealth <= 0;
 
     [OptionalField] public int maximumEquipmentSlots = 100;
+
+    public bool doublerActive = false;
     
     public int totalEquipment
     {

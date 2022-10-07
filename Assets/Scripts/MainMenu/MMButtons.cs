@@ -77,6 +77,11 @@ public class MMButtons : MonoBehaviour
         SoundManager.Instance.PlayUiAccept();
         GameManager.Instance.LoadSceneAdditive("Gems","MainMenu");
     }
+    public void VIP()
+    {
+        SoundManager.Instance.PlayUiAccept();
+        GameManager.Instance.LoadSceneAdditive("Store","MainMenu");
+    }
     private async void Start()
     {
         await Task.Delay(10);
@@ -87,9 +92,9 @@ public class MMButtons : MonoBehaviour
         await Task.Delay(90);
         if (GameManager.Instance.battlefield.runStarted)
         {
-            menu.AddEntry(continueEntry,1);
-            menu.SetSelected(1);
-        }
+            menu.AddEntry(continueEntry,2);
+            menu.SetSelected(2);
+        } else menu.SetSelected(1);
     }
 
     private void OnDestroy()
