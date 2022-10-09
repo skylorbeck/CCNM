@@ -10,6 +10,12 @@ public class AbilityObject : ScriptableObject
 
     [field: SerializeField] public string descriptionA { get; private set; } = "description.a";
     [field: SerializeField] public string descriptionB { get; private set; } = "description.b";
+    [field:Header("{damageTarget}{damageSelf}")]
+    [field:Header("{healTarget}{healSelf}")]
+    [field:Header("{statusTarget}{statusSelf}")]
+    [field:Header("{armorTarget}{armorSelf}")]
+    [field:Header("{statusdamage}{statusheal}")]
+    [field:Header("{statusTargetDuration}{statusSelfDuration}")]
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public int baseCost { get; private set; } = 1;
 
@@ -241,53 +247,124 @@ public class AbilityObject : ScriptableObject
         }
     }
 
-    public string GetTranslatedDescriptionA(PlayerBrain playerBrain)//todo 
+    public string GetTranslatedDescriptionA(PlayerBrain playerBrain)
     {
-        string description = descriptionA;
-            int baseDamage = playerBrain.GetDamage();
-            description = description.Replace("{damage}", (baseDamage * targetDamageMultiplier).ToString(CultureInfo.CurrentCulture));
-            int baseHeal = playerBrain.GetHeal();
-            description = description.Replace("{heal}", (baseHeal * targetHealMultiplier).ToString(CultureInfo.CurrentCulture));
-            int baseArmor = playerBrain.GetShieldRate();
-            description = description.Replace("{armor}", (baseArmor * targetArmorMultiplier).ToString(CultureInfo.CurrentCulture));
-
-            if (targetStatus!=null)
-            {
-                description = description.Replace("{status}", targetStatus.name);
-            } else if (userStatus!=null)
-            {
-                description = description.Replace("{status}", userStatus.name);
-            }
-            description = description.Replace("{statusdamage}", ((int)(playerBrain.GetStatusDamage()*targetDamageMultiplier)).ToString());
-            description = description.Replace("{statusheal}",((int)(playerBrain.GetHeal()*targetHealMultiplier)).ToString());
-
-        
-        return description;
-    }
-    public string GetTranslatedDescriptionB(PlayerBrain playerBrain)
-    {//todo clean these up
         string description = descriptionB;
-            int baseDamage = playerBrain.GetDamage();
-            description = description.Replace("{damage}", (baseDamage * userDamageMultiplier).ToString(CultureInfo.CurrentCulture));
-            int baseHeal = playerBrain.GetHeal();
-            description = description.Replace("{heal}", (baseHeal * userHealMultiplier).ToString(CultureInfo.CurrentCulture));
-            int baseArmor = playerBrain.GetShieldRate();
-            description = description.Replace("{armor}", (baseArmor * userArmorMultiplier).ToString(CultureInfo.CurrentCulture));
-            if (userStatus!=null)
-            {
-                description = description.Replace("{status}", userStatus.name);
-            }
-            else if (targetStatus!=null)
-            {
-                description = description.Replace("{status}", targetStatus.name);
-            }
-            description = description.Replace("{statusdamage}", ((int)(playerBrain.GetStatusDamage()*userDamageMultiplier)).ToString());
-            description = description.Replace("{statusheal}", ((int)(playerBrain.GetHeal()*userHealMultiplier)).ToString());
-            description = description.Replace("{statusduration}", targetStatusDuration.ToString());
-            
+        int baseDamage = playerBrain.GetDamage();
+        description = description.Replace("{damageTarget}",
+            (baseDamage * targetDamageMultiplier).ToString(CultureInfo.CurrentCulture));
+        description = description.Replace("{damageSelf}",
+            (baseDamage * userDamageMultiplier).ToString(CultureInfo.CurrentCulture));
+        
+        int baseHeal = playerBrain.GetHeal();
+        description = description.Replace("{healTarget}",
+            (baseHeal * targetHealMultiplier).ToString(CultureInfo.CurrentCulture));
+        description = description.Replace("{healSelf}",
+            (baseHeal * userHealMultiplier).ToString(CultureInfo.CurrentCulture));
+        
+        int baseArmor = playerBrain.GetShieldRate();
+        description = description.Replace("{armorTarget}",
+            (baseArmor * targetArmorMultiplier).ToString(CultureInfo.CurrentCulture));
+        description = description.Replace("{armorSelf}",
+            (baseArmor * userArmorMultiplier).ToString(CultureInfo.CurrentCulture));
+
+        if (targetStatus != null)
+        {
+            description = description.Replace("{statusTarget}", targetStatus.name);
+            description = description.Replace("{statusTargetDuration}", targetStatusDuration.ToString());
+        }
+
+        if (targetStatus2 != null)
+        {
+            description = description.Replace("{statusTarget2}", targetStatus2.name);
+            description = description.Replace("{statusTargetDuration2}", targetStatusDuration.ToString());
+        }
+        else if (userStatus != null)
+        {
+            description = description.Replace("{statusSelf}", userStatus.name);
+            description = description.Replace("{statusSelfDuration}", userStatusDuration.ToString());
+        }
+
+        if (this is ConsumerAbility)
+        {
+            description = description.Replace("{statusDamageTarget}",
+                ((int)(playerBrain.GetStatusDamage() * ((ConsumerAbility)this).cTargetDamageMultiplier)).ToString());
+              description = description.Replace("{cType}", ((ConsumerAbility)this).type.name);
+        }
+
+        if (this is ScalingWithStatusAbility)
+        {
+            description = description.Replace("{sType}", ((ScalingWithStatusAbility)this).ifhave.name);
+            description = description.Replace("{statusDamageTarget}",
+                ((int)(playerBrain.GetStatusDamage() * ((ScalingWithStatusAbility)this).ifhavevalue)).ToString());
+        }
+
+        description = description.Replace("{statusDamage}",
+            ((int)(playerBrain.GetStatusDamage() * targetDamageMultiplier)).ToString());
+        description = description.Replace("{statusheal}",
+            ((int)(playerBrain.GetHeal() * targetHealMultiplier)).ToString());
         return description;
     }
-    
+
+    public string GetTranslatedDescriptionB(PlayerBrain playerBrain)
+    {
+        string description = descriptionB;
+        int baseDamage = playerBrain.GetDamage();
+        description = description.Replace("{damageTarget}",
+            (baseDamage * targetDamageMultiplier).ToString(CultureInfo.CurrentCulture));
+        description = description.Replace("{damageSelf}",
+            (baseDamage * userDamageMultiplier).ToString(CultureInfo.CurrentCulture));
+        
+        int baseHeal = playerBrain.GetHeal();
+        description = description.Replace("{healTarget}",
+            (baseHeal * targetHealMultiplier).ToString(CultureInfo.CurrentCulture));
+        description = description.Replace("{healSelf}",
+            (baseHeal * userHealMultiplier).ToString(CultureInfo.CurrentCulture));
+        
+        int baseArmor = playerBrain.GetShieldRate();
+        description = description.Replace("{armorTarget}",
+            (baseArmor * targetArmorMultiplier).ToString(CultureInfo.CurrentCulture));
+        description = description.Replace("{armorSelf}",
+            (baseArmor * userArmorMultiplier).ToString(CultureInfo.CurrentCulture));
+
+        if (targetStatus != null)
+        {
+            description = description.Replace("{statusTarget}", targetStatus.name);
+            description = description.Replace("{statusTargetDuration}", targetStatusDuration.ToString());
+        }
+
+        if (targetStatus2 != null)
+        {
+            description = description.Replace("{statusTarget2}", targetStatus2.name);
+            description = description.Replace("{statusTargetDuration2}", targetStatusDuration.ToString());
+        }
+        else if (userStatus != null)
+        {
+            description = description.Replace("{statusSelf}", userStatus.name);
+            description = description.Replace("{statusSelfDuration}", userStatusDuration.ToString());
+        }
+
+        if (this is ConsumerAbility)
+        {
+            description = description.Replace("{statusDamageTarget}",
+                ((int)(playerBrain.GetStatusDamage() * ((ConsumerAbility)this).cTargetDamageMultiplier)).ToString());
+              description = description.Replace("{cType}", ((ConsumerAbility)this).type.name);
+        }
+
+        if (this is ScalingWithStatusAbility)
+        {
+            description = description.Replace("{sType}", ((ScalingWithStatusAbility)this).ifhave.name);
+            description = description.Replace("{statusDamageTarget}",
+                ((int)(playerBrain.GetStatusDamage() * ((ScalingWithStatusAbility)this).ifhavevalue)).ToString());
+        }
+
+        description = description.Replace("{statusDamage}",
+            ((int)(playerBrain.GetStatusDamage() * targetDamageMultiplier)).ToString());
+        description = description.Replace("{statusheal}",
+            ((int)(playerBrain.GetHeal() * targetHealMultiplier)).ToString());
+        return description;
+    }
+
 }
 
 [Serializable]

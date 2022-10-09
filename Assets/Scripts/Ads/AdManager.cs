@@ -24,8 +24,8 @@ public class AdManager : MonoBehaviour, IUnityAdsInitializationListener
     
     public void OnInitializationComplete()
     {
-        Debug.Log("Unity Ads initialization complete.");
-        if (!GameManager.Instance.metaPlayer.doublerActive)
+        // Debug.Log("Unity Ads initialization complete.");
+        if (!GameManager.Instance.metaPlayer.doublerOwned)
         {
             bannerAd.LoadBanner();
         }

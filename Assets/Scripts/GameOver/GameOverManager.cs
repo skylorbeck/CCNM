@@ -83,7 +83,7 @@ public class GameOverManager : MonoBehaviour
         }
 
       
-        if (GameManager.Instance.metaPlayer.doublerActive)
+        if (GameManager.Instance.metaPlayer.doublerOwned && GameManager.Instance.metaPlayer.doublerActive)
         {
             ego *= 2;
             egoDoublerText.text = "Doubler Active";

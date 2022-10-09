@@ -1,8 +1,9 @@
-using System;
 using System.Collections.Generic;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
+using UnityEditor.Advertisements;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Security;
 using Product = UnityEngine.Purchasing.Product;
@@ -20,6 +21,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
     public static string DOUBLER = "egodoubler";
     public static string STARTERPACK = "starterpack";
 
+    public UnityAction OnPurchaseComplete;
     async void Start()
     {
         if (Instance == null)
@@ -31,7 +33,11 @@ public class IAPManager : MonoBehaviour, IStoreListener
             Destroy(gameObject);
         }
 
+#if UNITY_EDITOR
+        // Debug.Log("Unity Editor");
         StandardPurchasingModule.Instance().useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
+        AdvertisementSettings.testMode = true;
+#endif
         try
         {
             await UnityServices.InitializeAsync();
@@ -84,7 +90,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
         this.extensions = extensions;
         products = controller.products;
         googlePlayStoreExtensions = extensions.GetExtension<IGooglePlayStoreExtensions>();
-        Debug.Log("OnInitialized: PASS");
+        // Debug.Log("OnInitialized: PASS");
     }
 
     public void OnInitializeFailed(InitializationFailureReason error)
@@ -97,8 +103,8 @@ public class IAPManager : MonoBehaviour, IStoreListener
     {
         bool validPurchase = true;
         PRODUCT = args.purchasedProduct;
-#if UNITY_ANDROID||UNITY_IOS
-        /*try
+#if !UNITY_EDITOR
+        try
         {
             var validator =
                 new CrossPlatformValidator(GooglePlayTangle.Data(), AppleTangle.Data(), Application.identifier);
@@ -107,7 +113,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
         catch (IAPSecurityException)
         {
             validPurchase = false;
-        }*/
+        }
 #endif
         if (googlePlayStoreExtensions.IsPurchasedProductDeferred(PRODUCT))
         {
@@ -120,21 +126,21 @@ public class IAPManager : MonoBehaviour, IStoreListener
             {
                 case "egodoubler":
                     Debug.Log("Double");
-                    GameManager.Instance.metaPlayer.doublerActive = true;
+                    GameManager.Instance.metaPlayer.doublerOwned = true;
                     GameManager.Instance.adManager.HideBanner();
                     break;
 
                 case "starterpack":
-                    if (!GameManager.Instance.metaPlayer.doublerActive)
+                    if (!GameManager.Instance.metaPlayer.doublerOwned)
                     {
-                        GameManager.Instance.metaPlayer.doublerActive = true;
+                        GameManager.Instance.metaPlayer.doublerOwned = true;
                         GameManager.Instance.metaPlayer.AddEgo(5000);
                     }
                     GameManager.Instance.adManager.HideBanner();
                     Debug.Log("Starter Pack");
                     break;
             }
-
+            OnPurchaseComplete?.Invoke();
             return PurchaseProcessingResult.Complete;
         }
         else
@@ -216,7 +222,33 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     public void RestorePurchases()
     {
-        extensions.GetExtension<IAppleExtensions>().RestoreTransactions(result =>
+        foreach (Product item in controller.products.all)
+        {
+            if (item.hasReceipt)
+            {
+                switch (item.definition.id)
+                {
+                    case "egodoubler":
+                        Debug.Log("Double");
+                        GameManager.Instance.metaPlayer.doublerOwned = true;
+                        GameManager.Instance.adManager.HideBanner();
+                        break;
+
+                    case "starterpack":
+                        if (!GameManager.Instance.metaPlayer.doublerOwned)
+                        {
+                            GameManager.Instance.metaPlayer.doublerOwned = true;
+                            GameManager.Instance.metaPlayer.AddEgo(5000);
+                        }
+                        GameManager.Instance.adManager.HideBanner();
+                        Debug.Log("Starter Pack");
+                        break;
+                }
+            }
+            
+        }
+        
+        /*extensions.GetExtension<IAppleExtensions>().RestoreTransactions(result =>
         {
 
             if (result)
@@ -239,7 +271,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
             }
 
             AnalyticsService.Instance.Flush();
-        });
+        });*/
 
     }
 }

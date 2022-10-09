@@ -449,7 +449,8 @@ MonoBehaviour:
     cardSoulsGained: 00000000000000000000000000000000000000000000000000000000
     cardSoulsSpent: 00000000000000000000000000000000000000000000000000000000
   maximumEquipmentSlots: 25
-  doublerActive: 0
+  doublerOwned: 1
+  doublerActive: 1
   <cardStrength>k__BackingField: 5
   <cardDexterity>k__BackingField: 0
   <cardVitality>k__BackingField: 1

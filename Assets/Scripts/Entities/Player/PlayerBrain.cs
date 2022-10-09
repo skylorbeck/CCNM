@@ -27,6 +27,7 @@ public class PlayerBrain : Brain
 
     [OptionalField] public int maximumEquipmentSlots = 100;
 
+    public bool doublerOwned = false;
     public bool doublerActive = false;
     
     public int totalEquipment

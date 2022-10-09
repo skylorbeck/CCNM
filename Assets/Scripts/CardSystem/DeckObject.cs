@@ -31,6 +31,10 @@ public class DeckObject : ScriptableObject
     [field:SerializeField] public ItemCard[] itemCards { get;private set; }
     [field:SerializeField] public ConsumableCard[] consumableCards { get;private set; }
     [field:SerializeField] public Relic[] relics { get;private set; }
+    
+    [field: Header("Music")]
+    [field:SerializeField] public int[] combat { get;private set; }
+    [field:SerializeField] public int[] map { get;private set; }
 
 [Obsolete("Use a more specific method like DrawBossCard()")]
     public MapCard DrawRandomCard()

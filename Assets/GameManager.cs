@@ -122,10 +122,12 @@ public class GameManager : MonoBehaviour
 
     public void LoadSceneAdditive(string sceneName,params string[] sceneToUnload)
     {
+        inputReader.DisableUI();
         LoadScene(sceneName, LoadSceneMode.Additive, false, sceneToUnload);
     }
     public void LoadSceneAdditive(string sceneName, bool waitForInput,params string[] sceneToUnload)
     {
+        inputReader.DisableUI();
         LoadScene(sceneName, LoadSceneMode.Additive, waitForInput, sceneToUnload);
     }
 
@@ -136,7 +138,6 @@ public class GameManager : MonoBehaviour
         //also might conflict with loading the player at boot
         Instance.saveManager.SaveMeta();
 
-        inputReader.DisableUI();
         uiStateObject.FadeOut();
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad, mode);
         operation.allowSceneActivation = false;

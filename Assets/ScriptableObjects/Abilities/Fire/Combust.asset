@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a28799333c4c33930783a8c679820a, type: 3}
   m_Name: Combust
   m_EditorClassIdentifier: 
-  <descriptionA>k__BackingField: '{statusdamage} x Burn Stacks'
+  <descriptionA>k__BackingField: '{statusDamageTarget} x Burn Stacks'
   <descriptionB>k__BackingField: Consumes all Burn Stacks
   <icon>k__BackingField: {fileID: 21300000, guid: 3b60d6ca0bbb1e64eab0904b3b18c89b, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 0
-  <targetDamageMultiplier>k__BackingField: 1
+  <targetDamageMultiplier>k__BackingField: 1.5
   <targetHitCount>k__BackingField: 1
   <damageUser>k__BackingField: 0
   <userDamageMultiplier>k__BackingField: 1
@@ -38,7 +38,6 @@ MonoBehaviour:
   <statusUser>k__BackingField: 0
   <userStatusDuration>k__BackingField: 1
   <wideRange>k__BackingField: 0
-  <slotType>k__BackingField: 0
   <attackAnimation>k__BackingField: 0
   <soundEffect>k__BackingField: {fileID: 8300000, guid: ae7467707cf840340849296a887e4942, type: 3}
   <amountToConsume>k__BackingField: 0

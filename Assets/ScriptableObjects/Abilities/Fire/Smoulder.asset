@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6c931f99d458b4c9766d2ce675483b, type: 3}
   m_Name: Smoulder
   m_EditorClassIdentifier: 
-  <descriptionA>k__BackingField: Hit for {damage}
-  <descriptionB>k__BackingField: Apply {status} if not Burning
+  <descriptionA>k__BackingField: Hit for {damageTarget}
+  <descriptionB>k__BackingField: Apply {statusTarget} if NOT Burning
   <icon>k__BackingField: {fileID: 21300000, guid: 92f86c38d504db64b8d518d7e0d3eb9d, type: 3}
   <baseCost>k__BackingField: 1
   <damageTarget>k__BackingField: 1
@@ -38,7 +38,6 @@ MonoBehaviour:
   <statusUser>k__BackingField: 0
   <userStatusDuration>k__BackingField: 1
   <wideRange>k__BackingField: 0
-  <slotType>k__BackingField: 0
   <attackAnimation>k__BackingField: 2
   <soundEffect>k__BackingField: {fileID: 0}
   <ifhave>k__BackingField: {fileID: 11400000, guid: 730f1ff0d37a33542912f7c69d979c74, type: 2}
