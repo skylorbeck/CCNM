@@ -32,12 +32,10 @@ public class IAPManager : MonoBehaviour, IStoreListener
         {
             Destroy(gameObject);
         }
-
-#if UNITY_EDITOR
-        // Debug.Log("Unity Editor");
-        StandardPurchasingModule.Instance().useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
+        //todo remove this
         AdvertisementSettings.testMode = true;
-#endif
+        StandardPurchasingModule.Instance().useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
+        
         try
         {
             await UnityServices.InitializeAsync();
@@ -49,20 +47,14 @@ public class IAPManager : MonoBehaviour, IStoreListener
             Debug.LogWarning("Consent: :" +
                              e); // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
         }
-        GameManager.Instance.inputReader.Back+=Back;
 
     }
 
     public void OnDestroy()
     {
-        GameManager.Instance.inputReader.Back-=Back;
     }
 
-    public void Back()
-    {
-            GameManager.Instance.LoadSceneAdditive("MainMenu", "Store");
-    }
-    
+
 
     public void InitializePurchasing()
     {
