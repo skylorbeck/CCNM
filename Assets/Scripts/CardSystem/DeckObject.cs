@@ -34,6 +34,7 @@ public class DeckObject : ScriptableObject
     
     [field: Header("Music")]
     [field:SerializeField] public int[] combat { get;private set; }
+    [field:SerializeField] public int[] boss { get;private set; }
     [field:SerializeField] public int[] map { get;private set; }
 
 [Obsolete("Use a more specific method like DrawBossCard()")]

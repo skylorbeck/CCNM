@@ -84,12 +84,12 @@ public class MMButtons : MonoBehaviour
     }
     private async void Start()
     {
-        await Task.Delay(10);
+        // await Task.Delay(10);
         GameManager.Instance.inputReader.Back+=Back;
         GameManager.Instance.uiStateObject.HideTopBar();
         // GameManager.Instance.eventSystem.SetSelectedGameObject(button.gameObject);
-        MusicManager.Instance.PlayTrack(GameManager.Instance.musicRegistry.GetMusic(2));
-        await Task.Delay(90);
+        MusicManager.Instance.PlayTrack(2);
+        await Task.Delay(10);
         if (GameManager.Instance.battlefield.runStarted)
         {
             menu.AddEntry(continueEntry,2);

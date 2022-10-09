@@ -28,7 +28,7 @@ public class MapManager : MonoBehaviour
 
     async void Start()
     {
-        await Task.Delay(10);
+        // await Task.Delay(10);
         playerStatDisplay.FadeInOut();
 
         if (GameManager.Instance.battlefield.randomState == null)
@@ -52,6 +52,7 @@ public class MapManager : MonoBehaviour
 
         if (GameManager.Instance.battlefield.runStarted)
         {
+            MusicManager.Instance.PlayTrack(GameManager.Instance.deck.map[Random.Range(0,GameManager.Instance.deck.map.Length)]);
             GameManager.Instance.uiStateObject.Ping("Saved game");
             deckManager.gameObject.SetActive(false);
             cardDealer.transform.localPosition = new Vector3(0,-1,-1);
@@ -145,6 +146,8 @@ public class MapManager : MonoBehaviour
 
     public async void StartGame()
     {
+        MusicManager.Instance.PlayTrack(GameManager.Instance.deck.map[Random.Range(0,GameManager.Instance.deck.map.Length)]);
+
         selectDeckButton.gameObject.SetActive(false);
         startButton.gameObject.SetActive(false);
 

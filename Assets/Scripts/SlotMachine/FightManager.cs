@@ -64,7 +64,6 @@ public class FightManager : MonoBehaviour
 
     async void Start()
     {
-        MusicManager.Instance.PlayTrack(GameManager.Instance.musicRegistry.GetMusic(0));
         GameManager.Instance.uiStateObject.Ping("Fight!");
         // if (GameManager.Instance.battlefield.randomState != null) Random.state = GameManager.Instance.battlefield.randomState.Value;
         cancellationTokenSource = new CancellationTokenSource();
@@ -81,13 +80,26 @@ public class FightManager : MonoBehaviour
         {
             enemies[i].InsertBrain(GameManager.Instance.battlefield.enemies[i]);
         }
-       
+        
+        bool isBoss = false;
         foreach (EnemyShell enemy in enemies)
         {
             if (enemy.enemyBrain.isBlank)
             {
                 enemy.KillSilently();
             }
+            if (enemy.enemyBrain.isBoss)
+            {
+                isBoss = true;
+            }
+        }
+        if (isBoss)
+        {
+            MusicManager.Instance.PlayTrack(GameManager.Instance.deck.boss[Random.Range(0,GameManager.Instance.deck.boss.Length)]);
+        }
+        else
+        {
+            MusicManager.Instance.PlayTrack(GameManager.Instance.deck.combat[Random.Range(0,GameManager.Instance.deck.combat.Length)]);
         }
         
         player.InsertBrain(GameManager.Instance.battlefield.player);

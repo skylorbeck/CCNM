@@ -22,12 +22,12 @@ public class ShopManager : MonoBehaviour
 
     async void Start()
     {
+        MusicManager.Instance.PlayTrack(11);
         equipmentCardShell.InsertItem(GameManager.Instance.lootManager.GetItemCard());
         foreach (ShopItem item in items)
         {
             item.SetAmount(Random.Range(1, 4));
         }
-
         UpdateItemText();
         UpdateCreditText();
         await Task.Delay(10);

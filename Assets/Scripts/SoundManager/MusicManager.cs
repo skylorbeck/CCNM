@@ -88,15 +88,15 @@ public class MusicManager : MonoBehaviour
                 } while (track.isPlaying && track.volume > 0);
             }
         }
-
+        track.loop = true;//add arg for this?
         track.clip = clip;
         track.volume = 0;
         track.Play();
-        do
+        while (track.volume < PlayerPrefs.GetFloat("MusicVolume", 1f)*0.9f)
         {
-            track.volume = Mathf.Lerp(track.volume, PlayerPrefs.GetFloat("MusicVolume", 1f)+0.5f, Time.deltaTime);//todo fix this. this is why the music starts for a frame 
+            track.volume = Mathf.Lerp(track.volume, PlayerPrefs.GetFloat("MusicVolume", 1f)+0.5f, Time.deltaTime);
             await Task.Delay(TimeSpan.FromSeconds(Time.deltaTime));
-        } while (track.volume < PlayerPrefs.GetFloat("MusicVolume", 1f)*0.9f);
+        }
         track.volume = PlayerPrefs.GetFloat("MusicVolume", 1f);
     }
     public async void PlayTrackSimple(AudioClip clip,bool loop = true)

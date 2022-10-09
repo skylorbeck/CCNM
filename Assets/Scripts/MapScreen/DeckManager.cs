@@ -23,6 +23,10 @@ public class DeckManager : MonoBehaviour
         {
             this.SetSelectedDeck(GameManager.Instance.deck);
         }
+        else
+        {
+            UpdateDecks();
+        }
     }
 
     private void OnDestroy()

@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Obsolete]
 public class HotelManager : MonoBehaviour
 {
     [SerializeField] Button button;
@@ -20,7 +21,7 @@ public class HotelManager : MonoBehaviour
         GameManager.Instance.uiStateObject.ShowTopBar();
         GameManager.Instance.uiStateObject.Ping("The Hotel");
         GetComponent<Animator>().SetTrigger("FadeIn");
-        MusicManager.Instance.PlayTrack("Hotel");
+        // MusicManager.Instance.PlayTrack("Hotel");
       
     }
 

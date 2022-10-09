@@ -55,9 +55,11 @@ public class GameOverManager : MonoBehaviour
             egoLost = GameManager.Instance.runPlayer.ego - ego;
             creditsLostText.gameObject.SetActive(true);
             egoLostText.gameObject.SetActive(true);
+            MusicManager.Instance.PlayTrack(8);//play the loss music
         }
         else
         {
+            MusicManager.Instance.PlayTrack(5);//play the victory music
             WinLoseImage.sprite = WinSprite;
         }
 
