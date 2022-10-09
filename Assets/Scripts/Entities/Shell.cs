@@ -18,6 +18,7 @@ public class Shell : MonoBehaviour
     [SerializeField] public StatusDisplayer statusDisplayer;
     [SerializeField] public HealthBar healthBar;
     public bool isDead => currentHealth <= 0;
+    public bool hasDied = false;
     public bool hasBrain = false;
     public bool hasShield => shield > 0;
     public bool isPlayer => brain is PlayerBrain;
@@ -162,6 +163,8 @@ public class Shell : MonoBehaviour
         spriteRenderer.sprite = null;
         statusDisplayer.Clear();
         healthBar.ManualUpdate();
+        hasDied = true;
+        SoundManager.Instance.PlayDeathSound();
     }
     
     public virtual void Heal(int baseHeal)
@@ -297,7 +300,7 @@ public class Shell : MonoBehaviour
     }
     public void TestDeath()
     {
-        if (currentHealth <= 0)
+        if (isDead && !hasDied)
         {
             Kill();
         }

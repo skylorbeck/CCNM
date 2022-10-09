@@ -13,6 +13,8 @@ using Random = UnityEngine.Random;
 
 public class FightManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip enemySelectSound;
+    [SerializeField] private AudioClip playerSelectSound;
     [field:SerializeField]public Lane selectedWheel { get; private set; } = Lane.None;
     [field:SerializeField]public Lane selectedEnemy { get; private set; } = Lane.None;
     [SerializeField] private Image selector;
@@ -446,7 +448,7 @@ public class FightManager : MonoBehaviour
         {
             return;
         }
-
+        SoundManager.Instance.PlaySound(playerSelectSound);
         if (wheel == selectedWheel)
         {
             selectedWheel = Lane.None;
@@ -516,6 +518,7 @@ public class FightManager : MonoBehaviour
 
         if (selectedWheel == Lane.None)
         {
+            SoundManager.Instance.PlaySound(enemySelectSound);
             if (enemySlot == selectedEnemy)
             {
                 selectedEnemy = Lane.None;

@@ -46,5 +46,6 @@ MonoBehaviour:
   <itemCards>k__BackingField: []
   <consumableCards>k__BackingField: []
   <relics>k__BackingField: []
-  <combat>k__BackingField: 00000000
-  <map>k__BackingField: 00000000
+  <combat>k__BackingField: 0900000000000000
+  <boss>k__BackingField: 03000000
+  <map>k__BackingField: 04000000070000000a000000

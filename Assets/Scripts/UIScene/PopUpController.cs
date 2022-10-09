@@ -46,23 +46,30 @@ public class PopUpController : MonoBehaviour
     
     public void Accept()
     {
-        Cancel();
+        Cancel(false);
         if (voidDelegate != null)
         {
             voidDelegate.DynamicInvoke();
         }
+        SoundManager.Instance.PlayUiAccept();
+
     }
     
-    public void Cancel()
+    public void Cancel(bool playSound = true)
     {
         transform.DOScale(0, 0.25f);
         raycastBlocker.raycastTarget = false;
         DOTween.To(()=> raycastBlocker.color.a, x=> raycastBlocker.color = new Color(raycastBlocker.color.r, raycastBlocker.color.g, raycastBlocker.color.b, x), 0, 0.25f);
         // Debug.Log("Cancelled");
+        if (playSound)
+        {
+            SoundManager.Instance.PlayUiDeny();
+        }
     }
 
     public void ShowPopUp(string message, string yes, string no, VoidDelegate action)
     {
+        SoundManager.Instance.PlayUiClick();
         raycastBlocker.raycastTarget = true;
         DOTween.To(()=> raycastBlocker.color.a, x=> raycastBlocker.color = new Color(raycastBlocker.color.r, raycastBlocker.color.g, raycastBlocker.color.b, x), 0.5f, 0.25f);
         transform.DOKill(true);

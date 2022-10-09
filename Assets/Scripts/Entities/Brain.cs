@@ -154,7 +154,7 @@ public class Brain : ScriptableObject
     }
     public virtual float GetCritChanceUnmodified(int temp =0)
     {
-        return (GetSpeed()+temp)*0.05f;
+        return (GetSpeed()+temp)*0.5f;
     }
 
     public virtual float GetCritDamageUnmodified(int temp =0)

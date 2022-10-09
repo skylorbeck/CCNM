@@ -1548,6 +1548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d44325a5aaa844c81572f86ed784bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toggle: {fileID: 8300000, guid: a6f47f9e12a5a7f46ac764f4a6792d52, type: 3}
+  clear: {fileID: 8300000, guid: 37e706dd3bf511546b9dbc7bd9160697, type: 3}
   cardPrefab: {fileID: 2936789436814341088, guid: 08f04cb4a383ce44bab03c81a985d939, type: 3}
   handHolder: {fileID: 799429854}
   cardHands:

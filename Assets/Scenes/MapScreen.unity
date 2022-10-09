@@ -1902,6 +1902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8506aa0effe324d990ce37bf7ac28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardDeal: {fileID: 8300000, guid: 37e706dd3bf511546b9dbc7bd9160697, type: 3}
+  cardSelect: {fileID: 8300000, guid: a6f47f9e12a5a7f46ac764f4a6792d52, type: 3}
   shells:
   - {fileID: 702851156}
   - {fileID: 1483629875}
@@ -3666,6 +3668,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1716098735}
     m_Modifications:
+    - target: {fileID: 6722042597704973516, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6722042597894727528, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
       propertyPath: m_Interactable
       value: 1

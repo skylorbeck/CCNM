@@ -12,6 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 355bc1e6863b4f342ae6d4cc39fbd056, type: 3}
   m_Name: Music
   m_EditorClassIdentifier: 
-  musicTracks: []
-  keys: []
-  values: 
+  musicTracks:
+  - {fileID: 8300000, guid: 0a4bc96f87b75b84280e5e102c90190e, type: 3}
+  - {fileID: 8300000, guid: f69bd2722c4e4964987b9330cd9e18fe, type: 3}
+  - {fileID: 8300000, guid: 593ce212ceecb3344abe498e82b90d0f, type: 3}
+  - {fileID: 8300000, guid: e8eab3edcb9c13844a5a7cd50833b6ba, type: 3}
+  - {fileID: 8300000, guid: d70da97d7fd8aa44a8c69eb7fce0e58c, type: 3}
+  - {fileID: 8300000, guid: 02777a17c785fc049b06c0b918c2e23f, type: 3}
+  - {fileID: 8300000, guid: e800c0aaac1427447a747f8589b158e4, type: 3}
+  - {fileID: 8300000, guid: a4ec8a93febc4fe4fbcac66e897dad26, type: 3}
+  - {fileID: 8300000, guid: acf9f58640fe1ac4aac51b714c52d2ff, type: 3}
+  - {fileID: 8300000, guid: 79555033bbdfa024dbb541a5a8aee21b, type: 3}
+  - {fileID: 8300000, guid: 081f8f44a702f644386e986b72a720e8, type: 3}
+  - {fileID: 8300000, guid: 8c1b48a79bef32d4b93e26d3cd4ad23a, type: 3}
+  keys:
+  - LOOP_A Creature in the Wild!
+  - LOOP_An Unlikely Hero
+  - LOOP_Blasting Through the Sky
+  - LOOP_Chaos Powerhouse
+  - LOOP_Exploring the Depths
+  - LOOP_Feel-Good Victory
+  - LOOP_Feeling Lucky!
+  - LOOP_Happy Quest
+  - LOOP_Let's Go Underwater!
+  - LOOP_Mysterious Cave
+  - LOOP_New Destinations
+  - LOOP_Quirky Companion
+  values: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b000000

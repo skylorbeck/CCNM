@@ -19,6 +19,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip uiDeny;
     [SerializeField] private AudioClip uiBack;
     [SerializeField] private AudioClip wheelClick;
+    [SerializeField] private AudioClip deathSound;
 
     void Start()
     {
@@ -56,6 +57,12 @@ public class SoundManager : MonoBehaviour
     {
         PlaySound(wheelClick, volumeScale);
     }
+    
+    public void PlayDeathSound(float volumeScale = 1f)
+    {
+        PlaySound(deathSound, volumeScale);
+
+    }
 
     public void PlayEffect(string clip, float volumeScale = 1f, bool pitchPerfect = false)
     {
@@ -86,4 +93,6 @@ public class SoundManager : MonoBehaviour
     {
 
     }
+
+    
 }

@@ -46,6 +46,7 @@ public class ShopItem : MonoBehaviour
     public void Select()
     {
         selected = true;
+        SoundManager.Instance.PlayUiClick();
     }
 
     public void Deselect()
@@ -58,7 +59,7 @@ public class ShopItem : MonoBehaviour
         selected = !selected;
     }
 
-    public void Buy()
+    public bool Buy()
     {
         if (itemCount > 0)
         {
@@ -68,16 +69,21 @@ public class ShopItem : MonoBehaviour
                 itemCount--;
                 UpdateVisual();
                 TextPopController.Instance.PopPositive("+1 "+itemName, transform.position, false);
-
+                SoundManager.Instance.PlayUiAccept();
+                return true;
             }
             else
             {
                 TextPopController.Instance.PopNegative("Too Expensive", transform.position, false);
+                SoundManager.Instance.PlayUiDeny();
+                return false;
             }
         }
         else
         {
             TextPopController.Instance.PopNegative("No Stock", transform.position, false);
+            SoundManager.Instance.PlayUiDeny();
+            return false;
         }
     }
 

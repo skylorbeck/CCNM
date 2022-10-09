@@ -194,6 +194,7 @@ MonoBehaviour:
   text: {fileID: 8005560094076387373}
   acceptButtonText: {fileID: 4899720544421478934}
   declineButtonText: {fileID: 8767955165275527300}
+  raycastBlocker: {fileID: 0}
 --- !u!1 &8005560095534844901
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,46 +443,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8005560095035503865}
     m_Modifications:
-    - target: {fileID: 6722042597704973516, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6722042597704973518, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
-      propertyPath: m_text
-      value: Deny
-      objectReference: {fileID: 0}
-    - target: {fileID: 6722042597704973518, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
-      propertyPath: m_fontSize
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 6722042597704973518, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 6722042597894727528, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6722042597894727528, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6722042597894727528, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6722042597894727528, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8005560095035503870}
-    - target: {fileID: 6722042597894727528, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Cancel
-      objectReference: {fileID: 0}
-    - target: {fileID: 6722042597894727528, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PopUpController, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 6722042597894727534, guid: 01c8f09da7cfa7f4dae021c7dedd0c4b, type: 3}
       propertyPath: m_Name
       value: DenyButton

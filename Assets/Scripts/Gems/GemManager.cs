@@ -9,6 +9,8 @@ using static GenericMenuV1.Mode;
 
 public class GemManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip select;
+
     [SerializeField] private GemShell gemShellPrefab;
     [SerializeField] private EquipmentCardShell cardPrefab;
 
@@ -82,6 +84,7 @@ public class GemManager : MonoBehaviour
 
     public void SelectGemSlot(int slot)
     {
+
         if (slot < 0 || slot >= previews[selectedMenu].EquipmentData.gemSlots || slot == selectedGem)
         {
             selectedGem = -1;
@@ -90,7 +93,7 @@ public class GemManager : MonoBehaviour
             GameManager.Instance.uiStateObject.Ping("You have "+GameManager.Instance.metaPlayer.credits + " Credits.");
             return;
         }
-
+        SoundManager.Instance.PlaySound(select);
         selectedGem = slot;
         selector.transform.position = new Vector3(1.4f, 1.425f - (slot * 1.325f), 0);
         cardCompare.InsertAbilityGem(GameManager.Instance.metaPlayer.GetEquippedCard(selectedMenu)
@@ -125,7 +128,6 @@ public class GemManager : MonoBehaviour
     {
         this.selected = selected;
         xOffset = -selected * xDistance; //which of these goes with which?
-
     }
 
     public void Equip()

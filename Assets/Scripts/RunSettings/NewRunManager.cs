@@ -47,11 +47,12 @@ public class NewRunManager : MonoBehaviour
         defenseSlider.value = runSettings.shield;
         attackSlider.value = runSettings.attack;
         multiplierSlider.SetValueWithoutNotify(runSettings.multiplier);
-        lengthSlider.value=(GameManager.Instance.battlefield.maximumHands);
+        lengthSlider.SetValueWithoutNotify(GameManager.Instance.battlefield.maximumHands);
         UpdateMultiplier();
         UpdateHealth();
         UpdateDefense();
         UpdateAttack();
+        UpdateLength();
     }
 
 
@@ -62,6 +63,7 @@ public class NewRunManager : MonoBehaviour
         healthText.text = "x"+runSettings.healthMod.ToString("0.00");
         healthSwitcher.SwapSprite((int)runSettings.health-1);
         UpdateFinalMultiplier();
+
     }
     
     public void UpdateDefense()
@@ -71,6 +73,7 @@ public class NewRunManager : MonoBehaviour
         defenseText.text = "x"+runSettings.shieldMod.ToString("0.00");
         shieldSwitcher.SwapSprite((int)runSettings.shield-1);
         UpdateFinalMultiplier();
+
     }
     
     public void UpdateAttack()
@@ -80,6 +83,7 @@ public class NewRunManager : MonoBehaviour
         attackText.text = "x"+runSettings.attackMod.ToString("0.00");
         attackSwitcher.SwapSprite((int)runSettings.attack-1);
         UpdateFinalMultiplier();
+
     }
 
     public void UpdateLength()
@@ -97,6 +101,8 @@ public class NewRunManager : MonoBehaviour
             lengthText.text = "Long (20-30m)";
         }
         GameManager.Instance.battlefield.SetLength((int)lengthSlider.value);
+        UpdateFinalMultiplier();
+        // SoundManager.Instance.PlayUiClick();
     }
     
 
@@ -108,6 +114,7 @@ public class NewRunManager : MonoBehaviour
         multiplierText.text = ((Difficulty)runSettings.multiplier).ToString();
         overallSwitcher.SwapSprite((int)runSettings.multiplier);
         UpdateFinalMultiplier();
+        // SoundManager.Instance.PlayUiClick();
     }
 
     public void ResetEnemySliders()

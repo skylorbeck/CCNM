@@ -13,6 +13,7 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
+        MusicManager.Instance.PlayTrack(6);
         if (currentEvent == null)
         {
             Event instance = Instantiate(

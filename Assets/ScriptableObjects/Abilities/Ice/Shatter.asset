@@ -39,7 +39,7 @@ MonoBehaviour:
   <userStatusDuration>k__BackingField: 1
   <wideRange>k__BackingField: 0
   <attackAnimation>k__BackingField: 2
-  <soundEffect>k__BackingField: {fileID: 0}
+  <soundEffect>k__BackingField: {fileID: 8300000, guid: 4211ef4c0d1f4004daed066c701fb798, type: 3}
   <amountToConsume>k__BackingField: 0
   <strict>k__BackingField: 0
   <stacksFromUser>k__BackingField: 0

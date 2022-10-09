@@ -21,6 +21,10 @@ public class ItemStatCompare : MonoBehaviour
         int totalStats = 0;
         for (int i = 0; i < ItemStats.Count; i++)
         {
+            /*if (i>=newItem.stats.Length)
+            {
+                continue;
+            }*/
             int i1 = i;
             string finalString = "";
             Color color = Color.white;

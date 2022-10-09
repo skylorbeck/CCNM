@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class ConsumableMenu : MonoBehaviour
 {
+    [SerializeField] private AudioClip woosh;
     public bool isOpen { get; private set; }
     [SerializeField] private Transform backgroundLeft;
     [SerializeField] private Transform backgroundRight;
@@ -54,6 +55,7 @@ public class ConsumableMenu : MonoBehaviour
     public void ToggleMenu()
     {
         isOpen = !isOpen;
+        SoundManager.Instance.PlaySound(woosh);
         foreach (Button button in consumableButtons)
         {
             button.interactable = isOpen;

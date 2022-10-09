@@ -898,6 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980e918ebb1b33546b2637df48a90147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: e97a423d42467e442a84cd9a83a2ea08, type: 3}
   curSprite: {fileID: 1512738093}
   diceSprite:
   - {fileID: 21300000, guid: 6b2d29211603ed44e95f851234756d47, type: 3}
@@ -998,6 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980e918ebb1b33546b2637df48a90147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: e97a423d42467e442a84cd9a83a2ea08, type: 3}
   curSprite: {fileID: 1719547456}
   diceSprite:
   - {fileID: 21300000, guid: 6b2d29211603ed44e95f851234756d47, type: 3}
@@ -1585,7 +1587,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 25, y: 63}
-  m_SizeDelta: {x: 30, y: 10}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7248982204452235385
 CanvasRenderer:
@@ -2140,6 +2142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980e918ebb1b33546b2637df48a90147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: e97a423d42467e442a84cd9a83a2ea08, type: 3}
   curSprite: {fileID: 6718314674977209040}
   diceSprite:
   - {fileID: 21300000, guid: 6b2d29211603ed44e95f851234756d47, type: 3}

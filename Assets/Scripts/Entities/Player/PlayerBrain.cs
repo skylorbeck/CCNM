@@ -741,7 +741,7 @@ public class PlayerBrain : Brain
         defaultEquipment[0].SetIndestructible(true);
         defaultEquipment[0].SetStatValue(new int[] { 2, 2 });
         defaultEquipment[0].SetStats(new EquipmentDataContainer.Stats[]
-            { EquipmentDataContainer.Stats.Cap, EquipmentDataContainer.Stats.Chg });
+            { EquipmentDataContainer.Stats.Cap, EquipmentDataContainer.Stats.Chg,EquipmentDataContainer.Stats.None,EquipmentDataContainer.Stats.None,EquipmentDataContainer.Stats.None });
 
         defaultEquipment[1].InsertItem(GameManager.Instance.equipmentRegistries[1].GetCard(0));
         defaultEquipment[1].SetGemSlots(1);
@@ -752,7 +752,7 @@ public class PlayerBrain : Brain
         defaultEquipment[1].InsertAbility(defaultAbility,0);
         defaultEquipment[1].SetIndestructible(true);
         defaultEquipment[1].SetStatValue(new int[] { 2 });
-        defaultEquipment[1].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Str });
+        defaultEquipment[1].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Str,EquipmentDataContainer.Stats.None,EquipmentDataContainer.Stats.None,EquipmentDataContainer.Stats.None,EquipmentDataContainer.Stats.None });
 
         defaultEquipment[2].InsertItem(GameManager.Instance.equipmentRegistries[2].GetCard(0));
         defaultEquipment[2].SetGemSlots(1);
@@ -763,7 +763,7 @@ public class PlayerBrain : Brain
         defaultEquipment[2].InsertAbility(defaultAbility,0);
         defaultEquipment[2].SetIndestructible(true);
         defaultEquipment[2].SetStatValue(new int[] { 2 });
-        defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vit });
+        defaultEquipment[2].SetStats(new EquipmentDataContainer.Stats[] { EquipmentDataContainer.Stats.Vit,EquipmentDataContainer.Stats.None,EquipmentDataContainer.Stats.None,EquipmentDataContainer.Stats.None,EquipmentDataContainer.Stats.None });
     }
 
 

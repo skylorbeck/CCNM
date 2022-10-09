@@ -249,7 +249,7 @@ public class AbilityObject : ScriptableObject
 
     public string GetTranslatedDescriptionA(PlayerBrain playerBrain)
     {
-        string description = descriptionB;
+        string description = descriptionA;
         int baseDamage = playerBrain.GetDamage();
         description = description.Replace("{damageTarget}",
             (baseDamage * targetDamageMultiplier).ToString(CultureInfo.CurrentCulture));

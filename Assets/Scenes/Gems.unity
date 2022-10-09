@@ -1862,6 +1862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902389a00e3606646ba5634bc5b3891a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  select: {fileID: 8300000, guid: 766966465e19528498c344f97df52571, type: 3}
   gemShellPrefab: {fileID: 978896618463869406, guid: 8dd456360407c224381d2fb80f7f7545, type: 3}
   cardPrefab: {fileID: 2936789436814341088, guid: 08f04cb4a383ce44bab03c81a985d939, type: 3}
   menuEntries: []

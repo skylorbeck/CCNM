@@ -50,19 +50,21 @@ public class LevelingManagerV2 : MonoBehaviour
     
     public void IncreaseSelectedStat()
     {
+        SoundManager.Instance.PlayUiClick();
         statControllerV2s[statSelected].IncreaseStat();
         UpdateEgoCost();
     }
     
     public void DecreaseSelectedStat()
     {
+        SoundManager.Instance.PlayUiClick();
         statControllerV2s[statSelected].DecreaseStat();
         UpdateEgoCost();
     }
     
     public void SelectedStatButtonRight()
     {
-        
+        SoundManager.Instance.PlayUiClick();
         statSelected++;
         if (statSelected >= stats.Count)
         {
@@ -73,6 +75,7 @@ public class LevelingManagerV2 : MonoBehaviour
     
     public void SelectedStatButtonLeft()
     {
+        SoundManager.Instance.PlayUiClick();
         statSelected--;
         if (statSelected < 0)
         {

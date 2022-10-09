@@ -3548,6 +3548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c8370af0afb1474b833241e7dd860e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySelectSound: {fileID: 8300000, guid: 766966465e19528498c344f97df52571, type: 3}
+  playerSelectSound: {fileID: 8300000, guid: f5d842559b857b04ead1d87228684098, type: 3}
   <selectedWheel>k__BackingField: 0
   <selectedEnemy>k__BackingField: 0
   selector: {fileID: 792142342}
@@ -4423,6 +4425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adcf6ab1f8fa584cb55d8db937fc6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  woosh: {fileID: 8300000, guid: 37e706dd3bf511546b9dbc7bd9160697, type: 3}
   backgroundLeft: {fileID: 899146626}
   backgroundRight: {fileID: 1513279653}
   buttonLeft: {fileID: 1562663735}

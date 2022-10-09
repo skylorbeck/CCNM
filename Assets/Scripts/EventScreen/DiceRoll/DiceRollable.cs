@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DiceRollable : MonoBehaviour
 {
+    [SerializeField] private AudioClip sound;
     [SerializeField] private Image curSprite;
     [SerializeField] Sprite[] diceSprite;
 
@@ -27,6 +28,7 @@ public class DiceRollable : MonoBehaviour
             time += Time.deltaTime;
             if (time >= timeLimit)
             {
+                SoundManager.Instance.PlaySound(sound);
                 time = 0;
                 diceValue = Random.Range(0, 6);
                 curSprite.sprite = diceSprite[diceValue];

@@ -147,7 +147,7 @@ public class MapManager : MonoBehaviour
     public async void StartGame()
     {
         MusicManager.Instance.PlayTrack(GameManager.Instance.deck.map[Random.Range(0,GameManager.Instance.deck.map.Length)]);
-
+        SoundManager.Instance.PlayUiAccept();
         selectDeckButton.gameObject.SetActive(false);
         startButton.gameObject.SetActive(false);
 

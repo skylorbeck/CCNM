@@ -95,7 +95,6 @@ public class IAPManager : MonoBehaviour, IStoreListener
     {
         bool validPurchase = true;
         PRODUCT = args.purchasedProduct;
-#if !UNITY_EDITOR
         try
         {
             var validator =
@@ -106,7 +105,6 @@ public class IAPManager : MonoBehaviour, IStoreListener
         {
             validPurchase = false;
         }
-#endif
         if (googlePlayStoreExtensions.IsPurchasedProductDeferred(PRODUCT))
         {
             return PurchaseProcessingResult.Pending;

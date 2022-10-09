@@ -102,6 +102,7 @@ public class DiceRollEvent : Event
             targetValueIndex = 0;
         }
         UpdateValues();
+        SoundManager.Instance.PlayUiClick();
     }
     
     public void TargetValueDown()
@@ -112,6 +113,7 @@ public class DiceRollEvent : Event
             targetValueIndex = targetValues.Length - 1;
         }
         UpdateValues();
+        SoundManager.Instance.PlayUiClick();
     }
 
     public void UpdateValues()

@@ -12,8 +12,8 @@ using Random = UnityEngine.Random;
 
 public class CardDealer : MonoBehaviour
 {
-
-
+    [SerializeField] private AudioClip cardDeal;
+    [SerializeField] private AudioClip cardSelect;
     [SerializeField] private CardShell[] shells;
     [SerializeField] private Button[] buttons;
     [SerializeField] private DeckPreviewer deckPreviewer;
@@ -86,6 +86,7 @@ public class CardDealer : MonoBehaviour
             if (shell.hasBrain)
             {
                 shell.Flip();
+                SoundManager.Instance.PlaySound(cardDeal);
                 await Task.Delay(250);
                 buttons[i].interactable = true;
             }
@@ -116,7 +117,7 @@ public class CardDealer : MonoBehaviour
                 GameManager.Instance.LoadSceneAdditive("EventScreen", "MapScreen");
                 break;
         }
-
+        SoundManager.Instance.PlaySound(cardSelect);
         GameManager.Instance.battlefield.randomState = Random.state;
     }
 

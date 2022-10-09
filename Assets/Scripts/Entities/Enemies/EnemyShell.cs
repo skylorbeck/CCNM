@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 public class EnemyShell : Shell
@@ -78,6 +79,7 @@ public class EnemyShell : Shell
     {
         Light();
         await Task.Delay(250);
+        transform.DOPunchPosition(Vector3.down, 0.25f, 1, 1);
         base.Attack(target, symbol);
     }
 

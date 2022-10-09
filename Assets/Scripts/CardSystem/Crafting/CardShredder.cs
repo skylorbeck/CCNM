@@ -12,6 +12,10 @@ using Random = UnityEngine.Random;
 
 public class CardShredder : MonoBehaviour
 {
+    [SerializeField] private AudioClip toggle;
+    [SerializeField] private AudioClip clear;
+
+    
     private ObjectPool<EquipmentCardShell> cardPool;
 
     public EquipmentCardShell cardPrefab;
@@ -104,9 +108,7 @@ public class CardShredder : MonoBehaviour
         }
                 
         selectedY = Mathf.Clamp(selectedY, 0,cards.Length - 1);
-                
         selectedHand = Mathf.Abs((int)Math.Round(selectedY, MidpointRounding.AwayFromZero));
-        
         
         target = (float)(Math.Round(selectedX, MidpointRounding.AwayFromZero));
         if (sticky || !userIsHolding)
@@ -115,7 +117,6 @@ public class CardShredder : MonoBehaviour
         }
                 
         selectedX = Mathf.Clamp(selectedX, 0,cards[selectedHand].Count - 1);
-                
         selectedIndex = Mathf.Abs((int)Math.Round(selectedX, MidpointRounding.AwayFromZero));
     }
 
@@ -180,6 +181,7 @@ public class CardShredder : MonoBehaviour
     {
         cards[selectedHand][selectedIndex].ToggleShredMark();
         UpdateCount();
+        SoundManager.Instance.PlaySound(toggle);
     }
 
     public void ShredAllOfQuality(int quality)
@@ -226,10 +228,12 @@ public class CardShredder : MonoBehaviour
                 cards[i][j].SetShredMark(false);
             }
         }
+        SoundManager.Instance.PlaySound(clear);
     }
 
       public void SetSortMode()
     {
+        SoundManager.Instance.PlayUiClick();
         foreach (List<EquipmentCardShell> list in cards)
         {
             switch (sortDropdown.value)

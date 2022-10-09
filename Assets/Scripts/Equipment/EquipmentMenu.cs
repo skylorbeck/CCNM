@@ -48,11 +48,18 @@ public class EquipmentMenu : MonoBehaviour
         Init();
         GameManager.Instance.uiStateObject.Ping("Manage Equipment");
         await Task.Delay(10);
-        cardCompare.InsertItemStats(
-            GameManager.Instance.metaPlayer.EquippedCardExists(0)?
-                GameManager.Instance.metaPlayer.GetEquippedCard(0):GameManager.Instance.metaPlayer.defaultEquipment[0], 
+        if (GameManager.Instance.metaPlayer.EquippedCardExists(0))
+        {
+            cardCompare.InsertItemStats( GameManager.Instance.metaPlayer.GetEquippedCard(0), 
             menuEntries[0][selected].EquipmentData);
-        playerCompare.InsertCard(menuEntries[0][selected].EquipmentData,0);
+            playerCompare.InsertCard(menuEntries[0][selected].EquipmentData,0);
+        }
+        else
+        {
+            cardCompare.InsertItemStats(GameManager.Instance.metaPlayer.defaultEquipment[0], 
+                GameManager.Instance.metaPlayer.defaultEquipment[0]);
+            playerCompare.InsertCard(GameManager.Instance.metaPlayer.defaultEquipment[0],0);
+        }
     }
 
     private void Init()

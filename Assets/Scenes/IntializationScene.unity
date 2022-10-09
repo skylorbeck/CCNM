@@ -324,11 +324,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectSource: {fileID: 1492382035}
-  uiClick: {fileID: 8300000, guid: 53f8662f6d4ea5a4eb6a891310897d7c, type: 3}
-  uiAccept: {fileID: 8300000, guid: 8655ae43a146cb844940564566f9c182, type: 3}
-  uiDeny: {fileID: 8300000, guid: 2c39b451276141a488912cfb82ff511d, type: 3}
+  uiClick: {fileID: 8300000, guid: d3accfa8415478a489c8912d8adde25c, type: 3}
+  uiAccept: {fileID: 8300000, guid: 1ad286c24ad54334798a456a08d9dd7b, type: 3}
+  uiDeny: {fileID: 8300000, guid: 96f36f10d4307f24394b2ba3acde6480, type: 3}
   uiBack: {fileID: 8300000, guid: 4291f48efc4c14447b35218d28158349, type: 3}
-  wheelClick: {fileID: 8300000, guid: 1342d6e267f273444a6808e6e872cb08, type: 3}
+  wheelClick: {fileID: 8300000, guid: e2ba40055124f464baf490508c5a2e86, type: 3}
+  deathSound: {fileID: 8300000, guid: eb8d6a24558fcb242a621c0eeccaca34, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

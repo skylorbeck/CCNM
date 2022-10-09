@@ -60,6 +60,7 @@ public class DeckManager : MonoBehaviour
         {
             // Debug.Log("Selected: " + selected + "-New Selected: " + newSelected);
             selected = newSelected;
+            SoundManager.Instance.PlayUiClick();
             UpdateDecks();
         }
         for (var i = 0; i < decks.Count; i++)
