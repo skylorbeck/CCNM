@@ -11,7 +11,7 @@ public class Brain : ScriptableObject
 {
     [field: SerializeField] public string title { get; private set; } = "entity.name";
     [field: SerializeField] public string description { get; private set; } = "entity.description";
-    [field: SerializeField] public Sprite icon { get; private set; }
+    [field: SerializeField] public Sprite[] icon { get; private set; }
     [field: SerializeField] public AbilityGem[] abilities { get; private set; } = new AbilityGem[0];
     [field: SerializeField] public int credits { get; protected set; }
     [field: SerializeField] public int ego { get; protected set; }

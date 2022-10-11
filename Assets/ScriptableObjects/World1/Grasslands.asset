@@ -29,18 +29,20 @@ MonoBehaviour:
   - DiceRoll
   - DiceRoll
   - DiceRoll
-  <bossCard>k__BackingField: {fileID: 11400000, guid: d2efee8087952fe4ebe8f676bb202e4b, type: 2}
-  <miniBossCard>k__BackingField:
-  - {fileID: 11400000, guid: 77a6e7922b1c00049a706dbe1a3ed24b, type: 2}
+  <bossCard>k__BackingField:
+  - {fileID: 11400000, guid: 1926eb55d701b8c45af044e8400cd4c7, type: 2}
+  - {fileID: 11400000, guid: 568d1f4d4f473a34f8a2042f2cb4bfa7, type: 2}
+  - {fileID: 11400000, guid: a98a3c169d7139243af33120919d845d, type: 2}
+  - {fileID: 11400000, guid: d2efee8087952fe4ebe8f676bb202e4b, type: 2}
   <minionCards>k__BackingField:
   - {fileID: 11400000, guid: bfcacc1786732b34ca429a25bd40b50e, type: 2}
-  - {fileID: 11400000, guid: 40bd015c59952a640bccdbe97e703c87, type: 2}
-  - {fileID: 11400000, guid: 491fd9157c6ad6b40acc24537d64d4d5, type: 2}
-  - {fileID: 11400000, guid: 8d8b54a469917c146b7df31c23003e22, type: 2}
-  - {fileID: 11400000, guid: ca95961d7b2eaf247969c373cd8b8246, type: 2}
-  - {fileID: 11400000, guid: ab39b23d51f78ec46b4fe6c39b073ce4, type: 2}
-  - {fileID: 11400000, guid: a00ce71055233604b961c35367717f06, type: 2}
-  - {fileID: 11400000, guid: 2bc761fe67823304dbc39c6225530cf5, type: 2}
+  - {fileID: 11400000, guid: ac14f1ed9fa242347bbda763ddb60a8d, type: 2}
+  - {fileID: 11400000, guid: 0b49e943ef7fe3245b270ba72573da9f, type: 2}
+  - {fileID: 11400000, guid: ed553f28f0d6b544f86ebf2cfebce509, type: 2}
+  - {fileID: 11400000, guid: b6025fcf540d08e49872622d75847b90, type: 2}
+  - {fileID: 11400000, guid: 3ca5e7ef3bedf534995ddb81332229e6, type: 2}
+  - {fileID: 11400000, guid: fbefeb9f69ed86f488531f3923900db1, type: 2}
+  - {fileID: 11400000, guid: 409e511597f1eea4982eb6538250d57d, type: 2}
   <shopCards>k__BackingField:
   - {fileID: 11400000, guid: a7667085ea0ee8a4fba84e59cc7cdb96, type: 2}
   <itemCards>k__BackingField: []

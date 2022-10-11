@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b027d360112a34ea7fc3fd846dc632, type: 3}
+  m_Name: MinionFrost
+  m_EditorClassIdentifier: 
+  <title>k__BackingField: Frost Monger
+  <description>k__BackingField: You're as cold as ice
+  <icon>k__BackingField:
+  - {fileID: 21300000, guid: f86e6bc6070489f4483ef5e360149e1a, type: 3}
+  - {fileID: 21300000, guid: 89f0ec6c627dc5e4d80c23f121563d3d, type: 3}
+  - {fileID: 21300000, guid: 5846b01fe72c29f45b470e837007dedc, type: 3}
+  - {fileID: 21300000, guid: b56f87881a6c56c45bdb16113d55e3c2, type: 3}
+  <abilities>k__BackingField:
+  - <abilityIndex>k__BackingField: 4
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 5
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 6
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 6
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 6
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 7
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  <credits>k__BackingField: 5
+  <ego>k__BackingField: 25
+  <level>k__BackingField: 0
+  <currentHealth>k__BackingField: 1
+  <relics>k__BackingField: []
+  strength: 1
+  dexterity: 1
+  vitality: 2
+  speed: 1
+  skill: 1
+  luck: 1
+  grit: 5
+  resolve: 1
+  intelligence: 1
+  charisma: 1
+  sagacity: 1
+  isBoss: 0
+  isBlank: 0

@@ -79,7 +79,7 @@ public class EnemyShell : Shell
     {
         Light();
         await Task.Delay(250);
-        transform.DOPunchPosition(Vector3.down, 0.25f, 1, 1);
+        transform.DOPunchPosition(Vector3.down, 0.5f, 1, 1);
         base.Attack(target, symbol);
     }
 
@@ -107,6 +107,7 @@ public class EnemyShell : Shell
         {
             return;
         }
+        SoundManager.Instance.PlayDeathSound();
         if (enemyBrain.isBoss)
         {
             GameManager.Instance.runPlayer.trackableStats.bossesKilled++;

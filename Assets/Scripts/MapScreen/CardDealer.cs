@@ -46,7 +46,7 @@ public class CardDealer : MonoBehaviour
 
         if (GameManager.Instance.battlefield.totalHands % GameManager.Instance.deck.miniBossEvery==0)
         {
-            mapCards.Add(GameManager.Instance.deck.DrawMiniBossCard());
+            mapCards.Add(GameManager.Instance.deck.DrawBossCard());
         }
 
         for (int index = mapCards.Count; index < 3; index++)

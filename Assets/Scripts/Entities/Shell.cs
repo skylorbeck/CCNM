@@ -164,7 +164,6 @@ public class Shell : MonoBehaviour
         statusDisplayer.Clear();
         healthBar.ManualUpdate();
         hasDied = true;
-        SoundManager.Instance.PlayDeathSound();
     }
     
     public virtual void Heal(int baseHeal)
@@ -256,7 +255,8 @@ public class Shell : MonoBehaviour
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
-        spriteRenderer.sprite = brain.icon;
+        spriteRenderer.sprite = brain.icon[Random.Range(0,brain.icon.Length)];
+        spriteRenderer.flipX = Random.Range(0,2) == 0;
         title = brain.title;
         description = brain.description;
         shield = (int)brain.GetShieldMax();

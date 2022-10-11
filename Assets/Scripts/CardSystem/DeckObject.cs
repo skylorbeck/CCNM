@@ -23,8 +23,7 @@ public class DeckObject : ScriptableObject
     [field: SerializeField] public string[] eventNames { get; private set; }
     [field:Header("EnemyRefs")]
 
-    [field:SerializeField] public BossCard bossCard { get;private set; }
-    [field:SerializeField] public MiniBossCard[] miniBossCard { get;private set; }
+    [field:SerializeField] public BossCard[] bossCard { get;private set; }
     [field:SerializeField] public MinionCard[] minionCards { get;private set; }
     [field:SerializeField] public ShopCard[] shopCards { get;private set; }
     [field: Header("Rewards")]
@@ -48,12 +47,7 @@ public class DeckObject : ScriptableObject
     
     public MapCard DrawBossCard()
     {
-        return bossCard;
-    }
-    
-    public MapCard DrawMiniBossCard()
-    {
-        return miniBossCard[Random.Range(0, miniBossCard.Length)];
+        return bossCard[Random.Range(0, bossCard.Length)];;
     }
     
     public MapCard DrawMinionCard()

@@ -18,4 +18,9 @@ public class CardObject : ScriptableObject
         Consumable, //one time use
         Map, //level generator
     }
+    
+    public virtual Sprite Icon()
+    {
+        return icon;
+    }
 }

@@ -36,7 +36,7 @@ public class CardShell : MonoBehaviour
         // DOTween.To(() => text.text, x => text.text = x, card.cardTitle, 0.5f);
 
         // text.transform.localPosition = new Vector3(0, textAbove?0.75f:-0.75f, 0);
-        enemySprite.sprite = card.icon;
+        enemySprite.sprite = card.Icon();
         switch (cardObject.mapCardType)
         {
             case MapCard.MapCardType.Shop:

@@ -84,7 +84,7 @@ public class AbilityWheel : MonoBehaviour
                     if (symbol.isActiveAndEnabled)
                     {
                         Transform symbolTransform = symbol.transform;
-                        symbolTransform.localPosition = new Vector3(0, (float)(Math.Round(symbolTransform.localPosition.y/1.5f,MidpointRounding.AwayFromZero)*1.5), 0);
+                        symbolTransform.localPosition = new Vector3(0, (float)(Math.Round(symbolTransform.localPosition.y/1.25f,MidpointRounding.AwayFromZero)*1.25), 0);
                     }
                 }
             }

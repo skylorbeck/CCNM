@@ -78,29 +78,41 @@ public class FightManager : MonoBehaviour
             spriteRenderer.sprite = GameManager.Instance.battlefield.deck.wheelCover;
         }
         
-        for (var i = 0; i < GameManager.Instance.battlefield.enemies.Length; i++)
-        {
-            enemies[i].InsertBrain(GameManager.Instance.battlefield.enemies[i]);
-        }
         
         bool isBoss = false;
-        foreach (EnemyShell enemy in enemies)
+        foreach (EnemyBrain enemy in GameManager.Instance.battlefield.enemies)
         {
-            if (enemy.enemyBrain.isBlank)
-            {
-                enemy.KillSilently();
-            }
-            if (enemy.enemyBrain.isBoss)
+            if (enemy.isBoss)
             {
                 isBoss = true;
             }
         }
+        
+        
         if (isBoss)
         {
             MusicManager.Instance.PlayTrack(GameManager.Instance.deck.boss[Random.Range(0,GameManager.Instance.deck.boss.Length)]);
+            for (var i = 0; i < GameManager.Instance.battlefield.enemies.Length; i++)
+            {
+                enemies[i].InsertBrain(GameManager.Instance.battlefield.enemies[i]);
+                if (enemies[i].enemyBrain.isBlank)
+                {
+                    enemies[i].KillSilently();
+                }
+            }
         }
         else
         {
+            List<EnemyBrain> enemyBrains = new List<EnemyBrain>(GameManager.Instance.battlefield.enemies);
+            enemyBrains = enemyBrains.OrderBy(x => Random.value).ToList();
+            for (var i = 0; i < GameManager.Instance.battlefield.enemies.Length; i++)
+            {
+                enemies[i].InsertBrain(enemyBrains[i]);
+                if (enemies[i].enemyBrain.isBlank)
+                {
+                    enemies[i].KillSilently();
+                }
+            }
             MusicManager.Instance.PlayTrack(GameManager.Instance.deck.combat[Random.Range(0,GameManager.Instance.deck.combat.Length)]);
         }
         

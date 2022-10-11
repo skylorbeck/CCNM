@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b027d360112a34ea7fc3fd846dc632, type: 3}
+  m_Name: EliteStatic
+  m_EditorClassIdentifier: 
+  <title>k__BackingField: Electro Freak
+  <description>k__BackingField: I'm uncomfortable
+  <icon>k__BackingField:
+  - {fileID: 21300000, guid: 6d94f7fbf8390c44eb0fa4ab6564fcc3, type: 3}
+  <abilities>k__BackingField:
+  - <abilityIndex>k__BackingField: 8
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 8
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 9
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 10
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 11
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  - <abilityIndex>k__BackingField: 11
+    <gemLevel>k__BackingField: 0
+    <amountOwned>k__BackingField: 0
+  <credits>k__BackingField: 50
+  <ego>k__BackingField: 100
+  <level>k__BackingField: 0
+  <currentHealth>k__BackingField: 5
+  <relics>k__BackingField: []
+  strength: 2
+  dexterity: 2
+  vitality: 5
+  speed: 2
+  skill: 2
+  luck: 2
+  grit: 2
+  resolve: 2
+  intelligence: 2
+  charisma: 2
+  sagacity: 2
+  isBoss: 1
+  isBlank: 0

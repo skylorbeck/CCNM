@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
-using UnityEditor.Advertisements;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Purchasing;
@@ -33,8 +32,8 @@ public class IAPManager : MonoBehaviour, IStoreListener
             Destroy(gameObject);
         }
         //todo remove this
-        AdvertisementSettings.testMode = true;
-        StandardPurchasingModule.Instance().useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
+        // AdvertisementSettings.testMode = true;
+        // StandardPurchasingModule.Instance().useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
         
         try
         {
