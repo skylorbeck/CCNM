@@ -20,5 +20,5 @@ MonoBehaviour:
   <mapCardType>k__BackingField: 1
   <enemies>k__BackingField:
   - {fileID: 11400000, guid: ae3a5c91ab84f9a4ebce9c7c0c80d971, type: 2}
-  - {fileID: 11400000, guid: 4e92d671ef2fad049aad14dca41a33a8, type: 2}
+  - {fileID: 11400000, guid: 76614eb9d0969f346902e2e470231d7a, type: 2}
   - {fileID: 11400000, guid: ae3a5c91ab84f9a4ebce9c7c0c80d971, type: 2}

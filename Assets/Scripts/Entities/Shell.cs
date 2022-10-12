@@ -23,7 +23,7 @@ public class Shell : MonoBehaviour
     public bool hasBrain = false;
     public bool hasShield => shield > 0;
     public bool isPlayer => brain is PlayerBrain;
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     
   
 
@@ -107,6 +107,7 @@ public class Shell : MonoBehaviour
     public void Damage(Shell source,int baseDamage,bool crit)
     {
         int damage = statusDisplayer.OnDamage(source,this,baseDamage);
+        damage = Mathf.RoundToInt(damage);
         if (damage > 0)
         {
             if (crit)
@@ -163,6 +164,8 @@ public class Shell : MonoBehaviour
         currentHealth = 0;
         Died.Invoke();
         transform.DOComplete();
+        transform.DOScale(0, 1f);
+        spriteRenderer.DOFade(0, 0.5f);
         statusDisplayer.Clear();
         healthBar.ManualUpdate();
         hasDied = true;

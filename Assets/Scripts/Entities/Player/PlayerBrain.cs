@@ -243,7 +243,7 @@ public class PlayerBrain : Brain
         return base.GetLootLuckUnmodified(temp);
     }
 
-    public int GetEgoBoostUnmodifiedNoCard(int temp = 0)
+    public float GetEgoBoostUnmodifiedNoCard(int temp = 0)
     {
         return base.GetEgoBoostUnmodified(temp);
     }
@@ -261,7 +261,7 @@ public class PlayerBrain : Brain
     #endregion
 
     
-    public string GetAttributeValueString(EquipmentDataContainer.Stats stat)
+    public string GetAttributeStringNoCard(EquipmentDataContainer.Stats stat)
     {
         string translatedValue = "";
         switch (stat)
@@ -300,6 +300,50 @@ public class PlayerBrain : Brain
                 break;
             case EquipmentDataContainer.Stats.Lck:
                 translatedValue = GetLootLuckUnmodifiedNoCard().ToString();
+                break;
+        }
+
+        return translatedValue;
+    }    
+    public string GetAttributeString(EquipmentDataContainer.Stats stat)
+    {
+        string translatedValue = "";
+        switch (stat)
+        {
+            case EquipmentDataContainer.Stats.None:
+                break;
+            case EquipmentDataContainer.Stats.Str:
+                translatedValue = GetDamage().ToString();
+                break;
+            case EquipmentDataContainer.Stats.Dex:
+                translatedValue = GetDodgeChance().ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Vit:
+                translatedValue = GetHealthMax().ToString();
+                break;
+            case EquipmentDataContainer.Stats.Spd:
+                translatedValue = GetCritChance().ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Skl:
+                translatedValue = GetCritDamage().ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Cap:
+                translatedValue = GetShieldMax().ToString();
+                break;
+            case EquipmentDataContainer.Stats.Chg:
+                translatedValue = GetShieldRate().ToString();
+                break;
+            case EquipmentDataContainer.Stats.Wis:
+                translatedValue = GetStatusDamage().ToString();
+                break;
+            case EquipmentDataContainer.Stats.Int:
+                translatedValue = GetEgoBoost().ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Cha:
+                translatedValue = GetCreditBoost().ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Lck:
+                translatedValue = GetLootLuck().ToString();
                 break;
         }
 
@@ -348,9 +392,9 @@ public class PlayerBrain : Brain
         return base.GetLootLuckUnmodified(temp) + cardLuck;
     }
 
-    public override int GetEgoBoostUnmodified(int temp=0)
+    public override float GetEgoBoostUnmodified(int temp=0)
     {
-        return base.GetEgoBoostUnmodified(temp) + cardIntelligence;
+        return base.GetEgoBoostUnmodified(temp) + (cardIntelligence*0.05f);
     }
 
     public override int GetCreditBoostUnmodified(int temp=0)
@@ -673,7 +717,7 @@ public class PlayerBrain : Brain
             abilityGems.Add(new AbilityGem(abilityObject));
         });
         ownedGems = abilityGems.ToArray();
-        maximumEquipmentSlots = 25;
+        maximumEquipmentSlots = 50;
     }
     public void AddAbilityGem(AbilityGem gem)
     {

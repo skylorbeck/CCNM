@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RunSettings", menuName = "Global/RunSettings")]
 public class RunSettings : ScriptableObject//todo make this save
 {
+    public int mathPow = 10;
+    
     public float health;
     public float shield;
     public float armor;
@@ -27,32 +29,32 @@ public class RunSettings : ScriptableObject//todo make this save
 
     public float GetHealthMod()
     {
-        return (float)(healthMod * Math.Pow(10,multiplier));
+        return (float)(healthMod * Math.Pow(mathPow,multiplier));
     }
     public float GetShieldMod()
     {
-        return (float)(shieldMod * Math.Pow(10,multiplier));
+        return (float)(shieldMod * Math.Pow(mathPow,multiplier));
     }
     public float GetAttackMod()
     {
-        return (float)(attackMod * Math.Pow(10,multiplier));
+        return (float)(attackMod * Math.Pow(mathPow,multiplier));
     }
     public float GetArmorMod()
     {
-        return (float)(armorMod * Math.Pow(10,multiplier));
+        return (float)(armorMod * Math.Pow(mathPow,multiplier));
     }
     
     public float GetDodgeMod()
     {
-        return (float)(dodgeMod * Math.Pow(10,multiplier));
+        return (float)(dodgeMod * Math.Pow(mathPow,multiplier));
     }
     public float GetCritChanceMod()
     {
-        return (float)(critChanceMod * Math.Pow(10,multiplier));
+        return (float)(critChanceMod * Math.Pow(mathPow,multiplier));
     }
     public float GetCritDamageMod()
     {
-        return (float)(critDamageMod * Math.Pow(10,multiplier));
+        return (float)(critDamageMod * Math.Pow(mathPow,multiplier));
     }
 
     public void Reset()

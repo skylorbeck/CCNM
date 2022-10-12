@@ -28,7 +28,7 @@ public class StatControllerV2 : MonoBehaviour
         statText.text = stat+":";
         statValueText.text = currentValue.ToString();
         string translatedStat = EquipmentDataContainer.AttributeName(stat);
-        string translatedValue = player.GetAttributeValueString(stat);
+        string translatedValue = player.GetAttributeStringNoCard(stat);
         translatedStatText.text = translatedStat+":";
         translatedValueText.text = translatedValue;
     }

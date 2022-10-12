@@ -142,6 +142,9 @@ public class EquipmentDataContainer
         List<Stats> pickedStats = new List<Stats>();
         allStats.AddRange(Enum.GetValues(typeof(Stats)).Cast<Stats>());
         allStats.Remove(Stats.None);//todo remove the bottom three?
+        allStats.Remove(Stats.Int);
+        allStats.Remove(Stats.Cha);
+        allStats.Remove(Stats.Lck);
         
         for (int i = 0; i < itemCore.guaranteeStats.Length; i++)
         {

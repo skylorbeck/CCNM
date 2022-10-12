@@ -252,21 +252,21 @@ public class AbilityObject : ScriptableObject
         string description = descriptionA;
         int baseDamage = playerBrain.GetDamage();
         description = description.Replace("{damageTarget}",
-            (baseDamage * targetDamageMultiplier).ToString(CultureInfo.CurrentCulture));
+            Mathf.RoundToInt(baseDamage * targetDamageMultiplier).ToString(CultureInfo.CurrentCulture));
         description = description.Replace("{damageSelf}",
-            (baseDamage * userDamageMultiplier).ToString(CultureInfo.CurrentCulture));
+            Mathf.RoundToInt(baseDamage * userDamageMultiplier).ToString(CultureInfo.CurrentCulture));
         
         int baseHeal = playerBrain.GetHeal();
         description = description.Replace("{healTarget}",
-            (baseHeal * targetHealMultiplier).ToString(CultureInfo.CurrentCulture));
+            Mathf.RoundToInt(baseHeal * targetHealMultiplier).ToString(CultureInfo.CurrentCulture));
         description = description.Replace("{healSelf}",
-            (baseHeal * userHealMultiplier).ToString(CultureInfo.CurrentCulture));
+            Mathf.RoundToInt(baseHeal * userHealMultiplier).ToString(CultureInfo.CurrentCulture));
         
         int baseArmor = playerBrain.GetShieldRate();
         description = description.Replace("{armorTarget}",
-            (baseArmor * targetArmorMultiplier).ToString(CultureInfo.CurrentCulture));
+            Mathf.RoundToInt(baseArmor * targetArmorMultiplier).ToString(CultureInfo.CurrentCulture));
         description = description.Replace("{armorSelf}",
-            (baseArmor * userArmorMultiplier).ToString(CultureInfo.CurrentCulture));
+            Mathf.RoundToInt(baseArmor * userArmorMultiplier).ToString(CultureInfo.CurrentCulture));
 
         if (targetStatus != null)
         {
@@ -347,7 +347,7 @@ public class AbilityObject : ScriptableObject
         if (this is ConsumerAbility)
         {
             description = description.Replace("{statusDamageTarget}",
-                ((int)(playerBrain.GetStatusDamage() * ((ConsumerAbility)this).cTargetDamageMultiplier)).ToString());
+                (Mathf.RoundToInt(playerBrain.GetStatusDamage() * ((ConsumerAbility)this).cTargetDamageMultiplier)).ToString());
               description = description.Replace("{cType}", ((ConsumerAbility)this).type.name);
         }
 
@@ -355,13 +355,13 @@ public class AbilityObject : ScriptableObject
         {
             description = description.Replace("{sType}", ((ScalingWithStatusAbility)this).ifhave.name);
             description = description.Replace("{statusDamageTarget}",
-                ((int)(playerBrain.GetStatusDamage() * ((ScalingWithStatusAbility)this).ifhavevalue)).ToString());
+                (Mathf.RoundToInt(playerBrain.GetStatusDamage() * ((ScalingWithStatusAbility)this).ifhavevalue)).ToString());
         }
 
         description = description.Replace("{statusDamage}",
-            ((int)(playerBrain.GetStatusDamage() * targetDamageMultiplier)).ToString());
+            (Mathf.RoundToInt(playerBrain.GetStatusDamage() * targetDamageMultiplier)).ToString());
         description = description.Replace("{statusheal}",
-            ((int)(playerBrain.GetHeal() * targetHealMultiplier)).ToString());
+            (Mathf.RoundToInt(playerBrain.GetHeal() * targetHealMultiplier)).ToString());
         return description;
     }
 

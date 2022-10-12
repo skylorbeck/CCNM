@@ -126,7 +126,7 @@ public class NewRunManager : MonoBehaviour
 
     public void UpdateFinalMultiplier()
     {
-        runSettings.finalMultiplier =(Math.Round((Math.Max(0,Math.Pow(10,runSettings.multiplier)*(runSettings.health + runSettings.shield + runSettings.attack-3)/3) + Math.Pow(10,runSettings.multiplier))));
+        runSettings.finalMultiplier =(Math.Round((Math.Max(0,Math.Pow(runSettings.mathPow,runSettings.multiplier)*(runSettings.health + runSettings.shield + runSettings.attack-3)/3) + Math.Pow(runSettings.mathPow,runSettings.multiplier))));
         finalMultiplierText.text = "Enemy Lv. "+runSettings.finalMultiplier;
         GameManager.Instance.battlefield.SetLevel((int)runSettings.finalMultiplier);
     }

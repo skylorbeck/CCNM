@@ -162,11 +162,13 @@ public class FightManager : MonoBehaviour
     public void Quit()
     {
         // GameManager.Instance.saveManager.SaveRun();//todo fix this so that it saves the fight
+        // update near beta launch, probably not going to ever do this ^
         GameManager.Instance.uiStateObject.Clear();
         foreach (TextMeshProUGUI text in pauseText)
         {
             text.CrossFadeAlpha(0,0.25f,true);
         }
+        playerStatDisplay.FadeInOut();
         GameManager.Instance.LoadSceneAdditive("MainMenu","Fight");
     }
 

@@ -23,7 +23,7 @@ public class Battlefield : ScriptableObject
     
 
     public bool runOver => totalHands > maximumHands;
-    public float difficultyMulti => 1 + ((float)totalHands - 1) / 5;
+    public float difficultyMulti => 1 + totalHands / 2.5f;
 
     public void TotalHandsPlus()
     {

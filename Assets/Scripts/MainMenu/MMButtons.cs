@@ -89,7 +89,7 @@ public class MMButtons : MonoBehaviour
         GameManager.Instance.uiStateObject.HideTopBar();
         // GameManager.Instance.eventSystem.SetSelectedGameObject(button.gameObject);
         MusicManager.Instance.PlayTrack(2);
-        await Task.Delay(10);
+        await Task.Delay(100);
         if (GameManager.Instance.battlefield.runStarted)
         {
             menu.AddEntry(continueEntry,2);

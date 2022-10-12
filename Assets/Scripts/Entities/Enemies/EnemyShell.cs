@@ -85,11 +85,13 @@ public class EnemyShell : Shell
 
     public void Dim()
     {
+        spriteRenderer.DOColor(Color.gray, 0.5f);
         animator.SetTrigger("dim");
     }
 
     public void Light()
     {
+        spriteRenderer.DOColor(Color.white,0.5f);
         animator.SetTrigger("light");
     }
 
@@ -101,7 +103,7 @@ public class EnemyShell : Shell
     
     public void KillSilently()
     {
-        animator.SetTrigger("die");
+        Dim();
         base.Kill();
         if (enemyBrain.isBlank)
         {

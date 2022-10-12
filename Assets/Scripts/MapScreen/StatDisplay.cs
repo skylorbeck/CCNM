@@ -26,7 +26,7 @@ public class StatDisplay : MonoBehaviour
             text = attributeNames[index];
             text.text = EquipmentDataContainer.AttributeName(stat);
             text = attributeValues[index];
-            text.text = GameManager.Instance.runPlayer.GetAttributeValueString(stat);
+            text.text = GameManager.Instance.runPlayer.GetAttributeString(stat);
         }
         
         

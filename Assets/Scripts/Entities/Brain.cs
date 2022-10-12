@@ -172,7 +172,7 @@ public class Brain : ScriptableObject
         return (GetLuck()+temp);
     }
 
-    public virtual int GetEgoBoostUnmodified(int temp =0)
+    public virtual float GetEgoBoostUnmodified(int temp =0)
     {
         return (GetIntelligence()+temp);
     }
@@ -293,7 +293,7 @@ public class Brain : ScriptableObject
         return GetLootLuckUnmodified();
     }
 
-    public virtual int GetEgoBoost()
+    public virtual float GetEgoBoost()
     {
         return GetEgoBoostUnmodified();
     }
