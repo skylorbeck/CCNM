@@ -101,7 +101,7 @@ public class EnemyShell : Shell
     
     public void KillSilently()
     {
-        Dim();
+        animator.SetTrigger("die");
         base.Kill();
         if (enemyBrain.isBlank)
         {

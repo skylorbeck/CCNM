@@ -164,7 +164,7 @@ public class Brain : ScriptableObject
 
     public virtual float GetDodgeChanceUnmodified(int temp =0)
     {
-        return (GetDexterity()+temp)*0.01f;
+        return (GetDexterity()+temp)*0.05f;
     }
     
     public virtual int GetLootLuckUnmodified(int temp =0)

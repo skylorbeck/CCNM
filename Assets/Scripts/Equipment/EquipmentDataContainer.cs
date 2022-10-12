@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -54,15 +53,21 @@ public class EquipmentDataContainer
         {
             Debug.LogWarning("Slot is out of range");
             return false;
-        } else if (lockedSlots[slot])
+        }
+
+        if (lockedSlots[slot])
         {
             Debug.LogWarning("Slot is locked");
             return false;
-        } else if (abilities[slot] != null && abilities[slot].abilityIndex!=-1)
+        }
+
+        if (abilities[slot] != null && abilities[slot].abilityIndex!=-1)
         {
             Debug.LogWarning("Slot is not empty");
             return false;
-        } else if (ability!=null)
+        }
+
+        if (ability!=null)
         {
             abilities[slot] =new AbilityGem(ability);
             abilities[slot].SetAmountOwned(1);
@@ -332,11 +337,11 @@ public class EquipmentDataContainer
         None,
         //combat
         Str,//damage
-        Dex,//crit chance
-        Skl,//crit damage
         Wis,//status damage
+        Spd,//crit chance
+        Skl,//crit damage
         Vit,//health
-        Spd,//dodge chance
+        Dex,//dodge chance
         Cap,//shield capacity
         Chg,//shield recharge rate
 
@@ -346,6 +351,51 @@ public class EquipmentDataContainer
         Lck,//loot quality
 
         // Willpower,
+    }
+
+    public static String AttributeName(Stats stat)
+    {
+        string translatedStat = "";
+        switch (stat)
+        {
+            case Stats.None:
+                break;
+            case Stats.Str:
+                translatedStat = "Attack";
+                break;
+            case Stats.Dex:
+                translatedStat = "Dodge";
+                break;
+            case Stats.Vit:
+                translatedStat = "Health";
+                break;
+            case Stats.Spd:
+                translatedStat = "Crit Chance";
+                break;
+            case Stats.Skl:
+                translatedStat = "Crit Damage";
+                break;
+            case Stats.Cap:
+                translatedStat = "Shield";
+                break;
+            case Stats.Chg:
+                translatedStat = "Recharge";
+                break;
+            case Stats.Wis:
+                translatedStat = "Status Damage";
+                break;
+            case Stats.Int:
+                translatedStat = "Ego Boost";
+                break;
+            case Stats.Cha:
+                translatedStat = "Credit Boost";
+                break;
+            case Stats.Lck:
+                translatedStat = "Luck";
+                break;
+        }
+
+        return translatedStat;
     }
 
     public EquipmentDataContainer()

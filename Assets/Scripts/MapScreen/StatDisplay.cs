@@ -1,23 +1,48 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
 public class StatDisplay : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI[] pauseText;
+    [SerializeField] private TextMeshProUGUI[] statNames;
+    [SerializeField] private TextMeshProUGUI[] statValues;
+    [SerializeField] private TextMeshProUGUI[] attributeNames;
+    [SerializeField] private TextMeshProUGUI[] attributeValues;
 
-    async void Start()
+    void Start()
     {
-        await Task.Delay(10);
-        pauseText[0].text = GameManager.Instance.runPlayer.GetDamage().ToString();
-        pauseText[1].text = GameManager.Instance.runPlayer.GetShieldMax().ToString();
-        pauseText[2].text = GameManager.Instance.runPlayer.GetHealthMax().ToString();
-        pauseText[3].text = GameManager.Instance.runPlayer.GetDodgeChance().ToString();
-        pauseText[4].text = GameManager.Instance.runPlayer.GetCritChance().ToString();
-        //todo redo this entirely with all the stats
-        foreach (TextMeshProUGUI text in pauseText)
+        for (int i = 1; i < 9; i++)
+        {
+            int index = i - 1;
+            EquipmentDataContainer.Stats stat = (EquipmentDataContainer.Stats)i;
+            TextMeshProUGUI text = statNames[index];
+            text.text = stat.ToString();
+            text = statValues[index];
+            text.text = GameManager.Instance.runPlayer.GetUnmodifiedStatValueWithCard(stat).ToString();
+            text = attributeNames[index];
+            text.text = EquipmentDataContainer.AttributeName(stat);
+            text = attributeValues[index];
+            text.text = GameManager.Instance.runPlayer.GetAttributeValueString(stat);
+        }
+        
+        
+        foreach (TextMeshProUGUI text in statNames)
+        {
+            text.CrossFadeAlpha(0, 0, true);
+        }
+        foreach (TextMeshProUGUI text in statValues)
+        {
+            text.CrossFadeAlpha(0, 0, true);
+        }
+        foreach (TextMeshProUGUI text in attributeNames)
+        {
+            text.CrossFadeAlpha(0, 0, true);
+        }
+        foreach (TextMeshProUGUI text in attributeValues)
         {
             text.CrossFadeAlpha(0, 0, true);
         }
@@ -25,7 +50,19 @@ public class StatDisplay : MonoBehaviour
 
     public void FadeInOut()
     {
-        foreach (TextMeshProUGUI text in pauseText)
+        foreach (TextMeshProUGUI text in statNames)
+        {
+            text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ?1 :0, 0.25f,true);
+        }
+        foreach (TextMeshProUGUI text in statValues)
+        {
+            text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ?1 :0, 0.25f,true);
+        }
+        foreach (TextMeshProUGUI text in attributeNames)
+        {
+            text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ?1 :0, 0.25f,true);
+        }
+        foreach (TextMeshProUGUI text in attributeValues)
         {
             text.CrossFadeAlpha(GameManager.Instance.uiStateObject.isPaused ?1 :0, 0.25f,true);
         }

@@ -93,6 +93,8 @@ public class CardDealer : MonoBehaviour
         }
         deckPreviewer.transform.DOLocalMove(new Vector3(0,-4f,0), 0.5f);
         GameManager.Instance.eventSystem.SetSelectedGameObject(buttons[0].gameObject);
+        await Task.Delay(500);
+        GameManager.Instance.uiStateObject.Ping(GameManager.Instance.runPlayer.currentHealth.ToString()+" HP"+Environment.NewLine+GameManager.Instance.runPlayer.credits.ToString()+" Credits");
 
     }
 

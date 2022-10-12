@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using DG.Tweening;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -133,7 +134,8 @@ public class Shell : MonoBehaviour
                     }
                 }
             }
-            
+
+            transform.DOShakeScale(0.5f);
         }
 
         if (shield > 0)
@@ -155,17 +157,17 @@ public class Shell : MonoBehaviour
        TestDeath();
     }
 
-    
+
     public virtual void Kill()
     {
         currentHealth = 0;
         Died.Invoke();
-        spriteRenderer.sprite = null;
+        transform.DOComplete();
         statusDisplayer.Clear();
         healthBar.ManualUpdate();
         hasDied = true;
     }
-    
+
     public virtual void Heal(int baseHeal)
     {
         Healed.Invoke(baseHeal);

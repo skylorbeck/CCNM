@@ -21,6 +21,6 @@ public class FightCard : MapCard
         }
         EnemyBrain enemy = nonBlankEnemies[Random.Range(0, nonBlankEnemies.Count)];
         
-        return enemy.icon[Random.Range(0, enemies.Length)];
+        return enemy.icon[Random.Range(0, enemy.icon.Length)];
     }
 }

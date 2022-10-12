@@ -15,7 +15,6 @@ public class RunRewardManager : MonoBehaviour
     async void Start()
     {
         await Task.Delay(10);
-        //todo penalty for death
         GameManager.Instance.metaPlayer.CopyEgo(GameManager.Instance.runPlayer);
         // GameManager.Instance.metaPlayer.CopyCards(GameManager.Instance.runPlayer);
         GameManager.Instance.metaPlayer.CopyCredits(GameManager.Instance.runPlayer);

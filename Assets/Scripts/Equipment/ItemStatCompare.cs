@@ -21,22 +21,15 @@ public class ItemStatCompare : MonoBehaviour
         int totalStats = 0;
         for (int i = 0; i < ItemStats.Count; i++)
         {
-            /*if (i>=newItem.stats.Length)
-            {
-                continue;
-            }*/
             int i1 = i;
-            string finalString = "";
-            Color color = Color.white;
             if (newItem.stats[i1] == EquipmentDataContainer.Stats.None)
             {
                 DOTween.To(() => ItemStats[i1].text, x => ItemStats[i1].text = x,"", 0.5f);
-
-                // ItemStats[i1].text = "";
                 continue;
             }
             totalStats++;
-            finalString= newItem.statValue[i1] + " " + newItem.stats[i1];
+            Color color = Color.white;
+            string finalString = newItem.statValue[i1] + " " + newItem.stats[i1];
             List<EquipmentDataContainer.Stats> stats = new List<EquipmentDataContainer.Stats>(EquippedItem.stats);
             if (stats.Contains(newItem.stats[i1]))
             {

@@ -260,6 +260,52 @@ public class PlayerBrain : Brain
 
     #endregion
 
+    
+    public string GetAttributeValueString(EquipmentDataContainer.Stats stat)
+    {
+        string translatedValue = "";
+        switch (stat)
+        {
+            case EquipmentDataContainer.Stats.None:
+                break;
+            case EquipmentDataContainer.Stats.Str:
+                translatedValue = GetUnmodifiedDamageNoCard().ToString();
+                break;
+            case EquipmentDataContainer.Stats.Dex:
+                translatedValue = GetDodgeChanceUnmodifiedNoCard().ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Vit:
+                translatedValue = GetHealthMaxUnmodifiedNoCard().ToString();
+                break;
+            case EquipmentDataContainer.Stats.Spd:
+                translatedValue = GetCritChanceUnmodifiedNoCard().ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Skl:
+                translatedValue = GetCritDamageUnmodifiedNoCard().ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Cap:
+                translatedValue = GetShieldMaxUnmodifiedNoCard().ToString();
+                break;
+            case EquipmentDataContainer.Stats.Chg:
+                translatedValue = GetShieldRateUnmodifiedNoCard().ToString();
+                break;
+            case EquipmentDataContainer.Stats.Wis:
+                translatedValue = GetStatusDamageUnmodifiedNoCard().ToString();
+                break;
+            case EquipmentDataContainer.Stats.Int:
+                translatedValue = GetEgoBoostUnmodifiedNoCard().ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Cha:
+                translatedValue = GetCreditBoostUnmodifiedNoCard().ToString("0.##") + "%";
+                break;
+            case EquipmentDataContainer.Stats.Lck:
+                translatedValue = GetLootLuckUnmodifiedNoCard().ToString();
+                break;
+        }
+
+        return translatedValue;
+    }
+    
     #region unModifiedStatGetters
 
     public override int GetUnmodifiedDamage(int temp=0)

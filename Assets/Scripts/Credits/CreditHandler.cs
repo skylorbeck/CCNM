@@ -1,14 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StorePageBackHandler : MonoBehaviour
+public class CreditHandler : MonoBehaviour
 {
     void Start()
     {
         GameManager.Instance.uiStateObject.ShowTopBar();
-        GameManager.Instance.uiStateObject.Ping("VIPerks");
+        GameManager.Instance.uiStateObject.Ping("Credits and Special Thanks");
         GameManager.Instance.inputReader.Back+=Back;
     }
 
@@ -19,7 +18,6 @@ public class StorePageBackHandler : MonoBehaviour
 
     public void Back()
     {
-        GameManager.Instance.LoadSceneAdditive("MainMenu", "Store");
+        GameManager.Instance.LoadSceneAdditive("MainMenu", "Credits");
     }
-
 }

@@ -55,4 +55,9 @@ public class SettingsManager : MonoBehaviour
             PopUpController.Instance.ShowPopUp("Save nuked", "Ok", null, null);
         });
     }
+
+    public void Credits()
+    {
+        GameManager.Instance.LoadSceneAdditive("Credits","Settings");
+    }
 }

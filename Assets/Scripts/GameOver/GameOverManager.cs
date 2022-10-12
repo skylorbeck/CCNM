@@ -38,7 +38,7 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private Image WinLoseImage;
     [SerializeField] private RectTransform MasterWindow;
     [SerializeField] private Sprite WinSprite;
-    
+
     [SerializeField] private int delay = 250;
     [SerializeField] private int minionRatio = 10;
     [SerializeField] private int bossRatio = 100;
@@ -55,11 +55,11 @@ public class GameOverManager : MonoBehaviour
             egoLost = GameManager.Instance.runPlayer.ego - ego;
             creditsLostText.gameObject.SetActive(true);
             egoLostText.gameObject.SetActive(true);
-            MusicManager.Instance.PlayTrack(8);//play the loss music
+            MusicManager.Instance.PlayTrack(8); //play the loss music
         }
         else
         {
-            MusicManager.Instance.PlayTrack(5);//play the victory music
+            MusicManager.Instance.PlayTrack(5); //play the victory music
             WinLoseImage.sprite = WinSprite;
         }
 
@@ -69,9 +69,8 @@ public class GameOverManager : MonoBehaviour
                 GameManager.Instance.runStats.minionsKilled * minionRatio;
         minionsKilled = GameManager.Instance.runStats.minionsKilled;
         bossesKilled = GameManager.Instance.runStats.bossesKilled;
-        
-        
-        GameManager.Instance.metaPlayer.CopyEgo(GameManager.Instance.runPlayer);
+
+
         GameManager.Instance.metaPlayer.CopyCards(GameManager.Instance.runPlayer);
         GameManager.Instance.metaPlayer.CopyCredits(GameManager.Instance.runPlayer);
         GameManager.Instance.metaPlayer.CopyCardSouls(GameManager.Instance.runPlayer);
@@ -84,13 +83,14 @@ public class GameOverManager : MonoBehaviour
             cardPacks++;
         }
 
-      
+
         if (GameManager.Instance.metaPlayer.doublerOwned && GameManager.Instance.metaPlayer.doublerActive)
         {
             ego *= 2;
             egoDoublerText.text = "Doubler Active";
             egoDoublerText.color = egoText.color;
         }
+        GameManager.Instance.metaPlayer.AddEgo(ego);
 
         cardPacks += score / 500;
         GameManager.Instance.metaPlayer.AddCardPack(cardPacks);
@@ -101,15 +101,15 @@ public class GameOverManager : MonoBehaviour
 
         killsMultiText.text = "x" + minionRatio;
         bossKillsMultiText.text = "x" + bossRatio;
-        
+
         GameManager.Instance.uiStateObject.Ping("Game Over");
 
-        await Task.Delay(delay*2);
+        await Task.Delay(delay * 2);
         MasterWindow.DOAnchorPosY(0, 2f).SetEase(Ease.OutBounce);
         // DOTween.To(()=>MasterWindow.anchoredPosition.y, x=>MasterWindow.anchoredPosition = new Vector2(0,x), 0f, 1f).SetEase(Ease.InElastic);
         await Task.Delay(2000);
-        DOTween.To(() => runOverText.text, x => runOverText.text = x, tempIsDead?"Game Over":"You Won!", 0.5f);
-        
+        DOTween.To(() => runOverText.text, x => runOverText.text = x, tempIsDead ? "Game Over" : "You Won!", 0.5f);
+
         await Task.Delay(delay);
         DOTween.To(() => creditsText.text, x => creditsText.text = x, "" + credits, 0.5f);
         await Task.Delay(delay);
@@ -118,13 +118,13 @@ public class GameOverManager : MonoBehaviour
         DOTween.To(() => egoText.text, x => egoText.text = x, "" + ego, 0.5f);
         await Task.Delay(delay);
         DOTween.To(() => egoLostText.text, x => egoLostText.text = x, "" + egoLost, 0.5f);
-        
+
         await Task.Delay(delay);
         DOTween.To(() => killsText.text, x => killsText.text = x, "" + minionsKilled, 0.5f);
         await Task.Delay(delay);
         DOTween.To(() => bossKillsText.text, x => bossKillsText.text = x,
             "" + bossesKilled, 0.5f);
-        
+
         await Task.Delay(delay);
         DOTween.To(() => scoreText.text, x => scoreText.text = x, "" + score, 0.5f);
         await Task.Delay(delay);
@@ -135,11 +135,9 @@ public class GameOverManager : MonoBehaviour
             await Task.Delay(delay);
         }
 
-        DOTween.To(() => cardPackPercentile, x => cardPackPercentile = x, (tempIsDead?0f:1f)+(score / 500f), 0.5f).OnUpdate(() =>
-            cardPackPercentileText.text = "x" + cardPackPercentile.ToString("0.00"));
-       
-        
-       
+        DOTween.To(() => cardPackPercentile, x => cardPackPercentile = x, (tempIsDead ? 0f : 1f) + (score / 500f), 0.5f)
+            .OnUpdate(() =>
+                cardPackPercentileText.text = "x" + cardPackPercentile.ToString("0.00"));
     }
 
     void Update()

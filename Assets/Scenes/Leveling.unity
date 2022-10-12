@@ -371,7 +371,7 @@ PrefabInstance:
       objectReference: {fileID: 1716098737}
     - target: {fileID: 3385420607718552049, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: <stat>k__BackingField
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_Pivot.x
@@ -383,7 +383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1071,7 +1071,7 @@ PrefabInstance:
       objectReference: {fileID: 1716098737}
     - target: {fileID: 3385420607718552049, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: <stat>k__BackingField
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_Pivot.x
@@ -1083,7 +1083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1474,7 +1474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2399,13 +2399,13 @@ RectTransform:
   m_Children:
   - {fileID: 332101073}
   - {fileID: 303340954639102828}
+  - {fileID: 229780328}
   - {fileID: 387774595}
   - {fileID: 1319531522}
-  - {fileID: 1389598626}
-  - {fileID: 229780328}
   - {fileID: 1724820984}
   - {fileID: 2138167879}
   - {fileID: 488976790}
+  - {fileID: 1389598626}
   m_Father: {fileID: 1495573605}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3377,7 +3377,7 @@ PrefabInstance:
       objectReference: {fileID: 1716098737}
     - target: {fileID: 3385420607718552049, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: <stat>k__BackingField
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_Pivot.x
@@ -3389,7 +3389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3611,7 +3611,7 @@ PrefabInstance:
       objectReference: {fileID: 1716098737}
     - target: {fileID: 3385420607718552049, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: <stat>k__BackingField
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_Pivot.x
@@ -3623,7 +3623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4471,13 +4471,13 @@ MonoBehaviour:
   <stats>k__BackingField: 0100000002000000030000000400000005000000060000000700000008000000
   <statControllerV2s>k__BackingField:
   - {fileID: 303340954639102831}
+  - {fileID: 399232801}
   - {fileID: 387774597}
   - {fileID: 1838237111}
-  - {fileID: 1389598628}
-  - {fileID: 399232801}
   - {fileID: 1724820986}
   - {fileID: 2138167881}
   - {fileID: 1563331098}
+  - {fileID: 1389598628}
   <statSelected>k__BackingField: 0
   <lowlight>k__BackingField: {fileID: 332101075}
 --- !u!1001 &1724820983
@@ -4605,7 +4605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5307,7 +5307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3385420607718552050, guid: af886f4356b2d8d40bff270dc64addc3, type: 3}
       propertyPath: m_AnchorMax.x

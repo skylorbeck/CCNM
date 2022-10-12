@@ -29,6 +29,10 @@ public class PlayerEquipmentPreviewer : MonoBehaviour
         allStats.Remove(EquipmentDataContainer.Stats.Int);
         allStats.Remove(EquipmentDataContainer.Stats.Cha);
 
+        //sort allStats by the order of the enum
+        allStats.Sort((x, y) => x.CompareTo(y));
+        
+        
 
         for (var index = 0; index < allStats.Count; index++)
         {

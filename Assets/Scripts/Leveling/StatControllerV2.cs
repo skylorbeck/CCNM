@@ -27,58 +27,8 @@ public class StatControllerV2 : MonoBehaviour
         currentValue = initialValue;
         statText.text = stat+":";
         statValueText.text = currentValue.ToString();
-        string translatedStat = "";
-        string translatedValue = "";
-        switch (stat)
-        {
-            case EquipmentDataContainer.Stats.None:
-                break;
-            case EquipmentDataContainer.Stats.Str:
-                translatedStat = "Attack";
-                translatedValue = player.GetUnmodifiedDamageNoCard().ToString();
-                break;
-            case EquipmentDataContainer.Stats.Dex:
-                translatedStat = "Dodge";
-                translatedValue = player.GetDodgeChanceUnmodifiedNoCard().ToString("0.##") + "%";
-                break;
-            case EquipmentDataContainer.Stats.Vit:
-                translatedStat = "Health";
-                translatedValue = player.GetHealthMaxUnmodifiedNoCard().ToString();
-                break;
-            case EquipmentDataContainer.Stats.Spd:
-                translatedStat = "Crit Chance";
-                translatedValue = player.GetCritChanceUnmodifiedNoCard().ToString("0.##") + "%";
-                break;
-            case EquipmentDataContainer.Stats.Skl:
-                translatedStat = "Crit Damage";
-                translatedValue = player.GetCritDamageUnmodifiedNoCard().ToString("0.##") + "%";
-                break;
-            case EquipmentDataContainer.Stats.Cap:
-                translatedStat = "Shield";
-                translatedValue = player.GetShieldMaxUnmodifiedNoCard().ToString();
-                break;
-            case EquipmentDataContainer.Stats.Chg:
-                translatedStat = "Recharge";
-                translatedValue = player.GetShieldRateUnmodifiedNoCard().ToString();
-                break;
-            case EquipmentDataContainer.Stats.Wis:
-                translatedStat = "Status Damage";
-                translatedValue = player.GetStatusDamageUnmodifiedNoCard().ToString();
-                break;
-            case EquipmentDataContainer.Stats.Int:
-                translatedStat = "Ego Boost";
-                translatedValue = player.GetEgoBoostUnmodifiedNoCard().ToString("0.##") + "%";
-                break;
-            case EquipmentDataContainer.Stats.Cha:
-                translatedStat = "Credit Boost";
-                translatedValue = player.GetCreditBoostUnmodifiedNoCard().ToString("0.##") + "%";
-                break;
-            case EquipmentDataContainer.Stats.Lck:
-                translatedStat = "Luck";
-                translatedValue = player.GetLootLuckUnmodifiedNoCard().ToString();
-                break;
-        }
-        
+        string translatedStat = EquipmentDataContainer.AttributeName(stat);
+        string translatedValue = player.GetAttributeValueString(stat);
         translatedStatText.text = translatedStat+":";
         translatedValueText.text = translatedValue;
     }
