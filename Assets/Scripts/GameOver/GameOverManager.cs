@@ -67,6 +67,7 @@ public class GameOverManager : MonoBehaviour
         highScoreText.text = highScore.ToString();
         score = GameManager.Instance.runStats.bossesKilled * bossRatio +
                 GameManager.Instance.runStats.minionsKilled * minionRatio;
+        score += score * (int)GameManager.Instance.runSettings.multiplier;
         minionsKilled = GameManager.Instance.runStats.minionsKilled;
         bossesKilled = GameManager.Instance.runStats.bossesKilled;
 
