@@ -90,7 +90,7 @@ public class GameOverManager : MonoBehaviour
             egoDoublerText.text = "Doubler Active";
             egoDoublerText.color = egoText.color;
         }
-        GameManager.Instance.metaPlayer.AddEgo(ego);
+        GameManager.Instance.metaPlayer.AddEgoNoBoost(ego);
 
         cardPacks += score / 500;
         GameManager.Instance.metaPlayer.AddCardPack(cardPacks);

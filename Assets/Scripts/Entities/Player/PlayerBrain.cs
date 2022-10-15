@@ -587,6 +587,11 @@ public class PlayerBrain : Brain
     public void AddEgo(int amt)
     {
         amt = (int)(amt * GetEgoBoost());
+        AddEgoNoBoost(amt);
+    }
+
+    public void AddEgoNoBoost(int amt)
+    {
         trackableStats.egoGained += amt;
         ego += amt;
         NotificationPopController.Instance.PopEgo("+" + amt + "Ego",Camera.main.ViewportToWorldPoint(new Vector3(0.6f,0.525f,0)));

@@ -38,5 +38,5 @@ MonoBehaviour:
   <statusUser>k__BackingField: 0
   <userStatusDuration>k__BackingField: 1
   <wideRange>k__BackingField: 0
-  <attackAnimation>k__BackingField: 2
+  <attackAnimation>k__BackingField: 1
   <soundEffect>k__BackingField: {fileID: 8300000, guid: 4d4a5012336b76a40b9c3d9dccfb64e1, type: 3}

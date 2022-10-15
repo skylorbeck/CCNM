@@ -38,13 +38,13 @@ MonoBehaviour:
   <statusUser>k__BackingField: 0
   <userStatusDuration>k__BackingField: 1
   <wideRange>k__BackingField: 0
-  <attackAnimation>k__BackingField: 0
+  <attackAnimation>k__BackingField: 1
   <soundEffect>k__BackingField: {fileID: 8300000, guid: 76cf4126374485d4c926fed47d13d996, type: 3}
   <amountToConsume>k__BackingField: 0
   <strict>k__BackingField: 0
   <stacksFromUser>k__BackingField: 0
   <cTargetDamageMultiplier>k__BackingField: 1.5
-  <cMinTargetDamageMultiplier>k__BackingField: 0.1
+  <cMinTargetDamageMultiplier>k__BackingField: 0.25
   <cDamageTarget>k__BackingField: 1
   <cMultiplyByStacks>k__BackingField: 1
   <cDamageUser>k__BackingField: 0

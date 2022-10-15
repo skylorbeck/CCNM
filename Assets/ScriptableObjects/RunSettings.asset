@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf2a08454a342ee8c0b0d935a15d83c, type: 3}
   m_Name: RunSettings
   m_EditorClassIdentifier: 
+  mathPow: 5
   health: 1
   shield: 1
   armor: 1
